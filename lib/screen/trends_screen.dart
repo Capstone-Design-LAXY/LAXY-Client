@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
+import '../common/component/custom_tab_bar.dart';
 
 class TrendsScreen extends StatefulWidget {
 
@@ -15,8 +16,17 @@ class TrendsScreen extends StatefulWidget {
   _TrendsScreenState createState() => _TrendsScreenState();
 }
 
-class _TrendsScreenState extends State<TrendsScreen> {
+class _TrendsScreenState extends State<TrendsScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController controller;
   Set<String> seletedSegment = {'마인드맵'};
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = TabController(length: 3, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +67,14 @@ class _TrendsScreenState extends State<TrendsScreen> {
                       children: [
                         CustomFloatingActionButton(onPressed: () {}, icon: Icons.menu),
                         Expanded(child: SizedBox(),),
+                        // TODO: 컴포넌트화 필요
                         // 세그먼트 버튼 (크기 다음과 같이 고정)
                         Container(
                           width: 160,
                           height: 40,
                           child: SegmentedButton(
                             segments: [
-                              ButtonSegment(value: '마인드맵', label: Text('마인드맵'), enabled: true),
+                              ButtonSegment(value: '마인드맵', label: Text('마인드맵'),),
                               ButtonSegment(value: '트랜드', label: Text('트랜드')),
                             ],
                             selected: seletedSegment
@@ -80,12 +91,20 @@ class _TrendsScreenState extends State<TrendsScreen> {
                   Column(
                     children: [
                       // TODO: 컴포넌트화 필요
-                      // TabBar(
-                      //     tabs: [
-                      //       Tab(text: '메인',),
-                      //       Tab(text: '커뮤니티',),
-                      //       Tab(text: '전체',)
-                      //     ]
+                      CustomTabBar(
+                        controller: controller,
+                        tabs: const <Widget>[
+                          Tab(text: '메인',),
+                          Tab(text: '커뮤니티',),
+                          Tab(text: '전체',)
+                        ]
+                      ),
+                      // TabBarView(
+                      //   children: [
+                      //     Container(child: Text('메인')),
+                      //     Container(child: Text('커뮤니티')),
+                      //     Container(child: Text('전체')),
+                      //   ]
                       // )
                     ],
                   )
