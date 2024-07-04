@@ -1,76 +1,100 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:laxy/common/component/custom_floating_action_button.dart';
+import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 
-class TrendsScreen extends StatelessWidget {
-  const TrendsScreen({super.key});
+class TrendsScreen extends StatefulWidget {
+
+  const TrendsScreen({
+    super.key
+  });
+
+  @override
+  _TrendsScreenState createState() => _TrendsScreenState();
+}
+
+class _TrendsScreenState extends State<TrendsScreen> {
+  Set<String> seletedSegment = {'마인드맵'};
 
   @override
   Widget build(BuildContext context) {
     ValueNotifier<int> currentIndex = ValueNotifier(0);
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: ValueListenableBuilder<int>(
-          valueListenable: currentIndex,
-          builder: (BuildContext context, int index, Widget? child) {
-            return Scaffold(
-              appBar: _appbar(),
-              bottomNavigationBar: BottomNavigationBar(
-                items: const [
-                  BottomNavigationBarItem(
-                    label: "Home",
-                    icon: Icon(Icons.home_outlined),
-                    activeIcon: Icon(Icons.home_rounded),
+    return DefaultLayout(
+      child: Stack(
+        children: [
+          Center(
+            child: Image(
+              //TODO: 테마 이미지 변경
+              image: AssetImage('assets/sky.png'),
+              // color: Colors.white,
+              width: 1400,
+              height: 1400,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SafeArea(
+            bottom: false,
+            minimum: const EdgeInsets.only(top: 40, left: 10, right: 10),
+            child: Container(
+              decoration: ShapeDecoration(
+                //TODO: 테마 컬러 추가
+                color: Color(0xFFE2E6EA),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
                   ),
-                  BottomNavigationBarItem(
-                    label: "Favorite",
-                    icon: Icon(Icons.favorite_outline),
-                    activeIcon: Icon(Icons.favorite),
-                  ),
-                ],
-                currentIndex: index,
-                onTap: (i) {
-                  HapticFeedback.mediumImpact();
-                  currentIndex.value = i;
-                },
+                ),
               ),
-              body: [
-                SizedBox(
-                    child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(),
+              child: Column(
+                children: [
+                  // 상단 FAB, segment Button 자리
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        CustomFloatingActionButton(onPressed: () {}, icon: Icons.menu),
+                        Expanded(child: SizedBox(),),
+                        // 세그먼트 버튼 (크기 다음과 같이 고정)
+                        Container(
+                          width: 160,
+                          height: 40,
+                          child: SegmentedButton(
+                            segments: [
+                              ButtonSegment(value: '마인드맵', label: Text('마인드맵'), enabled: true),
+                              ButtonSegment(value: '트랜드', label: Text('트랜드')),
+                            ],
+                            selected: seletedSegment
+                          ),
+                        ),
+                        Expanded(child: SizedBox(),),
+                        CustomFloatingActionButton(onPressed: () {}, icon: Icons.mode_outlined),
+                        SizedBox(width: 20,),
+                        CustomFloatingActionButton(onPressed: () {}, icon: Icons.search),
+                      ],
                     ),
-                  ],
-                )),
-                const SizedBox(
-                  child: Center(child: CircularProgressIndicator()),
-                ),
-              ][index],
-            );
-          }),
-    );
-  }
-
-  AppBar _appbar() {
-    return AppBar(
-      title: const Text("Light & Dark Mode"),
-      actions: [
-        ValueListenableBuilder<bool>(
-            valueListenable: CustomThemeMode.current,
-            builder: (BuildContext context, bool value, Widget? child) {
-              return IconButton(
-                onPressed: () {
-                  HapticFeedback.mediumImpact();
-                  CustomThemeMode.change();
-                },
-                icon: Icon(
-                  value ? Icons.light_mode : Icons.dark_mode,
-                ),
-              );
-            }),
-      ],
+                  ),
+                  // 메인 컨텐츠 자리
+                  Column(
+                    children: [
+                      // TODO: 컴포넌트화 필요
+                      // TabBar(
+                      //     tabs: [
+                      //       Tab(text: '메인',),
+                      //       Tab(text: '커뮤니티',),
+                      //       Tab(text: '전체',)
+                      //     ]
+                      // )
+                    ],
+                  )
+                ],
+              )
+            ),
+          ),
+        ]
+      ),
     );
   }
 }

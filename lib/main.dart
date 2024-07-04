@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/custom_floating_action_button.dart';
+import 'package:laxy/common/component/custom_text_form_field.dart';
 import 'package:laxy/screen/login_screen.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 import 'package:laxy/theme/custom_theme_data.dart';
 import 'package:laxy/screen/trends_screen.dart';
 import 'package:laxy/screen/login_screen.dart';
+
 void main() {
-  CustomThemeMode.instance;
-  runApp(const MyApp()); 
+  // CustomThemeMode.instance;
+  runApp( _App()); 
   // runApp(TrendsScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _App extends StatelessWidget {
+  const _App({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-        valueListenable: CustomThemeMode.themeMode,
-        builder: (context, mode, child) {
-          return MaterialApp(
-            darkTheme: CustomThemeData.dark,
-            theme: CustomThemeData.light,
-            themeMode: mode,
-            home: TrendsScreen(),
-          );
-        });
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // home: Scaffold(
+      //   body: Column(
+      //     children: [
+      //       CustomFloatingActionButton(icon: Icons.search, onPressed: () => {},),
+      //     ],
+      //   ),
+      home: TrendsScreen(),
+      
+    );
   }
 }
 
