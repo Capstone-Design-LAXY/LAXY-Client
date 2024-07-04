@@ -13,8 +13,8 @@ class CustomFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
-      height: 40,
+      width: 38,
+      height: 38,
       child: FloatingActionButton.small(
         //TODO: 테마 컬러 적용
         backgroundColor: Color(0xFFD4E3FF),
