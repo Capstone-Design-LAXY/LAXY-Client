@@ -41,7 +41,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
     return ListView(
       children: [
         // 헤더
-        Divider(height: 1, color: Color(0xFF48464C),),
+        // Divider(height: 1, color: Color(0xFF48464C),),
         Container(
           child: Row(
             children: [

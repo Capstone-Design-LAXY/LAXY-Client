@@ -6,8 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
-import 'package:laxy/common/component/trends_main_tab_view.dart';
+import 'package:laxy/screen/trends_community_tab_view.dart';
+import 'package:laxy/screen/trends_main_tab_view.dart';
 import 'package:laxy/common/layout/default_layout.dart';
+import 'package:laxy/screen/trends_post_tab_view.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 import '../common/component/custom_tab_bar.dart';
 
@@ -147,8 +149,8 @@ class _TrendsScreenState extends State<TrendsScreen>
                         controller: controller,
                         children: [
                           TrendsMainTabView(),
-                          TrendsMainTabView(),
-                          TrendsMainTabView(),
+                          TrendsCommunityTabView(),
+                          TrendsPostTabView(),
                         ],
                       ),
                     )
