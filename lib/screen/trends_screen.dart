@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
+import 'package:laxy/common/component/post_ranking_list_tile.dart';
+import 'package:laxy/common/component/trends_main_tab_view.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 import '../common/component/custom_tab_bar.dart';
@@ -141,107 +143,12 @@ class _TrendsScreenState extends State<TrendsScreen>
                     ),
                     // 메인 컨텐츠 자리
                     Expanded(
-                      child: ListView(
+                      child: TabBarView(
+                        controller: controller,
                         children: [
-                          // 헤더
-                          Container(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                                  child: Icon(Icons.local_fire_department, color: Color(0xFFFF4949), size: 30,),
-                                ),
-                                Text(
-                                  '일간 인기 게시글',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w200
-                                  ),
-                                ),
-                                Expanded(child: SizedBox(),),
-                                // 드롭다운
-                                Container(
-                                    child: DropdownButton<String>(
-                                      value: dropdownValueGender,
-                                      icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          color: Color(0xFF141218)
-                                      ),
-                                      dropdownColor: Color(0xFFFFFFFF),
-                                      isDense: true,
-                                      onChanged: (String? genderValue) {
-                                        setState(() {
-                                          dropdownValueGender = genderValue!;
-                                        });
-                                      },
-                                      items: genderList.map<DropdownMenuItem<String>>((String genderValue) {
-                                        return DropdownMenuItem<String>(
-                                          value: genderValue,
-                                          child: Text(genderValue),
-                                        );
-                                      }).toList(),
-                                    )
-                                ),
-                                Container(
-                                  child: DropdownButton<String>(
-                                    value: dropdownValueAge,
-                                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFF141218)
-                                    ),
-                                    dropdownColor: Color(0xFFFFFFFF),
-                                    isDense: true,
-                                    onChanged: (String? ageValue) {
-                                      setState(() {
-                                        dropdownValueAge = ageValue!;
-                                      });
-                                    },
-                                    items: ageList.map<DropdownMenuItem<String>>((String ageValue) {
-                                      return DropdownMenuItem<String>(
-                                        value: ageValue,
-                                        child: Text(ageValue),
-                                      );
-                                    }).toList(),
-                                  )
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 3),
-                            child: Divider(height: 1, color: Color(0xFF48464C),),
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Card(
-                                child: ListTile(
-                                  title: Text('Title'),
-                                  onTap: () {},
-                                ),
-                              ),
-                              MaterialButton(
-                                onPressed: () {},
-                                child: Container(
-                                  color: Colors.amber,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 20,
-                                        width: 20,
-                                        child: Text('1'),
-                                      ),
-                                      Text('아 배고파'),
-                                      Expanded(child: SizedBox()),
-                                      Icon(Icons.comment),
-
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
+                          TrendsMainTabView(),
+                          TrendsMainTabView(),
+                          TrendsMainTabView(),
                         ],
                       ),
                     )
