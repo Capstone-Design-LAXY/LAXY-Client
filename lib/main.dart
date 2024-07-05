@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/component/custom_text_form_field.dart';
 import 'package:laxy/screen/login_screen.dart';
@@ -19,6 +20,9 @@ class _App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarDividerColor: Colors.black));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarColor: Colors.black));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: Scaffold(
