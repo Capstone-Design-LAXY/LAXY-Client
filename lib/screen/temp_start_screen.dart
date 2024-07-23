@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/screen/login_screen.dart';
+import 'package:laxy/screen/tag_screen.dart';
 import 'package:laxy/screen/trends_screen.dart';
 
 class TempStartScreen extends StatelessWidget {
@@ -31,15 +32,15 @@ class TempStartScreen extends StatelessWidget {
               },
               child: Text('LoginScreen'),
             ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => ThemeTest()),
-            //     );
-            //   },
-            //   child: Text('Go to Page 2'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TagScreen()),
+                );
+              },
+              child: Text('TagScreen'),
+            ),
             // ElevatedButton(
             //   onPressed: () {
             //     Navigator.push(
