@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 
-class TrendsScreen extends StatelessWidget {
-  const TrendsScreen({super.key});
+class ThemeTestScreen extends StatelessWidget {
+  const ThemeTestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

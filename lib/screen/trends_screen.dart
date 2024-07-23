@@ -85,7 +85,14 @@ class _TrendsScreenState extends State<TrendsScreen>
                     // 상단 FAB, segment Button 자리
                     Row(
                       children: [
-                        CustomFloatingActionButton(onPressed: () {}, icon: Icons.menu),
+                        Builder(
+                          builder: (context) {
+                            return CustomFloatingActionButton(
+                              onPressed: () {Scaffold.of(context).openDrawer();},
+                              icon: Icons.menu
+                            );
+                          }
+                        ),
                         Expanded(child: SizedBox(),),
                         // TODO: 컴포넌트화 필요
                         // 세그먼트 버튼 (크기 다음과 같이 고정)

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/component/custom_text_form_field.dart';
 import 'package:laxy/screen/login_screen.dart';
+import 'package:laxy/screen/temp_start_screen.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 import 'package:laxy/theme/custom_theme_data.dart';
 import 'package:laxy/screen/trends_screen.dart';
@@ -31,8 +32,8 @@ class _App extends StatelessWidget {
       //       CustomFloatingActionButton(icon: Icons.search, onPressed: () => {},),
       //     ],
       //   ),
-      home: TrendsScreen(),
-      
+      // home: TrendsScreen(),
+      home: TempStartScreen(),
     );
   }
 }

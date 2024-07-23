@@ -70,11 +70,14 @@ class PostListTile extends StatelessWidget {
             ),
           ),
           if (isImage)
-            Image(
-              image: AssetImage('assets/sky.png'),
-              height: 60,
-              width: 60,
-              fit: BoxFit.contain,
+            Container(
+              color: Color(0xFFD4E3FF),
+              child: Image(
+                image: AssetImage('assets/sky.png'),
+                height: 60,
+                width: 60,
+                fit: BoxFit.contain,
+              ),
             ),
         ],
       ),
