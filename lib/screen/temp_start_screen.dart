@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/screen/login_screen.dart';
+import 'package:laxy/screen/mindmap_screen.dart';
 import 'package:laxy/screen/tag_screen.dart';
 import 'package:laxy/screen/trends_screen.dart';
 
@@ -41,15 +42,15 @@ class TempStartScreen extends StatelessWidget {
               },
               child: Text('TagScreen'),
             ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => Page3()),
-            //     );
-            //   },
-            //   child: Text('Go to Page 3'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MindmapScreen()),
+                );
+              },
+              child: Text('MindmapScreen'),
+            ),
           ],
         ),
       ),
