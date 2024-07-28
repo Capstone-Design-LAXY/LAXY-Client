@@ -136,7 +136,33 @@ class _MindmapScreenState extends State<MindmapScreen>
               ),
             ),
           ),
-          Center(child: CustomOrbit())
+          Center(child: CustomOrbit(
+            orbitWidgets: [
+              // Container(
+              //   decoration: const BoxDecoration(
+              //     borderRadius: BorderRadius.all(Radius.circular(65)),
+              //     color: Colors.green,
+              //   ),
+              //   height: 130,
+              //   width: 130,
+              // )
+              Transform.scale(
+                scale: 0.3,
+                child: CustomOrbit(
+                  orbitWidgets: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(65)),
+                        color: Colors.green,
+                      ),
+                      height: 130,
+                      width: 130,
+                    )
+                  ],
+                ),
+              )
+            ]
+          ))
         ]
       ),
     );

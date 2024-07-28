@@ -2,7 +2,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class CustomOrbit extends StatefulWidget {
-  const CustomOrbit({super.key});
+  final List<Widget> orbitWidgets;
+
+  const CustomOrbit({
+    super.key,
+    required this.orbitWidgets
+  });
 
   @override
   State<CustomOrbit> createState() => _CustomOrbitState();
@@ -38,14 +43,7 @@ class _CustomOrbitState extends State<CustomOrbit>
           turns: controller,
           child: Transform.translate(
             offset: Offset(r * cos(0), r * sin(0)),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(65)),
-                color: Colors.green,
-              ),
-              height: 130,
-              width: 130,
-            ),
+            child: widget.orbitWidgets[0]
           ),
         ),
         RotationTransition(
@@ -76,13 +74,26 @@ class _CustomOrbitState extends State<CustomOrbit>
             ),
           ),
         ),
-        Container(
-          child: Image(
-            image: AssetImage('assets/globe/LAXY_globe.png'),
-            width: 130,
-            height: 130,
+        // Container(
+        //   child: Image(
+        //     image: AssetImage('assets/globe/LAXY_globe.png'),
+        //     width: 130,
+        //     height: 130,
+        //   ),
+        // ),
+
+        //역회전 하는 버전
+        RotationTransition(
+          turns: Tween<double>(begin: 0.0, end: -1.0).animate(controller),
+          child: Container(
+            child: Image(
+              image: AssetImage('assets/globe/LAXY_globe.png'),
+              width: 130,
+              height: 130,
+            ),
           ),
         ),
+
         Container(
           width: 400,
           height: 400,
