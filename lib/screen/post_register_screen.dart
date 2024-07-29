@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_chip_tags/flutter_chip_tags.dart';
@@ -19,6 +21,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    print(jsonEncode(_controller.document.toDelta().toJson()));
     super.dispose();
   }
 
@@ -66,10 +69,6 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 3, bottom: 1),
-              //   child: Divider(height: 1, color: Color(0xFF48464C),),
-              // ),
               ChipTags(
                 list: _myList,
                 separator: " ",
@@ -80,15 +79,15 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                   filled: true, // 배경색을 채우기 위해 설정
                   fillColor: Colors.white, // 배경색을 하얀색으로 설정
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0), // 둥근 모서리 설정
+                    borderRadius: BorderRadius.circular(5.0), // 둥근 모서리 설정
                     borderSide: BorderSide.none, // 테두리 없음
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0), // 둥근 모서리 설정
+                    borderRadius: BorderRadius.circular(5.0), // 둥근 모서리 설정
                     borderSide: BorderSide.none, // 테두리 없음
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0), // 둥근 모서리 설정
+                    borderRadius: BorderRadius.circular(5.0), // 둥근 모서리 설정
                     borderSide: BorderSide.none, // 테두리 없음
                   ),
                 ),
@@ -120,7 +119,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                   // height: 50,
                   decoration: BoxDecoration(
                     color: Color(0xFFFFFFFF), // 하얀색 배경
-                    borderRadius: BorderRadius.circular(20.0), // 둥근 테두리
+                    borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
                   ),
                   child: TextField(
                     decoration: InputDecoration(
@@ -137,7 +136,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                 height: MediaQuery.of(context).size.height - 90,
                 decoration: BoxDecoration(
                   color: Color(0xFFFFFFFF), // 하얀색 배경
-                  borderRadius: BorderRadius.circular(20.0), // 둥근 테두리
+                  borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
                 ),
                 child: Column(
                   children: [
@@ -160,15 +159,13 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                       ),
                     ),
                     Divider(),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                        child: quill.QuillEditor.basic(
-                          configurations: quill.QuillEditorConfigurations(
-                            controller: _controller,
-                            placeholder: "내용을 입력하세요.",
-                            autoFocus: false,
-                          ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                      child: quill.QuillEditor.basic(
+                        configurations: quill.QuillEditorConfigurations(
+                          controller: _controller,
+                          placeholder: "내용을 입력하세요.",
+                          autoFocus: false,
                         ),
                       ),
                     ),
