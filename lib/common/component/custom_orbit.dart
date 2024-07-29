@@ -1,12 +1,18 @@
+import 'dart:js_interop';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/orbit_star.dart';
 
 class CustomOrbit extends StatefulWidget {
   final List<Widget> orbitWidgets;
+  final Widget? center;
+  final bool reverse;
 
   const CustomOrbit({
     super.key,
-    required this.orbitWidgets
+    required this.orbitWidgets,
+    this.center,
+    this.reverse = false,
   });
 
   @override
@@ -17,8 +23,6 @@ class _CustomOrbitState extends State<CustomOrbit>
     with SingleTickerProviderStateMixin {
 
   late AnimationController controller;
-
-  final double r = 200; // 중심에서의 거리 (픽셀 단위로 설정)
 
   @override
   void initState() {
@@ -35,65 +39,16 @@ class _CustomOrbitState extends State<CustomOrbit>
 
   @override
   Widget build(BuildContext context) {
+    final double r = 200; // 중심에서의 거리 (픽셀 단위로 설정)
+    final int len = widget.orbitWidgets.length;
+    final double angle = 2 * pi / len;
+
+    final Widget centerWidget = widget.center ?? OrbitStar(isGlobe: true);
+
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        // 중심을 기준으로 궤도를 설정
-        RotationTransition(
-          turns: controller,
-          child: Transform.translate(
-            offset: Offset(r * cos(0), r * sin(0)),
-            child: widget.orbitWidgets[0]
-          ),
-        ),
-        RotationTransition(
-          turns: controller,
-          child: Transform.translate(
-            offset: Offset(r * cos(2 * pi / 3), r * sin(2 * pi / 3)),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(65)),
-                color: Colors.green,
-              ),
-              height: 130,
-              width: 130,
-            ),
-          ),
-        ),
-        RotationTransition(
-          turns: controller,
-          child: Transform.translate(
-            offset: Offset(r * cos(4 * pi / 3), r * sin(4 * pi / 3)),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(65)),
-                color: Colors.green,
-              ),
-              height: 130,
-              width: 130,
-            ),
-          ),
-        ),
-        // Container(
-        //   child: Image(
-        //     image: AssetImage('assets/globe/LAXY_globe.png'),
-        //     width: 130,
-        //     height: 130,
-        //   ),
-        // ),
-
-        //역회전 하는 버전
-        RotationTransition(
-          turns: Tween<double>(begin: 0.0, end: -1.0).animate(controller),
-          child: Container(
-            child: Image(
-              image: AssetImage('assets/globe/LAXY_globe.png'),
-              width: 130,
-              height: 130,
-            ),
-          ),
-        ),
-
+        // 궤도
         Container(
           width: 400,
           height: 400,
@@ -105,7 +60,23 @@ class _CustomOrbitState extends State<CustomOrbit>
               style: BorderStyle.solid,
             ),
           ),
-        )
+        ),
+        if (widget.reverse)
+          RotationTransition(
+            turns: Tween<double>(begin: 0.0, end: -1.0).animate(controller),
+            child: centerWidget,
+          )
+        else
+          centerWidget,
+        // 공전
+        for (int i = 0; i < len; i++)
+          RotationTransition(
+            turns: controller,
+            child: Transform.translate(
+              offset: Offset(r * cos(angle * i), r * sin(angle * i)),
+              child: Transform.scale(scale: 0.6, child: widget.orbitWidgets[i])
+            ),
+          ),
       ],
     );
   }

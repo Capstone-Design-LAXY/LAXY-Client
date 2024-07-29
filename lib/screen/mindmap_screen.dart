@@ -13,6 +13,7 @@ import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/screen/trends_post_tab_view.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 import '../common/component/custom_tab_bar.dart';
+import '../common/component/orbit_star.dart';
 
 class MindmapScreen extends StatefulWidget {
 
@@ -136,31 +137,74 @@ class _MindmapScreenState extends State<MindmapScreen>
               ),
             ),
           ),
+
           Center(child: CustomOrbit(
             orbitWidgets: [
-              // Container(
-              //   decoration: const BoxDecoration(
-              //     borderRadius: BorderRadius.all(Radius.circular(65)),
-              //     color: Colors.green,
-              //   ),
-              //   height: 130,
-              //   width: 130,
-              // )
               Transform.scale(
-                scale: 0.3,
+                scale: 0.7,
                 child: CustomOrbit(
+                  reverse: true,
+                  center: OrbitStar(
+                    isCommunity: true,
+                    nameTag: true,
+                    name: '인공지능',
+                  ),
                   orbitWidgets: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(65)),
-                        color: Colors.green,
-                      ),
-                      height: 130,
-                      width: 130,
+                    OrbitStar(
+                      isCommunity: true,
+                      grade: 6,
+                    ),
+                    OrbitStar(
+                      grade: 1,
                     )
-                  ],
+                  ]
                 ),
-              )
+              ),
+              Transform.scale(
+                scale: 0.7,
+                child: CustomOrbit(
+                    reverse: true,
+                    center: OrbitStar(
+                      grade: 4,
+                      nameTag: true,
+                      name: '소금빵',
+                    ),
+                    orbitWidgets: [
+                      OrbitStar(
+                        isCommunity: true,
+                        grade: 5,
+                      ),
+                    ]
+                ),
+              ),
+              Transform.scale(
+                scale: 0.7,
+                child: CustomOrbit(
+                    reverse: true,
+                    center: OrbitStar(
+                      isCommunity: true,
+                      grade: 4,
+                      nameTag: true,
+                      name: '자격증',
+                    ),
+                    orbitWidgets: [
+                      OrbitStar(
+                        isCommunity: true,
+                        grade: 2,
+                      ),
+                      OrbitStar(
+                        isCommunity: true,
+                        grade: 3,
+                      ),
+                      OrbitStar(
+                        grade: 1,
+                      ),
+                      OrbitStar(
+                        grade: 5,
+                      ),
+                    ]
+                ),
+              ),
             ]
           ))
         ]
