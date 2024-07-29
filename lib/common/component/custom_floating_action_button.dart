@@ -17,6 +17,7 @@ class CustomFloatingActionButton extends StatelessWidget {
       height: 38,
       child: FloatingActionButton.small(
         //TODO: 테마 컬러 적용
+        heroTag: key,
         backgroundColor: Color(0xFFD4E3FF),
         foregroundColor: Color(0xFF001C3A),
         onPressed: onPressed,

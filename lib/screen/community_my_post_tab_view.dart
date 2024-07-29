@@ -3,19 +3,19 @@ import 'package:laxy/common/component/post_list_tile.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
 import 'package:laxy/common/component/tag_ranking_list_tile.dart';
 
-class TrendsPostTabView extends StatefulWidget {
+class CommunityMyPostTabView extends StatefulWidget {
 
-  const TrendsPostTabView({
+  const CommunityMyPostTabView({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<TrendsPostTabView> createState() => _TrendsPostTabView();
+  State<CommunityMyPostTabView> createState() => _CommunityMyPostTabView();
 }
 
-const List<String> criteriaList = <String>['최신순', '좋아요', '조회수'];
+const List<String> criteriaList = <String>['전체', '게시글', '댓글', '좋아요'];
 
-class _TrendsPostTabView extends State<TrendsPostTabView>
+class _CommunityMyPostTabView extends State<CommunityMyPostTabView>
     with SingleTickerProviderStateMixin {
   String dropdownValueCriteria = criteriaList.first;
 
@@ -31,11 +31,11 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                child: SizedBox(width: 6, height: 30,),
-                // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
+                // child: SizedBox(width: 6, height: 30,),
+                child: Icon(Icons.account_circle, color: Color(0xFF5589D3), size: 30,),
               ),
               Text(
-                '전체 게시글',
+                '내가 작성한 글',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w200

@@ -14,23 +14,22 @@ import 'package:laxy/screen/trends_post_tab_view.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
 import '../common/component/custom_tab_bar.dart';
 import '../common/component/orbit_star.dart';
-import 'mindmap_detail_screen.dart';
 
-class MindmapScreen extends StatefulWidget {
+class MindmapDetailScreen extends StatefulWidget {
 
-  const MindmapScreen({
+  const MindmapDetailScreen({
     super.key
   });
 
   @override
-  _MindmapScreenState createState() => _MindmapScreenState();
+  _MindmapDetailScreenState createState() => _MindmapDetailScreenState();
 }
 
 enum Main{ mindMap, trends }
 const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
 const List<String> genderList = <String>['성별', '남자', '여자', '기타'];
 
-class _MindmapScreenState extends State<MindmapScreen>
+class _MindmapDetailScreenState extends State<MindmapDetailScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
   Main mainView = Main.trends;
@@ -49,14 +48,6 @@ class _MindmapScreenState extends State<MindmapScreen>
   void dispose() {
     controller.dispose();
     super.dispose();
-  }
-
-  void _navigateToDetail(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) => MindmapDetailScreen(), // 상세 화면을 여기서 정의해야 합니다.
-      ),
-    );
   }
 
   @override
@@ -147,82 +138,42 @@ class _MindmapScreenState extends State<MindmapScreen>
             ),
           ),
 
-          Center(child: CustomOrbit(
-            onPressed: () {},
-            orbitWidgets: [
-              Transform.scale(
-                scale: 0.6,
-                child: CustomOrbit(
-                  onPressed: () {},
-                  center_reverse: true,
-                  reverse: true,
-                  center: OrbitStar(
-                    isCommunity: true,
-                    nameTag: true,
-                    name: '인공지능',
-                  ),
-                  orbitWidgets: [
-                    OrbitStar(
-                      isCommunity: true,
-                      grade: 6,
-                    ),
-                    OrbitStar(
-                      grade: 1,
-                    )
-                  ]
-                ),
+          Center(
+            child: CustomOrbit(
+              onPressed: () {Navigator.of(context).pop();},
+              reverse: true,
+              center: OrbitStar(
+                isCommunity: true,
+                grade: 4,
+                nameTag: true,
+                name: '자격증',
               ),
-              Transform.scale(
-                scale: 0.6,
-                child: CustomOrbit(
-                    onPressed: () {},
-                    center_reverse: true,
-                    reverse: true,
-                    center: OrbitStar(
-                      grade: 4,
-                      nameTag: true,
-                      name: '소금빵',
-                    ),
-                    orbitWidgets: [
-                      OrbitStar(
-                        isCommunity: true,
-                        grade: 5,
-                      ),
-                    ]
+              orbitWidgets: [
+                OrbitStar(
+                  nameTag: true,
+                  isCommunity: true,
+                  grade: 2,
+                  name: '토익',
                 ),
-              ),
-              Transform.scale(
-                scale: 0.6,
-                child: CustomOrbit(
-                    onPressed: () => _navigateToDetail(context),
-                    center_reverse: true,
-                    reverse: true,
-                    center: OrbitStar(
-                      isCommunity: true,
-                      grade: 4,
-                      nameTag: true,
-                      name: '자격증',
-                    ),
-                    orbitWidgets: [
-                      OrbitStar(
-                        isCommunity: true,
-                        grade: 2,
-                      ),
-                      OrbitStar(
-                        isCommunity: true,
-                        grade: 3,
-                      ),
-                      OrbitStar(
-                        grade: 2,
-                      ),
-                      OrbitStar(
-                        grade: 5,
-                      ),
-                    ]
+                OrbitStar(
+                  nameTag: true,
+                  isCommunity: true,
+                  grade: 3,
+                  name: 'Qnet',
                 ),
-              ),
-            ]
-          ))
+                OrbitStar(
+                  nameTag: true,
+                  grade: 2,
+                  name: 'SQLD',
+                ),
+                OrbitStar(
+                  nameTag: true,
+                  grade: 5,
+                  name: '정처기',
+                ),
+              ]
+            )
+          )
         ]
       ),
     );

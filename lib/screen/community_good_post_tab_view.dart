@@ -3,21 +3,11 @@ import 'package:laxy/common/component/post_list_tile.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
 import 'package:laxy/common/component/tag_ranking_list_tile.dart';
 
-class TrendsPostTabView extends StatefulWidget {
+class CommunityGoodPostTabView extends StatelessWidget {
 
-  const TrendsPostTabView({
+  const CommunityGoodPostTabView({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<TrendsPostTabView> createState() => _TrendsPostTabView();
-}
-
-const List<String> criteriaList = <String>['최신순', '좋아요', '조회수'];
-
-class _TrendsPostTabView extends State<TrendsPostTabView>
-    with SingleTickerProviderStateMixin {
-  String dropdownValueCriteria = criteriaList.first;
 
   @override
   Widget build(BuildContext context) {
@@ -31,42 +21,16 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                child: SizedBox(width: 6, height: 30,),
-                // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
+                child: Icon(Icons.favorite, color: Color(0xFF5589D3), size: 30,),
               ),
               Text(
-                '전체 게시글',
+                '좋은 글',
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w200
                 ),
               ),
               Expanded(child: SizedBox(),),
-              // 드롭다운
-              Container(
-                  child: DropdownButton<String>(
-                    value: dropdownValueCriteria,
-                    underline: SizedBox.shrink(),
-                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF141218)
-                    ),
-                    dropdownColor: Color(0xFFFFFFFF),
-                    isDense: true,
-                    onChanged: (String? criteriaValue) {
-                      setState(() {
-                        dropdownValueCriteria = criteriaValue!;
-                      });
-                    },
-                    items: criteriaList.map<DropdownMenuItem<String>>((String criteriaValue) {
-                      return DropdownMenuItem<String>(
-                        value: criteriaValue,
-                        child: Text(criteriaValue),
-                      );
-                    }).toList(),
-                  )
-              ),
             ],
           ),
         ),

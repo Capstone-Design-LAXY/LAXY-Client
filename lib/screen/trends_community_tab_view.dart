@@ -2,35 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
 import 'package:laxy/common/component/tag_ranking_list_tile.dart';
 
-class TrendsCommunityTabView extends StatefulWidget {
+class TrendsCommunityTabView extends StatelessWidget {
 
   const TrendsCommunityTabView({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<TrendsCommunityTabView> createState() => _TrendsCommunityTabView();
-}
-
-enum Main{ mindMap, trends }
-
-class _TrendsCommunityTabView extends State<TrendsCommunityTabView>
-    with SingleTickerProviderStateMixin {
-  late TabController controller;
-  Main mainView = Main.trends;
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = TabController(length: 3, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

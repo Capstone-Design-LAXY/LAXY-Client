@@ -1,4 +1,3 @@
-import 'dart:js_interop';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/orbit_star.dart';
@@ -6,13 +5,17 @@ import 'package:laxy/common/component/orbit_star.dart';
 class CustomOrbit extends StatefulWidget {
   final List<Widget> orbitWidgets;
   final Widget? center;
+  final bool center_reverse;
   final bool reverse;
+  final Function() onPressed;
 
   const CustomOrbit({
     super.key,
     required this.orbitWidgets,
     this.center,
     this.reverse = false,
+    this.center_reverse = false,
+    required this.onPressed,
   });
 
   @override
@@ -39,7 +42,7 @@ class _CustomOrbitState extends State<CustomOrbit>
 
   @override
   Widget build(BuildContext context) {
-    final double r = 200; // 중심에서의 거리 (픽셀 단위로 설정)
+    final double r = 180; // 중심에서의 거리 (픽셀 단위로 설정)
     final int len = widget.orbitWidgets.length;
     final double angle = 2 * pi / len;
 
@@ -50,8 +53,8 @@ class _CustomOrbitState extends State<CustomOrbit>
       children: <Widget>[
         // 궤도
         Container(
-          width: 400,
-          height: 400,
+          width: 360,
+          height: 360,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(200)),
             border: Border.all(
@@ -61,22 +64,62 @@ class _CustomOrbitState extends State<CustomOrbit>
             ),
           ),
         ),
-        if (widget.reverse)
+        ClipOval(
+          child: Material(
+            color: Colors.transparent, // 투명한 배경
+            child: InkWell(
+              splashColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
+              highlightColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
+              onTap: widget.onPressed,
+              child: Container(
+                width: 360,
+                height: 360,
+              ),
+            ),
+          ),
+        ),
+        if (widget.center_reverse)
           RotationTransition(
             turns: Tween<double>(begin: 0.0, end: -1.0).animate(controller),
             child: centerWidget,
           )
         else
           centerWidget,
+        // ClipOval(
+        //   child: Material(
+        //     color: Colors.transparent, // 투명한 배경
+        //     child: InkWell(
+        //       splashColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
+        //       highlightColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
+        //       onTap: widget.onPressed,
+        //       child: Container(
+        //         width: 400,
+        //         height: 400,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         // 공전
         for (int i = 0; i < len; i++)
-          RotationTransition(
-            turns: controller,
-            child: Transform.translate(
-              offset: Offset(r * cos(angle * i), r * sin(angle * i)),
-              child: Transform.scale(scale: 0.6, child: widget.orbitWidgets[i])
+          if(widget.reverse)
+            RotationTransition(
+              turns: controller,
+              child: Transform.translate(
+                offset: Offset(r * cos(angle * i), r * sin(angle * i)),
+                child: RotationTransition(
+                  turns: Tween<double>(begin: 0.0, end: -1.0).animate(controller),
+                  child: Transform.scale(scale: 0.6, child: widget.orbitWidgets[i])
+                )
+              ),
+            )
+          else
+            RotationTransition(
+              turns: controller,
+              child: Transform.translate(
+                offset: Offset(r * cos(angle * i), r * sin(angle * i)),
+                child: Transform.scale(scale: 0.6, child: widget.orbitWidgets[i])
+              ),
             ),
-          ),
       ],
     );
   }

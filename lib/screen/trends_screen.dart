@@ -24,15 +24,11 @@ class TrendsScreen extends StatefulWidget {
 }
 
 enum Main{ mindMap, trends }
-const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
-const List<String> genderList = <String>['성별', '남자', '여자', '기타'];
 
 class _TrendsScreenState extends State<TrendsScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
   Main mainView = Main.trends;
-  String dropdownValueAge = ageList.first;
-  String dropdownValueGender = genderList.first;
 
 
   @override
