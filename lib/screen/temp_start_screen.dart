@@ -3,6 +3,7 @@ import 'package:laxy/screen/community_screen.dart';
 import 'package:laxy/screen/login_screen.dart';
 import 'package:laxy/screen/mindmap_detail_screen.dart';
 import 'package:laxy/screen/mindmap_screen.dart';
+import 'package:laxy/screen/post_register_screen.dart';
 import 'package:laxy/screen/tag_screen.dart';
 import 'package:laxy/screen/trends_screen.dart';
 
@@ -91,6 +92,15 @@ class _TempStartScreenState extends State<TempStartScreen>
                 );
               },
               child: Text('CommunityScreen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostRegisterScreen()),
+                );
+              },
+              child: Text('PostRegisterScreen'),
             ),
           ],
         ),
