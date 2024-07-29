@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_chip_tags/flutter_chip_tags.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
@@ -113,6 +114,25 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 3.0),
+                child: Container(
+                  // height: 50,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFFFFFF), // 하얀색 배경
+                    borderRadius: BorderRadius.circular(20.0), // 둥근 테두리
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: '제목을 입력하세요.(50자 이내)',
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      border: InputBorder.none, // 기본 테두리 제거
+                    ),
+                    maxLines: null, // 텍스트 필드의 최대 줄 수를 제한하지 않음
+                    minLines: 1, // 최소 줄 수를 1로 설정
+                  ),
+                ),
+              ),
               Container(
                 height: MediaQuery.of(context).size.height - 90,
                 decoration: BoxDecoration(
@@ -146,6 +166,8 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                         child: quill.QuillEditor.basic(
                           configurations: quill.QuillEditorConfigurations(
                             controller: _controller,
+                            placeholder: "내용을 입력하세요.",
+                            autoFocus: false,
                           ),
                         ),
                       ),
