@@ -6,12 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/component/custom_orbit.dart';
+import 'package:laxy/common/component/custom_segment_button.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
 import 'package:laxy/screen/trends_community_tab_view.dart';
 import 'package:laxy/screen/trends_main_tab_view.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/screen/trends_post_tab_view.dart';
 import 'package:laxy/theme/custom_theme_mode.dart';
+import '../common/component/background.dart';
 import '../common/component/custom_tab_bar.dart';
 import '../common/component/orbit_star.dart';
 import 'mindmap_detail_screen.dart';
@@ -26,14 +28,12 @@ class MindmapScreen extends StatefulWidget {
   _MindmapScreenState createState() => _MindmapScreenState();
 }
 
-enum Main{ mindMap, trends }
 const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
 const List<String> genderList = <String>['성별', '남자', '여자', '기타'];
 
 class _MindmapScreenState extends State<MindmapScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
-  Main mainView = Main.trends;
   String dropdownValueAge = ageList.first;
   String dropdownValueGender = genderList.first;
 
@@ -65,16 +65,7 @@ class _MindmapScreenState extends State<MindmapScreen>
     return DefaultLayout(
       child: Stack(
         children: [
-          Center(
-            child: Image(
-              //TODO: 테마 이미지 변경
-              image: AssetImage('assets/sky.png'),
-              // color: Colors.white,
-              width: 1400,
-              height: 1400,
-              fit: BoxFit.cover,
-            ),
-          ),
+          Background(rotate: true,),
           SafeArea(
             bottom: false,
             minimum: const EdgeInsets.only(top: 40, left: 10, right: 10),
@@ -85,63 +76,46 @@ class _MindmapScreenState extends State<MindmapScreen>
                   // 상단 FAB, segment Button 자리
                   Row(
                     children: [
-                      Builder(
-                        builder: (context) {
-                          return CustomFloatingActionButton(
-                            onPressed: () {Scaffold.of(context).openDrawer();},
-                            icon: Icons.menu
-                          );
-                        }
+                      Hero(
+                        tag: 'Drawer',
+                        child: Builder(
+                          builder: (context) {
+                            return CustomFloatingActionButton(
+                              onPressed: () {Scaffold.of(context).openDrawer();},
+                              icon: Icons.menu
+                            );
+                          }
+                        ),
                       ),
-                      Expanded(child: SizedBox(),),
+                      Spacer(),
                       // TODO: 컴포넌트화 필요
                       // 세그먼트 버튼 (크기 다음과 같이 고정)
                       Container(
                         width: 176,
                         height: 40,
                       ),
-                      Expanded(child: SizedBox(),),
-                      CustomFloatingActionButton(onPressed: () {}, icon: Icons.mode_outlined),
+                      Spacer(),
+                      // TODO: 게시글 작성 버튼 연결
+                      Hero(
+                        tag: 'PostRegister',
+                        child: CustomFloatingActionButton(
+                          icon: Icons.mode_outlined,
+                          onPressed: () {print('post_register');},
+                        ),
+                      ),
                       SizedBox(width: 13,),
-                      CustomFloatingActionButton(onPressed: () {}, icon: Icons.search),
+                      // TODO: 검색 버튼 연결
+                      Hero(
+                        tag: 'Search',
+                        child: CustomFloatingActionButton(
+                          icon: Icons.search,
+                          onPressed: () {print('search');},
+                        ),
+                      ),
                     ],
                   ),
                   Expanded(child: SizedBox()),
-                  Container(
-                    width: 176,
-                    height: 40,
-                    child: SegmentedButton<Main>(
-                      style: SegmentedButton.styleFrom(
-                        // TODO: 테마 지정 필요
-                        selectedForegroundColor: Color(0xFF141218),
-                        selectedBackgroundColor: Color(0xFFD4E3FF),
-                        foregroundColor: Color(0xFF141218),
-                        backgroundColor: Color(0xFF001C3A).withOpacity(0.12),
-                        visualDensity: VisualDensity(vertical: -1.5,),
-                        textStyle: TextStyle(fontSize: 9),
-                      ),
-                      // showSelectedIcon: false,
-                      selectedIcon: mainView == Main.mindMap? Icon(Icons.bubble_chart_outlined) : Icon(Icons.trending_up),
-                      segments: const <ButtonSegment<Main>>[
-                        ButtonSegment<Main>(
-                          value: Main.mindMap,
-                          label: Text('마인드맵'),
-                          // icon: Icon(Icons.bubble_chart_outlined),
-                        ),
-                        ButtonSegment<Main>(
-                          value: Main.trends,
-                          label: Text('트랜드'),
-                          // icon: Icon(Icons.trending_up),
-                        ),
-                      ],
-                      selected: <Main>{mainView},
-                      onSelectionChanged: (Set<Main> newSelection) {
-                        setState(() {
-                          mainView = newSelection.first;
-                        });
-                      },
-                    ),
-                  ),
+                  CustomSegmentButton(initTrends: false,)
                 ],
               ),
             ),

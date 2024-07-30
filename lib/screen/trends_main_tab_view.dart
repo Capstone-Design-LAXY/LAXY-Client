@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/custom_dropdown_button.dart';
+import 'package:laxy/common/component/list_header.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
 
 class TrendsMainTabView extends StatefulWidget {
@@ -16,8 +18,10 @@ const List<String> genderList = <String>['성별', '남자', '여자', '기타']
 
 class _TrendsMainTabView extends State<TrendsMainTabView>
     with SingleTickerProviderStateMixin {
-  String dropdownValueAge = ageList.first;
-  String dropdownValueGender = genderList.first;
+  String dropdownValueAge1 = ageList.first;
+  String dropdownValueGender1 = genderList.first;
+  String dropdownValueAge2 = ageList.first;
+  String dropdownValueGender2 = genderList.first;
 
 
   @override
@@ -26,79 +30,36 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
     return ListView(
       children: [
         // 헤더
-        // Divider(height: 1, color: Color(0xFF48464C),),
-        Container(
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                child: Icon(Icons.local_fire_department, color: Color(0xFFFF4949), size: 30,),
-              ),
-              Text(
-                '일간 인기 게시글',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200
-                ),
-              ),
-              Expanded(child: SizedBox(),),
-              // 드롭다운
-              Container(
-                  child: DropdownButton<String>(
-                    value: dropdownValueGender,
-                    underline: SizedBox.shrink(),
-                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF141218)
-                    ),
-                    dropdownColor: Color(0xFFFFFFFF),
-                    isDense: true,
-                    onChanged: (String? genderValue) {
-                      setState(() {
-                        dropdownValueGender = genderValue!;
-                      });
-                    },
-                    items: genderList.map<DropdownMenuItem<String>>((String genderValue) {
-                      return DropdownMenuItem<String>(
-                        value: genderValue,
-                        child: Text(genderValue),
-                      );
-                    }).toList(),
-                  )
-              ),
-              Container(
-                  child: DropdownButton<String>(
-                    value: dropdownValueAge,
-                    underline: SizedBox.shrink(),
-                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF141218)
-                    ),
-                    dropdownColor: Color(0xFFFFFFFF),
-                    isDense: true,
-                    onChanged: (String? ageValue) {
-                      setState(() {
-                        dropdownValueAge = ageValue!;
-                      });
-                    },
-                    items: ageList.map<DropdownMenuItem<String>>((String ageValue) {
-                      return DropdownMenuItem<String>(
-                        value: ageValue,
-                        child: Text(ageValue),
-                      );
-                    }).toList(),
-                  )
-              )
-            ],
-          ),
+        ListHeader(
+          icon: Icons.local_fire_department,
+          iconColor: const Color(0xFFFF4949),
+          title: '일간 인기 게시글',
+          children: [
+            CustomDropdownButton(
+              items: genderList,
+              onChanged: (String? genderValue) {
+                setState(() {
+                  dropdownValueGender1 = genderValue!;
+                });
+              },
+              valueGender: dropdownValueGender1
+            ),
+            CustomDropdownButton(
+                items: ageList,
+                onChanged: (String? ageValue) {
+                  setState(() {
+                    dropdownValueAge1 = ageValue!;
+                  });
+                },
+                valueGender: dropdownValueAge1
+            ),
+          ]
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 3, bottom: 1),
+        const Padding(
+          padding: EdgeInsets.only(top: 3, bottom: 1),
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
-        Column(
+        const Column(
           children: <Widget>[
             // 리스트
             PostRankingListTile(rank: 1,),
@@ -106,86 +67,44 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
             PostRankingListTile(rank: 3,),
             PostRankingListTile(rank: 4,),
             PostRankingListTile(rank: 5,),
-            PostRankingListTile(rank: 6,),
+            PostRankingListTile(rank: 6, shift: -3,),
             PostRankingListTile(rank: 7,),
             PostRankingListTile(rank: 8,),
             PostRankingListTile(rank: 9,),
             PostRankingListTile(rank: 10,),
           ],
         ),
-        Divider(height: 1, color: Color(0xFF48464C),),
-        Container(
-          child: Row(
+        const Divider(height: 1, color: Color(0xFF48464C),),
+        ListHeader(
+            icon: Icons.local_fire_department,
+            iconColor: const Color(0xFFFF4949),
+            title: '주간 인기 게시글',
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5,left: 2, right: 2),
-                child: Icon(Icons.local_fire_department, color: Color(0xFFFF4949), size: 30,),
+              CustomDropdownButton(
+                  items: genderList,
+                  onChanged: (String? genderValue) {
+                    setState(() {
+                      dropdownValueGender2 = genderValue!;
+                    });
+                  },
+                  valueGender: dropdownValueGender2
               ),
-              Text(
-                '주간 인기 게시글',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200
-                ),
+              CustomDropdownButton(
+                  items: ageList,
+                  onChanged: (String? ageValue) {
+                    setState(() {
+                      dropdownValueAge2 = ageValue!;
+                    });
+                  },
+                  valueGender: dropdownValueAge2
               ),
-              Expanded(child: SizedBox(),),
-              // 드롭다운
-              Container(
-                  child: DropdownButton<String>(
-                    value: dropdownValueGender,
-                    underline: SizedBox.shrink(),
-                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF141218)
-                    ),
-                    dropdownColor: Color(0xFFFFFFFF),
-                    isDense: true,
-                    onChanged: (String? genderValue) {
-                      setState(() {
-                        dropdownValueGender = genderValue!;
-                      });
-                    },
-                    items: genderList.map<DropdownMenuItem<String>>((String genderValue) {
-                      return DropdownMenuItem<String>(
-                        value: genderValue,
-                        child: Text(genderValue),
-                      );
-                    }).toList(),
-                  )
-              ),
-              Container(
-                  child: DropdownButton<String>(
-                    value: dropdownValueAge,
-                    underline: SizedBox.shrink(),
-                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF141218)
-                    ),
-                    dropdownColor: Color(0xFFFFFFFF),
-                    isDense: true,
-                    onChanged: (String? ageValue) {
-                      setState(() {
-                        dropdownValueAge = ageValue!;
-                      });
-                    },
-                    items: ageList.map<DropdownMenuItem<String>>((String ageValue) {
-                      return DropdownMenuItem<String>(
-                        value: ageValue,
-                        child: Text(ageValue),
-                      );
-                    }).toList(),
-                  )
-              )
-            ],
-          ),
+            ]
         ),
-        Padding(
+        const Padding(
           padding: const EdgeInsets.only(top: 3, bottom: 1),
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
-        Column(
+        const Column(
           children: <Widget>[
             // 리스트
             PostRankingListTile(rank: 1,),

@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/list_info.dart';
 
 class PostListTile extends StatelessWidget {
+  final String title;
+  final String content;
+  final int comment;
+  final int like;
   final bool isImage;
 
   const PostListTile({
+    this.title = 'title',
+    this.content = 'content content content content content content content content content ',
+    this.comment = 100,
+    this.like = 100,
     this.isImage = false,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 테마 적용
+    // TODO: 테마 적용, onPress 연결해서 페이지 열기, 이미지 불러오기, 날짜 렌더링
     return MaterialButton(
       shape: Border(
         bottom: BorderSide(
@@ -18,7 +27,6 @@ class PostListTile extends StatelessWidget {
           width: 1,
         )
       ),
-      // color: Colors.blue,
       onPressed: () {},
       elevation: 0,
       padding: EdgeInsets.zero,
@@ -28,40 +36,26 @@ class PostListTile extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Text('아 배고파', style: TextStyle(fontSize: 16),),
-                      Expanded(child: SizedBox()),
+                      Expanded(child: Text(title, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
                       Text('07-05 23:31', style: TextStyle(fontSize: 10)),
                       SizedBox(width: 2,),
-                      Row(
-                        children: [
-                          Icon(Icons.comment_outlined, size: 15, color: Color(0xFF001C3A),),
-                          SizedBox(width: 2,),
-                          Container(
-                              width: 23,
-                              child: Text('10k', style: TextStyle(fontSize: 10))
-                          ),
-                        ],
+                      ListInfo(
+                        icon: Icons.comment_outlined,
+                        num: comment,
                       ),
-                      SizedBox(width: 2,),
-                      Row(
-                        children: [
-                          Icon(Icons.favorite, size: 15, color: Color(0xFF001C3A),),
-                          SizedBox(width: 2,),
-                          Container(
-                              width: 23,
-                              child: Text('100k', style: TextStyle(fontSize: 10))
-                          ),
-                        ],
+                      ListInfo(
+                        icon: Icons.favorite,
+                        num: like,
                       ),
-                      SizedBox(width: 4,),
                     ],
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    '세부내용은 이런식으로 작성되는 내용인데 이렇게 작성하면 어떻게 표현되는지 잘 모르는 그런 느낌의',
+                    content,
                     style: TextStyle(fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                   )
@@ -71,11 +65,11 @@ class PostListTile extends StatelessWidget {
           ),
           if (isImage)
             Container(
+              height: 60,
+              width: 60,
               color: Color(0xFFD4E3FF),
               child: Image(
                 image: AssetImage('assets/sky.png'),
-                height: 60,
-                width: 60,
                 fit: BoxFit.contain,
               ),
             ),

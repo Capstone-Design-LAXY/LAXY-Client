@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/custom_dropdown_button.dart';
+import 'package:laxy/common/component/list_header.dart';
 import 'package:laxy/common/component/post_list_tile.dart';
-import 'package:laxy/common/component/post_ranking_list_tile.dart';
-import 'package:laxy/common/component/tag_ranking_list_tile.dart';
 
 class TrendsPostTabView extends StatefulWidget {
 
@@ -19,85 +19,43 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
     with SingleTickerProviderStateMixin {
   String dropdownValueCriteria = criteriaList.first;
 
+  List<Widget> _buildPostListTiles() {
+    List<Widget> tiles = [];
+    for (int i = 1; i <= 30; i++) {
+      if (i%3 == 0)
+        tiles.add(PostListTile(isImage: true,));
+      else
+        tiles.add(PostListTile());
+    }
+    return tiles;
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: 테마 적용
     return ListView(
       children: [
         // 헤더
-        // Divider(height: 1, color: Color(0xFF48464C),),
-        Container(
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                child: SizedBox(width: 6, height: 30,),
-                // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
-              ),
-              Text(
-                '전체 게시글',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200
-                ),
-              ),
-              Expanded(child: SizedBox(),),
-              // 드롭다운
-              Container(
-                  child: DropdownButton<String>(
-                    value: dropdownValueCriteria,
-                    underline: SizedBox.shrink(),
-                    icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF141218)
-                    ),
-                    dropdownColor: Color(0xFFFFFFFF),
-                    isDense: true,
-                    onChanged: (String? criteriaValue) {
-                      setState(() {
-                        dropdownValueCriteria = criteriaValue!;
-                      });
-                    },
-                    items: criteriaList.map<DropdownMenuItem<String>>((String criteriaValue) {
-                      return DropdownMenuItem<String>(
-                        value: criteriaValue,
-                        child: Text(criteriaValue),
-                      );
-                    }).toList(),
-                  )
-              ),
-            ],
-          ),
+        ListHeader(
+          title: '전체 게시글',
+          children: [
+            CustomDropdownButton(
+              items: criteriaList,
+              onChanged: (String? criteriaValue) {
+                setState(() {
+                  dropdownValueCriteria = criteriaValue!;
+                });
+              },
+              valueGender: dropdownValueCriteria,
+            ),
+          ],
         ),
-        Padding(
+        const Padding(
           padding: const EdgeInsets.only(top: 3, bottom: 1),
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(
-          children: <Widget>[
-            // 리스트
-            PostListTile(isImage: true,),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(isImage: true,),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(isImage: true,),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(isImage: true,),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(),
-            PostListTile(isImage: true,),
-            PostListTile(),
-          ],
+          children: _buildPostListTiles(),
         ),
       ],
     );

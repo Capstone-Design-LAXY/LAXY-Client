@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom_drawer.dart';
+import 'package:laxy/common/component/custom_floating_action_button.dart';
 
 class DefaultLayout extends StatelessWidget {
   final Widget child;
@@ -13,7 +14,7 @@ class DefaultLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: child,
-      drawer: CustomDrawer()
+      drawer: CustomDrawer(),
     );
   }
 }

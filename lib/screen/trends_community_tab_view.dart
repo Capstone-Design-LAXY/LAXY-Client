@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/post_ranking_list_tile.dart';
+import 'package:laxy/common/component/list_header.dart';
 import 'package:laxy/common/component/tag_ranking_list_tile.dart';
 
 class TrendsCommunityTabView extends StatelessWidget {
@@ -10,67 +10,30 @@ class TrendsCommunityTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> _buildTagRankingListTiles() {
+      List<Widget> tiles = [];
+      for (int i = 1; i <= 30; i++) {
+        tiles.add(TagRankingListTile(rank: i, title: '이거슨 타이틀이여123123${i*15412}',));
+      }
+      return tiles;
+    }
+
     // TODO: 테마 적용
     return ListView(
       children: [
         // 헤더
-        // Divider(height: 1, color: Color(0xFF48464C),),
-        Container(
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
-              ),
-              Text(
-                '일간 인기 게시글',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200
-                ),
-              ),
-              Expanded(child: SizedBox(),),
-            ],
-          ),
+        const ListHeader(
+          iconColor: Color(0xFF5589D3),
+          icon: Icons.trending_up,
+          title: '일간 인기 게시글',
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 3, bottom: 1),
+        const Padding(
+          padding: EdgeInsets.only(top: 3, bottom: 1),
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(
-          children: <Widget>[
-            // 리스트
-            TagRankingListTile(rank: 1,),
-            TagRankingListTile(rank: 2,),
-            TagRankingListTile(rank: 3,),
-            TagRankingListTile(rank: 4,),
-            TagRankingListTile(rank: 5,),
-            TagRankingListTile(rank: 6,),
-            TagRankingListTile(rank: 7,),
-            TagRankingListTile(rank: 8,),
-            TagRankingListTile(rank: 9,),
-            TagRankingListTile(rank: 10,),
-            TagRankingListTile(rank: 1,),
-            TagRankingListTile(rank: 2,),
-            TagRankingListTile(rank: 3,),
-            TagRankingListTile(rank: 4,),
-            TagRankingListTile(rank: 5,),
-            TagRankingListTile(rank: 6,),
-            TagRankingListTile(rank: 7,),
-            TagRankingListTile(rank: 8,),
-            TagRankingListTile(rank: 9,),
-            TagRankingListTile(rank: 10,),
-            TagRankingListTile(rank: 1,),
-            TagRankingListTile(rank: 2,),
-            TagRankingListTile(rank: 3,),
-            TagRankingListTile(rank: 4,),
-            TagRankingListTile(rank: 5,),
-            TagRankingListTile(rank: 6,),
-            TagRankingListTile(rank: 7,),
-            TagRankingListTile(rank: 8,),
-            TagRankingListTile(rank: 9,),
-            TagRankingListTile(rank: 10,),
-          ],
+          children: _buildTagRankingListTiles(),
         ),
       ],
     );

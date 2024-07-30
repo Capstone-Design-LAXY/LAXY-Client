@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/component/custom_orbit.dart';
+import 'package:laxy/common/component/custom_segment_button.dart';
 import 'package:laxy/common/component/post_ranking_list_tile.dart';
 import 'package:laxy/screen/trends_community_tab_view.dart';
 import 'package:laxy/screen/trends_main_tab_view.dart';
@@ -98,41 +99,7 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen>
                     ],
                   ),
                   Expanded(child: SizedBox()),
-                  Container(
-                    width: 176,
-                    height: 40,
-                    child: SegmentedButton<Main>(
-                      style: SegmentedButton.styleFrom(
-                        // TODO: 테마 지정 필요
-                        selectedForegroundColor: Color(0xFF141218),
-                        selectedBackgroundColor: Color(0xFFD4E3FF),
-                        foregroundColor: Color(0xFF141218),
-                        backgroundColor: Color(0xFF001C3A).withOpacity(0.12),
-                        visualDensity: VisualDensity(vertical: -1.5,),
-                        textStyle: TextStyle(fontSize: 9),
-                      ),
-                      // showSelectedIcon: false,
-                      selectedIcon: mainView == Main.mindMap? Icon(Icons.bubble_chart_outlined) : Icon(Icons.trending_up),
-                      segments: const <ButtonSegment<Main>>[
-                        ButtonSegment<Main>(
-                          value: Main.mindMap,
-                          label: Text('마인드맵'),
-                          // icon: Icon(Icons.bubble_chart_outlined),
-                        ),
-                        ButtonSegment<Main>(
-                          value: Main.trends,
-                          label: Text('트랜드'),
-                          // icon: Icon(Icons.trending_up),
-                        ),
-                      ],
-                      selected: <Main>{mainView},
-                      onSelectionChanged: (Set<Main> newSelection) {
-                        setState(() {
-                          mainView = newSelection.first;
-                        });
-                      },
-                    ),
-                  ),
+                  CustomSegmentButton(initTrends: false,)
                 ],
               ),
             ),

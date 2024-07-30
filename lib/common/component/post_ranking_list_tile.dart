@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/list_info.dart';
 
 class PostRankingListTile extends StatelessWidget {
+  final String? title;
+  final int? comment;
+  final int? like;
+  final int? shift;
   final int? rank;
 
   const PostRankingListTile({
     this.rank = 1,
+    this.title = 'title',
+    this.comment = 100,
+    this.like = 100,
+    this.shift = 3,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 테마 적용
+    // TODO: 테마 적용, onPress 연결해서 페이지 열기
     return SizedBox(
       height: 30,
       child: MaterialButton(
@@ -20,47 +29,28 @@ class PostRankingListTile extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Row(
           children: [
-            Container(
-              // color: Colors.black,
+            // 랭크
+            SizedBox(
               height: 20,
               width: 30,
               child: Text('$rank', style: TextStyle(color: Color(0xFF001C3A)), textAlign: TextAlign.center,),
             ),
             SizedBox(width: 4,),
-            Text('아 배고파'),
-            Expanded(child: SizedBox()),
-            Row(
-              children: [
-                Icon(Icons.comment_outlined, size: 15, color: Color(0xFF001C3A),),
-                SizedBox(width: 2,),
-                Container(
-                    width: 23,
-                    child: Text('10k', style: TextStyle(fontSize: 10))
-                ),
-              ],
+            // 타이틀
+            Expanded(child: Text('$title', overflow: TextOverflow.ellipsis,)),
+            ListInfo(
+              icon: Icons.comment_outlined,
+              num: comment,
             ),
-            SizedBox(width: 2,),
-            Row(
-              children: [
-                Icon(Icons.favorite, size: 15, color: Color(0xFF001C3A),),
-                SizedBox(width: 2,),
-                Container(
-                  width: 23,
-                  child: Text('100k', style: TextStyle(fontSize: 10))
-                ),
-              ],
+            ListInfo(
+              icon: Icons.favorite,
+              num: like,
             ),
-            SizedBox(width: 2,),
-            Row(
-              children: [
-                Icon(Icons.arrow_drop_up, size: 15, color: Color(0xFF5589D3),),
-                Container(
-                    width: 23,
-                    child: Text('10k', style: TextStyle(fontSize: 10))
-                ),
-              ],
+            ListInfo(
+              icon: shift! < 0 ? Icons.arrow_drop_down : Icons.arrow_drop_up,
+              iconColor: shift! < 0 ? Color(0xFFFF4949) : Color(0xFF5589D3),
+              num: shift,
             ),
-            SizedBox(width: 4,),
           ],
         ),
       ),
