@@ -48,6 +48,7 @@ class _CustomSegmentButtonState extends State<CustomSegmentButton> {
         segments: <ButtonSegment<Main>>[
           ButtonSegment<Main>(
             value: Main.mindMap,
+            // 사이즈 맞추려고 노력했음
             label: mainView == Main.mindMap? Text('마인드맵') : SizedBox(width: 74, child: Text('마인드맵', textAlign: TextAlign.center,)),
           ),
           ButtonSegment<Main>(
@@ -61,8 +62,6 @@ class _CustomSegmentButtonState extends State<CustomSegmentButton> {
             mainView = newSelection.first;
             // 화면 전환 로직 추가
             if (mainView == Main.mindMap) {
-              // PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapScreen());
-              // Navigator.push(context, pageRouteWithAnimation.slideTopToBottom());
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => MindmapScreen()),
@@ -70,10 +69,6 @@ class _CustomSegmentButtonState extends State<CustomSegmentButton> {
             } else if (mainView == Main.trends) {
               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TrendsScreen());
               Navigator.push(context, pageRouteWithAnimation.slideBottomToTop());
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => TrendsScreen()),
-              // );
             }
           });
         },

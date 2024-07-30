@@ -1,14 +1,12 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+import 'package:laxy/common/component/custom_app_bar.dart';
+import 'package:laxy/common/component/custom_popup_menu_button.dart';
 import 'package:laxy/screen/community_good_post_tab_view.dart';
 import 'package:laxy/screen/community_my_post_tab_view.dart';
 import 'package:laxy/screen/trends_main_tab_view.dart';
 import 'package:laxy/screen/trends_post_tab_view.dart';
 import '../common/component/custom_tab_bar.dart';
+import 'package:laxy/common/const/enum.dart';
 
 class CommunityScreen extends StatefulWidget {
 
@@ -20,7 +18,6 @@ class CommunityScreen extends StatefulWidget {
   _CommunityScreenState createState() => _CommunityScreenState();
 }
 
-enum Menu { preview, share, getLink, remove, download }
 
 class _CommunityScreenState extends State<CommunityScreen>
     with SingleTickerProviderStateMixin {
@@ -40,73 +37,31 @@ class _CommunityScreenState extends State<CommunityScreen>
     super.dispose();
   }
 
+  // TODO: 테마 적용
   @override
   Widget build(BuildContext context) {
+
     ValueNotifier<int> currentIndex = ValueNotifier(0);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('data'),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back),),
-        actions: [
+      appBar: CustomAppBar(
+        title: 'Community Title',
+        children: [
           IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_outline)),
-          PopupMenuButton(
-              icon: const Icon(Icons.more_vert),
-              onSelected: (Menu item) {},
-              color: Color(0xFFFFFFFF),
-              itemBuilder: (BuildContext context) =>
-              <PopupMenuEntry<Menu>>[
-                const PopupMenuItem<Menu>(
-                  value: Menu.preview,
-                  child: ListTile(
-                    leading: Icon(Icons.visibility_outlined),
-                    title: Text('Preview'),
-                  ),
-                ),
-                const PopupMenuItem<Menu>(
-                  value: Menu.share,
-                  child: ListTile(
-                    leading: Icon(Icons.share_outlined),
-                    title: Text('share'),
-                  ),
-                ),
-                const PopupMenuItem<Menu>(
-                  value: Menu.getLink,
-                  child: ListTile(
-                    leading: Icon(Icons.link_outlined),
-                    title: Text('getLink'),
-                  ),
-                ),
-                const PopupMenuItem<Menu>(
-                  value: Menu.remove,
-                  child: ListTile(
-                    leading: Icon(Icons.delete_outline),
-                    title: Text('remove'),
-                  ),
-                ),
-                const PopupMenuDivider(),
-                const PopupMenuItem<Menu>(
-                  value: Menu.download,
-                  child: ListTile(
-                    leading: Icon(Icons.download_outlined),
-                    title: Text('download'),
-                  ),
-                ),
-              ]
-          )
+          const CustomPopupMenuButton(
+            menuItems: [Menu.report],
+            tagId: 1231113,
+          ),
+          const SizedBox(width: 4,)
         ],
-        backgroundColor: Color(0xFFFFFFFF),
-        foregroundColor: Color(0xFF141218),
-        surfaceTintColor: Color(0xFFFFFFFF),
       ),
       body: Container(
         color: Color(0xFFE2E6EA),
-        // color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               // 탭바
-              // TODO: 컴포넌트화 필요
               CustomTabBar(
                   controller: controller,
                   tabs: const <Widget>[

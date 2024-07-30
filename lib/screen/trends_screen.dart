@@ -1,11 +1,8 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:laxy/common/component/custom_floating_action_button.dart';
 import 'package:laxy/common/component/custom_segment_button.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/post_register_screen.dart';
 import 'package:laxy/screen/trends_community_tab_view.dart';
 import 'package:laxy/screen/trends_main_tab_view.dart';
 import 'package:laxy/common/layout/default_layout.dart';
@@ -97,7 +94,10 @@ class _TrendsScreenState extends State<TrendsScreen>
                           tag: 'PostRegister',
                           child: CustomFloatingActionButton(
                             icon: Icons.mode_outlined,
-                            onPressed: () {print('post_register');},
+                            onPressed: () {
+                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostRegisterScreen());
+                              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                            },
                           ),
                         ),
                         const SizedBox(width: 13,),
