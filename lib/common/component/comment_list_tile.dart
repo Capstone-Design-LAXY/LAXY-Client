@@ -30,6 +30,8 @@ class CommentListTile extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      // 작성자 아이콘
+                      // Icon(Icons.edit, size: 12, color: Color(0xFF5589D3),),
                       Text('여기는 닉네임', style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
                       Text(' ৹ ', style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
                       Text('5분 전', style: TextStyle(fontSize: 10, color: Color(0xFF141218).withOpacity(0.7)),),

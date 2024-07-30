@@ -5,20 +5,17 @@ class CustomChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: 0.8,
-      child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: FilterChip(
-            backgroundColor: Color(0xFF5589D3),
-            label: Text(
-              'Tag',
-              style: TextStyle(color: Colors.white),
-            ),
+    return Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: FilterChip(
+          backgroundColor: Color(0xFF5589D3),
+          label: Text(
+            'Tag',
+            style: TextStyle(color: Colors.white),
+          ),
 
-            onSelected: (value) => {},
-          )
-      ),
+          onSelected: (value) => {},
+        )
     );
   }
 }

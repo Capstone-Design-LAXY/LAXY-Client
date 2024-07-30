@@ -5,6 +5,7 @@ import 'package:laxy/screen/mindmap_detail_screen.dart';
 import 'package:laxy/screen/mindmap_screen.dart';
 import 'package:laxy/screen/post_detail_screen.dart';
 import 'package:laxy/screen/post_register_screen.dart';
+import 'package:laxy/screen/post_viewer_screen.dart';
 import 'package:laxy/screen/tag_screen.dart';
 import 'package:laxy/screen/trends_screen.dart';
 
@@ -111,6 +112,15 @@ class _TempStartScreenState extends State<TempStartScreen>
                 );
               },
               child: Text('PostDetailScreen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostViewerScreen()),
+                );
+              },
+              child: Text('PostViewerScreen'),
             ),
           ],
         ),

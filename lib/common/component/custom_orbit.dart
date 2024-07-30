@@ -42,7 +42,7 @@ class _CustomOrbitState extends State<CustomOrbit>
 
   @override
   Widget build(BuildContext context) {
-    final double r = 180; // 중심에서의 거리 (픽셀 단위로 설정)
+    final double r = 190; // 중심에서의 거리 (픽셀 단위로 설정)
     final int len = widget.orbitWidgets.length;
     final double angle = 2 * pi / len;
 
@@ -53,10 +53,10 @@ class _CustomOrbitState extends State<CustomOrbit>
       children: <Widget>[
         // 궤도
         Container(
-          width: 360,
-          height: 360,
+          width: 380,
+          height: 380,
           decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(200)),
+            borderRadius: const BorderRadius.all(Radius.circular(190)),
             border: Border.all(
               color: Colors.white.withOpacity(0.5),
               width: 1.0,
@@ -72,8 +72,8 @@ class _CustomOrbitState extends State<CustomOrbit>
               highlightColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
               onTap: widget.onPressed,
               child: Container(
-                width: 360,
-                height: 360,
+                width: 380,
+                height: 380,
               ),
             ),
           ),

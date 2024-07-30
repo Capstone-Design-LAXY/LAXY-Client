@@ -151,7 +151,7 @@ class _MindmapScreenState extends State<MindmapScreen>
             onPressed: () {},
             orbitWidgets: [
               Transform.scale(
-                scale: 0.6,
+                scale: 0.8,
                 child: CustomOrbit(
                   onPressed: () {},
                   center_reverse: true,
@@ -173,7 +173,7 @@ class _MindmapScreenState extends State<MindmapScreen>
                 ),
               ),
               Transform.scale(
-                scale: 0.6,
+                scale: 0.8,
                 child: CustomOrbit(
                     onPressed: () {},
                     center_reverse: true,
@@ -192,7 +192,7 @@ class _MindmapScreenState extends State<MindmapScreen>
                 ),
               ),
               Transform.scale(
-                scale: 0.6,
+                scale: 0.8,
                 child: CustomOrbit(
                     onPressed: () => _navigateToDetail(context),
                     center_reverse: true,
