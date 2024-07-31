@@ -33,7 +33,7 @@ class CustomDrawerItem extends StatelessWidget {
             // 벳지
             if (isNew)
               const Padding(
-                padding: const EdgeInsets.only(left: 5.0, top: 3),
+                padding: EdgeInsets.only(left: 5.0, top: 3),
                 child: Badge(
                   backgroundColor: Color(0xFFFF4949),
                 ),

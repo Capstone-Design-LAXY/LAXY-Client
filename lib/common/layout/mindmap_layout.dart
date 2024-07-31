@@ -30,8 +30,7 @@ class MindmapLayout extends StatelessWidget {
               Spacer(),
               // TODO: 컴포넌트화 필요
               // 세그먼트 버튼 (크기 다음과 같이 고정)
-              Container(
-                width: 176,
+              SizedBox(
                 height: 40,
               ),
               Spacer(),

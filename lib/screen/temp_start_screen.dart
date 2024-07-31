@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/screen/user/login_screen.dart';
-import 'package:laxy/screen/main/mindmap_detail_screen.dart';
 import 'package:laxy/screen/main/mindmap_screen.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/screen/post/post_register_screen.dart';
@@ -10,6 +9,8 @@ import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/screen/main/trends_screen.dart';
 
 class TempStartScreen extends StatefulWidget {
+  const TempStartScreen({super.key});
+
   @override
   State<TempStartScreen> createState() => _TempStartScreenState();
 }

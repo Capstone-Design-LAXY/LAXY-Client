@@ -29,7 +29,7 @@ class TagRankingListTile extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Row(
           children: [
-            Container(
+            SizedBox(
               // color: Colors.black,
               height: 20,
               width: 30,

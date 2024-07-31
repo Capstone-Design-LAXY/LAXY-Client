@@ -62,11 +62,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           padding: const EdgeInsets.only(right: 5, top: 1),
                           child: Icon(Icons.logout, size: 20,)
                         ),
-                        Container(
-                          child: Text(
-                            '로그아웃',
-                            style: TextStyle(fontSize: 12),
-                          ),
+                        Text(
+                          '로그아웃',
+                          style: TextStyle(fontSize: 12),
                         ),
                       ],
                     ),

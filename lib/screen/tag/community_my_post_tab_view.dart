@@ -53,7 +53,7 @@ class _CommunityMyPostTabView extends State<CommunityMyPostTabView>
           ],
         ),
         const Padding(
-          padding: const EdgeInsets.only(top: 3, bottom: 1),
+          padding: EdgeInsets.only(top: 3, bottom: 1),
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(

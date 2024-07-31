@@ -5,7 +5,7 @@ import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
 import 'package:laxy/screen/tag/community_my_post_tab_view.dart';
 import 'package:laxy/screen/main/trends_main_tab_view.dart';
 import 'package:laxy/screen/main/trends_post_tab_view.dart';
-import '../../common/component/custom/custom_tab_bar.dart';
+import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/common/const/enum.dart';
 
 class CommunityScreen extends StatefulWidget {
@@ -40,8 +40,6 @@ class _CommunityScreenState extends State<CommunityScreen>
   // TODO: 테마 적용
   @override
   Widget build(BuildContext context) {
-
-    ValueNotifier<int> currentIndex = ValueNotifier(0);
 
     return Scaffold(
       appBar: CustomAppBar(

@@ -20,7 +20,7 @@ class ListInfo extends StatelessWidget {
       children: [
         Icon(icon, size: 15, color: iconColor,),
         SizedBox(width: 2,),
-        Container(
+        SizedBox(
             width: 24,
             child: Text(formatNum(num), style: TextStyle(fontSize: 10))
         ),

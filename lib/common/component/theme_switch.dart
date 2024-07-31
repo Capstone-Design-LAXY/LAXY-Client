@@ -8,7 +8,7 @@ class ThemeSwitch extends StatefulWidget {
 }
 
 class _ThemeSwitchState extends State<ThemeSwitch> {
-  bool dark_mode = false;
+  bool darkMode = false;
 
   final WidgetStateProperty<Icon?> thumbIcon =
   WidgetStateProperty.resolveWith<Icon?>(
@@ -62,12 +62,12 @@ class _ThemeSwitchState extends State<ThemeSwitch> {
       scale: 0.9,
       child: Switch(
         thumbIcon: thumbIcon,
-        value: dark_mode,
+        value: darkMode,
         trackColor: trackColor,
         thumbColor: thumbColor,
         onChanged: (bool value) {
           setState(() {
-            dark_mode = value;
+            darkMode = value;
           });
         },
       ),

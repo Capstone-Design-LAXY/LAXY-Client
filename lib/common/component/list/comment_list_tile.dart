@@ -42,7 +42,7 @@ class CommentListTile extends StatelessWidget {
                           children: [
                             Icon(Icons.thumb_up_alt_outlined, size: 15, color: Color(0xFF001C3A),),
                             SizedBox(width: 2,),
-                            Container(
+                            SizedBox(
                                 width: 23,
                                 child: Text('100k', style: TextStyle(fontSize: 10))
                             ),

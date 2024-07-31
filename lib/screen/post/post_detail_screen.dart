@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:laxy/common/component/list/comment_list_tile.dart';
 import 'package:laxy/common/component/custom/custom_chip.dart';
@@ -188,25 +187,23 @@ class _PostDetailScreenState extends State<PostDetailScreen>
                     ),
                   ),
                   // 태그 헤더
-                  Container(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                          // child: SizedBox(width: 6, height: 30,),
-                          child: Icon(Icons.tag, color: Color(0xFF5589D3), size: 24,),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
+                        // child: SizedBox(width: 6, height: 30,),
+                        child: Icon(Icons.tag, color: Color(0xFF5589D3), size: 24,),
+                      ),
+                      Text(
+                        '태그',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w200
                         ),
-                        Text(
-                          '태그',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w200
-                          ),
-                        ),
-                        Expanded(child: SizedBox(),),
-                      ],
-                    ),
+                      ),
+                      Expanded(child: SizedBox(),),
+                    ],
                   ),
                   // 태그 랩
                   Row(
@@ -233,55 +230,51 @@ class _PostDetailScreenState extends State<PostDetailScreen>
                     ],
                   ),
                   // 댓글 헤더
-                  Container(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                          // child: SizedBox(width: 6, height: 30,),
-                          child: Icon(Icons.comment_outlined, color: Color(0xFF5589D3), size: 24,),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
+                        // child: SizedBox(width: 6, height: 30,),
+                        child: Icon(Icons.comment_outlined, color: Color(0xFF5589D3), size: 24,),
+                      ),
+                      Text(
+                        '댓글',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w200
                         ),
-                        Text(
-                          '댓글',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w200
-                          ),
+                      ),
+                      Text(
+                        '100k',
+                        style: TextStyle(
+                            fontSize: 12,
                         ),
-                        Text(
-                          '100k',
-                          style: TextStyle(
-                              fontSize: 12,
-                          ),
+                      ),
+                      Expanded(child: SizedBox(),),
+                      DropdownButton<String>(
+                        value: dropdownValueCriteria,
+                        underline: SizedBox.shrink(),
+                        icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF141218)
                         ),
-                        Expanded(child: SizedBox(),),
-                        Container(
-                            child: DropdownButton<String>(
-                              value: dropdownValueCriteria,
-                              underline: SizedBox.shrink(),
-                              icon: const Icon(Icons.expand_more, color: Color(0xFF001C3A),),
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color(0xFF141218)
-                              ),
-                              dropdownColor: Color(0xFFFFFFFF),
-                              isDense: true,
-                              onChanged: (String? criteriaValue) {
-                                setState(() {
-                                  dropdownValueCriteria = criteriaValue!;
-                                });
-                              },
-                              items: criteriaList.map<DropdownMenuItem<String>>((String criteriaValue) {
-                                return DropdownMenuItem<String>(
-                                  value: criteriaValue,
-                                  child: Text(criteriaValue),
-                                );
-                              }).toList(),
-                            )
-                        ),
-                      ],
-                    ),
+                        dropdownColor: Color(0xFFFFFFFF),
+                        isDense: true,
+                        onChanged: (String? criteriaValue) {
+                          setState(() {
+                            dropdownValueCriteria = criteriaValue!;
+                          });
+                        },
+                        items: criteriaList.map<DropdownMenuItem<String>>((String criteriaValue) {
+                          return DropdownMenuItem<String>(
+                            value: criteriaValue,
+                            child: Text(criteriaValue),
+                          );
+                        }).toList(),
+                      ),
+                    ],
                   ),
                   Column(
                     children: <Widget>[

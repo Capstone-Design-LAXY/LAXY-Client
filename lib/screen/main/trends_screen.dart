@@ -7,8 +7,8 @@ import 'package:laxy/screen/main/trends_community_tab_view.dart';
 import 'package:laxy/screen/main/trends_main_tab_view.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/screen/main/trends_post_tab_view.dart';
-import '../../common/component/background.dart';
-import '../../common/component/custom/custom_tab_bar.dart';
+import 'package:laxy/common/component/background.dart';
+import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 
 class TrendsScreen extends StatefulWidget {
 

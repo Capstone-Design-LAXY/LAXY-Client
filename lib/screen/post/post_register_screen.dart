@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_chip_tags/flutter_chip_tags.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 
@@ -50,25 +49,23 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
-                          child: SizedBox(width: 6, height: 30,),
-                          // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 2, right: 2),
+                        child: SizedBox(width: 6, height: 30,),
+                        // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
+                      ),
+                      Text(
+                        '태그 등록',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w200
                         ),
-                        Text(
-                          '태그 등록',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w200
-                          ),
-                        ),
-                        Expanded(child: SizedBox(),),
+                      ),
+                      Expanded(child: SizedBox(),),
 
-                      ],
-                    ),
+                    ],
                   ),
                   ChipTags(
                     list: _myList,
@@ -95,24 +92,22 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                     keyboardType: TextInputType.text,
                   ),
                   // 헤더 (게시글 작성)
-                  Container(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15, left: 2, right: 2),
-                          child: SizedBox(width: 6, height: 30,),
-                          // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, left: 2, right: 2),
+                        child: SizedBox(width: 6, height: 30,),
+                        // child: Icon(Icons.trending_up, color: Color(0xFF5589D3), size: 30,),
+                      ),
+                      Text(
+                        '게시글 작성',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w200
                         ),
-                        Text(
-                          '게시글 작성',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w200
-                          ),
-                        ),
-                        Expanded(child: SizedBox(),),
-                      ],
-                    ),
+                      ),
+                      Expanded(child: SizedBox(),),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 3.0),
