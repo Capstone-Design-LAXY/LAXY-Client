@@ -81,15 +81,6 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MindmapDetailScreen()),
-                );
-              },
-              child: Text('MindmapDetailScreen'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
                   MaterialPageRoute(builder: (context) => CommunityScreen()),
                 );
               },

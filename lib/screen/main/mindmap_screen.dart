@@ -1,196 +1,91 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:laxy/common/component/custom/custom_floating_action_button.dart';
 import 'package:laxy/common/component/orbit.dart';
-import 'package:laxy/common/component/custom/custom_segment_button.dart';
+import 'package:laxy/common/component/orbit_star.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
-import '../../common/component/background.dart';
-import '../../common/component/orbit_star.dart';
+import 'package:laxy/common/layout/mindmap_layout.dart';
+import 'package:laxy/utils/utils.dart';
+import 'package:laxy/common/component/background.dart';
 import 'mindmap_detail_screen.dart';
 
 class MindmapScreen extends StatefulWidget {
-
-  const MindmapScreen({
-    super.key
-  });
+  const MindmapScreen({super.key});
 
   @override
   _MindmapScreenState createState() => _MindmapScreenState();
 }
 
-const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
-const List<String> genderList = <String>['성별', '남자', '여자', '기타'];
-
-class _MindmapScreenState extends State<MindmapScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController controller;
-  String dropdownValueAge = ageList.first;
-  String dropdownValueGender = genderList.first;
-
+class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProviderStateMixin {
+  late OrbitData orbitData;
 
   @override
   void initState() {
     super.initState();
 
-    controller = TabController(length: 3, vsync: this);
+    String jsonString = '{"uId": 123123123123, "orbit": [{"primary": {"tId": 10000001, "grade": 9, "tagName": "자격증"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "정처기"}, {"tId": 10000003, "grade": 7, "tagName": "토익"}, {"tId": 10000004, "grade": 2, "tagName": "SQLD"}, {"tId": 10000005, "grade": 8, "tagName": "Qnet"}]}, {"primary": {"tId": 10000006, "grade": 6, "tagName": "인공지능"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "GPT"}, {"tId": 10000008, "grade": 1, "tagName": "빅데이터"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "소금빵"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "빵"}]}]}';
+
+    // JSON 문자열을 OrbitData 객체로 파싱
+    orbitData = OrbitData.fromJson(jsonDecode(jsonString));
+
+    print(orbitData.orbit.length);
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  void _navigateToDetail(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) => MindmapDetailScreen(), // 상세 화면을 여기서 정의해야 합니다.
-      ),
-    );
-  }
-
+  // TODO: 별 클릭 시 태그 페이지로 넘어가기
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<int> currentIndex = ValueNotifier(0);
+
+    List<Widget> _buildInnerSatellites(int index) {
+      List<Widget> satellites = [];
+      for (int i = 0; i < orbitData.orbit[index].satellites.length; i++) {
+        satellites.add(
+          OrbitStar(
+            grade: orbitData.orbit[index].satellites[i].grade,
+            tagName: orbitData.orbit[index].satellites[i].tagName,
+            tId: orbitData.orbit[index].satellites[i].tId,
+          )
+        );
+      }
+      return satellites;
+    }
+
+    List<Widget> _buildSatellites() {
+      List<Widget> satellites = [];
+      for (int i = 0; i < orbitData.orbit.length; i++) {
+        satellites.add(Orbit(
+          onPressed: () {
+            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapDetailScreen(orbit: orbitData.orbit[i]));
+            Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+          },
+          rotation: true,
+          primary: OrbitStar(
+            grade: orbitData.orbit[i].primary.grade,
+            tagName: orbitData.orbit[i].primary.tagName,
+            showName: true,
+            tId: orbitData.orbit[i].primary.tId,
+          ),
+          type: OrbitType.satellite,
+          satellites: _buildInnerSatellites(i),
+        ));
+      }
+      return satellites;
+    }
+
     return DefaultLayout(
       child: Stack(
         children: [
           Background(rotate: true,),
-          SafeArea(
-            bottom: false,
-            minimum: const EdgeInsets.only(top: 40, left: 10, right: 10),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  // 상단 FAB, segment Button 자리
-                  Row(
-                    children: [
-                      Hero(
-                        tag: 'Drawer',
-                        child: Builder(
-                          builder: (context) {
-                            return CustomFloatingActionButton(
-                              onPressed: () {Scaffold.of(context).openDrawer();},
-                              icon: Icons.menu
-                            );
-                          }
-                        ),
-                      ),
-                      Spacer(),
-                      // TODO: 컴포넌트화 필요
-                      // 세그먼트 버튼 (크기 다음과 같이 고정)
-                      Container(
-                        width: 176,
-                        height: 40,
-                      ),
-                      Spacer(),
-                      // TODO: 게시글 작성 버튼 연결
-                      Hero(
-                        tag: 'PostRegister',
-                        child: CustomFloatingActionButton(
-                          icon: Icons.mode_outlined,
-                          onPressed: () {print('post_register');},
-                        ),
-                      ),
-                      SizedBox(width: 13,),
-                      // TODO: 검색 버튼 연결
-                      Hero(
-                        tag: 'Search',
-                        child: CustomFloatingActionButton(
-                          icon: Icons.search,
-                          onPressed: () {print('search');},
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(child: SizedBox()),
-                  CustomSegmentButton(initTrends: false,)
-                ],
-              ),
+          Center(
+            child: Orbit(
+              onPressed: () {},
+              type: OrbitType.primary,
+              satellites: _buildSatellites(),
             ),
           ),
-
-          Center(child: Orbit(
-            onPressed: () {},
-            orbitWidgets: [
-              Transform.scale(
-                scale: 0.8,
-                child: Orbit(
-                  onPressed: () {},
-                  center_reverse: true,
-                  reverse: true,
-                  center: OrbitStar(
-                    isCommunity: true,
-                    nameTag: true,
-                    name: '인공지능',
-                  ),
-                  orbitWidgets: [
-                    OrbitStar(
-                      isCommunity: true,
-                      grade: 6,
-                    ),
-                    OrbitStar(
-                      grade: 1,
-                    )
-                  ]
-                ),
-              ),
-              Transform.scale(
-                scale: 0.8,
-                child: Orbit(
-                    onPressed: () {},
-                    center_reverse: true,
-                    reverse: true,
-                    center: OrbitStar(
-                      grade: 4,
-                      nameTag: true,
-                      name: '소금빵',
-                    ),
-                    orbitWidgets: [
-                      OrbitStar(
-                        isCommunity: true,
-                        grade: 5,
-                      ),
-                    ]
-                ),
-              ),
-              Transform.scale(
-                scale: 0.8,
-                child: Orbit(
-                    onPressed: () => _navigateToDetail(context),
-                    center_reverse: true,
-                    reverse: true,
-                    center: OrbitStar(
-                      isCommunity: true,
-                      grade: 4,
-                      nameTag: true,
-                      name: '자격증',
-                    ),
-                    orbitWidgets: [
-                      OrbitStar(
-                        isCommunity: true,
-                        grade: 2,
-                      ),
-                      OrbitStar(
-                        isCommunity: true,
-                        grade: 3,
-                      ),
-                      OrbitStar(
-                        grade: 2,
-                      ),
-                      OrbitStar(
-                        grade: 5,
-                      ),
-                    ]
-                ),
-              ),
-            ]
-          ))
-        ]
+          // FAB, 세그먼트 버튼
+          MindmapLayout(),
+        ],
       ),
     );
   }

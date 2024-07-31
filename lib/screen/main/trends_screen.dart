@@ -52,7 +52,6 @@ class _TrendsScreenState extends State<TrendsScreen>
           // 배경 레이어 (하늘)
           const Background(),
           SafeArea(
-            bottom: false,
             minimum: const EdgeInsets.only(top: 40, left: 10, right: 10),
             // 메인 시트
             child: Container(

@@ -5,3 +5,7 @@ enum Menu {
   delete,
 }
 
+enum OrbitType {
+  primary,
+  satellite
+}

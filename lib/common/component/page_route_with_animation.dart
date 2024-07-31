@@ -99,4 +99,48 @@ class PageRouteWithAnimation {
       },
     );
   }
+  Route fadeTransition() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return page;
+      },
+      transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+          ) {
+        var opacityTween = Tween<double>(begin: 0.0, end: 1.0);
+        var opacityAnimation = animation.drive(opacityTween);
+        return FadeTransition(
+          opacity: opacityAnimation,
+          child: child,
+        );
+      },
+    );
+  }
+  Route scaleTransition() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return page;
+      },
+      transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+          ) {
+        var begin = 0.0;
+        var end = 1.0;
+        var curve = Curves.ease;
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var scaleAnimation = animation.drive(tween);
+        return ScaleTransition(
+          scale: scaleAnimation,
+          child: child,
+        );
+      },
+    );
+  }
+
 }

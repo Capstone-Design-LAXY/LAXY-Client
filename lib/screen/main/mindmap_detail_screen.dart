@@ -1,15 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:laxy/common/component/custom/custom_floating_action_button.dart';
+import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/orbit.dart';
-import 'package:laxy/common/component/custom/custom_segment_button.dart';
+import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
-import '../../common/component/orbit_star.dart';
+import 'package:laxy/common/layout/mindmap_layout.dart';
+import 'package:laxy/utils/utils.dart';
+import 'package:laxy/common/component/orbit_star.dart';
 
 class MindmapDetailScreen extends StatefulWidget {
+  final ParseOrbit orbit;
 
   const MindmapDetailScreen({
+    required this.orbit,
     super.key
   });
 
@@ -17,122 +19,47 @@ class MindmapDetailScreen extends StatefulWidget {
   _MindmapDetailScreenState createState() => _MindmapDetailScreenState();
 }
 
-enum Main{ mindMap, trends }
-const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
-const List<String> genderList = <String>['성별', '남자', '여자', '기타'];
-
-class _MindmapDetailScreenState extends State<MindmapDetailScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController controller;
-  Main mainView = Main.trends;
-  String dropdownValueAge = ageList.first;
-  String dropdownValueGender = genderList.first;
-
-
-  @override
-  void initState() {
-    super.initState();
-
-    controller = TabController(length: 3, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<int> currentIndex = ValueNotifier(0);
+
+    List<Widget> _buildSatellites() {
+      List<Widget> satellites = [];
+      for (int i = 0; i < widget.orbit.satellites.length; i++) {
+        satellites.add(
+            OrbitStar(
+              grade: widget.orbit.satellites[i].grade,
+              tagName: widget.orbit.satellites[i].tagName,
+              tId: widget.orbit.satellites[i].tId,
+              showName: true,
+            )
+        );
+      }
+      return satellites;
+    }
+
     return DefaultLayout(
       child: Stack(
         children: [
-          Center(
-            child: Image(
-              //TODO: 테마 이미지 변경
-              image: AssetImage('assets/sky.png'),
-              // color: Colors.white,
-              width: 1400,
-              height: 1400,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SafeArea(
-            bottom: false,
-            minimum: const EdgeInsets.only(top: 40, left: 10, right: 10),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  // 상단 FAB, segment Button 자리
-                  Row(
-                    children: [
-                      Builder(
-                        builder: (context) {
-                          return CustomFloatingActionButton(
-                            onPressed: () {Scaffold.of(context).openDrawer();},
-                            icon: Icons.menu
-                          );
-                        }
-                      ),
-                      Expanded(child: SizedBox(),),
-                      // TODO: 컴포넌트화 필요
-                      // 세그먼트 버튼 (크기 다음과 같이 고정)
-                      Container(
-                        width: 176,
-                        height: 40,
-                      ),
-                      Expanded(child: SizedBox(),),
-                      CustomFloatingActionButton(onPressed: () {}, icon: Icons.mode_outlined),
-                      SizedBox(width: 13,),
-                      CustomFloatingActionButton(onPressed: () {}, icon: Icons.search),
-                    ],
-                  ),
-                  Expanded(child: SizedBox()),
-                  CustomSegmentButton(initTrends: false,)
-                ],
-              ),
-            ),
-          ),
-
+          Background(rotate: true,),
           Center(
             child: Orbit(
               onPressed: () {Navigator.of(context).pop();},
-              reverse: true,
-              center: OrbitStar(
-                isCommunity: true,
-                grade: 4,
-                nameTag: true,
-                name: '자격증',
+              rotation: true,
+              type: OrbitType.primary,
+              primary: OrbitStar(
+                tId: widget.orbit.primary.tId,
+                showName: true,
+                tagName: widget.orbit.primary.tagName,
+                grade: widget.orbit.primary.grade,
               ),
-              orbitWidgets: [
-                OrbitStar(
-                  nameTag: true,
-                  isCommunity: true,
-                  grade: 2,
-                  name: '토익',
-                ),
-                OrbitStar(
-                  nameTag: true,
-                  isCommunity: true,
-                  grade: 3,
-                  name: 'Qnet',
-                ),
-                OrbitStar(
-                  nameTag: true,
-                  grade: 2,
-                  name: 'SQLD',
-                ),
-                OrbitStar(
-                  nameTag: true,
-                  grade: 5,
-                  name: '정처기',
-                ),
-              ]
-            )
-          )
-        ]
+              satellites: _buildSatellites(),
+            ),
+          ),
+          // FAB, 세그먼트 버튼
+          MindmapLayout(),
+        ],
       ),
     );
   }
