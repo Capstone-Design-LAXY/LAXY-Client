@@ -23,7 +23,7 @@ class OrbitStar extends StatelessWidget {
     if (isGlobe == true) {
       imagePath = 'assets/globe/LAXY_globe.png';
     } else if (isCommunity == true) {
-      imagePath = 'assets/star/LAXY_star_${grade}.png';
+      imagePath = 'assets/star/LAXY_star${grade}.png';
     } else {
       imagePath = 'assets/moon/LAXY_moon${grade}.png';
       size = 110;

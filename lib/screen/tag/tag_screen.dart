@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/custom_app_bar.dart';
-import 'package:laxy/common/component/custom_dropdown_button.dart';
-import 'package:laxy/common/component/custom_popup_menu_button.dart';
-import 'package:laxy/common/component/list_header.dart';
-import 'package:laxy/common/component/post_list_tile.dart';
+import 'package:laxy/common/component/custom/custom_app_bar.dart';
+import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
+import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
+import 'package:laxy/common/component/list/list_header.dart';
+import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/const/enum.dart';
 
 class TagScreen extends StatefulWidget {

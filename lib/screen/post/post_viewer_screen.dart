@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
-import 'package:laxy/common/component/comment_list_tile.dart';
-import 'package:laxy/common/component/custom_chip.dart';
+import 'package:laxy/common/component/list/comment_list_tile.dart';
+import 'package:laxy/common/component/custom/custom_chip.dart';
 
 class PostViewerScreen extends StatefulWidget {
   const PostViewerScreen({super.key});

@@ -1,20 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:laxy/common/component/custom_floating_action_button.dart';
-import 'package:laxy/common/component/custom_orbit.dart';
-import 'package:laxy/common/component/custom_segment_button.dart';
-import 'package:laxy/common/component/post_ranking_list_tile.dart';
-import 'package:laxy/screen/trends_community_tab_view.dart';
-import 'package:laxy/screen/trends_main_tab_view.dart';
+import 'package:laxy/common/component/custom/custom_floating_action_button.dart';
+import 'package:laxy/common/component/orbit.dart';
+import 'package:laxy/common/component/custom/custom_segment_button.dart';
 import 'package:laxy/common/layout/default_layout.dart';
-import 'package:laxy/screen/trends_post_tab_view.dart';
-import 'package:laxy/theme/custom_theme_mode.dart';
-import '../common/component/custom_tab_bar.dart';
-import '../common/component/orbit_star.dart';
+import '../../common/component/orbit_star.dart';
 
 class MindmapDetailScreen extends StatefulWidget {
 
@@ -106,7 +97,7 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen>
           ),
 
           Center(
-            child: CustomOrbit(
+            child: Orbit(
               onPressed: () {Navigator.of(context).pop();},
               reverse: true,
               center: OrbitStar(

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/custom_dropdown_button.dart';
-import 'package:laxy/common/component/list_header.dart';
-import 'package:laxy/common/component/post_list_tile.dart';
+import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
+import 'package:laxy/common/component/list/list_header.dart';
+import 'package:laxy/common/component/list/post_list_tile.dart';
 
-class TrendsPostTabView extends StatefulWidget {
+class CommunityMyPostTabView extends StatefulWidget {
 
-  const TrendsPostTabView({
+  const CommunityMyPostTabView({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<TrendsPostTabView> createState() => _TrendsPostTabView();
+  State<CommunityMyPostTabView> createState() => _CommunityMyPostTabView();
 }
 
-const List<String> criteriaList = <String>['최신순', '좋아요', '조회수'];
+const List<String> criteriaList = <String>['전체', '게시글', '댓글', '좋아요'];
 
-class _TrendsPostTabView extends State<TrendsPostTabView>
+class _CommunityMyPostTabView extends State<CommunityMyPostTabView>
     with SingleTickerProviderStateMixin {
   String dropdownValueCriteria = criteriaList.first;
 
@@ -37,7 +37,9 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
       children: [
         // 헤더
         ListHeader(
-          title: '전체 게시글',
+          title: "내가 작성한 글",
+          icon: Icons.account_circle,
+          iconColor: Color(0xFF5589D3),
           children: [
             CustomDropdownButton(
               items: criteriaList,
@@ -46,7 +48,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
                   dropdownValueCriteria = criteriaValue!;
                 });
               },
-              valueGender: dropdownValueCriteria,
+              valueGender: dropdownValueCriteria
             ),
           ],
         ),

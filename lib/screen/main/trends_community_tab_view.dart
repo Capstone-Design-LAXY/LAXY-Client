@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/list_header.dart';
-import 'package:laxy/common/component/tag_ranking_list_tile.dart';
+import 'package:laxy/common/component/list/list_header.dart';
+import 'package:laxy/common/component/list/tag_ranking_list_tile.dart';
 
 class TrendsCommunityTabView extends StatelessWidget {
 

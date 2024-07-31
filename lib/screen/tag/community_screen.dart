@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/custom_app_bar.dart';
-import 'package:laxy/common/component/custom_popup_menu_button.dart';
-import 'package:laxy/screen/community_good_post_tab_view.dart';
-import 'package:laxy/screen/community_my_post_tab_view.dart';
-import 'package:laxy/screen/trends_main_tab_view.dart';
-import 'package:laxy/screen/trends_post_tab_view.dart';
-import '../common/component/custom_tab_bar.dart';
+import 'package:laxy/common/component/custom/custom_app_bar.dart';
+import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
+import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
+import 'package:laxy/screen/tag/community_my_post_tab_view.dart';
+import 'package:laxy/screen/main/trends_main_tab_view.dart';
+import 'package:laxy/screen/main/trends_post_tab_view.dart';
+import '../../common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/common/const/enum.dart';
 
 class CommunityScreen extends StatefulWidget {

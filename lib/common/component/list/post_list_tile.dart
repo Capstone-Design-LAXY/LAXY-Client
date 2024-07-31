@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/list_info.dart';
+import 'package:laxy/common/component/list/list_info.dart';
 
 class PostListTile extends StatelessWidget {
   final String title;

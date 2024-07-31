@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/custom_floating_action_button.dart';
-import 'package:laxy/common/component/custom_segment_button.dart';
+import 'package:laxy/common/component/custom/custom_floating_action_button.dart';
+import 'package:laxy/common/component/custom/custom_segment_button.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
-import 'package:laxy/screen/post_register_screen.dart';
-import 'package:laxy/screen/trends_community_tab_view.dart';
-import 'package:laxy/screen/trends_main_tab_view.dart';
+import 'package:laxy/screen/post/post_register_screen.dart';
+import 'package:laxy/screen/main/trends_community_tab_view.dart';
+import 'package:laxy/screen/main/trends_main_tab_view.dart';
 import 'package:laxy/common/layout/default_layout.dart';
-import 'package:laxy/screen/trends_post_tab_view.dart';
-import '../common/component/background.dart';
-import '../common/component/custom_tab_bar.dart';
+import 'package:laxy/screen/main/trends_post_tab_view.dart';
+import '../../common/component/background.dart';
+import '../../common/component/custom/custom_tab_bar.dart';
 
 class TrendsScreen extends StatefulWidget {
 

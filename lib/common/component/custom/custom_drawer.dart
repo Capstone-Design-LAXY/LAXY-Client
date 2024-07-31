@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/custom_drawer_header.dart';
-import 'package:laxy/common/component/custom_drawer_item.dart';
+import 'package:laxy/common/component/custom/custom_drawer_header.dart';
+import 'package:laxy/common/component/custom/custom_drawer_item.dart';
 import 'package:laxy/common/component/theme_switch.dart';
 
 class CustomDrawer extends StatefulWidget {

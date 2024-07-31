@@ -2,14 +2,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/orbit_star.dart';
 
-class CustomOrbit extends StatefulWidget {
+class Orbit extends StatefulWidget {
   final List<Widget> orbitWidgets;
   final Widget? center;
   final bool center_reverse;
   final bool reverse;
   final Function() onPressed;
 
-  const CustomOrbit({
+  const Orbit({
     super.key,
     required this.orbitWidgets,
     this.center,
@@ -19,10 +19,10 @@ class CustomOrbit extends StatefulWidget {
   });
 
   @override
-  State<CustomOrbit> createState() => _CustomOrbitState();
+  State<Orbit> createState() => _OrbitState();
 }
 
-class _CustomOrbitState extends State<CustomOrbit>
+class _OrbitState extends State<Orbit>
     with SingleTickerProviderStateMixin {
 
   late AnimationController controller;

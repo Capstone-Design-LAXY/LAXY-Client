@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 
-import '../../screen/mindmap_screen.dart';
-import '../../screen/trends_screen.dart';
+import '../../../screen/main/mindmap_screen.dart';
+import '../../../screen/main/trends_screen.dart';
 
 class CustomSegmentButton extends StatefulWidget {
   final bool initTrends;

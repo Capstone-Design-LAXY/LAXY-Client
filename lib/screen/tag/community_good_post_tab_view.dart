@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/list_header.dart';
-import 'package:laxy/common/component/post_list_tile.dart';
+import 'package:laxy/common/component/list/list_header.dart';
+import 'package:laxy/common/component/list/post_list_tile.dart';
 
 class CommunityGoodPostTabView extends StatelessWidget {
 

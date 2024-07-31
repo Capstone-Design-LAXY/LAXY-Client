@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/screen/community_screen.dart';
-import 'package:laxy/screen/login_screen.dart';
-import 'package:laxy/screen/mindmap_detail_screen.dart';
-import 'package:laxy/screen/mindmap_screen.dart';
-import 'package:laxy/screen/post_detail_screen.dart';
-import 'package:laxy/screen/post_register_screen.dart';
-import 'package:laxy/screen/post_viewer_screen.dart';
-import 'package:laxy/screen/tag_screen.dart';
-import 'package:laxy/screen/trends_screen.dart';
+import 'package:laxy/screen/user/login_screen.dart';
+import 'package:laxy/screen/main/mindmap_detail_screen.dart';
+import 'package:laxy/screen/main/mindmap_screen.dart';
+import 'package:laxy/screen/post/post_detail_screen.dart';
+import 'package:laxy/screen/post/post_register_screen.dart';
+import 'package:laxy/screen/post/post_viewer_screen.dart';
+import 'package:laxy/screen/tag/community_screen.dart';
+import 'package:laxy/screen/tag/tag_screen.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
 
 class TempStartScreen extends StatefulWidget {
   @override

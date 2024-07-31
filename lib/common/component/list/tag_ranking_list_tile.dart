@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/common/component/list_info.dart';
+import 'package:laxy/common/component/list/list_info.dart';
 
-class PostRankingListTile extends StatelessWidget {
+class TagRankingListTile extends StatelessWidget {
   final String? title;
-  final int? comment;
-  final int? like;
+  final int? bookmarked;
+  final int? post;
   final int? shift;
   final int? rank;
 
-  const PostRankingListTile({
+  const TagRankingListTile({
     this.rank = 1,
     this.title = 'title',
-    this.comment = 100,
-    this.like = 100,
+    this.bookmarked = 100,
+    this.post = 100,
     this.shift = 3,
     Key? key,
   }) : super(key: key);
@@ -29,8 +29,8 @@ class PostRankingListTile extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Row(
           children: [
-            // 랭크
-            SizedBox(
+            Container(
+              // color: Colors.black,
               height: 20,
               width: 30,
               child: Text('$rank', style: TextStyle(color: Color(0xFF001C3A)), textAlign: TextAlign.center,),
@@ -39,12 +39,12 @@ class PostRankingListTile extends StatelessWidget {
             // 타이틀
             Expanded(child: Text('$title', overflow: TextOverflow.ellipsis,)),
             ListInfo(
-              icon: Icons.comment_outlined,
-              num: comment,
+              icon: Icons.bookmark,
+              num: bookmarked,
             ),
             ListInfo(
-              icon: Icons.favorite,
-              num: like,
+              icon: Icons.description_outlined,
+              num: post,
             ),
             ListInfo(
               icon: shift! < 0 ? Icons.arrow_drop_down : Icons.arrow_drop_up,
