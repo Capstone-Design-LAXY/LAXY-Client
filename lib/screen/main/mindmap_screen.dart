@@ -32,7 +32,7 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
     print(orbitData.orbit.length);
   }
 
-  // TODO: 별 클릭 시 태그 페이지로 넘어가기
+  // TODO: 테마 적용, 새로고침 기능 추가
   @override
   Widget build(BuildContext context) {
 

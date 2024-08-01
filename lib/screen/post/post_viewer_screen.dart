@@ -32,6 +32,7 @@ class _PostViewerScreenState extends State<PostViewerScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFE2E6EA),
       appBar: AppBar(
         title: const Text('게시글 뷰어'),
         leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back),),
@@ -40,7 +41,7 @@ class _PostViewerScreenState extends State<PostViewerScreen>
         surfaceTintColor: Color(0xFFFFFFFF),
       ),
       body: Container(
-        color: Color(0xFFE2E6EA),
+        // color: Color(0xFFE2E6EA),
         // color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),

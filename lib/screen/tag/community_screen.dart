@@ -37,7 +37,7 @@ class _CommunityScreenState extends State<CommunityScreen>
     super.dispose();
   }
 
-  // TODO: 테마 적용
+  // TODO: 테마 적용, 커뮤니티 마지막 탭은 MY -> 추천 탭으로 바꾸자
   @override
   Widget build(BuildContext context) {
 
