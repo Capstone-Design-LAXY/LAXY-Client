@@ -36,7 +36,7 @@ class _TempStartScreenState extends State<TempStartScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test Page'),
+        title: Text('Test Page1'),
       ),
       body: Center(
         child: Column(
