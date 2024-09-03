@@ -6,7 +6,7 @@ import 'package:laxy/common/const/enum.dart';
 class Orbit extends StatefulWidget {
   final List<Widget> satellites;
   final Widget? primary;
-  final bool rotation; // 위성이 모두 별이면 true (Orbit이 껴있으면 Orbit 회전이 느려짐)
+  final bool rotation; // 가운데 행성의 역회전 -> 위성이 모두 별이면 true (Orbit이 껴있으면 Orbit 회전이 느려짐)
   final Function() onPressed;
   final OrbitType type; // primary or satellite
 
