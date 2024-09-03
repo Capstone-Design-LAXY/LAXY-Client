@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_floating_action_button.dart';
+import 'package:laxy/common/component/custom/custom_search_delegate.dart';
 import 'package:laxy/common/component/custom/custom_segment_button.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/screen/post/post_register_screen.dart';
@@ -30,9 +31,7 @@ class MindmapLayout extends StatelessWidget {
               Spacer(),
               // TODO: 컴포넌트화 필요
               // 세그먼트 버튼 (크기 다음과 같이 고정)
-              SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: 40,),
               Spacer(),
               // TODO: 게시글 작성 버튼 연결
               Hero(
@@ -51,7 +50,12 @@ class MindmapLayout extends StatelessWidget {
                 tag: 'Search',
                 child: CustomFloatingActionButton(
                   icon: Icons.search,
-                  onPressed: () {print('search');},
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: CustomSearchDelegate()
+                    );
+                  },
                 ),
               ),
             ],

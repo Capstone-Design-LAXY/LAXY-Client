@@ -13,7 +13,7 @@ class TagRankingListTile extends StatelessWidget {
     this.title = 'title',
     this.bookmarked = 100,
     this.post = 100,
-    this.shift = 3,
+    this.shift,
     Key? key,
   }) : super(key: key);
 
@@ -46,11 +46,12 @@ class TagRankingListTile extends StatelessWidget {
               icon: Icons.description_outlined,
               num: post,
             ),
-            ListInfo(
-              icon: shift! < 0 ? Icons.arrow_drop_down : Icons.arrow_drop_up,
-              iconColor: shift! < 0 ? Color(0xFFFF4949) : Color(0xFF5589D3),
-              num: shift,
-            ),
+            if (shift != null)
+              ListInfo(
+                icon: shift! < 0 ? Icons.arrow_drop_down : Icons.arrow_drop_up,
+                iconColor: shift! < 0 ? Color(0xFFFF4949) : Color(0xFF5589D3),
+                num: shift,
+              ),
           ],
         ),
       ),

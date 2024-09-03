@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_floating_action_button.dart';
+import 'package:laxy/common/component/custom/custom_search_delegate.dart';
 import 'package:laxy/common/component/custom/custom_segment_button.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/screen/post/post_register_screen.dart';
@@ -105,7 +106,12 @@ class _TrendsScreenState extends State<TrendsScreen>
                           tag: 'Search',
                           child: CustomFloatingActionButton(
                             icon: Icons.search,
-                            onPressed: () {print('search');},
+                            onPressed: () {
+                              showSearch(
+                                  context: context,
+                                  delegate: CustomSearchDelegate()
+                              );
+                            },
                           ),
                         ),
                       ],

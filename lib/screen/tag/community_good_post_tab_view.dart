@@ -27,7 +27,7 @@ class CommunityGoodPostTabView extends StatelessWidget {
       children: [
         // 헤더
         const ListHeader(
-          title: "좋은 글",
+          title: "공감글",
           icon: Icons.favorite,
           iconColor: Color(0xFF5589D3),
         ),

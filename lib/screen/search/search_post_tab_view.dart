@@ -3,19 +3,19 @@ import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
 
-class CommunityMyPostTabView extends StatefulWidget {
+class SearchPostTabView extends StatefulWidget {
 
-  const CommunityMyPostTabView({
+  const SearchPostTabView({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CommunityMyPostTabView> createState() => _CommunityMyPostTabView();
+  State<SearchPostTabView> createState() => _SearchPostTabView();
 }
 
-const List<String> criteriaList = <String>['전체', '게시글', '댓글', '좋아요'];
+const List<String> criteriaList = <String>['최신순', '좋아요', '조회수'];
 
-class _CommunityMyPostTabView extends State<CommunityMyPostTabView>
+class _SearchPostTabView extends State<SearchPostTabView>
     with SingleTickerProviderStateMixin {
   String dropdownValueCriteria = criteriaList.first;
 
@@ -37,9 +37,7 @@ class _CommunityMyPostTabView extends State<CommunityMyPostTabView>
       children: [
         // 헤더
         ListHeader(
-          title: "내가 작성한 글",
-          icon: Icons.account_circle,
-          iconColor: Color(0xFF5589D3),
+          title: '전체 게시글',
           children: [
             CustomDropdownButton(
               items: criteriaList,
@@ -48,7 +46,7 @@ class _CommunityMyPostTabView extends State<CommunityMyPostTabView>
                   dropdownValueCriteria = criteriaValue!;
                 });
               },
-              valueGender: dropdownValueCriteria
+              valueGender: dropdownValueCriteria,
             ),
           ],
         ),

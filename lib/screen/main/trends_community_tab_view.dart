@@ -14,7 +14,7 @@ class TrendsCommunityTabView extends StatelessWidget {
     List<Widget> _buildTagRankingListTiles() {
       List<Widget> tiles = [];
       for (int i = 1; i <= 30; i++) {
-        tiles.add(TagRankingListTile(rank: i, title: '이거슨 타이틀이여123123${i*15412}',));
+        tiles.add(TagRankingListTile(rank: i, title: '이거슨 타이틀이여123123${i*15412}', shift: 3,));
       }
       return tiles;
     }

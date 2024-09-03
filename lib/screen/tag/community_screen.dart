@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
-import 'package:laxy/screen/tag/community_my_post_tab_view.dart';
 import 'package:laxy/screen/main/trends_main_tab_view.dart';
 import 'package:laxy/screen/main/trends_post_tab_view.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
 
 class CommunityScreen extends StatefulWidget {
 
@@ -37,7 +37,6 @@ class _CommunityScreenState extends State<CommunityScreen>
     super.dispose();
   }
 
-  // TODO: 테마 적용, 커뮤니티 마지막 탭은 MY -> 추천 탭으로 바꾸자
   @override
   Widget build(BuildContext context) {
 
@@ -64,9 +63,9 @@ class _CommunityScreenState extends State<CommunityScreen>
                   controller: controller,
                   tabs: const <Widget>[
                     Tab(text: '메인',),
-                    Tab(text: '좋은 글',),
+                    Tab(text: '공감글',),
                     Tab(text: '전체',),
-                    Tab(text: 'MY',)
+                    Tab(text: '추천',)
                   ]
               ),
               Expanded(
@@ -76,7 +75,7 @@ class _CommunityScreenState extends State<CommunityScreen>
                     TrendsMainTabView(),
                     CommunityGoodPostTabView(),
                     TrendsPostTabView(),
-                    CommunityMyPostTabView(),
+                    CommunityRecommendTabView(),
                   ],
                 ),
               ),
