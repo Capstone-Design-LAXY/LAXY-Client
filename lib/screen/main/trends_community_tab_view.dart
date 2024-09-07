@@ -26,7 +26,7 @@ class TrendsCommunityTabView extends StatelessWidget {
         const ListHeader(
           iconColor: Color(0xFF5589D3),
           icon: Icons.trending_up,
-          title: '일간 인기 게시글',
+          title: '인기 커뮤니티',
         ),
         const Padding(
           padding: EdgeInsets.only(top: 3, bottom: 1),

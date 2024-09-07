@@ -6,6 +6,8 @@ import 'package:laxy/screen/main/trends_main_tab_view.dart';
 import 'package:laxy/screen/main/trends_post_tab_view.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/screen/tag/community_main_tab_view.dart';
+import 'package:laxy/screen/tag/community_post_tab_view.dart';
 import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
 
 class CommunityScreen extends StatefulWidget {
@@ -72,9 +74,9 @@ class _CommunityScreenState extends State<CommunityScreen>
                 child: TabBarView(
                   controller: controller,
                   children: [
-                    TrendsMainTabView(),
+                    CommunityMainTabView(),
                     CommunityGoodPostTabView(),
-                    TrendsPostTabView(),
+                    CommunityPostTabView(),
                     CommunityRecommendTabView(),
                   ],
                 ),

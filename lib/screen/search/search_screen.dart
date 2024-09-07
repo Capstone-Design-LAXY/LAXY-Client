@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_search_delegate.dart';
+import 'package:laxy/screen/search/search_community_tab_view.dart';
 import 'package:laxy/screen/search/search_post_tab_view.dart';
+import 'package:laxy/screen/search/search_tag_tab_view.dart';
+import 'package:laxy/screen/search/search_user_tab_view.dart';
 import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
@@ -70,8 +73,8 @@ class _SearchScreenState extends State<SearchScreen>
                 CustomTabBar(
                     controller: controller,
                     tabs: const <Widget>[
-                      Tab(text: '태그',),
                       Tab(text: '커뮤니티',),
+                      Tab(text: '태그',),
                       Tab(text: '게시글',),
                       Tab(text: '사용자',)
                     ]
@@ -80,10 +83,10 @@ class _SearchScreenState extends State<SearchScreen>
                   child: TabBarView(
                     controller: controller,
                     children: [
-                      CommunityGoodPostTabView(),
-                      CommunityGoodPostTabView(),
+                      SearchCommunityTabView(),
+                      SearchTagTabView(),
                       SearchPostTabView(),
-                      CommunityRecommendTabView(),
+                      SearchUserTabView(),
                     ],
                   ),
                 ),

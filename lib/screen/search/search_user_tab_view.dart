@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
+import 'package:laxy/common/component/list/user_list_tile.dart';
 
-class SearchPostTabView extends StatelessWidget {
+class SearchUserTabView extends StatelessWidget {
 
-  const SearchPostTabView({
+  const SearchUserTabView({
     Key? key,
   }) : super(key: key);
 
@@ -13,9 +14,9 @@ class SearchPostTabView extends StatelessWidget {
     List<Widget> tiles = [];
     for (int i = 1; i <= 30; i++) {
       if (i%3 == 0)
-        tiles.add(PostListTile(isImage: true,));
+        tiles.add(UserListTile());
       else
-        tiles.add(PostListTile());
+        tiles.add(UserListTile());
     }
     return tiles;
   }

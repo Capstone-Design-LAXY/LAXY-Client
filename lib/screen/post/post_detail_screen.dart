@@ -47,13 +47,66 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         title: '게시글 상세',
         children: [
           CustomIconButton(
-            icon: Icons.thumb_up_outlined,
+            icon: Icons.favorite_outline,
             onPressed: () {},
             num: 200000,
           ),
           CustomIconButton(
             icon: Icons.add_comment_outlined,
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20), // 왼쪽 위 둥근 모서리
+                        topRight: Radius.circular(20), // 오른쪽 위 둥근 모서리
+                      ),
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    child: Column(
+                      children: [
+                        TextField(
+                          minLines: 1,
+                          maxLines: 4,
+                          cursorColor: Color(0xFF5589D3),
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFF5589D3),), // 포커스가 있을 때 밑줄 색상
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Spacer(),
+                            TextButton(
+                                onPressed: (){},
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Color(0xFF5589D3),
+                                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // 패딩 설정 (선택 사항)
+                                ),
+                                child: Text('취소')
+                            ),
+                            SizedBox(width: 4,),
+                            TextButton(
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                backgroundColor: Color(0xFF5589D3), // 배경색 설정
+                                foregroundColor: Color(0xFFFFFFFF),
+                                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // 패딩 설정 (선택 사항)
+                              ),
+                              child: Text('확인'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              );
+            },
             num: 201300,
           ),
           CustomPopupMenuButton(
@@ -130,6 +183,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ],
             ),
           ),
+          SizedBox(height: 4,),
           // 태그 헤더
           const Row(
             crossAxisAlignment: CrossAxisAlignment.end,

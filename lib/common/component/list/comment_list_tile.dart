@@ -42,7 +42,7 @@ class CommentListTile extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                       child: Row(
                         children: [
-                          Icon(Icons.thumb_up_alt_outlined, size: 15, color: Color(0xFF001C3A),),
+                          Icon(Icons.favorite_outline, size: 15, color: Color(0xFF001C3A),),
                           SizedBox(width: 2,),
                           SizedBox(
                               width: 23,
