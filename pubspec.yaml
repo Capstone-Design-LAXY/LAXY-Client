@@ -38,6 +38,7 @@ dependencies:
   flutter_chip_tags: ^2.0.2
   flutter_quill: ^10.1.2
   flutter_keyboard_visibility: ^6.0.0
+  flutter_quill_extensions: ^10.5.9
 
 dev_dependencies:
   flutter_test:

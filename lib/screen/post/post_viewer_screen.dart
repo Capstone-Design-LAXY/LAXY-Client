@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/layout/post_layout.dart';
@@ -18,7 +20,7 @@ class _PostViewerScreenState extends State<PostViewerScreen> {
 
   final quill.QuillController _controller = quill.QuillController(
     document: quill.Document.fromJson(
-      jsonDecode(r'[{"insert":"이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기"},{"insert":"\n","attributes":{"indent":1}},{"insert":"여기는 "},{"insert":"굵게","attributes":{"bold":true}},{"insert":"\n여기는 "},{"insert":"하이퍼링크","attributes":{"link":"https://www.naver.com"}},{"insert":"\n여기는 "},{"insert":"글자 색조","attributes":{"color":"#FFFFEB3B"}},{"insert":"\n이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기\n"}]')
+        jsonDecode(r'[{"insert":"이거 "},{"insert":"에뮬레이터가","attributes":{"bold":true}},{"insert":" 메모리를 아주 많이 잡아 먹습니다\n예를 "},{"insert":"들자면","attributes":{"color":"#FF1E88E5"}},{"insert":" 이런 "},{"insert":"느낌집니다","attributes":{"background":"#FFEC407A"}},{"insert":".\n\n이게 어이없게 자동 수정이 들어가 있어서 \n계속 단어를 수정해주는데요"},{"insert":"\n","attributes":{"blockquote":true}},{"insert":"여기서 사진을 클립보드에서 붙여넣어보겠습니ㅏㄷ"},{"insert":"\n","attributes":{"list":"bullet"}},{"insert":{"image":"https://picsum.photos/200"}},{"insert":"ㅇ\n좋습니다 이제 사진을 넣었군요\n"}]')
     ),
     selection: const TextSelection.collapsed(offset: 0),
     readOnly: true,
@@ -68,6 +70,7 @@ class _PostViewerScreenState extends State<PostViewerScreen> {
                     padding: const EdgeInsets.all(10),
                     child: quill.QuillEditor.basic(
                       configurations: quill.QuillEditorConfigurations(
+                        embedBuilders: kIsWeb ? FlutterQuillEmbeds.editorWebBuilders() : FlutterQuillEmbeds.editorBuilders(),
                         controller: _controller,
                         scrollable: true,
                         autoFocus: false,

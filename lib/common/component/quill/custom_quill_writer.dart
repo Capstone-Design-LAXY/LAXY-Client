@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 
 class CustomQuillWriter extends StatefulWidget {
   const CustomQuillWriter({super.key});
@@ -33,6 +35,9 @@ class _CustomQuillWriterState extends State<CustomQuillWriter> {
         children: [
           quill.QuillToolbar.simple(
             configurations: quill.QuillSimpleToolbarConfigurations(
+              embedButtons: FlutterQuillEmbeds.toolbarButtons(
+                videoButtonOptions: null,
+              ),
               controller: _controller,
               showClipboardPaste: false,
               showSubscript: false,
@@ -46,6 +51,7 @@ class _CustomQuillWriterState extends State<CustomQuillWriter> {
               showIndent: true,
               showInlineCode: false,
               showListCheck: false,
+              showRedo: false
             ),
           ),
           Padding(
@@ -58,6 +64,7 @@ class _CustomQuillWriterState extends State<CustomQuillWriter> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: quill.QuillEditor.basic(
                 configurations: quill.QuillEditorConfigurations(
+                  embedBuilders: kIsWeb ? FlutterQuillEmbeds.editorWebBuilders() : FlutterQuillEmbeds.editorBuilders(),
                   controller: _controller,
                   placeholder: "내용을 입력하세요.",
                   autoFocus: false,

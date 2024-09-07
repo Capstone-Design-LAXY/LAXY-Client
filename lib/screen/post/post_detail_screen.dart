@@ -10,6 +10,7 @@ import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/list/comment_list_tile.dart';
 import 'package:laxy/common/component/custom/custom_chip.dart';
+import 'package:laxy/common/component/quill/custom_quill_reader.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 import 'package:laxy/utils/utils.dart';
@@ -26,20 +27,6 @@ const List<String> criteriaList = <String>['인기순', '최신순', 'MY'];
 class _PostDetailScreenState extends State<PostDetailScreen> {
 
   String dropdownValueCriteria = criteriaList.first;
-
-  final quill.QuillController _controller = quill.QuillController(
-    document: quill.Document.fromJson(
-      jsonDecode(r'[{"insert":"이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기"},{"insert":"\n","attributes":{"indent":1}},{"insert":"여기는 "},{"insert":"굵게","attributes":{"bold":true}},{"insert":"\n여기는 "},{"insert":"하이퍼링크","attributes":{"link":"https://www.naver.com"}},{"insert":"\n여기는 "},{"insert":"글자 색조","attributes":{"color":"#FFFFEB3B"}},{"insert":"\n이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기이거 어떻게 저장되는지 테스트\n여기서 엔터한번 누르고\n여기는 들여쓰기\n"}]')
-    ),
-    selection: const TextSelection.collapsed(offset: 0),
-    readOnly: true,
-  );
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,28 +77,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ),
           ),
           SizedBox(height: 3,),
-          Container(
-            height: 500,
-            decoration: BoxDecoration(
-              color: Color(0xFFFFFFFF), // 하얀색 배경
-              borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
-            ),
-            child: HorizontalExpanded(
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: quill.QuillEditor.basic(
-                  configurations: quill.QuillEditorConfigurations(
-                    controller: _controller,
-                    scrollable: true,
-                    autoFocus: false,
-                    readOnlyMouseCursor: MouseCursor.uncontrolled,
-                    expands: true,
-                    showCursor: false,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          CustomQuillReader(),
           SizedBox(height: 3,),
           // 게시글 정보
           Container(
