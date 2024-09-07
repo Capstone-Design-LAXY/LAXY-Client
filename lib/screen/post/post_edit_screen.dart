@@ -8,14 +8,14 @@ import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/quill/custom_quill_writer.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 
-class PostRegisterScreen extends StatefulWidget {
-  const PostRegisterScreen({super.key});
+class PostEditScreen extends StatefulWidget {
+  const PostEditScreen({super.key});
 
   @override
-  State<PostRegisterScreen> createState() => _PostRegisterScreenState();
+  State<PostEditScreen> createState() => _PostEditScreenState();
 }
 
-class _PostRegisterScreenState extends State<PostRegisterScreen> {
+class _PostEditScreenState extends State<PostEditScreen> {
 
   // 태그 리스트
   List<String> tagList = [];

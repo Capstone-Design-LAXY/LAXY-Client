@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/screen/post/post_edit_screen.dart';
 import 'package:laxy/screen/search/search_screen.dart';
 import 'package:laxy/screen/user/login_screen.dart';
 import 'package:laxy/screen/main/mindmap_screen.dart';
@@ -123,6 +124,15 @@ class _TempStartScreenState extends State<TempStartScreen>
                 );
               },
               child: Text('SearchScreen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostEditScreen()),
+                );
+              },
+              child: Text('PostEditScreen'),
             ),
           ],
         ),
