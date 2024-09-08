@@ -9,6 +9,7 @@ import 'package:laxy/screen/post/post_viewer_screen.dart';
 import 'package:laxy/screen/tag/community_screen.dart';
 import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/screen/main/trends_screen.dart';
+import 'package:laxy/screen/user/register_screen.dart';
 
 class TempStartScreen extends StatefulWidget {
   const TempStartScreen({super.key});
@@ -57,10 +58,10 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => MindmapScreen()),
                 );
               },
-              child: Text('LoginScreen'),
+              child: Text('MindmapScreen'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -70,15 +71,6 @@ class _TempStartScreenState extends State<TempStartScreen>
                 );
               },
               child: Text('TagScreen'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MindmapScreen()),
-                );
-              },
-              child: Text('MindmapScreen'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -97,6 +89,15 @@ class _TempStartScreenState extends State<TempStartScreen>
                 );
               },
               child: Text('PostRegisterScreen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PostEditScreen()),
+                );
+              },
+              child: Text('PostEditScreen'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -129,10 +130,19 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PostEditScreen()),
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
                 );
               },
-              child: Text('PostEditScreen'),
+              child: Text('LoginScreen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterScreen()),
+                );
+              },
+              child: Text('RegisterScreen'),
             ),
           ],
         ),

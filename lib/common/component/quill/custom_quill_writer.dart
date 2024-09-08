@@ -5,23 +5,18 @@ import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 
 class CustomQuillWriter extends StatefulWidget {
-  const CustomQuillWriter({super.key});
+  final quill.QuillController controller;
+
+  const CustomQuillWriter({
+    required this.controller,
+    super.key
+  });
 
   @override
   State<CustomQuillWriter> createState() => _CustomQuillWriterState();
 }
 
 class _CustomQuillWriterState extends State<CustomQuillWriter> {
-
-  final quill.QuillController _controller = quill.QuillController.basic();
-
-  @override
-  void dispose() {
-    print(jsonEncode(_controller.document.toDelta().toJson()));
-    _controller.dispose();
-    // 작성한 게시글 출력해보기
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +33,7 @@ class _CustomQuillWriterState extends State<CustomQuillWriter> {
               embedButtons: FlutterQuillEmbeds.toolbarButtons(
                 videoButtonOptions: null,
               ),
-              controller: _controller,
+              controller: widget.controller,
               showClipboardPaste: false,
               showSubscript: false,
               showSuperscript: false,
@@ -65,7 +60,7 @@ class _CustomQuillWriterState extends State<CustomQuillWriter> {
               child: quill.QuillEditor.basic(
                 configurations: quill.QuillEditorConfigurations(
                   embedBuilders: kIsWeb ? FlutterQuillEmbeds.editorWebBuilders() : FlutterQuillEmbeds.editorBuilders(),
-                  controller: _controller,
+                  controller: widget.controller,
                   placeholder: "내용을 입력하세요.",
                   autoFocus: false,
                   scrollable: true,

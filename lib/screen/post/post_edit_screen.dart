@@ -17,6 +17,20 @@ class PostEditScreen extends StatefulWidget {
 
 class _PostEditScreenState extends State<PostEditScreen> {
 
+  final quill.QuillController _controller = quill.QuillController(
+    document: quill.Document.fromJson(
+        jsonDecode(r'[{"insert":"이거 "},{"insert":"에뮬레이터가","attributes":{"bold":true}},{"insert":" 메모리를 아주 많이 잡아 먹습니다\n예를 "},{"insert":"들자면","attributes":{"color":"#FF1E88E5"}},{"insert":" 이런 "},{"insert":"느낌집니다","attributes":{"background":"#FFEC407A"}},{"insert":".\n\n이게 어이없게 자동 수정이 들어가 있어서 \n계속 단어를 수정해주는데요"},{"insert":"\n","attributes":{"blockquote":true}},{"insert":"여기서 사진을 클립보드에서 붙여넣어보겠습니ㅏㄷ"},{"insert":"\n","attributes":{"list":"bullet"}},{"insert":{"image":"https://picsum.photos/200"}},{"insert":"ㅇ\n좋습니다 이제 사진을 넣었군요\n"}]')
+    ),
+    selection: const TextSelection.collapsed(offset: 0),
+  );
+
+  @override
+  void dispose() {
+    print(jsonEncode(_controller.document.toDelta().toJson()));
+    _controller.dispose();
+    super.dispose();
+  }
+
   // 태그 리스트
   List<String> tagList = [];
 
@@ -25,7 +39,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
   Widget build(BuildContext context) {
     return PostLayout(
       appBar: CustomAppBar(
-        title: '게시글 작성',
+        title: '게시글 수정',
         children: [
           IconButton(
             icon: Icon(Icons.check),
@@ -65,7 +79,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
             ),
           ),
           SizedBox(height: 3,),
-          CustomQuillWriter(),
+          CustomQuillWriter(controller: _controller),
           SizedBox(height: 10,),
         ],
       )

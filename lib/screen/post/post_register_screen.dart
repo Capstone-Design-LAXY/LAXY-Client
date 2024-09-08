@@ -17,6 +17,16 @@ class PostRegisterScreen extends StatefulWidget {
 
 class _PostRegisterScreenState extends State<PostRegisterScreen> {
 
+  quill.QuillController _controller = quill.QuillController.basic();
+
+  @override
+  void dispose() {
+    print(jsonEncode(_controller.document.toDelta().toJson()));
+    _controller.dispose();
+    // 작성한 게시글 출력해보기
+    super.dispose();
+  }
+
   // 태그 리스트
   List<String> tagList = [];
 
@@ -65,7 +75,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
             ),
           ),
           SizedBox(height: 3,),
-          CustomQuillWriter(),
+          CustomQuillWriter(controller: _controller,),
           SizedBox(height: 10,),
         ],
       )
