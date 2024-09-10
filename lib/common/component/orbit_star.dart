@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/my/bookmarked_screen.dart';
+import 'package:laxy/screen/my/my_page_screen.dart';
 import 'package:laxy/screen/tag/community_screen.dart';
 import 'package:laxy/screen/tag/tag_screen.dart';
 
@@ -61,7 +63,9 @@ class _OrbitStarState extends State<OrbitStar>
     // TODO: 작업 필요
     void _handlePress(BuildContext context) {
       if (widget.isGlobe == true) {
-        print('마이페이지 연결 필요');
+        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+            BookmarkedScreen());
+        Navigator.push(context, pageRouteWithAnimation.fadeTransition());
       } else if (widget.grade! > 5) {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
             CommunityScreen());
@@ -83,15 +87,18 @@ class _OrbitStarState extends State<OrbitStar>
               alignment: Alignment.center,
               children: [
                 // 별 본체
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(90),
-                  ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Image(
-                    width: size,
-                    height: size,
-                    image: AssetImage(imagePath),
+                Transform.scale(
+                  scale: widget.grade! > 5 ? 1 : 0.8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(90),
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Image(
+                      width: size,
+                      height: size,
+                      image: AssetImage(imagePath),
+                    ),
                   ),
                 ),
                 // 이름 표시
@@ -137,15 +144,18 @@ class _OrbitStarState extends State<OrbitStar>
             alignment: Alignment.center,
             children: [
               // 별 본체
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(90),
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: Image(
-                  width: size,
-                  height: size,
-                  image: AssetImage(imagePath),
+              Transform.scale(
+                scale: widget.grade! > 5 ? 1 : 0.74,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(90),
+                  ),
+                  clipBehavior: Clip.hardEdge,
+                  child: Image(
+                    width: size,
+                    height: size,
+                    image: AssetImage(imagePath),
+                  ),
                 ),
               ),
               // 이름 표시

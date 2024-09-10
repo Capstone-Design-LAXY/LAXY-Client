@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/screen/my/bookmarked_screen.dart';
+import 'package:laxy/screen/my/my_account_screen.dart';
 import 'package:laxy/screen/my/my_page_screen.dart';
 import 'package:laxy/screen/post/post_edit_screen.dart';
 import 'package:laxy/screen/search/search_screen.dart';

@@ -3,6 +3,11 @@ import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/my/bookmarked_screen.dart';
+import 'package:laxy/screen/my/liked_screen.dart';
+import 'package:laxy/screen/my/my_account_screen.dart';
+import 'package:laxy/screen/my/my_comment_screen.dart';
+import 'package:laxy/screen/my/my_post_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 
 class MyPageScreen extends StatelessWidget {
@@ -10,6 +15,7 @@ class MyPageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: CustomAppBar(
         title: '마이페이지',
@@ -68,28 +74,43 @@ class MyPageScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         TextListTile(
-                          onPressed: () {},
-                          title: '회원정보 수정',
-                        ),
-                        SizedBox(height: 15),
-                        TextListTile(
-                          onPressed: () {},
+                          onPressed: () {
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(BookmarkedScreen());
+                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                          },
                           title: '즐겨찾기한 태그',
                         ),
                         SizedBox(height: 15),
                         TextListTile(
-                          onPressed: () {},
-                          title: '내가 좋아요한 글',
+                          onPressed: () {
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(LikedScreen());
+                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                          },
+                          title: '좋아요한 글',
                         ),
                         SizedBox(height: 15),
                         TextListTile(
-                          onPressed: () {},
-                          title: '내가 작성한 글',
+                          onPressed: () {
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPostScreen());
+                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                          },
+                          title: '작성한 글',
                         ),
                         SizedBox(height: 15),
                         TextListTile(
-                          onPressed: () {},
-                          title: '내가 작성한 댓글',
+                          onPressed: () {
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyCommentScreen());
+                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                            },
+                          title: '작성한 댓글',
+                        ),
+                        SizedBox(height: 15),
+                        TextListTile(
+                          onPressed: () {
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountScreen());
+                            Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+                          },
+                          title: '회원정보 수정',
                         ),
                       ],
                     ),
