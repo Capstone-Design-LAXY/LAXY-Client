@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/screen/my/my_page_screen.dart';
 import 'package:laxy/screen/post/post_edit_screen.dart';
 import 'package:laxy/screen/search/search_screen.dart';
 import 'package:laxy/screen/user/login_screen.dart';
@@ -42,8 +43,8 @@ class _TempStartScreenState extends State<TempStartScreen>
         title: Text('Test Page1'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Wrap(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
@@ -143,6 +144,15 @@ class _TempStartScreenState extends State<TempStartScreen>
                 );
               },
               child: Text('RegisterScreen'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyPageScreen()),
+                );
+              },
+              child: Text('MyPageScreen'),
             ),
           ],
         ),
