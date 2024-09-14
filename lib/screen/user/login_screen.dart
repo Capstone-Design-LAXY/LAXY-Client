@@ -1,11 +1,111 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
+import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/screen/user/register_screen.dart';
+import 'package:laxy/common/const/constants.dart';
+import 'package:http/http.dart' as http;
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  // 간단한 이메일 및 비밀번호 검증 함수
+  bool _validateForm() {
+    String email = emailController.text;
+    String password = passwordController.text;
+    if (email.isEmpty || password.isEmpty) {
+      _showErrorDialog('이메일과 비밀번호를 입력하세요.');
+      return false;
+    }
+    if (!_isEmailValid(email)) {
+      _showErrorDialog('유효한 이메일을 입력하세요.');
+      return false;
+    }
+    return true;
+  }
+
+  // 이메일 형식 검증
+  bool _isEmailValid(String email) {
+    String emailPattern =
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    RegExp regExp = RegExp(emailPattern);
+    return regExp.hasMatch(email);
+  }
+
+  // 오류 메시지 다이얼로그
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('오류'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('확인'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // 로그인 처리 함수 (API 요청)
+  Future<void> _handleLogin() async {
+    if (_validateForm()) {
+      String email = emailController.text;
+      String password = passwordController.text;
+
+      final url = Uri.parse('$BASE_URL/login');
+
+      // HTTP 클라이언트 생성
+      final client = http.Client();
+
+      try {
+        final response = await client.post(
+          url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'email': email,
+            'password': password,
+          }),
+          // 요청 시간 초과 설정 (예: 10초)
+        ).timeout(Duration(seconds: 5));
+
+        if (response.statusCode == 200) {
+          // 로그인 성공 시 처리 (홈 화면으로 이동)
+          Navigator.pushReplacementNamed(context, '/home');
+        } else {
+          // 로그인 실패 시 처리 (오류 메시지 보여주기)
+          _showErrorDialog('로그인에 실패했습니다. 상태 코드: ${response.statusCode}');
+        }
+      } on TimeoutException catch (_) {
+        // 시간 초과 오류 처리
+        _showErrorDialog('요청이 시간 초과되었습니다. 인터넷 연결을 확인해 주세요.');
+      } catch (error) {
+        // 네트워크 오류 처리
+        _showErrorDialog('로그인 요청 중 오류가 발생했습니다: $error');
+      } finally {
+        client.close(); // HTTP 클라이언트 자원 해제
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +116,6 @@ class LoginScreen extends StatelessWidget {
       body: Stack(
         children: [
           Background(rotate: true,),
-          // 앱의 다른 콘텐츠
           Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -29,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/LAXY_highqual_logo.png', // 로고 이미지 경로
+                          'assets/LAXY_highqual_logo.png',
                           width: 70,
                           height: 70,
                         ),
@@ -52,55 +151,25 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.0),
                         color: Colors.white,
                       ),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          TextField(
+                          CustomTextField(
+                            controller: emailController, // 입력값을 컨트롤러로 받음
                             textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3),
-                                ),
-                              ),
-                              labelText: '이메일',
-                              labelStyle: TextStyle(
-                                color: Color(0xFF5589D3),
-                              ),
-                            ),
-                            cursorColor: Color(0xFF5589D3),
+                            labelText: '이메일',
                           ),
                           SizedBox(height: 20),
                           // 비밀번호 입력 필드
-                          TextField(
+                          CustomTextField(
+                            controller: passwordController, // 입력값을 컨트롤러로 받음
                             obscureText: true,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                ),
-                              ),
-                              labelText: '비밀번호',
-                              labelStyle: TextStyle(
-                                color: Color(0xFF5589D3), // labelText의 색상 설정
-                              ),
-                            ),
-                            cursorColor: Color(0xFF5589D3), // 커서 색상
+                            labelText: '비밀번호',
                           ),
                         ],
                       ),
                     ),
                     SizedBox(height: 20),
-                    // 로그인 버튼
+                    // 로그인 및 회원가입 버튼
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -111,21 +180,20 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () {
                             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(RegisterScreen());
                             Navigator.push(context, pageRouteWithAnimation.fadeTransition());
-                            },
+                          },
                           child: Text(
                             '회원가입',
                             style: TextStyle(
                               color: Color(0xFFFFFFFF),
                             ),
-                          )
+                          ),
                         ),
                         ElevatedButton(
                           style: TextButton.styleFrom(
                             backgroundColor: Color(0xFFFFFFFF),
                             foregroundColor: Color(0xFF5589D3),
                           ),
-                          onPressed: () {
-                          },
+                          onPressed: _handleLogin, // 로그인 버튼 클릭 시 호출
                           child: Text('로그인'),
                         ),
                       ],

@@ -39,6 +39,7 @@ dependencies:
   flutter_quill: ^10.1.2
   flutter_keyboard_visibility: ^6.0.0
   flutter_quill_extensions: ^10.5.9
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
