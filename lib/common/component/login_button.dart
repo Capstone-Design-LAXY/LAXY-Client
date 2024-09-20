@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:laxy/utils/auth.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
@@ -8,7 +7,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () {
-        handleLogout();
+        print('로그아웃');
       },
       elevation: 0,
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
