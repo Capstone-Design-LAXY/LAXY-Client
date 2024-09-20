@@ -1,7 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_drawer_header.dart';
 import 'package:laxy/common/component/custom/custom_drawer_item.dart';
+import 'package:laxy/common/component/login_button.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/component/theme_switch.dart';
+import 'package:laxy/screen/my/bookmarked_screen.dart';
+import 'package:laxy/screen/my/liked_screen.dart';
+import 'package:laxy/screen/my/my_page_screen.dart';
+import 'package:laxy/screen/my/my_post_screen.dart';
+import 'package:laxy/utils/utils.dart';
 
 class CustomDrawer extends StatefulWidget {
 
@@ -14,9 +23,78 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  late DrawerData drawerData;
+
+  @override
+  void initState() {
+    super.initState();
+
+    String jsonString = '''
+      {
+        "bookmarked": [
+          {"tagId": 44327, "tag_name": "결혼", "count": 1940},
+          {"tagId": 859603, "tag_name": "팩", "count": 2732},
+          {"tagId": 13217, "tag_name": "감", "count": 7988},
+          {"tagId": 656626, "tag_name": "색종", "count": 43766},
+          {"tagId": 181591, "tag_name": "앵무", "count": 80723}
+        ],
+        "recommended": [
+          {"tagId": 156313, "tag_name": "공기청정기", "count": 63285},
+          {"tagId": 120401, "tag_name": "대중교", "count": 46609},
+          {"tagId": 605716, "tag_name": "크리스마", "count": 2559411},
+          {"tagId": 835111, "tag_name": "게", "count": 4186504},
+          {"tagId": 282296, "tag_name": "가상화폐", "count": 6823010}
+        ]
+      }
+    ''';
+
+    // JSON 파싱
+    Map<String, dynamic> parsedJson = jsonDecode(jsonString);
+
+    // DrawerData 객체 생성
+    drawerData = DrawerData.fromJson(parsedJson);
+
+    // 특정 데이터에 접근 (예시: 첫 번째 bookmarked 태그의 tagId)
+    print('첫 번째 북마크된 태그의 ID: ${drawerData.bookmarked[0].tagId}');
+    print('추천된 첫 번째 태그의 이름: ${drawerData.recommended[0].tagName}');
+    print('북마크된 태그 개수: ${drawerData.recommended.length}');
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> _buildBookmarked() {
+      List<Widget> bookmarked = [];
+      for (int i = 0; i < drawerData.bookmarked.length; i++) {
+        bookmarked.add(
+            CustomDrawerItem(
+              name: drawerData.bookmarked[i].tagName,
+              posts: drawerData.bookmarked[i].count,
+              onPressed: () {
+                print(drawerData.bookmarked[i].tagId);
+              },
+            )
+        );
+      }
+      return bookmarked;
+    }
+
+    List<Widget> _buildRecommended() {
+      List<Widget> recommended = [];
+      for (int i = 0; i < drawerData.bookmarked.length; i++) {
+        recommended.add(
+            CustomDrawerItem(
+              name: drawerData.recommended[i].tagName,
+              posts: drawerData.recommended[i].count,
+              onPressed: () {
+                print(drawerData.recommended[i].tagId);
+              },
+            )
+        );
+      }
+      return recommended;
+    }
+
     // TODO: 테마 적용
     return Drawer(
       backgroundColor: Color(0xFFD4E3FF),
@@ -26,58 +104,47 @@ class _CustomDrawerState extends State<CustomDrawer> {
         child: Column(
           children: [
             SizedBox(height: 10),
+            // 즐겨찾기 (로그인 시 노출)
             CustomDrawerHeader(title: '즐겨찾기'),
-            CustomDrawerItem(name: '자격증', posts: 2100, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 20100, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 1000, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 900, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 1000000000, onPressed: (){},),
+            ..._buildBookmarked(),
             Divider(),
+            // 메뉴 (로그인 시 노출)
             CustomDrawerHeader(title: '메뉴',),
-            CustomDrawerItem(name: '즐겨찾기한 태그', onPressed: (){},),
-            CustomDrawerItem(name: '좋아요한 글', onPressed: (){},),
+            CustomDrawerItem(name: '즐겨찾기한 태그', onPressed: (){
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(BookmarkedScreen());
+              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            },),
+            CustomDrawerItem(name: '좋아요한 글', onPressed: (){
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(LikedScreen());
+              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            },),
+            CustomDrawerItem(name: '내가 작성한 글', onPressed: (){
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPostScreen());
+              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            },),
+            CustomDrawerItem(name: '마이페이지', onPressed: (){
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPageScreen());
+              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            },),
             // CustomDrawerItem(name: '알림', onPressed: (){}, isNew: true),
-            CustomDrawerItem(name: '내가 작성한 글', onPressed: (){},),
-            CustomDrawerItem(name: '마이페이지', onPressed: (){},),
             // CustomDrawerItem(name: '설정', onPressed: (){},),
             Divider(),
+            // 추천 커뮤니티
             CustomDrawerHeader(title: '추천 커뮤니티',),
-            CustomDrawerItem(name: '자격증', posts: 2100, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 20000, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 1000, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 900, onPressed: (){},),
-            CustomDrawerItem(name: '자격증', posts: 2100000, onPressed: (){},),
+            ..._buildRecommended(),
             Spacer(),
             SizedBox(
               height: 30,
               child: Row(
                 children: [
                   // 로그아웃 버튼
-                  // TODO: 로그아웃 페이지 연결
-                  MaterialButton(
-                    onPressed: () {},
-                    elevation: 0,
-                    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 5, top: 1),
-                          child: Icon(Icons.logout, size: 20,)
-                        ),
-                        Text(
-                          '로그아웃',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ),
+                  LoginButton(),
                   Spacer(),
                   // 테마 변경 스위치
-                  ThemeSwitch(),
+                  // ThemeSwitch(),
                 ],
               ),
             ),
-
           ],
         ),
       ),

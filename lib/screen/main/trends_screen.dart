@@ -66,12 +66,11 @@ class _TrendsScreenState extends State<TrendsScreen>
                   ),
                 ),
               ),
-              // 메인 시트 위에(Stack) 표시될 내용
+              // 메인 시트 위에 표시될 내용
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
-                    // 상단 FAB, 세그먼트 버튼
                     Row(
                       children: [
                         // 드로워 버튼 (트로워 열기위해 Builder위젯 사용)
@@ -87,9 +86,10 @@ class _TrendsScreenState extends State<TrendsScreen>
                           ),
                         ),
                         const Spacer(),
+                        // 세그먼트 버튼 (마인드맵 / 트랜드)
                         const CustomSegmentButton(),
                         const Spacer(),
-                        // TODO: 게시글 작성 버튼 연결
+                        // 게시글 작성 버튼
                         Hero(
                           tag: 'PostRegister',
                           child: CustomFloatingActionButton(
@@ -101,7 +101,7 @@ class _TrendsScreenState extends State<TrendsScreen>
                           ),
                         ),
                         const SizedBox(width: 13,),
-                        // TODO: 검색 버튼 연결
+                        // 검색 버튼
                         Hero(
                           tag: 'Search',
                           child: CustomFloatingActionButton(

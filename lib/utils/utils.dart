@@ -89,3 +89,48 @@ class OrbitData {
     );
   }
 }
+
+// Tag 데이터 모델
+class Tag {
+  final int tagId;
+  final String tagName;
+  final int count;
+
+  Tag({
+    required this.tagId,
+    required this.tagName,
+    required this.count,
+  });
+
+  // JSON 데이터를 Tag 객체로 변환
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
+      tagId: json['tagId'],
+      tagName: json['tag_name'],
+      count: json['count'],
+    );
+  }
+}
+
+// DrawerData 모델
+class DrawerData {
+  final List<Tag> bookmarked;
+  final List<Tag> recommended;
+
+  DrawerData({
+    required this.bookmarked,
+    required this.recommended,
+  });
+
+  // JSON 데이터를 DrawerData 객체로 변환
+  factory DrawerData.fromJson(Map<String, dynamic> json) {
+    return DrawerData(
+      bookmarked: (json['bookmarked'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList(),
+      recommended: (json['recommended'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList(),
+    );
+  }
+}
