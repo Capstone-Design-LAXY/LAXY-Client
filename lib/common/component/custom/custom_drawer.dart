@@ -10,6 +10,7 @@ import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/my/liked_screen.dart';
 import 'package:laxy/screen/my/my_page_screen.dart';
 import 'package:laxy/screen/my/my_post_screen.dart';
+import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -24,11 +25,11 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   late DrawerData drawerData;
+  bool isLogin = false;
 
   @override
   void initState() {
     super.initState();
-
     String jsonString = '''
       {
         "bookmarked": [
@@ -47,18 +48,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ]
       }
     ''';
-
     // JSON 파싱
     Map<String, dynamic> parsedJson = jsonDecode(jsonString);
-
     // DrawerData 객체 생성
     drawerData = DrawerData.fromJson(parsedJson);
-
-    // 특정 데이터에 접근 (예시: 첫 번째 bookmarked 태그의 tagId)
-    print('첫 번째 북마크된 태그의 ID: ${drawerData.bookmarked[0].tagId}');
-    print('추천된 첫 번째 태그의 이름: ${drawerData.recommended[0].tagName}');
-    print('북마크된 태그 개수: ${drawerData.recommended.length}');
+    _checkAccessToken();
   }
+
+  void _checkAccessToken() async{
+    bool loginStatus = await isAccessToken();
+    setState(() {
+      isLogin = loginStatus;
+    });
+    // print(isLogin);
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +76,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               name: drawerData.bookmarked[i].tagName,
               posts: drawerData.bookmarked[i].count,
               onPressed: () {
+                Navigator.pop(context);
                 print(drawerData.bookmarked[i].tagId);
               },
             )
@@ -87,6 +93,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               name: drawerData.recommended[i].tagName,
               posts: drawerData.recommended[i].count,
               onPressed: () {
+                Navigator.pop(context);
                 print(drawerData.recommended[i].tagId);
               },
             )
@@ -104,31 +111,36 @@ class _CustomDrawerState extends State<CustomDrawer> {
         child: Column(
           children: [
             SizedBox(height: 10),
-            // 즐겨찾기 (로그인 시 노출)
-            CustomDrawerHeader(title: '즐겨찾기'),
-            ..._buildBookmarked(),
-            Divider(),
-            // 메뉴 (로그인 시 노출)
-            CustomDrawerHeader(title: '메뉴',),
-            CustomDrawerItem(name: '즐겨찾기한 태그', onPressed: (){
-              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(BookmarkedScreen());
-              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-            },),
-            CustomDrawerItem(name: '좋아요한 글', onPressed: (){
-              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(LikedScreen());
-              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-            },),
-            CustomDrawerItem(name: '내가 작성한 글', onPressed: (){
-              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPostScreen());
-              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-            },),
-            CustomDrawerItem(name: '마이페이지', onPressed: (){
-              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPageScreen());
-              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-            },),
-            // CustomDrawerItem(name: '알림', onPressed: (){}, isNew: true),
-            // CustomDrawerItem(name: '설정', onPressed: (){},),
-            Divider(),
+            if (isLogin) ...[
+              CustomDrawerHeader(title: '즐겨찾기'),
+              ..._buildBookmarked(),
+              Divider(),
+              // 메뉴 (로그인 시 노출)
+              CustomDrawerHeader(title: '메뉴'),
+              CustomDrawerItem(name: '즐겨찾기한 태그', onPressed: () {
+                Navigator.pop(context);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(BookmarkedScreen());
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              }),
+              CustomDrawerItem(name: '좋아요한 글', onPressed: () {
+                Navigator.pop(context);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(LikedScreen());
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              }),
+              CustomDrawerItem(name: '내가 작성한 글', onPressed: () {
+                Navigator.pop(context);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPostScreen());
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              }),
+              CustomDrawerItem(name: '마이페이지', onPressed: () {
+                Navigator.pop(context);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPageScreen());
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              }),
+              // CustomDrawerItem(name: '알림', onPressed: (){}, isNew: true),
+              // CustomDrawerItem(name: '설정', onPressed: (){},),
+              Divider(),
+            ],
             // 추천 커뮤니티
             CustomDrawerHeader(title: '추천 커뮤니티',),
             ..._buildRecommended(),
@@ -138,7 +150,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               child: Row(
                 children: [
                   // 로그아웃 버튼
-                  LoginButton(),
+                  LoginButton(isLogin: isLogin,),
                   Spacer(),
                   // 테마 변경 스위치
                   // ThemeSwitch(),

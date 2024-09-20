@@ -14,7 +14,7 @@ class TrendsMainTabView extends StatefulWidget {
 }
 
 const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
-const List<String> genderList = <String>['성별', '남자', '여자', '기타'];
+const List<String> genderList = <String>['성별', '남자', '여자', '비공개'];
 
 class _TrendsMainTabView extends State<TrendsMainTabView>
     with SingleTickerProviderStateMixin {

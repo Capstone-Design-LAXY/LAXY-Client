@@ -33,9 +33,9 @@ class _TrendsScreenState extends State<TrendsScreen>
   @override
   void initState() {
     super.initState();
-
     // 탭 컨트롤러 초기화
     controller = TabController(length: 3, vsync: this);
+
   }
 
   @override
