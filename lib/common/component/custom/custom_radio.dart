@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CustomRadio extends StatefulWidget {
-  const CustomRadio({super.key});
+  final Function(SingingCharacter?) onChanged; // 성별 선택 결과를 부모 위젯에 전달할 콜백 함수
+
+  const CustomRadio({required this.onChanged, super.key});
 
   @override
   State<CustomRadio> createState() => _CustomRadioState();
 }
 
-enum SingingCharacter { male, female, private }
+enum SingingCharacter { M, F, N }
 
 class _CustomRadioState extends State<CustomRadio> {
 
-  SingingCharacter? _gender = SingingCharacter.private;
+  SingingCharacter? _gender = SingingCharacter.N;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,13 @@ class _CustomRadioState extends State<CustomRadio> {
           child: Row(
             children: [
               Radio<SingingCharacter>(
-                value: SingingCharacter.male,
+                value: SingingCharacter.M,
                 groupValue: _gender,
                 activeColor: Color(0xFF5589D3),
                 onChanged: (SingingCharacter? value) {
                   setState(() {
                     _gender = value;
+                    widget.onChanged(_gender); // 성별 선택 결과를 부모 위젯에 전달
                   });
                 },
               ),
@@ -38,12 +41,13 @@ class _CustomRadioState extends State<CustomRadio> {
           child: Row(
             children: [
               Radio<SingingCharacter>(
-                value: SingingCharacter.female,
+                value: SingingCharacter.F,
                 groupValue: _gender,
                 activeColor: Color(0xFF5589D3),
                 onChanged: (SingingCharacter? value) {
                   setState(() {
                     _gender = value;
+                    widget.onChanged(_gender); // 성별 선택 결과를 부모 위젯에 전달
                   });
                 },
               ),
@@ -55,12 +59,13 @@ class _CustomRadioState extends State<CustomRadio> {
           child: Row(
             children: [
               Radio<SingingCharacter>(
-                value: SingingCharacter.private,
+                value: SingingCharacter.N,
                 groupValue: _gender,
                 activeColor: Color(0xFF5589D3),
                 onChanged: (SingingCharacter? value) {
                   setState(() {
                     _gender = value;
+                    widget.onChanged(_gender); // 성별 선택 결과를 부모 위젯에 전달
                   });
                 },
               ),

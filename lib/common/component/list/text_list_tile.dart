@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class TextListTile extends StatelessWidget {
   final Function() onPressed;
   final String title;
+  final Color? fontColor;
 
   const TextListTile({
     this.title = 'title',
     required this.onPressed,
+    this. fontColor,
     super.key
   });
 
@@ -34,7 +36,9 @@ class TextListTile extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: Color(0xFF5589D3),
+                  color: fontColor == null
+                    ? Color(0xFF5589D3)
+                    : fontColor,
                 ),
               )
             ),

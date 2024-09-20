@@ -146,7 +146,9 @@ class MyAccountEditScreen extends StatelessWidget {
                           ),
                           SizedBox(
                             height: 56,
-                            child: CustomRadio(),
+                            child: CustomRadio(
+                              onChanged: (SingingCharacter? gender) {},
+                            ),
                           ),
                         ],
                       ),

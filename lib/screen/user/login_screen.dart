@@ -124,16 +124,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // 로고 이미지
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // 로고 이미지
                         Image.asset(
                           'assets/LAXY_highqual_logo.png',
                           width: 70,
                           height: 70,
                         ),
                         SizedBox(width: 10,),
+                        // 로고
                         Text(
                           'LAXY',
                           style: TextStyle(
@@ -145,7 +146,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     SizedBox(height: 10),
-                    // 아이디 입력 필드
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                       decoration: BoxDecoration(
@@ -154,17 +154,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       child: Column(
                         children: [
+                          // 이메일 입력 필드
                           CustomTextField(
                             key: emailKey,
-                            controller: emailController, // 입력값을 컨트롤러로 받음
+                            controller: emailController,
                             textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.emailAddress,
                             labelText: '이메일',
                           ),
                           SizedBox(height: 20),
                           // 비밀번호 입력 필드
                           CustomTextField(
                             key: passwordKey,
-                            controller: passwordController, // 입력값을 컨트롤러로 받음
+                            controller: passwordController,
                             obscureText: true,
                             labelText: '비밀번호',
                             onSubmitted: (value) {_handleLogin();},
@@ -173,10 +175,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    // 로그인 및 회원가입 버튼
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        // 회원가입 버튼
                         TextButton(
                           style: TextButton.styleFrom(
                             foregroundColor: Color(0xFF5589D3),
@@ -192,12 +194,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
+                        // 로그인 버튼
                         ElevatedButton(
                           style: TextButton.styleFrom(
                             backgroundColor: Color(0xFFFFFFFF),
                             foregroundColor: Color(0xFF5589D3),
                           ),
-                          onPressed: _handleLogin, // 로그인 버튼 클릭 시 호출
+                          onPressed: _handleLogin,
                           child: Text('로그인'),
                         ),
                       ],
