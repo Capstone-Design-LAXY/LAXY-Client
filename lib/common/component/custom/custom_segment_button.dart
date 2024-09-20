@@ -62,13 +62,15 @@ class _CustomSegmentButtonState extends State<CustomSegmentButton> {
             mainView = newSelection.first;
             // 화면 전환 로직 추가
             if (mainView == Main.mindMap) {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => MindmapScreen()),
+                MaterialPageRoute(builder: (context) => MindmapScreen())
               );
             } else if (mainView == Main.trends) {
-              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TrendsScreen());
-              Navigator.push(context, pageRouteWithAnimation.slideBottomToTop());
+              Navigator.pushReplacement(
+                context,
+                PageRouteWithAnimation(TrendsScreen()).slideBottomToTop(),
+              );
             }
           });
         },

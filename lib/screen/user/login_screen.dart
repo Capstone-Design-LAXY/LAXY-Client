@@ -7,6 +7,7 @@ import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/screen/main/mindmap_screen.dart';
 import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 import 'package:laxy/common/const/constants.dart';
@@ -31,9 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _asyncMethod();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _asyncMethod();
+    // });
   }
 
   // 비동기로 FlutterSecureStorage 정보 불러오기
@@ -53,21 +54,16 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _validateForm() {
     String email = emailController.text;
     String password = passwordController.text;
-    if (email.isEmpty && password.isEmpty){
-      emailKey.currentState?.setError('이메일을 입력하세요.');
-      passwordKey.currentState?.setError('비밀번호를 입력하세요.');
-      return false;
-    }
     if (email.isEmpty){
       emailKey.currentState?.setError('이메일을 입력하세요.');
       return false;
     }
-    if (password.isEmpty) {
-      passwordKey.currentState?.setError('비밀번호를 입력하세요.');
-      return false;
-    }
     if (!_isEmailValid(email)) {
       emailKey.currentState?.setError('유효한 이메일 형식이 아닙니다.');
+      return false;
+    }
+    if (password.isEmpty) {
+      passwordKey.currentState?.setError('비밀번호를 입력하세요.');
       return false;
     }
     emailKey.currentState?.setError(null);
@@ -102,6 +98,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // Print all values
       allValues.forEach((key, value) { print('$key: $value'); });
+
+      PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapScreen());
+      Navigator.pushAndRemoveUntil(
+        context,
+        PageRouteWithAnimation(MindmapScreen()).slideRitghtToLeft(),
+            (Route<dynamic> route) => false,
+      );
 
       // final url = Uri.parse('$BASE_URL/login');
       //

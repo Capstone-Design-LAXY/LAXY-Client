@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/user/login_screen.dart';
 
 class LoginButton extends StatelessWidget {
@@ -15,7 +16,10 @@ class LoginButton extends StatelessWidget {
     return MaterialButton(
       onPressed: () {
         if (isLogin){
-          Navigator.pop(context);
+          Navigator.pushReplacement(
+            context,
+            PageRouteWithAnimation(TrendsScreen()).fadeTransition(),
+          );
           FlutterSecureStorage().delete(key: 'accessToken');
         }
         else {

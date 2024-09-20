@@ -10,6 +10,7 @@ import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/screen/main/trends_post_tab_view.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
+import 'package:laxy/utils/auth_utils.dart';
 
 class TrendsScreen extends StatefulWidget {
 
@@ -26,6 +27,7 @@ class _TrendsScreenState extends State<TrendsScreen>
     with SingleTickerProviderStateMixin {
   // 탭 컨트롤러
   late TabController controller;
+  bool isLogin = false;
   // 세그먼트 값 초기화
   Main mainView = Main.trends;
 
@@ -35,7 +37,15 @@ class _TrendsScreenState extends State<TrendsScreen>
     super.initState();
     // 탭 컨트롤러 초기화
     controller = TabController(length: 3, vsync: this);
+    _checkAccessToken();
+  }
 
+  void _checkAccessToken() async{
+    bool loginStatus = await isAccessToken();
+    setState(() {
+      isLogin = loginStatus;
+    });
+    // print(isLogin);
   }
 
   @override
@@ -87,17 +97,20 @@ class _TrendsScreenState extends State<TrendsScreen>
                         ),
                         const Spacer(),
                         // 세그먼트 버튼 (마인드맵 / 트랜드)
-                        const CustomSegmentButton(),
+                        Visibility(visible: isLogin, child: CustomSegmentButton()),
                         const Spacer(),
                         // 게시글 작성 버튼
-                        Hero(
-                          tag: 'PostRegister',
-                          child: CustomFloatingActionButton(
-                            icon: Icons.mode_outlined,
-                            onPressed: () {
-                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostRegisterScreen());
-                              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-                            },
+                        Visibility(
+                          visible: isLogin,
+                          child: Hero(
+                            tag: 'PostRegister',
+                            child: CustomFloatingActionButton(
+                              icon: Icons.mode_outlined,
+                              onPressed: () {
+                                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostRegisterScreen());
+                                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                              },
+                            ),
                           ),
                         ),
                         const SizedBox(width: 13,),
