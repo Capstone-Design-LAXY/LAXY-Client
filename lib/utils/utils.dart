@@ -95,11 +95,15 @@ class Tag {
   final int tagId;
   final String tagName;
   final int count;
+  final int? bookmarked;
+  final int? change;
 
   Tag({
     required this.tagId,
     required this.tagName,
     required this.count,
+    this.bookmarked,
+    this.change,
   });
 
   // JSON 데이터를 Tag 객체로 변환
@@ -108,6 +112,8 @@ class Tag {
       tagId: json['tagId'],
       tagName: json['tag_name'],
       count: json['count'],
+      bookmarked: json['bookmarked'],
+      change: json['change'],
     );
   }
 }
@@ -181,6 +187,24 @@ class RankData {
           .toList(),
       weekly: (json['weekly'] as List)
           .map((data) => Post.fromJson(data))
+          .toList(),
+    );
+  }
+}
+
+// CommunityRankData 모델
+class CommunityRankData {
+  final List<Tag> rank;
+
+  CommunityRankData({
+    required this.rank,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory CommunityRankData.fromJson(Map<String, dynamic> json) {
+    return CommunityRankData(
+      rank: (json['rank'] as List)
+          .map((data) => Tag.fromJson(data))
           .toList(),
     );
   }

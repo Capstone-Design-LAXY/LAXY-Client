@@ -7,6 +7,7 @@ class TagRankingListTile extends StatelessWidget {
   final int? post;
   final int? shift;
   final int? rank;
+  final Function() onPressed;
 
   const TagRankingListTile({
     this.rank = 1,
@@ -14,6 +15,7 @@ class TagRankingListTile extends StatelessWidget {
     this.bookmarked = 100,
     this.post = 100,
     this.shift,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
@@ -24,7 +26,7 @@ class TagRankingListTile extends StatelessWidget {
       height: 30,
       child: MaterialButton(
         // color: Colors.amber,
-        onPressed: () {},
+        onPressed: onPressed,
         elevation: 0,
         padding: EdgeInsets.zero,
         child: Row(
@@ -48,10 +50,18 @@ class TagRankingListTile extends StatelessWidget {
             ),
             if (shift != null)
               ListInfo(
-                icon: shift! < 0 ? Icons.arrow_drop_down : Icons.arrow_drop_up,
-                iconColor: shift! < 0 ? Color(0xFFFF4949) : Color(0xFF5589D3),
+                icon: shift == 0
+                    ? Icons.remove
+                    : shift! < 0
+                    ? Icons.arrow_drop_down
+                    : Icons.arrow_drop_up,
+                iconColor: shift == 0
+                    ? Colors.grey
+                    : shift! < 0
+                    ? Color(0xFFFF4949)
+                    : Color(0xFF5589D3),
                 num: shift,
-              ),
+              )
           ],
         ),
       ),
