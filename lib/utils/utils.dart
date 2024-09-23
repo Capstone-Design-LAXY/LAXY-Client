@@ -134,3 +134,54 @@ class DrawerData {
     );
   }
 }
+
+// Post 데이터 모델
+class Post {
+  final int post_id;
+  final String title;
+  final int? comments;
+  final int? like;
+  final int? change;
+
+  Post({
+    required this.post_id,
+    required this.title,
+    this.comments,
+    this.like,
+    this.change,
+  });
+
+  // JSON 데이터를 Post 객체로 변환
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      post_id: json['post_id'],
+      title: json['title'],
+      comments: json['comments'],
+      like: json['like'],
+      change: json['change'],
+    );
+  }
+}
+
+// RankData 모델
+class RankData {
+  final List<Post> daily;
+  final List<Post> weekly;
+
+  RankData({
+    required this.daily,
+    required this.weekly,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory RankData.fromJson(Map<String, dynamic> json) {
+    return RankData(
+      daily: (json['daily'] as List)
+          .map((data) => Post.fromJson(data))
+          .toList(),
+      weekly: (json['weekly'] as List)
+          .map((data) => Post.fromJson(data))
+          .toList(),
+    );
+  }
+}

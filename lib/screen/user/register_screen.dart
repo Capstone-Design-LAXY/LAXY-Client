@@ -111,6 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       print('nickname: '+nickname);
       print('birthday: ${birthday.year} - ${birthday.month} - ${birthday.day}');
       print('gender: ${_selectedGender.toString().split('.').last}');
+      Navigator.pop(context);
       return true;
     }
     return false;

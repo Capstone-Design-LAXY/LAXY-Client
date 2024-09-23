@@ -30,13 +30,6 @@ class _App extends StatelessWidget {
         // const Locale('en', 'US'), // 영어
         const Locale('ko', 'KR'), // 한국어
       ],
-      // home: Scaffold(
-      //   body: Column(
-      //     children: [
-      //       CustomFloatingActionButton(icon: Icons.search, onPressed: () => {},),
-      //     ],
-      //   ),
-      // home: TrendsScreen(),
       home: TempStartScreen(),
     );
   }

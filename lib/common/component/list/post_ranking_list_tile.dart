@@ -7,6 +7,7 @@ class PostRankingListTile extends StatelessWidget {
   final int? like;
   final int? shift;
   final int? rank;
+  final Function() onPressed;
 
   const PostRankingListTile({
     this.rank = 1,
@@ -14,6 +15,7 @@ class PostRankingListTile extends StatelessWidget {
     this.comment = 100,
     this.like = 100,
     this.shift = 3,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
@@ -24,7 +26,7 @@ class PostRankingListTile extends StatelessWidget {
       height: 30,
       child: MaterialButton(
         // color: Colors.amber,
-        onPressed: () {},
+        onPressed: onPressed,
         elevation: 0,
         padding: EdgeInsets.zero,
         child: Row(
@@ -47,10 +49,18 @@ class PostRankingListTile extends StatelessWidget {
               num: like,
             ),
             ListInfo(
-              icon: shift! < 0 ? Icons.arrow_drop_down : Icons.arrow_drop_up,
-              iconColor: shift! < 0 ? Color(0xFFFF4949) : Color(0xFF5589D3),
+              icon: shift == 0
+                  ? Icons.remove
+                  : shift! < 0
+                  ? Icons.arrow_drop_down
+                  : Icons.arrow_drop_up,
+              iconColor: shift == 0
+                  ? Colors.grey
+                  : shift! < 0
+                  ? Color(0xFFFF4949)
+                  : Color(0xFF5589D3),
               num: shift,
-            ),
+            )
           ],
         ),
       ),
