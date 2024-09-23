@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_info.dart';
+import 'package:laxy/utils/utils.dart';
 
 class PostListTile extends StatelessWidget {
   final String title;
   final String content;
   final int comment;
   final int like;
-  final bool isImage;
+  final String? imageURL;
+  final DateTime? dateTime;
+  final Function() onPressed;
 
   const PostListTile({
     this.title = 'title',
     this.content = 'content content content content content content content content content ',
     this.comment = 100,
     this.like = 100,
-    this.isImage = false,
+    this.imageURL,
+    this.dateTime,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +32,7 @@ class PostListTile extends StatelessWidget {
           width: 1,
         )
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       elevation: 0,
       padding: EdgeInsets.zero,
       child: Row(
@@ -41,7 +46,7 @@ class PostListTile extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(child: Text(title, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
-                      Text('07-05 23:31', style: TextStyle(fontSize: 10)),
+                      Text(fromatDate(dateTime), style: TextStyle(fontSize: 10)),
                       SizedBox(width: 2,),
                       ListInfo(
                         icon: Icons.comment_outlined,
@@ -63,13 +68,13 @@ class PostListTile extends StatelessWidget {
               ),
             ),
           ),
-          if (isImage)
+          if (imageURL != null)
             Container(
               height: 60,
               width: 60,
               color: Color(0xFFD4E3FF),
               child: Image(
-                image: AssetImage('assets/sky.png'),
+                image: NetworkImage('$imageURL'),
                 fit: BoxFit.contain,
               ),
             ),

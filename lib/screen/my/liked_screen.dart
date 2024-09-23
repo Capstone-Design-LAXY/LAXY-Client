@@ -18,9 +18,9 @@ class LikedScreen extends StatelessWidget {
       List<Widget> tiles = [];
       for (int i = 1; i <= 30; i++) {
         if (i%3 == 0)
-          tiles.add(PostListTile(isImage: true,));
+          tiles.add(PostListTile(onPressed: () {},));
         else
-          tiles.add(PostListTile());
+          tiles.add(PostListTile(onPressed: () {},));
       }
       return tiles;
     }

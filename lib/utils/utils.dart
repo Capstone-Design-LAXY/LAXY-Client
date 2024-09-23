@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 String formatNum(int? number) {
   // null 처리
   if (number == null) return '';
@@ -22,6 +24,22 @@ String formatNum(int? number) {
     // 백 이하
     return number.toString();
   }
+}
+
+String fromatDate(DateTime? dateTime) {
+  // null 처리
+  if (dateTime == null) return '';
+  // 현재 년도
+  final int currentYear = DateTime.now().year;
+
+  String formattedDate = DateFormat('MM-dd HH:mm').format(dateTime);
+
+  if (dateTime.year != currentYear) {
+    formattedDate = DateFormat('yy-MM-dd').format(dateTime);
+  }
+
+  return formattedDate;
+
 }
 
 class ParseSatellite {
@@ -145,9 +163,13 @@ class DrawerData {
 class Post {
   final int post_id;
   final String title;
+  final String? content;
   final int? comments;
   final int? like;
+  final int? viewed;
   final int? change;
+  final DateTime? createdAt;
+  final String? imageURL;
 
   Post({
     required this.post_id,
@@ -155,6 +177,10 @@ class Post {
     this.comments,
     this.like,
     this.change,
+    this.content,
+    this.createdAt,
+    this.viewed,
+    this.imageURL,
   });
 
   // JSON 데이터를 Post 객체로 변환
@@ -165,6 +191,10 @@ class Post {
       comments: json['comments'],
       like: json['like'],
       change: json['change'],
+      content: json['content'],
+      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      viewed: json['viewed'],
+      imageURL: json['imageURL']
     );
   }
 }
@@ -205,6 +235,24 @@ class CommunityRankData {
     return CommunityRankData(
       rank: (json['rank'] as List)
           .map((data) => Tag.fromJson(data))
+          .toList(),
+    );
+  }
+}
+
+// PostData 모델
+class PostData {
+  final List<Post> posts;
+
+  PostData({
+    required this.posts,
+  });
+
+  // JSON 데이터를 PostData 객체로 변환
+  factory PostData.fromJson(Map<String, dynamic> json) {
+    return PostData(
+      posts: (json['posts'] as List)
+          .map((data) => Post.fromJson(data))
           .toList(),
     );
   }
