@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/const/enum.dart';
 
 class CustomPopupMenuButton extends StatefulWidget {
@@ -33,6 +34,7 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
             break;
           case Menu.report:
             print("Report selected for post ID: ${widget.tagId}");
+            showReportDialog(context, widget.tagId!);
             break;
           case Menu.modify:
             print("Modify selected");
