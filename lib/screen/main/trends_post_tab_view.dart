@@ -431,7 +431,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(
-          children: [..._buildPosts()],
+          children: _buildPosts(),
         ),
       ],
     );

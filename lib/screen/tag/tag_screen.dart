@@ -466,7 +466,7 @@ class _TagScreenState extends State<TagScreen> {
                     child: Divider(height: 1, color: Color(0xFF48464C),),
                   ),
                   Column(
-                    children: [..._buildPosts()],
+                    children: _buildPosts(),
                   ),
                 ],
               ),

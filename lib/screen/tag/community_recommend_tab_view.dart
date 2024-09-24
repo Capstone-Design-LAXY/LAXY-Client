@@ -349,7 +349,7 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(
-          children: [..._buildRank()],
+          children: _buildRank(),
         ),
       ],
     );

@@ -417,7 +417,7 @@ class _CommunityGoodPostTabViewState extends State<CommunityGoodPostTabView> {
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(
-          children: [..._buildPosts()],
+          children: _buildPosts(),
         ),
       ],
     );

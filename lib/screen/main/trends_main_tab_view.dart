@@ -262,9 +262,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
          Column(
-          children: <Widget>[
-            ..._buildDaily(),
-          ],
+          children: _buildDaily(),
         ),
         const Divider(height: 1, color: Color(0xFF48464C),),
         ListHeader(
@@ -297,9 +295,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
           child: Divider(height: 1, color: Color(0xFF48464C),),
         ),
         Column(
-          children: <Widget>[
-            ..._buildWeekly(),
-          ],
+          children: _buildWeekly(),
         )
       ],
     );
