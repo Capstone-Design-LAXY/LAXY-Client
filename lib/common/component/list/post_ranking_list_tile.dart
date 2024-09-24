@@ -52,13 +52,13 @@ class PostRankingListTile extends StatelessWidget {
               icon: shift == 0
                   ? Icons.remove
                   : shift! < 0
-                  ? Icons.arrow_drop_down
-                  : Icons.arrow_drop_up,
+                    ? Icons.arrow_drop_down
+                    : Icons.arrow_drop_up,
               iconColor: shift == 0
                   ? Colors.grey
                   : shift! < 0
-                  ? Color(0xFFFF4949)
-                  : Color(0xFF5589D3),
+                    ? Color(0xFFFF4949)
+                    : Color(0xFF5589D3),
               num: shift,
             )
           ],

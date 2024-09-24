@@ -60,12 +60,10 @@ class _OrbitStarState extends State<OrbitStar>
       size = 100;
     }
 
-    // TODO: 작업 필요
     void _handlePress(BuildContext context) {
       if (widget.isGlobe == true) {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            BookmarkedScreen());
-        Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+        // TODO: 새로고침 동작으로 수정 필요
+        print('------------새로 고침------------');
       } else if (widget.grade! > 5) {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
             CommunityScreen());

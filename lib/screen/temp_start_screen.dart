@@ -124,7 +124,7 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SearchScreen()),
+                  MaterialPageRoute(builder: (context) => SearchScreen(searchTerm: 'searchTerm',)),
                 );
               },
               child: Text('SearchScreen'),

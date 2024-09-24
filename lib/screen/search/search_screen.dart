@@ -9,8 +9,10 @@ import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
 
 class SearchScreen extends StatefulWidget {
+  final String searchTerm; // 검색어를 전달받기 위한 변수
 
   const SearchScreen({
+    required this.searchTerm,
     super.key
   });
 
@@ -44,7 +46,7 @@ class _SearchScreenState extends State<SearchScreen>
         appBar:
         // 텍스트 필드로 만들었을 경우
         AppBar(
-          title: Text('SearchPage'),
+          title: Text(widget.searchTerm),
           titleSpacing: 1,
           leading: IconButton(onPressed: () {Navigator.of(context).pop();}, icon: const Icon(Icons.arrow_back),),
           actions: [

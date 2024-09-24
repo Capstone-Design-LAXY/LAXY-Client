@@ -41,8 +41,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ],
         "recommended": [
           {"tagId": 156313, "tag_name": "공기청정기", "count": 63285},
-          {"tagId": 120401, "tag_name": "대중교", "count": 46609},
-          {"tagId": 605716, "tag_name": "크리스마", "count": 2559411},
+          {"tagId": 120401, "tag_name": "대중교통", "count": 46609},
+          {"tagId": 605716, "tag_name": "크리스마스", "count": 2559411},
           {"tagId": 835111, "tag_name": "게", "count": 4186504},
           {"tagId": 282296, "tag_name": "가상화폐", "count": 6823010}
         ]
