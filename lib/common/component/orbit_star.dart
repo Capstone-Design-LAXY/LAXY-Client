@@ -70,7 +70,7 @@ class _OrbitStarState extends State<OrbitStar>
         Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
       } else {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            TagScreen());
+            TagScreen(tagName: 'tagName', tagId: 123123,));
         Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
       }
     }

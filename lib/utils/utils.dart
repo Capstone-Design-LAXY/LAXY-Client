@@ -257,3 +257,31 @@ class PostData {
     );
   }
 }
+
+// TagData 모델
+class TagData {
+  final bool isBookmarked;
+  final List<Post> posts;
+
+  TagData({
+    required this.isBookmarked,
+    required this.posts,
+  });
+
+  // JSON 데이터를 PostData 객체로 변환
+  factory TagData.fromJson(Map<String, dynamic> json) {
+    return TagData(
+      isBookmarked: json['isBookmarked'],
+      posts: (json['posts'] as List)
+          .map((data) => Post.fromJson(data))
+          .toList(),
+    );
+  }
+
+  TagData toggleIsBookmarked() {
+    return TagData(
+      isBookmarked: !isBookmarked,
+      posts: posts, // posts는 그대로 유지
+    );
+  }
+}

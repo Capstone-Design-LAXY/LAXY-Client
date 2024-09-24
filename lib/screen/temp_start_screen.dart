@@ -70,7 +70,7 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => TagScreen()),
+                  MaterialPageRoute(builder: (context) => TagScreen(tagName: 'tagName', tagId: 123,)),
                 );
               },
               child: Text('TagScreen'),
