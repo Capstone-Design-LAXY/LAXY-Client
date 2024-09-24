@@ -79,7 +79,7 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CommunityScreen()),
+                  MaterialPageRoute(builder: (context) => CommunityScreen(tagName: 'tagName', tagId: 123,)),
                 );
               },
               child: Text('CommunityScreen'),

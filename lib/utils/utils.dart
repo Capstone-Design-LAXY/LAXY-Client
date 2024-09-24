@@ -271,7 +271,7 @@ class TagData {
   // JSON 데이터를 PostData 객체로 변환
   factory TagData.fromJson(Map<String, dynamic> json) {
     return TagData(
-      isBookmarked: json['isBookmarked'],
+      isBookmarked: json['is_bookmarked'],
       posts: (json['posts'] as List)
           .map((data) => Post.fromJson(data))
           .toList(),
@@ -282,6 +282,46 @@ class TagData {
     return TagData(
       isBookmarked: !isBookmarked,
       posts: posts, // posts는 그대로 유지
+    );
+  }
+}
+
+// CommunityData 모델
+class CommunityData {
+  final bool isBookmarked;
+
+  CommunityData({
+    required this.isBookmarked,
+  });
+
+  // JSON 데이터를 CommunityData 객체로 변환
+  factory CommunityData.fromJson(Map<String, dynamic> json) {
+    return CommunityData(
+      isBookmarked: json['is_bookmarked']
+    );
+  }
+
+  CommunityData toggleIsBookmarked() {
+    return CommunityData(
+      isBookmarked: !isBookmarked,
+    );
+  }
+}
+
+// CommunityRecommendData 모델
+class CommunityRecommendData {
+  final List<Tag> tags;
+
+  CommunityRecommendData({
+    required this.tags,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory CommunityRecommendData.fromJson(Map<String, dynamic> json) {
+    return CommunityRecommendData(
+      tags: (json['tags'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList(),
     );
   }
 }

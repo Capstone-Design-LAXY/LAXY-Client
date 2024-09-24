@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
@@ -9,10 +11,15 @@ import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/screen/tag/community_main_tab_view.dart';
 import 'package:laxy/screen/tag/community_post_tab_view.dart';
 import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
+import 'package:laxy/utils/utils.dart';
 
 class CommunityScreen extends StatefulWidget {
+  final String tagName;
+  final int tagId;
 
   const CommunityScreen({
+    required this.tagName,
+    required this.tagId,
     super.key
   });
 
@@ -24,13 +31,21 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
+  late CommunityData communityData;
 
 
   @override
   void initState() {
     super.initState();
-
     controller = TabController(length: 4, vsync: this);
+    String jsonString = '''
+    {
+      "is_bookmarked": false
+    }
+    ''';
+
+    // JSON 문자열을 RankData 객체로 파싱
+    communityData = CommunityData.fromJson(jsonDecode(jsonString));
   }
 
   @override
@@ -44,12 +59,23 @@ class _CommunityScreenState extends State<CommunityScreen>
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Community Title',
+        title: widget.tagName,
         children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.bookmark_outline)),
-          const CustomPopupMenuButton(
+          IconButton(
+            icon: Icon(
+              communityData.isBookmarked
+                  ? Icons.bookmark
+                  : Icons.bookmark_outline,
+            ),
+            onPressed: () {
+              setState(() {
+                communityData = communityData.toggleIsBookmarked();
+              });
+            },
+          ),
+          CustomPopupMenuButton(
             menuItems: [Menu.report],
-            tagId: 1231113,
+            tagId: widget.tagId,
           ),
           const SizedBox(width: 4,)
         ],

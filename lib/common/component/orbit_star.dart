@@ -66,7 +66,7 @@ class _OrbitStarState extends State<OrbitStar>
         print('------------새로 고침------------');
       } else if (widget.grade! > 5) {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            CommunityScreen());
+            CommunityScreen(tagName: 'tagName', tagId: 123,));
         Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
       } else {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(

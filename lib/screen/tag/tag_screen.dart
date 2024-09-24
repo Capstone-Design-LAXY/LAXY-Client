@@ -34,7 +34,7 @@ class _TagScreenState extends State<TagScreen> {
     super.initState();
     String jsonString = '''
     {
-      "isBookmarked": false,
+      "is_bookmarked": false,
       "posts": [
         {
           "post_id": 87291,
