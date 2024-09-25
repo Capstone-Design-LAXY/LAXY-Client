@@ -46,7 +46,7 @@ class PostListTile extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(child: Text(title, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
-                      Text(fromatDate(dateTime), style: TextStyle(fontSize: 10)),
+                      Text(formatDate(dateTime), style: TextStyle(fontSize: 10)),
                       SizedBox(width: 2,),
                       ListInfo(
                         icon: Icons.comment_outlined,

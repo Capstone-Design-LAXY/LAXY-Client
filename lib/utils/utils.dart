@@ -26,20 +26,33 @@ String formatNum(int? number) {
   }
 }
 
-String fromatDate(DateTime? dateTime) {
+String formatDate(DateTime? dateTime) {
   // null 처리
   if (dateTime == null) return '';
-  // 현재 년도
-  final int currentYear = DateTime.now().year;
 
-  String formattedDate = DateFormat('MM-dd HH:mm').format(dateTime);
+  final DateTime now = DateTime.now();
+  final Duration difference = now.difference(dateTime);
 
-  if (dateTime.year != currentYear) {
-    formattedDate = DateFormat('yy-MM-dd').format(dateTime);
+  // 방금 전
+  if (difference.inSeconds < 60) {
+    return '방금 전';
   }
-
-  return formattedDate;
-
+  // n분 전
+  else if (difference.inMinutes < 10) {
+    return '${difference.inMinutes}분 전';
+  }
+  // 날짜가 같은 경우
+  else if (now.year == dateTime.year && now.month == dateTime.month && now.day == dateTime.day) {
+    return DateFormat('HH:mm').format(dateTime);
+  }
+  // 같은 년도에 날짜가 다른 경우
+  else if (now.year == dateTime.year) {
+    return DateFormat('MM-dd HH:mm').format(dateTime);
+  }
+  // 다른 년도
+  else {
+    return DateFormat('yy-MM-dd').format(dateTime);
+  }
 }
 
 class ParseSatellite {
@@ -112,14 +125,14 @@ class OrbitData {
 class Tag {
   final int tagId;
   final String tagName;
-  final int count;
+  final int? count;
   final int? bookmarked;
   final int? change;
 
   Tag({
     required this.tagId,
     required this.tagName,
-    required this.count,
+    this.count,
     this.bookmarked,
     this.change,
   });
@@ -164,37 +177,74 @@ class Post {
   final int post_id;
   final String title;
   final String? content;
+  final String? nickname;
+  final int? user_id;
   final int? comments;
   final int? like;
   final int? viewed;
   final int? change;
   final DateTime? createdAt;
+  final DateTime? updatedAt;
   final String? imageURL;
+  final bool? isLiked;
+  final List<Tag>? tags;
 
   Post({
     required this.post_id,
     required this.title,
     this.comments,
+    this.user_id,
+    this.nickname,
     this.like,
     this.change,
     this.content,
     this.createdAt,
+    this.updatedAt,
     this.viewed,
     this.imageURL,
+    this.isLiked,
+    this.tags,
   });
 
   // JSON 데이터를 Post 객체로 변환
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       post_id: json['post_id'],
+      user_id: json['user_id'],
       title: json['title'],
+      nickname: json['nickname'],
       comments: json['comments'],
       like: json['like'],
       change: json['change'],
       content: json['content'],
+      isLiked: json['isLiked'],
       createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       viewed: json['viewed'],
-      imageURL: json['imageURL']
+      imageURL: json['imageURL'],
+      tags: json['tags'] != null
+        ? (json['tags'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList()
+        : null,
+    );
+  }
+  Post toggleIsLiked() {
+    return Post(
+      isLiked: !isLiked!,
+      post_id: post_id,
+      user_id: user_id,
+      title: title,
+      nickname: nickname,
+      comments: comments,
+      like: like,
+      change: change,
+      content: content,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      viewed: viewed,
+      imageURL: imageURL,
+      tags: tags,
     );
   }
 }
@@ -322,6 +372,66 @@ class CommunityRecommendData {
       tags: (json['tags'] as List)
           .map((data) => Tag.fromJson(data))
           .toList(),
+    );
+  }
+}
+
+class PostDetailData {
+  final Post post;
+  final List<Comment> comments;
+
+  PostDetailData({
+    required this.post,
+    required this.comments,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory PostDetailData.fromJson(Map<String, dynamic> json) {
+    return PostDetailData(
+      post: Post.fromJson(json['post']),
+      comments: (json['comments'] as List)
+          .map((data) => Comment.fromJson(data))
+          .toList(),
+    );
+  }
+  PostDetailData toggleIsLiked() {
+    return PostDetailData(
+      post: post.toggleIsLiked(),
+      comments: comments
+    );
+  }
+}
+
+// Comment 데이터 모델
+class Comment {
+  final int commentId;
+  final int userId;
+  final String? nickname;
+  final String? contents;
+  final int? likes;
+  final bool? isLiked;
+  final DateTime? updatedAt;
+
+  Comment({
+    required this.commentId,
+    this.nickname,
+    this.contents,
+    this.isLiked,
+    this.likes,
+    this.updatedAt,
+    required this.userId,
+  });
+
+  // JSON 데이터를 Post 객체로 변환
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return Comment(
+      commentId: json['comment_id'],
+      nickname: json['nickname'],
+      contents: json['contents'],
+      isLiked: json['isLiked'],
+      likes: json['likes'],
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+      userId: json['user_id'],
     );
   }
 }

@@ -13,10 +13,16 @@ import 'package:laxy/common/component/custom/custom_chip.dart';
 import 'package:laxy/common/component/quill/custom_quill_reader.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/post_layout.dart';
+import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class PostDetailScreen extends StatefulWidget {
-  const PostDetailScreen({super.key});
+  final postId;
+
+  const PostDetailScreen({
+    required this.postId,
+    super.key
+  });
 
   @override
   State<PostDetailScreen> createState() => _PostDetailScreenState();
@@ -25,23 +31,146 @@ class PostDetailScreen extends StatefulWidget {
 const List<String> criteriaList = <String>['인기순', '최신순', 'MY'];
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
-
   String dropdownValueCriteria = criteriaList.first;
+  late PostDetailData postDetailData;
+  int myUserId = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    String jsonString = '''
+    {
+      "post": {
+        "post_id": 982347,
+        "user_id": 451927,
+        "nickname": "개발자Mike",
+        "title": "Flutter로 REST API 연동하는 법 공유합니다!",
+        "tags": [
+          {
+            "tagId": 3765,
+            "tag_name": "Flutter"
+          },
+          {
+            "tagId": 5432,
+            "tag_name": "API연동"
+          },
+          {
+            "tagId": 8907,
+            "tag_name": "개발팁"
+          }
+        ],
+        "content": "안녕하세요! 오늘은 Flutter에서 REST API를 연동하는 방법을 공유하려고 합니다. 먼저 `http` 패키지를 사용해서 간단한 GET 요청을 보내는 방법을 알려드릴게요. 이후에는 JSON 파싱과 비동기 처리에 대한 팁도 함께 드리겠습니다. 많은 분들께 도움이 되었으면 좋겠어요!",
+        "imageURL": "https://picsum.photos/500",
+        "updatedAt": "2024-09-22T14:05:00.000Z",
+        "isLiked": true,
+        "like": 483
+      },
+      "comments": [
+        {
+          "comment_id": 125837,
+          "user_id": 672394,
+          "nickname": "코딩초보",
+          "contents": "좋은 글 감사합니다! 혹시 비동기 처리할 때 `FutureBuilder`를 사용해야 하는 상황이 있을까요? 아니면 다른 방법도 있나요?",
+          "likes": 102,
+          "isLiked": true,
+          "updatedAt": "2024-09-22T15:30:00.000Z"
+        },
+        {
+          "comment_id": 392485,
+          "user_id": 238472,
+          "nickname": "FlutterFan",
+          "contents": "저도 최근에 비슷한 작업을 했는데, `dio` 패키지를 사용해보니 더 편리하더라고요. 특히 파일 업로드나 에러 처리가 더 쉬웠어요!",
+          "likes": 64,
+          "isLiked": false,
+          "updatedAt": "2024-09-22T16:10:00.000Z"
+        },
+        {
+          "comment_id": 583749,
+          "user_id": 912734,
+          "nickname": "개발자준",
+          "contents": "저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다!",
+          "likes": 89,
+          "isLiked": true,
+          "updatedAt": "2024-09-22T17:05:00.000Z"
+        }
+      ]
+    }
+    ''';
+
+    // JSON 문자열을 RankData 객체로 파싱
+    postDetailData = PostDetailData.fromJson(jsonDecode(jsonString));
+    _checkAccessToken();
+    print(postDetailData.post.content);
+  }
+
+  void _checkAccessToken() async{
+    int userId = await getUserId();
+    setState(() {
+      myUserId = userId;
+    });
+    // print(userId);
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> _buildTag() {
+      List<Widget> tag = [];
+      for (int i = 0; i < (postDetailData.post.tags?.length ?? 0); i++) {
+        tag.add(
+            CustomChip(
+              tagId: postDetailData.post.tags![i].tagId,
+              tagName: postDetailData.post.tags![i].tagName,
+            )
+        );
+      }
+      return tag;
+    }
+
+    List<Widget> _buildComment() {
+      List<Widget> comment = [];
+      for (int i = 0; i < postDetailData.comments.length; i++) {
+        comment.add(
+          CommentListTile(
+            commentId: postDetailData.comments[i].commentId,
+            userId: postDetailData.comments[i].userId,
+            nickname: postDetailData.comments[i].nickname,
+            content: postDetailData.comments[i].contents,
+            likes: postDetailData.comments[i].likes,
+            isLiked: postDetailData.comments[i].isLiked,
+            updatedAt: postDetailData.comments[i].updatedAt,
+            isMyComment: postDetailData.comments[i].userId == myUserId,
+            isMyPost: postDetailData.post.user_id == myUserId,
+            isPosterComment: postDetailData.comments[i].userId == postDetailData.post.user_id,
+            onPressed: () {
+              print(postDetailData.comments[i].commentId);
+            },
+          )
+        );
+      }
+      return comment;
+    }
+
     return PostLayout(
       appBar: CustomAppBar(
         title: '게시글 상세',
         children: [
           CustomIconButton(
-            icon: Icons.favorite_outline,
-            num: 200000,
-            onPressed: () {},
+            icon: postDetailData.post.isLiked!
+              ? Icons.favorite
+              : Icons.favorite_outline,
+            num: postDetailData.post.like,
+            onPressed: () {
+              setState(() {
+                postDetailData = postDetailData.toggleIsLiked();
+                // TODO: 추가 동작 필요
+              });
+            },
           ),
           CustomIconButton(
             icon: Icons.add_comment_outlined,
-            num: 201300,
+            num: postDetailData.comments.length,
             onPressed: () {
               showModalBottomSheet(
                   context: context,
@@ -53,7 +182,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           ),
           CustomPopupMenuButton(
             menuItems: Menu.values,
-            postId: 123213,
+            postId: postDetailData.post.post_id,
           ),
         ],
       ),
@@ -68,10 +197,10 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
               ),
               child: Text(
-                '게시글 제목인데 이런식으로 50자 정도 가능함',
+                postDetailData.post.title,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.blue,
+                  // color: Colors.blue,
                 ),
               ),
             ),
@@ -86,17 +215,17 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               color: Color(0xFFFFFFFF), // 하얀색 배경
               borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
             ),
-            child: const Row(
+            child: Row(
               children: [
                 Text(
-                  '작성자: 이승목이승목',
+                  '작성자: ${postDetailData.post.nickname}',
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
                 Spacer(),
                 Text(
-                  '2024.07.29 02:17',
+                  formatDate(postDetailData.post.updatedAt),
                   style: TextStyle(
                     fontSize: 10,
                   ),
@@ -123,23 +252,12 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ],
           ),
           // 태그 랩
-          const HorizontalExpanded(
+          HorizontalExpanded(
             child: Wrap(
               alignment: WrapAlignment.start,
               spacing: -5,
               runSpacing: -15,
-              children: <Widget>[
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-                CustomChip(),
-              ],
+              children: _buildTag(),
             ),
           ),
           // 댓글 헤더
@@ -159,7 +277,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 ),
               ),
               Text(
-                formatNum(20000),
+                formatNum(postDetailData.comments.length),
                 style: TextStyle(
                     fontSize: 12,
                 ),
@@ -176,16 +294,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
             ],
           ),
-          const Column(
-            children: <Widget>[
-              CommentListTile(),
-              CommentListTile(),
-              CommentListTile(),
-              CommentListTile(),
-              CommentListTile(),
-              CommentListTile(),
-            ],
-          ),
+          Column(
+            children: _buildComment(),
+          )
         ],
       )
     );

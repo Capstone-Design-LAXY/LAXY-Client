@@ -93,6 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
         value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
       );
 
+      await storage.write(key: 'userId', value: '451927');
+
       // Read all values
       Map<String, String> allValues = await storage.readAll();
 

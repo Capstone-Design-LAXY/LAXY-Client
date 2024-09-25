@@ -25,7 +25,8 @@ class _CustomQuillReaderState extends State<CustomQuillReader> {
 
   @override
   void dispose() {
-    print(jsonEncode(_controller.document.toDelta().toJson()));
+    print(jsonEncode(_controller.document.toDelta().length));
+    print(jsonEncode(_controller.document.toDelta()).runtimeType);
     _controller.dispose();
     super.dispose();
   }

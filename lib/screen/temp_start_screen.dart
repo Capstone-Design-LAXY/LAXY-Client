@@ -111,7 +111,7 @@ class _TempStartScreenState extends State<TempStartScreen>
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PostDetailScreen()),
+                  MaterialPageRoute(builder: (context) => PostDetailScreen(postId: 11312321,)),
                 );
               },
               child: Text('PostDetailScreen'),

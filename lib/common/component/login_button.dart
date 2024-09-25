@@ -21,6 +21,7 @@ class LoginButton extends StatelessWidget {
             PageRouteWithAnimation(TrendsScreen()).fadeTransition(),
           );
           FlutterSecureStorage().delete(key: 'accessToken');
+          FlutterSecureStorage().delete(key: 'userId');
         }
         else {
           Navigator.pop(context);

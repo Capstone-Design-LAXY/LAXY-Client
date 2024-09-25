@@ -1,11 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
+import 'package:laxy/utils/utils.dart';
 
-class CommentListTile extends StatelessWidget {
+class CommentListTile extends StatefulWidget {
+  final int commentId;
+  final int userId;
+  final String? nickname;
+  final DateTime? updatedAt;
+  final int? likes;
+  final String? content;
+  final bool? isLiked;
+  final Function() onPressed;
+  final bool? isMyPost;
+  final bool? isMyComment;
+  final bool? isPosterComment;
 
   const CommentListTile({
+    required this.commentId,
+    required this.userId,
+    this.nickname = '',
+    this.content = '',
+    this.likes = 0,
+    this.isLiked = false,
+    this.isMyPost = false,
+    this.isMyComment = false,
+    this.isPosterComment = false,
+    this.updatedAt,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CommentListTile> createState() => _CommentListTileState();
+}
+
+class _CommentListTileState extends State<CommentListTile> {
+  late bool isLiked;
+
+  @override
+  void initState() {
+    super.initState();
+    isLiked = widget.isLiked!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +53,7 @@ class CommentListTile extends StatelessWidget {
           width: 1,
         )
       ),
-      onPressed: () {},
+      onPressed: widget.onPressed,
       onLongPress: () {print('longPress');},
       elevation: 0,
       padding: EdgeInsets.zero,
@@ -29,24 +65,40 @@ class CommentListTile extends StatelessWidget {
               Row(
                 children: [
                   // 작성자 아이콘
-                  // Icon(Icons.edit, size: 12, color: Color(0xFF5589D3),),
-                  // SizedBox(width: 3,),
-                  Text('여기는 닉네임', style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
+                  Visibility(
+                    visible: widget.isPosterComment!,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 3),
+                      child: Icon(Icons.edit, size: 12, color: Color(0xFF5589D3),),
+                    ),
+                  ),
+                  Text(widget.nickname!, style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
                   Text(' ৹ ', style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
-                  Text('5분 전', style: TextStyle(fontSize: 10, color: Color(0xFF141218).withOpacity(0.7)),),
+                  Text(formatDate(widget.updatedAt), style: TextStyle(fontSize: 10, color: Color(0xFF141218).withOpacity(0.7)),),
                   Spacer(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        isLiked = !isLiked;
+                        // TODO: 동작 추가 필요
+                      });
+                    },
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                       child: Row(
                         children: [
-                          Icon(Icons.favorite_outline, size: 15, color: Color(0xFF001C3A),),
+                          Icon(
+                            isLiked
+                              ? Icons.favorite
+                              : Icons.favorite_outline,
+                            size: 15,
+                            color: Color(0xFF001C3A),
+                          ),
                           SizedBox(width: 2,),
                           SizedBox(
                               width: 23,
-                              child: Text('100k', style: TextStyle(fontSize: 10))
+                              child: Text(formatNum(widget.likes), style: TextStyle(fontSize: 10))
                           ),
                         ],
                       ),
@@ -55,8 +107,8 @@ class CommentListTile extends StatelessWidget {
                 ],
               ),
               Text(
-                '세부내용은 이런식으로 작성되는 내용인데 이렇게 작성하면 어떻게 표현되는지 잘 모르는 그런 느낌의',
-                style: TextStyle(fontSize: 14),
+                widget.content!,
+                style: TextStyle(fontSize: 14, height: 1.1),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),

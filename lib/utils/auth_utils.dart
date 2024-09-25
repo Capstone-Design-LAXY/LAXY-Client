@@ -13,3 +13,11 @@ Future<bool> isAccessToken() async{
   }
   return true;
 }
+
+Future<int> getUserId() async{
+  String? userId = await FlutterSecureStorage().read(key: "userId");
+  if ( userId == null ){
+    return 0;
+  }
+  return int.tryParse(userId)!;
+}

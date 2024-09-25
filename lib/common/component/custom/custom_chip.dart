@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomChip extends StatelessWidget {
-  const CustomChip({super.key});
+  final int tagId;
+  final String tagName;
+
+  const CustomChip({
+    required this.tagId,
+    required this.tagName,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +17,9 @@ class CustomChip extends StatelessWidget {
         child: FilterChip(
           backgroundColor: Color(0xFF5589D3),
           label: Text(
-            'Tag',
+            tagName,
             style: TextStyle(color: Colors.white),
           ),
-
           onSelected: (value) => {},
         )
     );
