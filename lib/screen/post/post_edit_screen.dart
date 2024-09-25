@@ -6,28 +6,48 @@ import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_chip_tags.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/quill/custom_quill_writer.dart';
+import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 
 class PostEditScreen extends StatefulWidget {
-  const PostEditScreen({super.key});
+  final int postId;
+  final List<String> tagList;
+  final String title;
+  final String contents;
+
+  const PostEditScreen({
+    required this.postId,
+    required this.tagList,
+    required this.title,
+    required this.contents,
+    super.key
+  });
 
   @override
   State<PostEditScreen> createState() => _PostEditScreenState();
 }
 
 class _PostEditScreenState extends State<PostEditScreen> {
+  TextEditingController _titleController = TextEditingController();
+  late quill.QuillController _controller;
 
-  final quill.QuillController _controller = quill.QuillController(
-    document: quill.Document.fromJson(
-        jsonDecode(r'[{"insert":"이거 "},{"insert":"에뮬레이터가","attributes":{"bold":true}},{"insert":" 메모리를 아주 많이 잡아 먹습니다\n예를 "},{"insert":"들자면","attributes":{"color":"#FF1E88E5"}},{"insert":" 이런 "},{"insert":"느낌집니다","attributes":{"background":"#FFEC407A"}},{"insert":".\n\n이게 어이없게 자동 수정이 들어가 있어서 \n계속 단어를 수정해주는데요"},{"insert":"\n","attributes":{"blockquote":true}},{"insert":"여기서 사진을 클립보드에서 붙여넣어보겠습니ㅏㄷ"},{"insert":"\n","attributes":{"list":"bullet"}},{"insert":{"image":"https://picsum.photos/200"}},{"insert":"ㅇ\n좋습니다 이제 사진을 넣었군요\n"}]')
-    ),
-    selection: const TextSelection.collapsed(offset: 0),
-  );
+  @override
+  void initState() {
+    super.initState();
+    _controller = quill.QuillController(
+      document: quill.Document.fromJson(
+          jsonDecode(widget.contents)
+      ),
+      selection: const TextSelection.collapsed(offset: 0),
+    );
+    tagList += widget.tagList;
+    _titleController.text = widget.title;
+  }
 
   @override
   void dispose() {
-    print(jsonEncode(_controller.document.toDelta().toJson()));
     _controller.dispose();
+    _titleController.dispose();
     super.dispose();
   }
 
@@ -43,7 +63,24 @@ class _PostEditScreenState extends State<PostEditScreen> {
         children: [
           IconButton(
             icon: Icon(Icons.check),
-            onPressed: () {print('작성 종료');}
+            onPressed: () {
+              String? contents = jsonEncode(_controller.document.toDelta().toJson());
+              bool contentsEmpty = contents == "\[\{\"insert\"\:\"\\n\"\}\]";
+              if (contentsEmpty || tagList.isEmpty || _titleController.text.isEmpty) {
+                showEmptyDialog(context, tagList.isEmpty, _titleController.text.isEmpty, contentsEmpty);
+              }
+              else if (contents.length > 10000) {
+                showFullDialog(context, contents.length);
+              }
+              else {
+                print('작성 종료');
+                print(tagList);
+                print('제목: ${_titleController.text}');
+                print(jsonEncode(_controller.document.toDelta().toJson()));
+                print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
+
+              }
+            }
           ),
           SizedBox(width: 8,)
         ],
@@ -56,7 +93,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
           ),
           CustomChipTags(
             list: tagList,
-            hintText: '띄어쓰기로 등록(최대 10개)',
+            hintText: '띄어쓰기로 등록(최대 10자, 10개)',
           ),
           // 헤더 (게시글 작성)
           SizedBox(height: 10,),
@@ -67,6 +104,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
               borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
             ),
             child: TextField(
+              controller: _titleController,
               decoration: InputDecoration(
                 hintText: '제목을 입력하세요.(50자 이내)',
                 contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),

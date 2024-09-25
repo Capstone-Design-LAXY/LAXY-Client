@@ -113,7 +113,7 @@ class _CustomChipTagsState extends State<CustomChipTags>
               if (value.endsWith(widget.separator ?? " ")) {
                 ///check for ' ' and duplicate tags
                 if (value != widget.separator &&
-                    !widget.list.contains(value.trim()) && widget.list.length < 10 ) {
+                    !widget.list.contains(value.trim()) && widget.list.length < 10 && value.trim().length <= 10) {
                   widget.list.add(value
                       .replaceFirst(widget.separator ?? " ", '')
                       .trim());
