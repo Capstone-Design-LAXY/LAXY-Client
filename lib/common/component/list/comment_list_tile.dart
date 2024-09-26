@@ -112,11 +112,13 @@ class _CommentListTileState extends State<CommentListTile> {
                   ),
                 ],
               ),
-              Text(
-                widget.content!,
-                style: TextStyle(fontSize: 14, height: 1.1),
-                maxLines: isExpanded? null: 3,
-                overflow: isExpanded? null: TextOverflow.ellipsis,
+              HorizontalExpanded(
+                child: Text(
+                  widget.content!,
+                  style: TextStyle(fontSize: 14, height: 1.1),
+                  maxLines: isExpanded? null: 3,
+                  overflow: isExpanded? null: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),

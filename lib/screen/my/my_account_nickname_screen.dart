@@ -2,13 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_radio.dart';
+import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 
-class MyAccountNicknameScreen extends StatelessWidget {
-  const MyAccountNicknameScreen({super.key});
+class MyAccountNicknameScreen extends StatefulWidget {
+  final String nickname;
+  final String email;
+
+  const MyAccountNicknameScreen({
+    required this.email,
+    required this.nickname,
+    super.key
+  });
+
+  @override
+  State<MyAccountNicknameScreen> createState() => _MyAccountNicknameScreenState();
+}
+
+class _MyAccountNicknameScreenState extends State<MyAccountNicknameScreen> {
+  final TextEditingController nicknameController = TextEditingController();
+  final GlobalKey<CustomTextFieldState> nicknameKey = GlobalKey<CustomTextFieldState>();
+
+  // 닉네임 검증
+  bool _isNicknameValid() {
+    String nickname = nicknameController.text;
+    if (nickname.isEmpty){
+      nicknameKey.currentState?.setError('닉네임을 입력하세요.');
+      return false;
+    }
+    nicknameKey.currentState?.setError(null);
+    return true;
+  }
+
+  @override
+  void dispose() {
+    nicknameController.dispose();
+    super.dispose();
+  }
+
+  bool _validateFrom() {
+    String nickname = nicknameController.text;
+    if (_isNicknameValid()){
+      print('nickname: '+nickname);
+      Navigator.pop(context);
+      return true;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +85,7 @@ class MyAccountNicknameScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '닉네임',
+                              widget.nickname,
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Color(0xFFFFFFFF),
@@ -50,7 +93,7 @@ class MyAccountNicknameScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '이메일',
+                              widget.email,
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFFFFFFFF),
@@ -72,26 +115,10 @@ class MyAccountNicknameScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           // 비밀번호 입력 필드
-                          TextField(
-                            textInputAction: TextInputAction.next,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                ),
-                              ),
-                              labelText: '새 닉네임',
-                              labelStyle: TextStyle(
-                                color: Color(0xFF5589D3), // labelText의 색상 설정
-                              ),
-                            ),
-                            cursorColor: Color(0xFF5589D3), // 커서 색상
+                          CustomTextField(
+                            key: nicknameKey,
+                            controller: nicknameController,
+                            labelText: '닉네임',
                           ),
                         ],
                       ),
@@ -104,7 +131,7 @@ class MyAccountNicknameScreen extends StatelessWidget {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        // 로그인 버튼 눌렀을 때 동작
+                        _validateFrom();
                       },
                       child: Text('닉네임 변경'),
                     ),

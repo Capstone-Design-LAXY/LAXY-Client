@@ -313,3 +313,44 @@ void showReportPostDialog(
     },
   );
 }
+
+void showWithdrawalDialog(
+    BuildContext context,
+    String nickname,
+    String email,
+    ) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFFFFFFFF),
+        title: Text('회원탈퇴'),
+        content: Text('정말로 탈퇴 하시겠습니까?\n삭제된 계정은 복구되지 않습니다.\n삭제될 계정 닉네임: \n ${nickname}\n삭제될 계정 이메일: \n ${email}'),
+        actions: <Widget>[
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              // TODO: 연결 필요
+              print('------회원 탈퇴-------');
+              Navigator.of(context).pop();
+            },
+            child: Text('탈퇴', style: TextStyle(color: Colors.red),),
+          ),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('취소'),
+          ),
+        ],
+      );
+    },
+  );
+}

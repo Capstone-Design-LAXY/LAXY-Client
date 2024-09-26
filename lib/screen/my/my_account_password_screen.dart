@@ -2,13 +2,75 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_radio.dart';
+import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 
-class MyAccountPasswordScreen extends StatelessWidget {
-  const MyAccountPasswordScreen({super.key});
+class MyAccountPasswordScreen extends StatefulWidget {
+  final String nickname;
+  final String email;
+
+  const MyAccountPasswordScreen({
+    required this.email,
+    required this.nickname,
+    super.key
+  });
+
+  @override
+  State<MyAccountPasswordScreen> createState() => _MyAccountPasswordScreenState();
+}
+
+class _MyAccountPasswordScreenState extends State<MyAccountPasswordScreen> {
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final GlobalKey<CustomTextFieldState> passwordKey = GlobalKey<CustomTextFieldState>();
+  final GlobalKey<CustomTextFieldState> confirmPasswordKey = GlobalKey<CustomTextFieldState>();
+
+  // 비밀번호 검증
+  bool _isPasswordValid() {
+    String password = passwordController.text;
+    String confirmPassword = confirmPasswordController.text;
+    if (password.isEmpty) {
+      confirmPasswordKey.currentState?.setError(null);
+      passwordKey.currentState?.setError('비밀번호를 입력하세요.');
+      return false;
+    }
+    if (confirmPassword.isEmpty) {
+      passwordKey.currentState?.setError(null);
+      confirmPasswordKey.currentState?.setError('비밀번호 확인을 입력하세요.');
+      return false;
+    }
+    if (password != confirmPassword){
+      confirmPasswordKey.currentState?.setError('비밀번호와 일치하지 않습니다.');
+      return false;
+    }
+    passwordKey.currentState?.setError(null);
+    confirmPasswordKey.currentState?.setError(null);
+    return true;
+  }
+
+  // TODO: 연결 필요
+  // 입력 필드 검증
+  bool _validateFrom() {
+    String password = passwordController.text;
+    String confirmPassword = confirmPasswordController.text;
+    if (_isPasswordValid()){
+      print('password: '+password);
+      print('confirmPassword: '+confirmPassword);
+      Navigator.pop(context);
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +104,7 @@ class MyAccountPasswordScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '닉네임',
+                              widget.nickname,
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Color(0xFFFFFFFF),
@@ -50,7 +112,7 @@ class MyAccountPasswordScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '이메일',
+                              widget.email,
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFFFFFFFF),
@@ -72,49 +134,21 @@ class MyAccountPasswordScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           // 비밀번호 입력 필드
-                          TextField(
+                          CustomTextField(
+                            key: passwordKey,
+                            controller: passwordController,
                             textInputAction: TextInputAction.next,
                             obscureText: true,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                ),
-                              ),
-                              labelText: '새 비밀번호',
-                              labelStyle: TextStyle(
-                                color: Color(0xFF5589D3), // labelText의 색상 설정
-                              ),
-                            ),
-                            cursorColor: Color(0xFF5589D3), // 커서 색상
+                            labelText: '비밀번호',
                           ),
                           SizedBox(height: 10),
                           // 비밀번호 입력 필드
-                          TextField(
+                          CustomTextField(
+                            key: confirmPasswordKey,
+                            controller: confirmPasswordController,
                             textInputAction: TextInputAction.next,
                             obscureText: true,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                ),
-                              ),
-                              labelText: '새 비밀번호 확인',
-                              labelStyle: TextStyle(
-                                color: Color(0xFF5589D3), // labelText의 색상 설정
-                              ),
-                            ),
-                            cursorColor: Color(0xFF5589D3), // 커서 색상
+                            labelText: '비밀번호 확인',
                           ),
                         ],
                       ),
@@ -127,7 +161,7 @@ class MyAccountPasswordScreen extends StatelessWidget {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        // 로그인 버튼 눌렀을 때 동작
+                        _validateFrom();
                       },
                       child: Text('비밀번호 변경'),
                     ),

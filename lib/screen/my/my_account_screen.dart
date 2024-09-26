@@ -4,6 +4,7 @@ import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_radio.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/my/my_account_edit_screen.dart';
 import 'package:laxy/screen/my/my_account_nickname_screen.dart';
@@ -11,7 +12,14 @@ import 'package:laxy/screen/my/my_account_password_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 
 class MyAccountScreen extends StatelessWidget {
-  const MyAccountScreen({super.key});
+  final String nickname;
+  final String email;
+
+  const MyAccountScreen({
+    required this.email,
+    required this.nickname,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +53,7 @@ class MyAccountScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '닉네임',
+                              nickname,
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Color(0xFFFFFFFF),
@@ -53,7 +61,7 @@ class MyAccountScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '이메일',
+                              email,
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFFFFFFFF),
@@ -76,7 +84,10 @@ class MyAccountScreen extends StatelessWidget {
                         children: [
                           TextListTile(
                             onPressed: () {
-                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountNicknameScreen());
+                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountNicknameScreen(
+                                nickname: nickname,
+                                email: email,
+                              ));
                               Navigator.push(context, pageRouteWithAnimation.fadeTransition());
                               },
                             title: '닉네임 변경',
@@ -84,7 +95,10 @@ class MyAccountScreen extends StatelessWidget {
                           SizedBox(height: 15),
                           TextListTile(
                             onPressed: () {
-                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountPasswordScreen());
+                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountPasswordScreen(
+                                nickname: nickname,
+                                email: email,
+                              ));
                               Navigator.push(context, pageRouteWithAnimation.fadeTransition());
                             },
                             title: '비밀번호 변경',
@@ -92,7 +106,10 @@ class MyAccountScreen extends StatelessWidget {
                           SizedBox(height: 15),
                           TextListTile(
                             onPressed: () {
-                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountEditScreen());
+                              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountEditScreen(
+                                nickname: nickname,
+                                email: email,
+                              ));
                               Navigator.push(context, pageRouteWithAnimation.fadeTransition());
                             },
                             title: '성별, 나이 변경',
@@ -108,7 +125,7 @@ class MyAccountScreen extends StatelessWidget {
                         foregroundColor: Color(0xFFFFFFFF),
                       ),
                       onPressed: () {
-                        // 로그인 버튼 눌렀을 때 동작
+                        showWithdrawalDialog(context, nickname, email);
                       },
                       child: Text('회원 탈퇴'),
                     ),

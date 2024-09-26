@@ -2,13 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_radio.dart';
+import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 
-class MyAccountEditScreen extends StatelessWidget {
-  const MyAccountEditScreen({super.key});
+class MyAccountEditScreen extends StatefulWidget {
+  final String nickname;
+  final String email;
+
+  const MyAccountEditScreen({
+    required this.email,
+    required this.nickname,
+    super.key
+  });
+
+  @override
+  State<MyAccountEditScreen> createState() => _MyAccountEditScreenState();
+}
+
+class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
+  bool isBirthday = false;
+  bool isBirthdayValid = true;
+  DateTime birthday = DateTime(1900-1-1);
+  SingingCharacter? _selectedGender = SingingCharacter.N; // 선택된 성별 저장
+
+  // 생년월일 검증
+  bool _isBirthdayValid() {
+    if (birthday.year == DateTime(1900-1-1).year &&
+        birthday.month == DateTime(1900-1-1).month &&
+        birthday.day == DateTime(1900-1-1).day) {
+      setState(() {
+        isBirthdayValid = false;
+      });
+      return false;
+    }
+    setState(() {
+      isBirthdayValid = true;
+    });
+    return true;
+  }
+
+  // TODO: 연결 필요
+  // 입력 필드 검증
+  bool _validateFrom() {
+    if (_isBirthdayValid()){
+      print('birthday: ${birthday.year} - ${birthday.month} - ${birthday.day}');
+      print('gender: ${_selectedGender.toString().split('.').last}');
+      Navigator.pop(context);
+      return true;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,83 +117,70 @@ class MyAccountEditScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
+                          // 생년월일 버튼
+                          TextListTile(
+                            onPressed: () async {
+                              final DateTime? dateTime = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime(2002-1-1),
+                                  firstDate: DateTime(1900),
+                                  locale: const Locale('ko', 'KR'),
+                                  builder: (BuildContext context, Widget? child) {
+                                    return Theme(
+                                      data: ThemeData.light().copyWith(
+                                        primaryColor: Color(0xFF5589D3),
+                                        colorScheme: ColorScheme.light(
+                                          primary: Color(0xFF5589D3),
+                                          onPrimary: Colors.white,
+                                          onSurface: Colors.black,
+                                        ),
+                                        buttonTheme: ButtonThemeData(
+                                          textTheme: ButtonTextTheme.primary, // 버튼 텍스트 색상
+                                        ),
                                       ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                      ),
-                                    ),
-                                    labelText: '생년',
-                                    hintText: '0000',
-                                    labelStyle: TextStyle(
-                                      color: Color(0xFF5589D3), // labelText의 색상 설정
+                                      child: child!,
+                                    );
+                                  },
+                                  lastDate: DateTime(2026));
+                              if (dateTime != null) {
+                                setState(() {
+                                  birthday = dateTime;
+                                  isBirthday = true;
+                                });
+                              }
+                            },
+                            title: isBirthday
+                                ? '${birthday.year} - ${birthday.month} - ${birthday.day}'
+                                : '생년월일',
+                            fontColor: isBirthday
+                                ? Colors.black
+                                : null,
+                          ),
+                          // 생년월일 오류 메시지
+                          Visibility(
+                              visible: !isBirthdayValid,
+                              child: HorizontalExpanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 12, top: 5),
+                                  child: Text(
+                                    '생년월일을 입력하세요',
+                                    style: TextStyle(
+                                      color: Color(0xffb00020),
+                                      fontSize: 12,
                                     ),
                                   ),
-                                  cursorColor: Color(0xFF5589D3), // 커서 색상
                                 ),
-                              ),
-                              SizedBox(width: 5,),
-                              Expanded(
-                                child: TextField(
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                      ),
-                                    ),
-                                    labelText: '월',
-                                    labelStyle: TextStyle(
-                                      color: Color(0xFF5589D3), // labelText의 색상 설정
-                                    ),
-                                  ),
-                                  cursorColor: Color(0xFF5589D3), // 커서 색상
-                                ),
-                              ),
-                              SizedBox(width: 5,),
-                              Expanded(
-                                child: TextField(
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF5589D3), // 기본 상태일 때 테두리 색상
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF5589D3), // 포커스 상태일 때 테두리 색상
-                                      ),
-                                    ),
-                                    labelText: '일',
-                                    labelStyle: TextStyle(
-                                      color: Color(0xFF5589D3), // labelText의 색상 설정
-                                    ),
-                                  ),
-                                  cursorColor: Color(0xFF5589D3), // 커서 색상
-                                ),
-                              ),
-                            ],
+                              )
                           ),
                           SizedBox(
                             height: 56,
+                            // 성별 라디오 버튼
                             child: CustomRadio(
-                              onChanged: (SingingCharacter? gender) {},
+                              onChanged: (SingingCharacter? gender) {
+                                setState(() {
+                                  _selectedGender = gender; // CustomRadio에서 선택된 성별 값을 저장
+                                });
+                              },
                             ),
                           ),
                         ],
@@ -161,7 +194,7 @@ class MyAccountEditScreen extends StatelessWidget {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        // 로그인 버튼 눌렀을 때 동작
+                        _validateFrom();
                       },
                       child: Text('정보 수정'),
                     ),

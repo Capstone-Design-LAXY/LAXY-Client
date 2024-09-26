@@ -496,6 +496,7 @@ class User {
   final int? posts;
   final int? comments;
   final DateTime? updatedAt;
+  final String? email;
 
   User({
     required this.userId,
@@ -503,12 +504,14 @@ class User {
     this.posts,
     this.comments,
     this.updatedAt,
+    this.email,
   });
 
   // JSON 데이터를 Post 객체로 변환
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['user_id'],
+      email: json['email'],
       nickname: json['nickname'],
       posts: json['posts'],
       comments: json['comments'],
@@ -529,6 +532,23 @@ class SearchUserData {
     return SearchUserData(
       users: (json['users'] as List)
           .map((data) => User.fromJson(data))
+          .toList(),
+    );
+  }
+}
+
+class CommentData {
+  final List<Comment> comments;
+
+  CommentData({
+    required this.comments,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory CommentData.fromJson(Map<String, dynamic> json) {
+    return CommentData(
+      comments: (json['comments'] as List)
+          .map((data) => Comment.fromJson(data))
           .toList(),
     );
   }

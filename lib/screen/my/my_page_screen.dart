@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
@@ -8,10 +10,34 @@ import 'package:laxy/screen/my/liked_screen.dart';
 import 'package:laxy/screen/my/my_account_screen.dart';
 import 'package:laxy/screen/my/my_comment_screen.dart';
 import 'package:laxy/screen/my/my_post_screen.dart';
-import 'package:laxy/screen/user/register_screen.dart';
+import 'package:laxy/utils/utils.dart';
 
-class MyPageScreen extends StatelessWidget {
+class MyPageScreen extends StatefulWidget {
   const MyPageScreen({super.key});
+
+  @override
+  State<MyPageScreen> createState() => _MyPageScreenState();
+}
+
+class _MyPageScreenState extends State<MyPageScreen> {
+  late User me;
+
+  @override
+  void initState() {
+    super.initState();
+    String jsonString = '''
+    {
+      "user_id": 67638,
+      "nickname": "팀LAXY",
+      "comments": 6600,
+      "posts": 7797,
+      "email": "laxy@gmail.com",
+      "updatedAt": "1990-12-12T03:12:00.000Z"
+    }
+    ''';
+    // JSON 문자열을 RankData 객체로 파싱
+    me = User.fromJson(jsonDecode(jsonString));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +70,7 @@ class MyPageScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '닉네임',
+                            me.nickname!,
                             style: TextStyle(
                               fontSize: 25,
                               color: Color(0xFFFFFFFF),
@@ -52,7 +78,7 @@ class MyPageScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '이메일',
+                            me.email!,
                             style: TextStyle(
                               fontSize: 15,
                               color: Color(0xFFFFFFFF),
@@ -107,7 +133,10 @@ class MyPageScreen extends StatelessWidget {
                         SizedBox(height: 15),
                         TextListTile(
                           onPressed: () {
-                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountScreen());
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountScreen(
+                              email: me.email!,
+                              nickname: me.nickname!,
+                            ));
                             Navigator.push(context, pageRouteWithAnimation.fadeTransition());
                           },
                           title: '회원정보 수정',
