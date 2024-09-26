@@ -46,8 +46,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       "post": {
         "post_id": 982347,
         "user_id": 451927,
-        "nickname": "개발자Mike",
-        "title": "Flutter로 REST API 연동하는 법 공유합니다!",
+        "nickname": "꼬부7I",
+        "title": "[iOS 18] 새로생긴 iOS 18의 기능들 요약 정리",
         "tags": [
           {
             "tagId": 3765,
@@ -62,7 +62,126 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             "tag_name": "개발팁"
           }
         ],
-        "content": "안녕하세요! 오늘은 Flutter에서 REST API를 연동하는 방법을 공유하려고 합니다. 먼저 `http` 패키지를 사용해서 간단한 GET 요청을 보내는 방법을 알려드릴게요. 이후에는 JSON 파싱과 비동기 처리에 대한 팁도 함께 드리겠습니다. 많은 분들께 도움이 되었으면 좋겠어요!",
+        "content": [
+          {
+            "insert": {
+              "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600"
+            }
+          },
+          {
+            "insert": "\\n\\n"
+          },
+          {
+            "insert": "iOS 18의 새로운 기능들을 정리해봤습니다.",
+            "attributes": {
+              "bold": true
+            }
+          },
+          {
+            "insert": "\\n\\n직접 해보면서 간단하게 "
+          },
+          {
+            "insert": "요약정리한",
+            "attributes": {
+              "background": "#FFFFF59D"
+            }
+          },
+          {
+            "insert": " 것이니 참조만 해주세요~\\n\\n"
+          },
+          {
+            "insert": {
+              "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfNTUg/MDAxNzI2NTA4NzY0MDU2.lemsm24MuabUk8kJLYgM0OwHd6bSMdPtoSbWAP2zyYcg.Ljivq_OtVuadsoz-PTgDUHKCgvDRUl1b1UPMmNU1MW8g.PNG/%EC%95%94%ED%98%B8_%EC%95%B1%2C_%EB%B0%B0%EC%97%B4.png?type=w1600"
+            },
+            "attributes": {
+              "style": "width: 392.72727272727275; height: 310.176; "
+            }
+          },
+          {
+            "insert": " "
+          },
+          {
+            "insert": "ios 18 ",
+            "attributes": {
+              "color": "#FF1E88E5"
+            }
+          },
+          {
+            "insert": "에서는 홈화면을 자유롭게 꾸밀 수 있습니다.\\n새로운 홈화면 꾸미기"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "blockquote": true
+            }
+          },
+          {
+            "insert": "앱 배열 사용자화"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "암호앱"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "앱 색상 변경"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "앱과 위젯을 자유롭게 변환하기"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "잠금화면 설정 기능 선택, 액션 버튼의 기능 다양화"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "indent": 1,
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": {
+              "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTI2/MDAxNzI2NTEwMDA3NDAy.0_rVzocXqv7x2VBYMFs1xVM_KXgGUX9R56lEf747YQMg.1uOPiLe74NdSdwFfYDk4aUkfW9owWj4x76_ui9ewsFUg.PNG/KakaoTalk_20240917_030630972.png?type=w1600"
+            },
+            "attributes": {
+              "style": "width: 392.72727272727275; height: 299.2101818181818; "
+            }
+          },
+          {
+            "insert": "제어센터 기능의 다양함\\n설정 - 연결된 에어팟 선택 - 머리 제스처 켬\\n\\n끄덕끄덕🙂‍↕️ 도리도리🙂‍↔️로 걸려오는 전화를 수신 및 거부할 수 있습니다.\\n\\n"
+          },
+          {
+            "insert": "블로그 출처",
+            "attributes": {
+              "link": "https://cafe.naver.com/appleiphone/8515120"
+            }
+          },
+          {
+            "insert": "\\n\\n"
+          }
+        ],
         "imageURL": "https://picsum.photos/500",
         "updatedAt": "2024-09-22T14:05:00.000Z",
         "isLiked": true,
@@ -72,8 +191,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         {
           "comment_id": 125837,
           "user_id": 672394,
-          "nickname": "코딩초보",
-          "contents": "좋은 글 감사합니다! 혹시 비동기 처리할 때 `FutureBuilder`를 사용해야 하는 상황이 있을까요? 아니면 다른 방법도 있나요?",
+          "nickname": "CHUYA",
+          "contents": "깔끔한 정리 감사합니다! \\n 제어센터는 이것저것 커스텀이 가능해진건 너무 좋은데 데이터칸이 사분할 된건 너무 불편해서 별로에요 ㅠ 이 부분까지 완벽하게 커스텀이 가능하면 참 좋을 것 같은데...",
           "likes": 102,
           "isLiked": true,
           "updatedAt": "2024-09-22T15:30:00.000Z"
@@ -103,7 +222,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     // JSON 문자열을 RankData 객체로 파싱
     postDetailData = PostDetailData.fromJson(jsonDecode(jsonString));
     _checkAccessToken();
-    // print(postDetailData.comments[0].userId);
+    for (int i = 0; i < (postDetailData.post.content?.length ?? 0); i++) {
+      print(postDetailData.post.content?[i]);
+    }
   }
 
   void _checkAccessToken() async{
@@ -172,7 +293,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         menuItems.add(Menu.modify);
         menuItems.add(Menu.delete);
       }
-      print(menuItems);
+      // print(menuItems);
       return menuItems;
     }
 
@@ -252,7 +373,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ),
           ),
           SizedBox(height: 3,),
-          CustomQuillReader(),
+          CustomQuillReader(content: postDetailData.post.content!,),
           SizedBox(height: 3,),
           // 게시글 정보
           Container(

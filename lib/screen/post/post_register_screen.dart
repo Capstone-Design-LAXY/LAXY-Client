@@ -8,6 +8,7 @@ import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/quill/custom_quill_writer.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/layout/post_layout.dart';
+import 'package:laxy/utils/utils.dart';
 
 class PostRegisterScreen extends StatefulWidget {
   const PostRegisterScreen({super.key});
@@ -55,8 +56,8 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                 print('제목: ${_titleController.text}');
                 print(jsonEncode(_controller.document.toDelta().toJson()));
                 print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
-
               }
+              print(escapeSpecialCharacters(jsonEncode(_controller.document.toDelta().toJson())));
             }
           ),
           SizedBox(width: 8,)

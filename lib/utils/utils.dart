@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:intl/intl.dart';
 
 String formatNum(int? number) {
@@ -53,6 +56,31 @@ String formatDate(DateTime? dateTime) {
   else {
     return DateFormat('yy-MM-dd').format(dateTime);
   }
+}
+
+void printLongString(String str) {
+  final int maxLength = 500; // 한 번에 출력할 최대 길이
+  for (int i = 0; i < str.length; i += maxLength) {
+    // maxLength 길이만큼 잘라서 출력
+    print(str.substring(i, i + maxLength > str.length ? str.length : i + maxLength));
+  }
+}
+
+List<Map<String, dynamic>> extractQuillController(QuillController controller) {
+  if (controller == null) {
+    return [];
+  }
+  String jsonString = escapeSpecialCharacters(jsonEncode(controller.document.toDelta().toJson()));
+  List<Map<String, dynamic>> content = List<Map<String, dynamic>>.from(jsonDecode(jsonString));
+  return content;
+}
+
+String escapeSpecialCharacters(String input) {
+  // 정규 표현식을 사용하여 특수 문자를 이스케이프
+  return input.replaceAllMapped(RegExp(r'(["\\])'), (match) {
+    // 역슬래시와 큰따옴표 이스케이프 처리
+    return '\\${match.group(0)}';
+  });
 }
 
 class ParseSatellite {
@@ -176,8 +204,9 @@ class DrawerData {
 class Post {
   final int post_id;
   final String title;
-  final String? content;
+  final List<Map<String, dynamic>>? content;
   final String? nickname;
+  final String? summary;
   final int? user_id;
   final int? comments;
   final int? like;
@@ -203,6 +232,7 @@ class Post {
     this.viewed,
     this.imageURL,
     this.isLiked,
+    this.summary,
     this.tags,
   });
 
@@ -216,8 +246,11 @@ class Post {
       comments: json['comments'],
       like: json['like'],
       change: json['change'],
-      content: json['content'],
+      content: json['content'] != null
+        ? List<Map<String, dynamic>>.from(json['content'])
+        : null,
       isLiked: json['isLiked'],
+      summary: json['summary'],
       createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       viewed: json['viewed'],

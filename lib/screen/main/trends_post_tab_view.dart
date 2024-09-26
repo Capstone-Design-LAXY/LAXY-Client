@@ -33,7 +33,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 87291,
           "title": "오늘의 날씨는?",
-          "content": "비가 올 것 같아요. 우산 챙기세요.",
+          "summary": "비가 올 것 같아요. 우산 챙기세요.",
           "comments": 182,
           "like": 521,
           "viewed": 899,
@@ -42,7 +42,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 97852,
           "title": "새로운 취미 추천",
-          "content": "요즘 뜨는 취미는 무엇일까요?",
+          "summary": "요즘 뜨는 취미는 무엇일까요?",
           "comments": 249,
           "like": 783,
           "viewed": 1374,
@@ -51,7 +51,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 11237,
           "title": "아침 운동의 중요성",
-          "content": "매일 아침 운동하는 습관!",
+          "summary": "매일 아침 운동하는 습관!",
           "comments": 321,
           "like": 456,
           "viewed": 1023,
@@ -60,7 +60,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 56389,
           "title": "재테크 꿀팁 공유",
-          "content": "소액 투자로 시작하는 재테크",
+          "summary": "소액 투자로 시작하는 재테크",
           "comments": 405,
           "like": 642,
           "viewed": 1845,
@@ -70,7 +70,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 23876,
           "title": "여행 준비물 리스트",
-          "content": "꼭 챙겨야 할 필수 아이템들",
+          "summary": "꼭 챙겨야 할 필수 아이템들",
           "comments": 92,
           "like": 317,
           "viewed": 744,
@@ -79,7 +79,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 46378,
           "title": "추천 영화 리스트",
-          "content": "주말에 보기 좋은 영화들",
+          "summary": "주말에 보기 좋은 영화들",
           "comments": 533,
           "like": 910,
           "viewed": 2458,
@@ -88,7 +88,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 91234,
           "title": "책 읽기의 장점",
-          "content": "매일 책 읽기의 중요성을 알아봅시다.",
+          "summary": "매일 책 읽기의 중요성을 알아봅시다.",
           "comments": 67,
           "like": 155,
           "viewed": 481,
@@ -97,7 +97,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 66728,
           "title": "반려동물 관리 방법",
-          "content": "강아지 털 관리 팁",
+          "summary": "강아지 털 관리 팁",
           "comments": 187,
           "like": 259,
           "viewed": 891,
@@ -106,7 +106,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 57893,
           "title": "헬스장 추천",
-          "content": "어디 헬스장이 좋은가요?",
+          "summary": "어디 헬스장이 좋은가요?",
           "comments": 200,
           "like": 378,
           "viewed": 1298,
@@ -115,7 +115,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 34892,
           "title": "IT 트렌드 분석",
-          "content": "올해 뜨는 IT 기술은?",
+          "summary": "올해 뜨는 IT 기술은?",
           "comments": 450,
           "like": 821,
           "viewed": 2114,
@@ -125,7 +125,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 89347,
           "title": "최신 가전제품",
-          "content": "최신 스마트 가전 소개합니다.",
+          "summary": "최신 스마트 가전 소개합니다.",
           "comments": 134,
           "like": 452,
           "viewed": 1203,
@@ -134,7 +134,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 23901,
           "title": "등산 코스 추천",
-          "content": "가을에 가기 좋은 산",
+          "summary": "가을에 가기 좋은 산",
           "comments": 98,
           "like": 245,
           "viewed": 621,
@@ -143,7 +143,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 70483,
           "title": "홈 카페 인테리어",
-          "content": "집에서 즐기는 홈 카페 꾸미기",
+          "summary": "집에서 즐기는 홈 카페 꾸미기",
           "comments": 301,
           "like": 502,
           "viewed": 1501,
@@ -152,7 +152,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 53692,
           "title": "내일의 주식 전망",
-          "content": "주식 시장 분석과 내일의 전망",
+          "summary": "주식 시장 분석과 내일의 전망",
           "comments": 775,
           "like": 923,
           "viewed": 3095,
@@ -161,7 +161,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 13290,
           "title": "다이어트 식단",
-          "content": "건강한 식단으로 체중 감량하기",
+          "summary": "건강한 식단으로 체중 감량하기",
           "comments": 354,
           "like": 620,
           "viewed": 1450,
@@ -171,7 +171,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 49723,
           "title": "쇼핑몰 추천",
-          "content": "가성비 좋은 온라인 쇼핑몰 추천",
+          "summary": "가성비 좋은 온라인 쇼핑몰 추천",
           "comments": 156,
           "like": 399,
           "viewed": 1084,
@@ -180,7 +180,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 89014,
           "title": "내가 사랑하는 음악",
-          "content": "요즘 듣고 있는 음악 추천",
+          "summary": "요즘 듣고 있는 음악 추천",
           "comments": 66,
           "like": 289,
           "viewed": 672,
@@ -189,7 +189,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 78512,
           "title": "명언 모음집",
-          "content": "삶에 도움이 되는 명언들",
+          "summary": "삶에 도움이 되는 명언들",
           "comments": 402,
           "like": 703,
           "viewed": 1822,
@@ -198,7 +198,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 58329,
           "title": "헬시푸드 레시피",
-          "content": "간단하고 건강한 요리법",
+          "summary": "간단하고 건강한 요리법",
           "comments": 285,
           "like": 563,
           "viewed": 1307,
@@ -208,7 +208,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 29387,
           "title": "여행 후기 공유",
-          "content": "최근 다녀온 여행 후기를 남겨요.",
+          "summary": "최근 다녀온 여행 후기를 남겨요.",
           "comments": 141,
           "like": 329,
           "viewed": 889,
@@ -218,7 +218,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 97245,
           "title": "독서 습관 들이기",
-          "content": "하루 10분 독서로 시작하기",
+          "summary": "하루 10분 독서로 시작하기",
           "comments": 158,
           "like": 487,
           "viewed": 1249,
@@ -227,7 +227,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 40982,
           "title": "간단한 운동법",
-          "content": "5분 만에 하는 스트레칭",
+          "summary": "5분 만에 하는 스트레칭",
           "comments": 72,
           "like": 205,
           "viewed": 654,
@@ -236,7 +236,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 89120,
           "title": "요리 초보의 도전",
-          "content": "처음 해본 파스타 요리!",
+          "summary": "처음 해본 파스타 요리!",
           "comments": 186,
           "like": 423,
           "viewed": 1140,
@@ -246,7 +246,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 67653,
           "title": "매일 아침 루틴",
-          "content": "성공적인 아침 루틴 만들기",
+          "summary": "성공적인 아침 루틴 만들기",
           "comments": 321,
           "like": 612,
           "viewed": 1504,
@@ -255,7 +255,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 13987,
           "title": "온라인 클래스 추천",
-          "content": "취미를 배울 수 있는 사이트",
+          "summary": "취미를 배울 수 있는 사이트",
           "comments": 312,
           "like": 581,
           "viewed": 1319,
@@ -264,7 +264,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 91208,
           "title": "반려동물 입양",
-          "content": "입양 전 알아야 할 사항들",
+          "summary": "입양 전 알아야 할 사항들",
           "comments": 128,
           "like": 394,
           "viewed": 1012,
@@ -274,7 +274,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 25781,
           "title": "커피 원두 추천",
-          "content": "향과 맛이 좋은 원두 추천",
+          "summary": "향과 맛이 좋은 원두 추천",
           "comments": 85,
           "like": 221,
           "viewed": 754,
@@ -283,7 +283,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 10987,
           "title": "게임 추천",
-          "content": "요즘 핫한 게임은?",
+          "summary": "요즘 핫한 게임은?",
           "comments": 411,
           "like": 759,
           "viewed": 2023,
@@ -292,7 +292,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 78012,
           "title": "자동차 관리 팁",
-          "content": "겨울철 자동차 관리 요령",
+          "summary": "겨울철 자동차 관리 요령",
           "comments": 142,
           "like": 372,
           "viewed": 936,
@@ -302,7 +302,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 47982,
           "title": "집에서 하는 간단 요리",
-          "content": "쉬운 재료로 만드는 요리",
+          "summary": "쉬운 재료로 만드는 요리",
           "comments": 98,
           "like": 310,
           "viewed": 890,
@@ -311,7 +311,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 68371,
           "title": "책 추천",
-          "content": "마음의 양식을 채우는 도서",
+          "summary": "마음의 양식을 채우는 도서",
           "comments": 183,
           "like": 533,
           "viewed": 1211,
@@ -321,7 +321,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 29382,
           "title": "공부 자극 글",
-          "content": "열심히 공부하는 법을 배워보세요.",
+          "summary": "열심히 공부하는 법을 배워보세요.",
           "comments": 257,
           "like": 687,
           "viewed": 1589,
@@ -331,7 +331,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 47281,
           "title": "의류 쇼핑몰 추천",
-          "content": "저렴하고 트렌디한 의류 추천",
+          "summary": "저렴하고 트렌디한 의류 추천",
           "comments": 198,
           "like": 489,
           "viewed": 1187,
@@ -341,7 +341,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 98237,
           "title": "취미 만들기",
-          "content": "취미로 시작하는 나만의 프로젝트",
+          "summary": "취미로 시작하는 나만의 프로젝트",
           "comments": 223,
           "like": 431,
           "viewed": 1205,
@@ -350,7 +350,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 13567,
           "title": "알뜰 쇼핑 팁",
-          "content": "저렴하게 쇼핑하는 방법",
+          "summary": "저렴하게 쇼핑하는 방법",
           "comments": 302,
           "like": 675,
           "viewed": 1432,
@@ -359,7 +359,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 62589,
           "title": "겨울 스포츠 즐기기",
-          "content": "스키, 스노우보드 즐기는 팁",
+          "summary": "스키, 스노우보드 즐기는 팁",
           "comments": 109,
           "like": 312,
           "viewed": 819,
@@ -368,7 +368,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         {
           "post_id": 32901,
           "title": "맛집 추천",
-          "content": "이번 주말 가볼만한 맛집",
+          "summary": "이번 주말 가볼만한 맛집",
           "comments": 457,
           "like": 801,
           "viewed": 2301,
@@ -394,7 +394,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         posts.add(
             PostListTile(
               title: postData.posts[i].title,
-              content: postData.posts[i].content!,
+              summary: postData.posts[i].summary!,
               like: postData.posts[i].like!,
               comment: postData.posts[i].comments!,
               imageURL: postData.posts[i].imageURL,

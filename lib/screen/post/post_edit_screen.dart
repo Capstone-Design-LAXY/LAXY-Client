@@ -13,7 +13,7 @@ class PostEditScreen extends StatefulWidget {
   final int postId;
   final List<String> tagList;
   final String title;
-  final String contents;
+  final List<Map<String, dynamic>> contents;
 
   const PostEditScreen({
     required this.postId,
@@ -36,7 +36,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
     super.initState();
     _controller = quill.QuillController(
       document: quill.Document.fromJson(
-          jsonDecode(widget.contents)
+          widget.contents
       ),
       selection: const TextSelection.collapsed(offset: 0),
     );
