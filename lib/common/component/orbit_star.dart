@@ -12,6 +12,7 @@ class OrbitStar extends StatefulWidget {
   final String? tagName;
   final int? tagId;
   final bool rotation;
+  final VoidCallback? onPressed;
 
   const OrbitStar({
     super.key,
@@ -21,6 +22,7 @@ class OrbitStar extends StatefulWidget {
     this.tagName = "tagName",
     this.tagId,
     this.rotation = false,
+    this.onPressed,
   });
 
   @override
@@ -50,6 +52,14 @@ class _OrbitStarState extends State<OrbitStar>
     String imagePath;
     double size = 130;
 
+    void _defaultOnPressed() {
+      if (widget.grade! > 5) {
+        imagePath = 'assets/star/LAXY_star${widget.grade! - 5}.png';
+      } else {
+        imagePath = 'assets/moon/LAXY_day_moon${widget.grade}.png';
+        size = 100;
+      }
+    }
     // 이미지 불러오기
     if (widget.isGlobe == true) {
       imagePath = 'assets/globe/LAXY_globe.png';
@@ -58,21 +68,6 @@ class _OrbitStarState extends State<OrbitStar>
     } else {
       imagePath = 'assets/moon/LAXY_day_moon${widget.grade}.png';
       size = 100;
-    }
-
-    void _handlePress(BuildContext context) {
-      if (widget.isGlobe == true) {
-        // TODO: 새로고침 동작으로 수정 필요
-        print('------------새로 고침------------');
-      } else if (widget.grade! > 5) {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            CommunityScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
-        Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-      } else {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            TagScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
-        Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
-      }
     }
 
     if (widget.rotation) {
@@ -122,7 +117,7 @@ class _OrbitStarState extends State<OrbitStar>
                   ),
                   clipBehavior: Clip.hardEdge,
                   child: MaterialButton(
-                    onPressed: () => _handlePress(context),
+                    onPressed: widget.onPressed ?? _defaultOnPressed,
                     splashColor: const Color(0xFF5589D3).withOpacity(0.2),
                     // 클릭 시 효과
                     highlightColor: const Color(0xFF5589D3).withOpacity(
@@ -179,7 +174,7 @@ class _OrbitStarState extends State<OrbitStar>
                 ),
                 clipBehavior: Clip.hardEdge,
                 child: MaterialButton(
-                  onPressed: () => _handlePress(context),
+                  onPressed: widget.onPressed ?? _defaultOnPressed,
                   splashColor: const Color(0xFF5589D3).withOpacity(0.2),
                   // 클릭 시 효과
                   highlightColor: const Color(0xFF5589D3).withOpacity(

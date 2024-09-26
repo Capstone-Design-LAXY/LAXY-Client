@@ -507,17 +507,6 @@ class _MyCommentScreenState extends State<MyCommentScreen> {
       return comment;
     }
 
-    List<Widget> _buildPostListTiles() {
-      List<Widget> tiles = [];
-      for (int i = 1; i <= 30; i++) {
-        if (i%3 == 0)
-          tiles.add(CommentListTile(commentId: 1, userId: 1,));
-        else
-          tiles.add(CommentListTile(commentId: 1, userId: 1,));
-      }
-      return tiles;
-    }
-
     return Scaffold(
       appBar:CustomAppBar(
         title: '작성한 댓글',

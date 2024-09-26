@@ -9,6 +9,7 @@ class Orbit extends StatefulWidget {
   final bool rotation; // 가운데 행성의 역회전 -> 위성이 모두 별이면 true (Orbit이 껴있으면 Orbit 회전이 느려짐)
   final Function() onPressed;
   final OrbitType type; // primary or satellite
+  final Function()? globePressed;
 
   const Orbit({
     super.key,
@@ -16,6 +17,7 @@ class Orbit extends StatefulWidget {
     this.primary,
     this.rotation = false,
     required this.onPressed,
+    this.globePressed,
     required this.type,
   });
 
@@ -48,7 +50,7 @@ class _OrbitState extends State<Orbit>
     final double angle = 2 * pi / len;
 
     // primary가 null이면 지구를 사용
-    final Widget primaryWidget = widget.primary ?? OrbitStar(isGlobe: true);
+    final Widget primaryWidget = widget.primary ?? OrbitStar(isGlobe: true, onPressed: widget.globePressed,);
 
     return Transform.scale(
       // satellite 일때 축소
