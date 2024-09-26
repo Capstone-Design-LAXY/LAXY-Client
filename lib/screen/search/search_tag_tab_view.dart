@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/list/tag_list_tile.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/tag/community_screen.dart';
+import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class SearchTagTabView extends StatefulWidget {
@@ -321,6 +324,10 @@ class _SearchTagTabViewState extends State<SearchTagTabView> {
               posts: searchTagData.tags[i].count!,
               bookmarked: searchTagData.tags[i].bookmarked!,
               grade: searchTagData.tags[i].grade!,
+              onPressed: () {
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              },
             )
         );
       }

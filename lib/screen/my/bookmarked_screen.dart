@@ -7,7 +7,10 @@ import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/list/tag_list_tile.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/screen/tag/community_screen.dart';
+import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class BookmarkedScreen extends StatefulWidget {
@@ -326,6 +329,16 @@ class _BookmarkedScreenState extends State<BookmarkedScreen> {
               posts: searchTagData.tags[i].count!,
               bookmarked: searchTagData.tags[i].bookmarked!,
               grade: searchTagData.tags[i].grade!,
+              onPressed: () {
+                if(searchTagData.tags[i].grade! <= 5){
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                }
+                else {
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                }
+              },
             )
         );
       }

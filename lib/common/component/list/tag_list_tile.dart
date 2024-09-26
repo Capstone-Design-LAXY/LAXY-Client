@@ -9,6 +9,7 @@ class TagListTile extends StatelessWidget {
   final int bookmarked;
   final int posts;
   final int grade;
+  final Function() onPressed;
 
   const TagListTile({
     required this.tagId,
@@ -16,6 +17,7 @@ class TagListTile extends StatelessWidget {
     this.bookmarked = 110,
     this.posts = 100,
     this.grade = 5,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
@@ -29,9 +31,7 @@ class TagListTile extends StatelessWidget {
           width: 1,
         )
       ),
-      onPressed: () {
-        print('선택된 태그 번호: ${tagId}');
-      },
+      onPressed: onPressed,
       elevation: 0,
       padding: EdgeInsets.zero,
       child: Row(
@@ -43,6 +43,8 @@ class TagListTile extends StatelessWidget {
             // color: Color(0xFFD4E3FF),
             child: OrbitStar(
               grade: grade,
+              tagId: tagId,
+              tagName: tagName,
             ),
           ),
           // 내용

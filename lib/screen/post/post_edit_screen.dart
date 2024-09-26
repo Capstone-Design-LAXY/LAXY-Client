@@ -73,11 +73,12 @@ class _PostEditScreenState extends State<PostEditScreen> {
                 showFullDialog(context, contents.length);
               }
               else {
-                print('작성 종료');
-                print(tagList);
-                print('제목: ${_titleController.text}');
-                print(jsonEncode(_controller.document.toDelta().toJson()));
-                print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
+                Navigator.pop(context);
+                // print('작성 종료');
+                // print(tagList);
+                // print('제목: ${_titleController.text}');
+                // print(jsonEncode(_controller.document.toDelta().toJson()));
+                // print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
 
               }
             }

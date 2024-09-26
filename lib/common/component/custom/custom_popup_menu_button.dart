@@ -58,7 +58,6 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
             }
             break;
           case Menu.modify:
-            print('임시 content 출력: ${widget.content}');
             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostEditScreen(
               postId: widget.postId!,
               contents: widget.content!,
@@ -68,8 +67,8 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
             Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
             break;
           case Menu.delete:
-            print("------삭제 접수 postId: ${widget.postId}-------");
-            Navigator.pop(context);
+            showDeletePostDialog(context, widget.postId!);
+            // Navigator.pop(context);
             break;
         }
       },

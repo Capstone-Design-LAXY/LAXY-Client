@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_ranking_list_tile.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommunityMainTabView extends StatefulWidget {
@@ -201,7 +203,9 @@ class _CommunityMainTabView extends State<CommunityMainTabView>
               like: rankData.daily[i].like,
               shift: rankData.daily[i].change,
               onPressed: () {
-                print(rankData.daily[i].postId);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                    PostDetailScreen(postId: rankData.daily[i].postId,));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
               },
             )
         );
@@ -220,7 +224,9 @@ class _CommunityMainTabView extends State<CommunityMainTabView>
               like: rankData.weekly[i].like,
               shift: rankData.weekly[i].change,
               onPressed: () {
-                print(rankData.weekly[i].postId);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                    PostDetailScreen(postId: rankData.weekly[i].postId,));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
               },
             )
         );

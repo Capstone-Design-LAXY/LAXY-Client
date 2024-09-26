@@ -9,7 +9,9 @@ import 'package:laxy/common/component/list/comment_list_tile.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/list/tag_list_tile.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class MyCommentScreen extends StatefulWidget {
@@ -493,6 +495,12 @@ class _MyCommentScreenState extends State<MyCommentScreen> {
               isMyComment: true,
               isMyPost: false,
               isPosterComment: false,
+              onPressed: () {
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                  // TODO: 임시로 commentId를 사용 중 수정 필요
+                    PostDetailScreen(postId: commentData.comments[i].commentId,));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              },
             )
         );
       }

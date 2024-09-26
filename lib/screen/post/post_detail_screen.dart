@@ -51,15 +51,18 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         "tags": [
           {
             "tagId": 3765,
-            "tag_name": "Flutter"
+            "tag_name": "Flutter",
+            "grade": 1
           },
           {
             "tagId": 5432,
-            "tag_name": "API연동"
+            "tag_name": "API연동",
+            "grade": 5
           },
           {
             "tagId": 8907,
-            "tag_name": "개발팁"
+            "tag_name": "개발팁",
+            "grade": 11
           }
         ],
         "content": [
@@ -222,9 +225,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     // JSON 문자열을 RankData 객체로 파싱
     postDetailData = PostDetailData.fromJson(jsonDecode(jsonString));
     _checkAccessToken();
-    for (int i = 0; i < (postDetailData.post.content?.length ?? 0); i++) {
-      print(postDetailData.post.content?[i]);
-    }
+    // for (int i = 0; i < (postDetailData.post.content?.length ?? 0); i++) {
+    //   print(postDetailData.post.content?[i]);
+    // }
   }
 
   void _checkAccessToken() async{
@@ -237,12 +240,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   void _saveComment(String comment) {
     // 서버로 전송하거나 로컬에 저장하는 로직 작성
+    // TODO: 연결 필요
     print("Saved comment: $comment");
   }
 
   @override
   void dispose() {
-    print('Submitted Text: ${_commentController.text}');
+    // print('Submitted Text: ${_commentController.text}');
     _commentController.dispose();
     super.dispose();
   }
@@ -257,6 +261,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             CustomChip(
               tagId: postDetailData.post.tags![i].tagId,
               tagName: postDetailData.post.tags![i].tagName,
+              grade: postDetailData.post.tags![i].grade!,
             )
         );
       }

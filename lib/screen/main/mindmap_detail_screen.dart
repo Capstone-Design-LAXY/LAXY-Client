@@ -31,7 +31,7 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
             OrbitStar(
               grade: widget.orbit.satellites[i].grade,
               tagName: widget.orbit.satellites[i].tagName,
-              tId: widget.orbit.satellites[i].tId,
+              tagId: widget.orbit.satellites[i].tId,
               showName: true,
             )
         );
@@ -49,7 +49,7 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
               rotation: true,
               type: OrbitType.primary,
               primary: OrbitStar(
-                tId: widget.orbit.primary.tId,
+                tagId: widget.orbit.primary.tId,
                 showName: true,
                 tagName: widget.orbit.primary.tagName,
                 grade: widget.orbit.primary.grade,

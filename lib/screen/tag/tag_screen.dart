@@ -6,7 +6,9 @@ import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
 import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class TagScreen extends StatefulWidget {
@@ -407,7 +409,9 @@ class _TagScreenState extends State<TagScreen> {
               imageURL: tagData.posts[i].imageURL,
               dateTime: tagData.posts[i].createdAt,
               onPressed: () {
-                print(tagData.posts[i].postId);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                    PostDetailScreen(postId: tagData.posts[i].postId,));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
               },
             )
         );

@@ -10,7 +10,7 @@ class OrbitStar extends StatefulWidget {
   final int? grade;
   final bool? showName;
   final String? tagName;
-  final int? tId;
+  final int? tagId;
   final bool rotation;
 
   const OrbitStar({
@@ -19,7 +19,7 @@ class OrbitStar extends StatefulWidget {
     this.grade = 1,
     this.showName = false,
     this.tagName = "tagName",
-    this.tId,
+    this.tagId,
     this.rotation = false,
   });
 
@@ -66,11 +66,11 @@ class _OrbitStarState extends State<OrbitStar>
         print('------------새로 고침------------');
       } else if (widget.grade! > 5) {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            CommunityScreen(tagName: 'tagName', tagId: 123,));
+            CommunityScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
         Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
       } else {
         PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-            TagScreen(tagName: 'tagName', tagId: 123123,));
+            TagScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
         Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
       }
     }

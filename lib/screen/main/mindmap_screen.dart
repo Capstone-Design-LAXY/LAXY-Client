@@ -43,7 +43,7 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
           OrbitStar(
             grade: orbitData.orbit[index].satellites[i].grade,
             tagName: orbitData.orbit[index].satellites[i].tagName,
-            tId: orbitData.orbit[index].satellites[i].tId,
+            tagId: orbitData.orbit[index].satellites[i].tId,
             rotation: true,
           )
         );
@@ -64,7 +64,7 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
             grade: orbitData.orbit[i].primary.grade,
             tagName: orbitData.orbit[i].primary.tagName,
             showName: true,
-            tId: orbitData.orbit[i].primary.tId,
+            tagId: orbitData.orbit[i].primary.tId,
           ),
           type: OrbitType.satellite,
           satellites: _buildInnerSatellites(i),

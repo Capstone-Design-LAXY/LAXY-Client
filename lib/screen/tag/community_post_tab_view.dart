@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommunityPostTabView extends StatefulWidget {
@@ -400,7 +402,9 @@ class _CommunityPostTabView extends State<CommunityPostTabView>
               imageURL: postData.posts[i].imageURL,
               dateTime: postData.posts[i].createdAt,
               onPressed: () {
-                print(postData.posts[i].postId);
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                    PostDetailScreen(postId: postData.posts[i].postId,));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
               },
             )
         );

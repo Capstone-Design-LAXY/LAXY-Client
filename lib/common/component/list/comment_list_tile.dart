@@ -14,6 +14,7 @@ class CommentListTile extends StatefulWidget {
   final bool? isMyPost;
   final bool? isMyComment;
   final bool? isPosterComment;
+  final VoidCallback? onPressed;
 
   const CommentListTile({
     required this.commentId,
@@ -26,6 +27,7 @@ class CommentListTile extends StatefulWidget {
     this.isMyComment = false,
     this.isPosterComment = false,
     this.updatedAt,
+    this.onPressed,
     Key? key,
   }) : super(key: key);
 
@@ -36,6 +38,13 @@ class CommentListTile extends StatefulWidget {
 class _CommentListTileState extends State<CommentListTile> {
   late bool isLiked;
   bool isExpanded = false;
+
+  // 기본 onPressed 동작 정의
+  void _defaultOnPressed() {
+    setState(() {
+      isExpanded = !isExpanded;
+    });
+  }
 
   @override
   void initState() {
@@ -53,11 +62,7 @@ class _CommentListTileState extends State<CommentListTile> {
           width: 1,
         )
       ),
-      onPressed: () {
-        setState(() {
-          isExpanded = !isExpanded;
-        });
-      },
+      onPressed: widget.onPressed ?? _defaultOnPressed,
       onLongPress: () {
         showCommentDialog(context, widget.commentId, widget.content!, widget.isMyPost!, widget.isMyComment!);
       },

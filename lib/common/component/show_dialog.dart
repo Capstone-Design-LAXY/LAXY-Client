@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_modal_bottom_sheet_builder.dart';
+import 'package:laxy/screen/user/login_screen.dart';
 
 
 void showErrorDialog(
@@ -210,7 +211,8 @@ void showCommentDialog(
               visible: !isMyComment,
               child: ListTile(
                 onTap: () {
-                  Navigator.pop(context); // 다이얼로그 닫기
+                  showReportCommentDialog(context, commentId);
+                  // Navigator.pop(context); // 다이얼로그 닫기
                   // 신고하기 동작
                   print('---------신고 접수 commentId: ${commentId}-----------');
                 },
@@ -248,7 +250,8 @@ void showCommentDialog(
               visible: isMyPost || isMyComment,
               child: ListTile(
                 onTap: () {
-                  Navigator.pop(context); // 다이얼로그 닫기
+                  showDeleteCommentDialog(context, commentId);
+                  // Navigator.pop(context); // 다이얼로그 닫기
                   // 삭제하기 동작
                   print('---------삭제 접수 commentId: ${commentId}-----------');
                 },
@@ -338,6 +341,169 @@ void showWithdrawalDialog(
               Navigator.of(context).pop();
             },
             child: Text('탈퇴', style: TextStyle(color: Colors.red),),
+          ),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('취소'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showDeletePostDialog(
+    BuildContext context,
+    int postId,
+    ) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFFFFFFFF),
+        title: Text('게시글 삭제'),
+        content: Text('정말로 삭제 하시겠습니까?\n삭제된 게시글은 복구되지 않습니다.'),
+        actions: <Widget>[
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              // TODO: 연결 필요
+              print('------게시글 삭제 ${postId}-------');
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            child: Text('삭제', style: TextStyle(color: Colors.red),),
+          ),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('취소'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showDeleteCommentDialog(
+    BuildContext context,
+    int commentId,
+    ) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFFFFFFFF),
+        title: Text('댓글 삭제'),
+        content: Text('정말로 삭제 하시겠습니까?\n삭제된 댓글은 복구되지 않습니다.'),
+        actions: <Widget>[
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              // TODO: 연결 필요
+              print('------댓글 삭제 ${commentId}-------');
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            child: Text('삭제', style: TextStyle(color: Colors.red),),
+          ),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('취소'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showReportCommentDialog(
+    BuildContext context,
+    int commentId
+    ) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFFFFFFFF),
+        title: Text('신고하기'),
+        content: Text('해당 댓글을 신고하시겠습니까?'),
+        actions: <Widget>[
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              // TODO: 연결 필요
+              print('------신고 접수 postId: ${commentId}-------');
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            child: Text('신고', style: TextStyle(color: Colors.red),),
+          ),
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('취소'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void showLoginDialog(
+    BuildContext context,
+    ) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color(0xFFFFFFFF),
+        title: Text('로그인 권고'),
+        content: Text('해당 기능은 로그인 후 사용가능합니다.\n로그인 하시겠습니까?'),
+        actions: <Widget>[
+          ElevatedButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Color(0xFFFFFFFF),
+              foregroundColor: Color(0xFF5589D3),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+            },
+            child: Text('로그인', style: TextStyle(color: Colors.red),),
           ),
           ElevatedButton(
             style: TextButton.styleFrom(

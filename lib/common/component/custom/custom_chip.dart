@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/tag/community_screen.dart';
+import 'package:laxy/screen/tag/tag_screen.dart';
 
 class CustomChip extends StatelessWidget {
   final int tagId;
   final String tagName;
+  final int grade;
 
   const CustomChip({
     required this.tagId,
     required this.tagName,
+    required this.grade,
     super.key
   });
 
@@ -20,7 +25,19 @@ class CustomChip extends StatelessWidget {
             tagName,
             style: TextStyle(color: Colors.white),
           ),
-          onSelected: (value) => {},
+          onSelected: (value) {
+            if (grade <= 5) {
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                TagScreen(tagId: tagId, tagName: tagName),
+              );
+              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            } else {
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
+                CommunityScreen(tagId: tagId, tagName: tagName),
+              );
+              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            }
+          },
         )
     );
   }
