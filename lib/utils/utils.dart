@@ -70,7 +70,8 @@ List<Map<String, dynamic>> extractQuillController(QuillController controller) {
   if (controller == null) {
     return [];
   }
-  String jsonString = escapeSpecialCharacters(jsonEncode(controller.document.toDelta().toJson()));
+  // String jsonString = escapeSpecialCharacters(jsonEncode(controller.document.toDelta().toJson()));
+  String jsonString = jsonEncode(controller.document.toDelta().toJson());
   List<Map<String, dynamic>> content = List<Map<String, dynamic>>.from(jsonDecode(jsonString));
   return content;
 }

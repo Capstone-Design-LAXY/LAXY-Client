@@ -5,9 +5,12 @@ import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_chip_tags.dart';
 import 'package:laxy/common/component/list/list_header.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/component/quill/custom_quill_writer.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/layout/post_layout.dart';
+import 'package:laxy/screen/post/post_detail_screen.dart';
+import 'package:laxy/screen/post/temp_post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class PostRegisterScreen extends StatefulWidget {
@@ -52,11 +55,18 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
               }
               else {
                 Navigator.pop(context);
-                // print('작성 종료');
-                // print(tagList);
-                // print('제목: ${_titleController.text}');
-                // print(jsonEncode(_controller.document.toDelta().toJson()));
-                // print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TempPostDetailScreen(
+                  postId: 14141252,
+                  contents: extractQuillController(_controller),
+                  title: _titleController.text,
+                  tagList: tagList,
+                ));
+                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                print('작성 종료');
+                print(tagList);
+                print('제목: ${_titleController.text}');
+                print(jsonEncode(_controller.document.toDelta().toJson()));
+                print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
               }
               // print(escapeSpecialCharacters(jsonEncode(_controller.document.toDelta().toJson())));
             }
