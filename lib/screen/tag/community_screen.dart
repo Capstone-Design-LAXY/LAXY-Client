@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
-import 'package:laxy/screen/main/trends_main_tab_view.dart';
-import 'package:laxy/screen/main/trends_post_tab_view.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/screen/tag/community_main_tab_view.dart';

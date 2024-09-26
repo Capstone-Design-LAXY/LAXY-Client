@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_info.dart';
+import 'package:laxy/utils/utils.dart';
 
 class UserListTile extends StatelessWidget {
-  final String? title;
-  final int? bookmarked;
-  final int? post;
-  final int? shift;
-  final int? rank;
+  final String? nickname;
+  final int? comments;
+  final int? posts;
+  final DateTime? updatedAt;
 
   const UserListTile({
-    this.rank = 1,
-    this.title = 'nickname',
-    this.bookmarked = 100,
-    this.post = 100,
-    this.shift,
+    this.nickname = 'nickname',
+    this.comments = 100,
+    this.posts = 100,
+    this.updatedAt,
     Key? key,
   }) : super(key: key);
 
@@ -31,16 +30,16 @@ class UserListTile extends StatelessWidget {
           children: [
             SizedBox(width: 6,),
             // 타이틀
-            Expanded(child: Text('$title', overflow: TextOverflow.ellipsis,)),
-            Text('24-07-05 23:31', style: TextStyle(fontSize: 10)),
+            Expanded(child: Text('$nickname', overflow: TextOverflow.ellipsis,)),
+            Text(formatDate(updatedAt!), style: TextStyle(fontSize: 10)),
             SizedBox(width: 2,),
             ListInfo(
               icon: Icons.description_outlined,
-              num: post,
+              num: posts,
             ),
             ListInfo(
               icon: Icons.comment_outlined,
-              num: bookmarked,
+              num: comments,
             ),
           ],
         ),

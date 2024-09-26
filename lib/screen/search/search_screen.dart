@@ -4,9 +4,7 @@ import 'package:laxy/screen/search/search_community_tab_view.dart';
 import 'package:laxy/screen/search/search_post_tab_view.dart';
 import 'package:laxy/screen/search/search_tag_tab_view.dart';
 import 'package:laxy/screen/search/search_user_tab_view.dart';
-import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
-import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
 
 class SearchScreen extends StatefulWidget {
   final String searchTerm; // 검색어를 전달받기 위한 변수
@@ -87,10 +85,10 @@ class _SearchScreenState extends State<SearchScreen>
                   child: TabBarView(
                     controller: controller,
                     children: [
-                      SearchCommunityTabView(),
-                      SearchTagTabView(),
-                      SearchPostTabView(),
-                      SearchUserTabView(),
+                      SearchCommunityTabView(searchTerm: widget.searchTerm,),
+                      SearchTagTabView(searchTerm: widget.searchTerm,),
+                      SearchPostTabView(searchTerm: widget.searchTerm,),
+                      SearchUserTabView(searchTerm: widget.searchTerm,),
                     ],
                   ),
                 ),

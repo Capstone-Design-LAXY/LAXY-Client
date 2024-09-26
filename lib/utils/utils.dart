@@ -156,6 +156,7 @@ class Tag {
   final int? count;
   final int? bookmarked;
   final int? change;
+  final int? grade;
 
   Tag({
     required this.tagId,
@@ -163,6 +164,7 @@ class Tag {
     this.count,
     this.bookmarked,
     this.change,
+    this.grade,
   });
 
   // JSON 데이터를 Tag 객체로 변환
@@ -173,6 +175,7 @@ class Tag {
       count: json['count'],
       bookmarked: json['bookmarked'],
       change: json['change'],
+      grade: json['grade'],
     );
   }
 }
@@ -465,6 +468,68 @@ class Comment {
       likes: json['likes'],
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       userId: json['user_id'],
+    );
+  }
+}
+
+class SearchTagData {
+  final List<Tag> tags;
+
+  SearchTagData({
+    required this.tags,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory SearchTagData.fromJson(Map<String, dynamic> json) {
+    return SearchTagData(
+      tags: (json['tags'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList(),
+    );
+  }
+}
+
+// User 데이터 모델
+class User {
+  final int userId;
+  final String? nickname;
+  final int? posts;
+  final int? comments;
+  final DateTime? updatedAt;
+
+  User({
+    required this.userId,
+    this.nickname,
+    this.posts,
+    this.comments,
+    this.updatedAt,
+  });
+
+  // JSON 데이터를 Post 객체로 변환
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      userId: json['user_id'],
+      nickname: json['nickname'],
+      posts: json['posts'],
+      comments: json['comments'],
+      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+    );
+  }
+}
+
+class SearchUserData {
+  final List<User> users;
+
+  SearchUserData({
+    required this.users,
+  });
+
+  // JSON 데이터를 RankData 객체로 변환
+  factory SearchUserData.fromJson(Map<String, dynamic> json) {
+    return SearchUserData(
+      users: (json['users'] as List)
+          .map((data) => User.fromJson(data))
+          .toList(),
     );
   }
 }

@@ -17,7 +17,9 @@ class BookmarkedScreen extends StatelessWidget {
     List<Widget> _buildPostListTiles() {
       List<Widget> tiles = [];
       for (int i = 1; i <= 30; i++) {
-        tiles.add(TagListTile(grade: 1 + i % 11,));
+        tiles.add(TagListTile(
+          tagId: 123,
+        ));
       }
       return tiles;
     }

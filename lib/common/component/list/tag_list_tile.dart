@@ -4,13 +4,15 @@ import 'package:laxy/common/component/list/list_info.dart';
 import 'package:laxy/common/component/orbit_star.dart';
 
 class TagListTile extends StatelessWidget {
-  final String tag_name;
+  final int tagId;
+  final String tagName;
   final int bookmarked;
   final int posts;
   final int grade;
 
   const TagListTile({
-    this.tag_name = 'tag_name',
+    required this.tagId,
+    this.tagName = 'tag_name',
     this.bookmarked = 110,
     this.posts = 100,
     this.grade = 5,
@@ -27,7 +29,9 @@ class TagListTile extends StatelessWidget {
           width: 1,
         )
       ),
-      onPressed: () {},
+      onPressed: () {
+        print('선택된 태그 번호: ${tagId}');
+      },
       elevation: 0,
       padding: EdgeInsets.zero,
       child: Row(
@@ -48,7 +52,7 @@ class TagListTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HorizontalExpanded(child: Text(tag_name, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
+                  HorizontalExpanded(child: Text(tagName, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
                   SizedBox(height: 2,),
                   Row(
                     children: [
