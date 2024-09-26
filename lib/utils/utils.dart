@@ -202,12 +202,12 @@ class DrawerData {
 
 // Post 데이터 모델
 class Post {
-  final int post_id;
+  final int postId;
   final String title;
   final List<Map<String, dynamic>>? content;
   final String? nickname;
   final String? summary;
-  final int? user_id;
+  final int? userId;
   final int? comments;
   final int? like;
   final int? viewed;
@@ -219,10 +219,10 @@ class Post {
   final List<Tag>? tags;
 
   Post({
-    required this.post_id,
+    required this.postId,
     required this.title,
     this.comments,
-    this.user_id,
+    this.userId,
     this.nickname,
     this.like,
     this.change,
@@ -239,8 +239,8 @@ class Post {
   // JSON 데이터를 Post 객체로 변환
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      post_id: json['post_id'],
-      user_id: json['user_id'],
+      postId: json['post_id'],
+      userId: json['user_id'],
       title: json['title'],
       nickname: json['nickname'],
       comments: json['comments'],
@@ -265,8 +265,8 @@ class Post {
   Post toggleIsLiked() {
     return Post(
       isLiked: !isLiked!,
-      post_id: post_id,
-      user_id: user_id,
+      postId: postId,
+      userId: userId,
       title: title,
       nickname: nickname,
       comments: comments,

@@ -276,8 +276,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             isLiked: postDetailData.comments[i].isLiked,
             updatedAt: postDetailData.comments[i].updatedAt,
             isMyComment: postDetailData.comments[i].userId == myUserId,
-            isMyPost: postDetailData.post.user_id == myUserId,
-            isPosterComment: postDetailData.comments[i].userId == postDetailData.post.user_id,
+            isMyPost: postDetailData.post.userId == myUserId,
+            isPosterComment: postDetailData.comments[i].userId == postDetailData.post.userId,
           )
         );
       }
@@ -286,7 +286,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
     List<Menu> _buildPopupMenu() {
       List<Menu> menuItems = [Menu.viewer];
-      if(postDetailData.post.user_id != myUserId) {
+      if(postDetailData.post.userId != myUserId) {
         menuItems.add(Menu.report);
       }
       else {
@@ -346,7 +346,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           ),
           CustomPopupMenuButton(
             menuItems: _buildPopupMenu(),
-            postId: postDetailData.post.post_id,
+            postId: postDetailData.post.postId,
             title: postDetailData.post.title,
             content: postDetailData.post.content,
             tags: _TagToString(),

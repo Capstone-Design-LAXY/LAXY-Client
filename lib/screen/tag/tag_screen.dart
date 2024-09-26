@@ -407,7 +407,7 @@ class _TagScreenState extends State<TagScreen> {
               imageURL: tagData.posts[i].imageURL,
               dateTime: tagData.posts[i].createdAt,
               onPressed: () {
-                print(tagData.posts[i].post_id);
+                print(tagData.posts[i].postId);
               },
             )
         );

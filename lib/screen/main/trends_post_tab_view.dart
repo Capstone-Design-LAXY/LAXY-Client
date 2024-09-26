@@ -400,7 +400,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
               imageURL: postData.posts[i].imageURL,
               dateTime: postData.posts[i].createdAt,
               onPressed: () {
-                print(postData.posts[i].post_id);
+                print(postData.posts[i].postId);
               },
             )
         );

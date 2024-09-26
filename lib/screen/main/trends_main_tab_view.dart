@@ -201,7 +201,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
               like: rankData.daily[i].like,
               shift: rankData.daily[i].change,
               onPressed: () {
-                print(rankData.daily[i].post_id);
+                print(rankData.daily[i].postId);
               },
             )
         );
@@ -220,7 +220,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
               like: rankData.weekly[i].like,
               shift: rankData.weekly[i].change,
               onPressed: () {
-                print(rankData.weekly[i].post_id);
+                print(rankData.weekly[i].postId);
               },
             )
         );
