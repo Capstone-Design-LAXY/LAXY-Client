@@ -7,8 +7,10 @@ import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
+import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class TagScreen extends StatefulWidget {
@@ -30,6 +32,7 @@ const List<String> criteriaList = <String>['최신순', '좋아요', '조회수'
 class _TagScreenState extends State<TagScreen> {
   String dropdownValueCriteria = criteriaList.first;
   late TagData tagData;
+  bool isLogin = false;
 
   @override
   void initState() {
@@ -391,6 +394,15 @@ class _TagScreenState extends State<TagScreen> {
     tagData = TagData.fromJson(jsonDecode(jsonString));
 
     print(tagData.posts.length);
+    _checkAccessToken();
+  }
+
+  void _checkAccessToken() async{
+    bool loginStatus = await isAccessToken();
+    setState(() {
+      isLogin = loginStatus;
+    });
+    // print(isLogin);
   }
 
   // TODO: 북마크 기능 추가, 신고 모달
@@ -425,14 +437,19 @@ class _TagScreenState extends State<TagScreen> {
         children: [
           IconButton(
             icon: Icon(
-                tagData.isBookmarked
+                tagData.isBookmarked && isLogin
                   ? Icons.bookmark
                   : Icons.bookmark_outline,
             ),
             onPressed: () {
-              setState(() {
-                tagData = tagData.toggleIsBookmarked();
-              });
+              if (isLogin){
+                setState(() {
+                  tagData = tagData.toggleIsBookmarked();
+                });
+              }
+              else {
+                showLoginDialog(context);
+              }
             },
           ),
           CustomPopupMenuButton(

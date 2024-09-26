@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommentListTile extends StatefulWidget {
@@ -38,6 +39,7 @@ class CommentListTile extends StatefulWidget {
 class _CommentListTileState extends State<CommentListTile> {
   late bool isLiked;
   bool isExpanded = false;
+  bool isLogin = false;
 
   // 기본 onPressed 동작 정의
   void _defaultOnPressed() {
@@ -50,6 +52,15 @@ class _CommentListTileState extends State<CommentListTile> {
   void initState() {
     super.initState();
     isLiked = widget.isLiked!;
+    _checkAccessToken();
+  }
+
+  void _checkAccessToken() async{
+    bool loginStatus = await isAccessToken();
+    setState(() {
+      isLogin = loginStatus;
+    });
+    // print(isLogin);
   }
 
   @override
@@ -89,10 +100,15 @@ class _CommentListTileState extends State<CommentListTile> {
                   Spacer(),
                   InkWell(
                     onTap: () {
-                      setState(() {
-                        isLiked = !isLiked;
-                        // TODO: 동작 추가 필요
-                      });
+                      if (isLogin){
+                        setState(() {
+                          isLiked = !isLiked;
+                          // TODO: 동작 추가 필요
+                        });
+                      }
+                      else {
+                        showLoginDialog(context);
+                      }
                     },
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                     child: Padding(
@@ -100,7 +116,7 @@ class _CommentListTileState extends State<CommentListTile> {
                       child: Row(
                         children: [
                           Icon(
-                            isLiked
+                            isLiked && isLogin
                               ? Icons.favorite
                               : Icons.favorite_outline,
                             size: 15,

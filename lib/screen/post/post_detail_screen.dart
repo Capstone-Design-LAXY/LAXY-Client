@@ -12,6 +12,7 @@ import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/list/comment_list_tile.dart';
 import 'package:laxy/common/component/custom/custom_chip.dart';
 import 'package:laxy/common/component/quill/custom_quill_reader.dart';
+import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 import 'package:laxy/utils/auth_utils.dart';
@@ -36,6 +37,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   TextEditingController _commentController = TextEditingController();
   late PostDetailData postDetailData;
   int myUserId = 0;
+  bool isLogin = false;
 
   @override
   void initState() {
@@ -230,10 +232,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     // }
   }
 
+
   void _checkAccessToken() async{
     int userId = await getUserId();
+    bool loginStatus = await isAccessToken();
     setState(() {
       myUserId = userId;
+      isLogin = loginStatus;
     });
     // print(userId);
   }
@@ -318,35 +323,45 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         title: '게시글 상세',
         children: [
           CustomIconButton(
-            icon: postDetailData.post.isLiked!
+            icon: postDetailData.post.isLiked! && isLogin
               ? Icons.favorite
               : Icons.favorite_outline,
             num: postDetailData.post.like,
             onPressed: () {
-              setState(() {
-                postDetailData = postDetailData.toggleIsLiked();
-                // TODO: 추가 동작 필요
-              });
+              if (isLogin){
+                setState(() {
+                  postDetailData = postDetailData.toggleIsLiked();
+                  // TODO: 추가 동작 필요
+                });
+              }
+              else {
+                showLoginDialog(context);
+              }
             },
           ),
           CustomIconButton(
             icon: Icons.add_comment_outlined,
             num: postDetailData.comments.length,
             onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (BuildContext context) {
-                  return CustomModalBottomSheetBuilder(controller: _commentController,);
-                },
-                isScrollControlled: true,  // 스크롤이 가능하도록 설정
-              ).then((_) {
-                // BottomSheet가 닫힌 후 실행되는 코드
-                String commentText = _commentController.text;
-                // TODO: 저장할 로직 추가
-                _saveComment(commentText);
-                // TextEditingController 비우기
-                _commentController.clear();
-              });
+              if (isLogin){
+                showModalBottomSheet(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CustomModalBottomSheetBuilder(controller: _commentController,);
+                  },
+                  isScrollControlled: true,  // 스크롤이 가능하도록 설정
+                ).then((_) {
+                  // BottomSheet가 닫힌 후 실행되는 코드
+                  String commentText = _commentController.text;
+                  // TODO: 저장할 로직 추가
+                  _saveComment(commentText);
+                  // TextEditingController 비우기
+                  _commentController.clear();
+                });
+              }
+              else {
+                showLoginDialog(context);
+              }
             },
           ),
           CustomPopupMenuButton(

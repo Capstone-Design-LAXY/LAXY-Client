@@ -503,12 +503,12 @@ void showLoginDialog(
                 MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
-            child: Text('로그인', style: TextStyle(color: Colors.red),),
+            child: Text('로그인', style: TextStyle(color: Color(0xFF5589D3),),),
           ),
           ElevatedButton(
             style: TextButton.styleFrom(
               backgroundColor: Color(0xFFFFFFFF),
-              foregroundColor: Color(0xFF5589D3),
+              foregroundColor: Color(0xFF000000),
             ),
             onPressed: () {
               Navigator.of(context).pop();
