@@ -35,6 +35,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(onPressed: () {Navigator.of(context).pop();}, icon: const Icon(Icons.arrow_back),),
       actions: children,
       titleSpacing: 1,
+      elevation: 1.0,  // 그림자 추가
+      shadowColor: Color(0xFF000000),
     );
   }
 

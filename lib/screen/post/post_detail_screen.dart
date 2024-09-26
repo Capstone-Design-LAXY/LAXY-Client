@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
@@ -32,6 +33,7 @@ const List<String> criteriaList = <String>['인기순', '최신순', 'MY'];
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
   String dropdownValueCriteria = criteriaList.first;
+  TextEditingController _commentController = TextEditingController();
   late PostDetailData postDetailData;
   int myUserId = 0;
 
@@ -89,7 +91,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           "comment_id": 583749,
           "user_id": 912734,
           "nickname": "개발자준",
-          "contents": "저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다!",
+          "contents": "저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다! 저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다!",
           "likes": 89,
           "isLiked": true,
           "updatedAt": "2024-09-22T17:05:00.000Z"
@@ -101,7 +103,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     // JSON 문자열을 RankData 객체로 파싱
     postDetailData = PostDetailData.fromJson(jsonDecode(jsonString));
     _checkAccessToken();
-    print(postDetailData.post.content);
+    // print(postDetailData.comments[0].userId);
   }
 
   void _checkAccessToken() async{
@@ -110,6 +112,18 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
       myUserId = userId;
     });
     // print(userId);
+  }
+
+  void _saveComment(String comment) {
+    // 서버로 전송하거나 로컬에 저장하는 로직 작성
+    print("Saved comment: $comment");
+  }
+
+  @override
+  void dispose() {
+    print('Submitted Text: ${_commentController.text}');
+    _commentController.dispose();
+    super.dispose();
   }
 
   @override
@@ -143,13 +157,34 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             isMyComment: postDetailData.comments[i].userId == myUserId,
             isMyPost: postDetailData.post.user_id == myUserId,
             isPosterComment: postDetailData.comments[i].userId == postDetailData.post.user_id,
-            onPressed: () {
-              print(postDetailData.comments[i].commentId);
-            },
           )
         );
       }
       return comment;
+    }
+
+    List<Menu> _buildPopupMenu() {
+      List<Menu> menuItems = [Menu.viewer];
+      if(postDetailData.post.user_id != myUserId) {
+        menuItems.add(Menu.report);
+      }
+      else {
+        menuItems.add(Menu.modify);
+        menuItems.add(Menu.delete);
+      }
+      print(menuItems);
+      return menuItems;
+    }
+
+    List<String> _TagToString() {
+      List<String> tags = [];
+      if(postDetailData.post.tags == null){
+        return tags;
+      }
+      for (int i = 0; i < postDetailData.post.tags!.length; i++) {
+        tags.add(postDetailData.post.tags![i].tagName);
+      }
+      return tags;
     }
 
     return PostLayout(
@@ -173,16 +208,27 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             num: postDetailData.comments.length,
             onPressed: () {
               showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return CustomModalBottomSheetBuilder();
-                  }
-              );
+                context: context,
+                builder: (BuildContext context) {
+                  return CustomModalBottomSheetBuilder(controller: _commentController,);
+                },
+                isScrollControlled: true,  // 스크롤이 가능하도록 설정
+              ).then((_) {
+                // BottomSheet가 닫힌 후 실행되는 코드
+                String commentText = _commentController.text;
+                // TODO: 저장할 로직 추가
+                _saveComment(commentText);
+                // TextEditingController 비우기
+                _commentController.clear();
+              });
             },
           ),
           CustomPopupMenuButton(
-            menuItems: Menu.values,
+            menuItems: _buildPopupMenu(),
             postId: postDetailData.post.post_id,
+            title: postDetailData.post.title,
+            content: postDetailData.post.content,
+            tags: _TagToString(),
           ),
         ],
       ),

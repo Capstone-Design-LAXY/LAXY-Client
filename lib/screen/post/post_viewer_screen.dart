@@ -53,7 +53,7 @@ class _PostViewerScreenState extends State<PostViewerScreen> {
                     '게시글 제목인데 이런식으로 50자 정도 가능함',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.blue,
+                      // color: Colors.blue,
                     ),
                   ),
                 ),

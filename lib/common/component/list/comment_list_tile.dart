@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
+import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommentListTile extends StatefulWidget {
@@ -10,7 +11,6 @@ class CommentListTile extends StatefulWidget {
   final int? likes;
   final String? content;
   final bool? isLiked;
-  final Function() onPressed;
   final bool? isMyPost;
   final bool? isMyComment;
   final bool? isPosterComment;
@@ -26,7 +26,6 @@ class CommentListTile extends StatefulWidget {
     this.isMyComment = false,
     this.isPosterComment = false,
     this.updatedAt,
-    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
@@ -36,6 +35,7 @@ class CommentListTile extends StatefulWidget {
 
 class _CommentListTileState extends State<CommentListTile> {
   late bool isLiked;
+  bool isExpanded = false;
 
   @override
   void initState() {
@@ -53,8 +53,14 @@ class _CommentListTileState extends State<CommentListTile> {
           width: 1,
         )
       ),
-      onPressed: widget.onPressed,
-      onLongPress: () {print('longPress');},
+      onPressed: () {
+        setState(() {
+          isExpanded = !isExpanded;
+        });
+      },
+      onLongPress: () {
+        showCommentDialog(context, widget.commentId, widget.content!, widget.isMyPost!, widget.isMyComment!);
+      },
       elevation: 0,
       padding: EdgeInsets.zero,
       child: HorizontalExpanded(
@@ -109,8 +115,8 @@ class _CommentListTileState extends State<CommentListTile> {
               Text(
                 widget.content!,
                 style: TextStyle(fontSize: 14, height: 1.1),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
+                maxLines: isExpanded? null: 3,
+                overflow: isExpanded? null: TextOverflow.ellipsis,
               ),
             ],
           ),

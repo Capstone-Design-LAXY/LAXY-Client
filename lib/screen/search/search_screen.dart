@@ -64,6 +64,8 @@ class _SearchScreenState extends State<SearchScreen>
           backgroundColor: const Color(0xFFFFFFFF),
           foregroundColor: const Color(0xFF141218),
           surfaceTintColor: const Color(0xFFFFFFFF),
+          elevation: 1.0,  // 그림자 추가
+          shadowColor: Color(0xFF000000),
         ),
         body: Container(
           color: Color(0xFFE2E6EA),

@@ -19,9 +19,9 @@ class MyCommentScreen extends StatelessWidget {
       List<Widget> tiles = [];
       for (int i = 1; i <= 30; i++) {
         if (i%3 == 0)
-          tiles.add(CommentListTile(onPressed: () {}, commentId: 1, userId: 1,));
+          tiles.add(CommentListTile(commentId: 1, userId: 1,));
         else
-          tiles.add(CommentListTile(onPressed: () {}, commentId: 1, userId: 1,));
+          tiles.add(CommentListTile(commentId: 1, userId: 1,));
       }
       return tiles;
     }
