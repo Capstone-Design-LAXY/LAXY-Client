@@ -9,9 +9,11 @@ import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 
 class PostViewerScreen extends StatefulWidget {
+  final String title;
   final List<Map<String, dynamic>> contents;
 
   const PostViewerScreen({
+    required this.title,
     required this.contents,
     super.key
   });
@@ -44,30 +46,12 @@ class _PostViewerScreenState extends State<PostViewerScreen> {
   @override
   Widget build(BuildContext context) {
     return PostLayout(
-      appBar: CustomAppBar(title: '게시글 뷰어',),
+      appBar: CustomAppBar(title: widget.title,),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 3.0, top: 8),
-              child: HorizontalExpanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF), // 하얀색 배경
-                    borderRadius: BorderRadius.circular(5.0), // 둥근 테두리
-                  ),
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    '게시글 제목인데 이런식으로 50자 정도 가능함',
-                    style: TextStyle(
-                      fontSize: 16,
-                      // color: Colors.blue,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            SizedBox(height: 10,),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -92,6 +76,7 @@ class _PostViewerScreenState extends State<PostViewerScreen> {
                 ),
               ),
             ),
+            SizedBox(height: 10,),
           ],
         ),
       )

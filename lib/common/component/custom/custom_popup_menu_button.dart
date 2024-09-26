@@ -41,6 +41,7 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
         switch (item) {
           case Menu.viewer:
             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostViewerScreen(
+              title: widget.title!,
               contents: widget.content!,
             ));
             Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
