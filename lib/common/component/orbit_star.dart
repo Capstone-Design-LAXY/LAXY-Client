@@ -54,10 +54,11 @@ class _OrbitStarState extends State<OrbitStar>
 
     void _defaultOnPressed() {
       if (widget.grade! > 5) {
-        imagePath = 'assets/star/LAXY_star${widget.grade! - 5}.png';
+        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
+        Navigator.push(context, pageRouteWithAnimation.fadeTransition());
       } else {
-        imagePath = 'assets/moon/LAXY_day_moon${widget.grade}.png';
-        size = 100;
+        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
+        Navigator.push(context, pageRouteWithAnimation.fadeTransition());
       }
     }
     // 이미지 불러오기
