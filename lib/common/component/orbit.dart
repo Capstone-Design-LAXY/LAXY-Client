@@ -50,7 +50,7 @@ class _OrbitState extends State<Orbit>
     final double angle = 2 * pi / len;
 
     // primary가 null이면 지구를 사용
-    final Widget primaryWidget = widget.primary ?? OrbitStar(isGlobe: true, onPressed: widget.globePressed,);
+    final Widget primaryWidget = widget.primary ?? OrbitStar();
 
     return Transform.scale(
       // satellite 일때 축소

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/orbit.dart';
+import 'package:laxy/common/component/temp_orbit.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/common/layout/mindmap_layout.dart';
@@ -44,17 +45,16 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
         children: [
           Background(rotate: true,),
           Center(
-            child: Orbit(
+            child: TempOrbit(
               onPressed: () {Navigator.of(context).pop();},
-              rotation: true,
-              type: OrbitType.primary,
+              satellites: _buildSatellites(),
+              type: OrbitType.satellite,
               primary: OrbitStar(
                 tagId: widget.orbit.primary.tId,
                 showName: true,
                 tagName: widget.orbit.primary.tagName,
                 grade: widget.orbit.primary.grade,
               ),
-              satellites: _buildSatellites(),
             ),
           ),
           // FAB, 세그먼트 버튼
