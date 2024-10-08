@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/orbit.dart';
-import 'package:laxy/common/component/temp_orbit.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/common/layout/mindmap_layout.dart';

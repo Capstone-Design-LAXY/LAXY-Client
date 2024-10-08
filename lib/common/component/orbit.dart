@@ -48,6 +48,14 @@ class _OrbitState extends State<Orbit> with SingleTickerProviderStateMixin {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
+          if (widget.type == OrbitType.primary)
+            GestureDetector(
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.transparent, // 클릭 가능 영역을 위해 투명한 배경
+              ),
+            ),
           // 궤도
           Container(
             width: 380,

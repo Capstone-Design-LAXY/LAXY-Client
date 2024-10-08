@@ -4,7 +4,6 @@ import 'package:laxy/common/component/globe.dart';
 import 'package:laxy/common/component/orbit.dart';
 import 'package:laxy/common/component/orbit_star.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
-import 'package:laxy/common/component/temp_orbit.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/common/layout/mindmap_layout.dart';
