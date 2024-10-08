@@ -45,10 +45,10 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
         children: [
           Background(rotate: true,),
           Center(
-            child: TempOrbit(
+            child: Orbit(
               onPressed: () {Navigator.of(context).pop();},
               satellites: _buildSatellites(),
-              type: OrbitType.satellite,
+              type: OrbitType.primary,
               primary: OrbitStar(
                 tagId: widget.orbit.primary.tId,
                 showName: true,
