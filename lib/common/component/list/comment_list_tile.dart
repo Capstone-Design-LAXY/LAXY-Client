@@ -41,6 +41,7 @@ class _CommentListTileState extends State<CommentListTile> {
   late bool isLiked;
   bool isExpanded = false;
   bool isLogin = false;
+  int likes = 0;
 
   // 기본 onPressed 동작 정의
   void _defaultOnPressed() {
@@ -53,6 +54,7 @@ class _CommentListTileState extends State<CommentListTile> {
   void initState() {
     super.initState();
     isLiked = widget.isLiked!;
+    likes = widget.likes!;
     _checkAccessToken();
   }
 
@@ -104,6 +106,9 @@ class _CommentListTileState extends State<CommentListTile> {
                       if (isLogin){
                         setState(() {
                           toggleIsLikedComment(widget.commentId);
+                          setState(() {
+                            likes = isLiked ? likes - 1 : likes + 1;
+                          });
                           isLiked = !isLiked;
                           // TODO: 동작 추가 필요
                         });
@@ -127,7 +132,7 @@ class _CommentListTileState extends State<CommentListTile> {
                           SizedBox(width: 2,),
                           SizedBox(
                               width: 23,
-                              child: Text(formatNum(widget.likes), style: TextStyle(fontSize: 10))
+                              child: Text(formatNum(likes), style: TextStyle(fontSize: 10))
                           ),
                         ],
                       ),

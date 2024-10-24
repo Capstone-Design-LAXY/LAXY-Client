@@ -540,9 +540,9 @@ class User {
 
   User({
     required this.userId,
-    this.nickname,
-    this.posts,
-    this.comments,
+    this.nickname = '',
+    this.posts = 0,
+    this.comments = 0,
     this.updatedAt,
     this.email,
     this.password,

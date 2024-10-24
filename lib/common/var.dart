@@ -249,8 +249,9 @@ List<Post> allPost = [
             Tag(tagId: 4513, tagName: "연기", grade: 7),
             Tag(tagId: 3236, tagName: "정주행", grade: 8),
             Tag(tagId: 1017, tagName: "MBC", grade: 9),
-            Tag(tagId: 4774, tagName: "추천", grade: 10),
+            Tag(tagId: 11111, tagName: "문화", grade: 10),
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfMjI1/MDAxNzI5MjI5Mjc3Njk5.FZK-nmh5Mr0jMHzGDCiy2b7ju2w0ASy2_pBg6VpVdrkg.7TLnx-dCtPNreSjeSft572SIjTeuXgKvDRe52lqEfZ4g.JPEG/20241018%EF%BC%BF142138.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-28T14:27:00.000Z"),
         isLiked: false,
         like: 15,
@@ -258,6 +259,8 @@ List<Post> allPost = [
     ),
     Post(
         postId: 656762,
+        userId: 924836,
+        nickname: "한강뷰내꺼",
         title: "나의 유튜브 쇼츠 음악 플레이리스트",
         tags: [
             Tag(tagId: 5584, tagName: "음악", grade: 1),
@@ -279,6 +282,7 @@ List<Post> allPost = [
             {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfMjM3/MDAxNzI5NzA3NTY4Nzc2.800C5BUW8nPVr8urQ-FSHv_eddVHVrSnO1_6VyEBKLsg.MOeLPlL_i19jxPg94SqtBYya_0TPn1XqnpTt2fvAXG8g.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_399888503.jpg?type=w1600"}},
             {"insert": "\n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfNDcg/MDAxNzI5NzA3NTY4MTMw.4yvhtkNzUzEQB9JFtmjVL-NR-EAR7voTKj5mPQCD7l4g.rlEXqS7qupKgOLEbwJxyWMDjvluFxe20T0J1rpiRUyEg.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_1584624200.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-24T10:00:00.000Z"),
         isLiked: false,
         like: 0,
@@ -301,6 +305,7 @@ List<Post> allPost = [
         summary: "세계여행 190일째, 오늘 모든게 든 지갑을 노이슈반슈타인 성에서 잃어버렸습니다...",
         content: [{"insert":"세계여행 190일째, 오늘 모든게 든 지갑을 노이슈반슈타인 성에서 잃어버렸습니다... \n과연.. 찾을 수 있을까요?\n\n안녕하세요. 아내와 함께 세계여행 중입니다. 지난 3월부터 여행을 시작해 오늘 딱 190일째네요.\n동남아와 코카서스 3국, 발칸반도를 거쳐 독일까지 왔습니다. 지금은 렌트로 유럽 구석구석을 다니는 중이고요. \n오늘은 그 유명한 노이슈반슈타인 성에 다녀왔어요.\n저렴한 에어비앤비를 찾아 독일 Biberach라는 시골 마을에 묵고 있는데 노이슈반슈타인 성까지 120km정도, 1시간 반 거리여서 당일치기로 다녀오려 했습니다. 이틀 전에 9시 타임만 자리가 남아 새벽 6시 반에 출발했어요. 주차장에서 성까지 3~40분 정도 걸어올라가야 해 넉넉하게 출발해야 합니다. \n\n새벽부터 비도 많이오고 캄캄한데 독일 사람들은 마을 도로에서도 시속 100km 정도로 마구 달리더라고요.. \n 도로폭도 좁고 가로등도 없는데 맞은편에서는 집채만한 화물차가 끊임없이 달려와 속도를 낼 수가 없었어요. 그랬더니 뒤차들은 쌍라이트 켜고 추월해가고 난리도 아닙니다... 독일 운전매너 좋다고 봤는데 말이죠. 구불구불 도로에 7~80km로 달렸는데도 그러더라고요. 내비에 뜬 시간보다 조금 늦게 도착했습니다. \n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDNfMTU4/MDAxNzI3OTA3NDM5MTY3.hgF0WCS44zN-RMqeD7YEIQp5KjDWlJoueOCom66NvF8g.Z-LNTp0yHpwowcYj72Gz7Y28i7pzFiJO39jvVqgOED8g.JPEG/KakaoTalk_20241003_063541121_01.jpg?type=w1600"}},{"insert":"\n 이제 지갑사건이 시작됩니다.(떠올리기도 싫은) \n\n 노이슈반슈타인 성 관람을 마치고 주차장에서 차를 찾았어요. 여긴 시간 상관없이 무조건 일일 12유로나 합니다. \n 다시 비오는 고속도로를 지나 너무 졸려 졸음쉼터에서 한숨 잠도 자고, 숙소 있는 마을까지 2시간 정도 걸려 왔습니다. \n 차에 기름을 넣어야해서 주유소로 갔죠. 그리고 결제를 하려고 지갑을 찾는데... 응? \n 응?! 응?!!!! 설마...?!!!!! 지갑이 없는 겁니다. \n 세계여행하면서 절대 잃어버리면 안되는게 둘있는데 휴대폰과 지갑이죠. \n 지갑에는 바로 어제 찾은 현금 200유로와 제 신용카드 2개, 아내 신용카드 1개, 운전면허증(영문), 이스탄불에서 사고 반환 실패한 이스탄불카르트, 그리고 여분 여권사진 여러장이 들어있었습니다. 아, 여행하며 만난 사람들이 건네준 명함도 몇장 들어있었네요. \n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDNfMjI5/MDAxNzI3OTA3NzM1MTUx.tyGU_oY9X-_586C0E4xFdG-Hv6Y1EhoYB97DIhUiWxYg.aHsrvXTNHlgAmr99BjsKtYN_0GBj_TW3YQIVPFeHBJEg.JPEG/KakaoTalk_20241003_063541121.jpg?type=w1600"}},
             {"insert": "\n\n"}],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDNfMTU4/MDAxNzI3OTA3NDM5MTY3.hgF0WCS44zN-RMqeD7YEIQp5KjDWlJoueOCom66NvF8g.Z-LNTp0yHpwowcYj72Gz7Y28i7pzFiJO39jvVqgOED8g.JPEG/KakaoTalk_20241003_063541121_01.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-03T07:22:00.000Z"),
         isLiked: true,
         like: 1088,
@@ -331,6 +336,7 @@ List<Post> allPost = [
             {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTZfMTY1/MDAxNzI5MDQ2Nzg0MDYy.HGPSuGgGAkCPeeqQIVVKsg_Nbj6NXBlDZva4IepaSVwg.1LyPWMZLnTuxa2S-Gp4C2isnoNMX5c4GKyXI9AQNCysg.JPEG/3.jpg?type=w1600"}},
             {"insert": "\n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTZfMTI0/MDAxNzI5MDQ2NzgzODgy.2a1ZukB3Miulq8Q9ix37UEwLvGbJoyCsXSwa19J4DYUg.JNJCd2hoYcAnSG4ZR0ejk3ZSrpNs7-NkvhkWIiU0MIUg.JPEG/1.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 70,
@@ -339,6 +345,7 @@ List<Post> allPost = [
     Post(
         postId: 422069,
         userId: 483398,
+        nickname: "달토",
         title: "영화 룩 백",
         tags: [
             Tag(tagId: 4580, tagName: "영화", grade: 1),
@@ -350,6 +357,7 @@ List<Post> allPost = [
             Tag(tagId: 7898, tagName: "정보", grade: 7),
             Tag(tagId: 9818, tagName: "눈물", grade: 8),
             Tag(tagId: 1919, tagName: "안경닦이", grade: 9),
+            Tag(tagId: 11111, tagName: "문화", grade: 10),
         ],
         summary: "지난주 비 오는 저녁에 영화 한편 보고 왔어요. 둘째아이가 좋아하는 작가 작품인데, 친구들이랑 시간이 안맞았는지 엄마 호출해 줬어요.",
         content: [
@@ -359,6 +367,7 @@ List<Post> allPost = [
             {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfMjcw/MDAxNzI5NzM1NDUyMzQz.sEcFTP_Zu1j7EMqF6H4bplqiqVy38QQLq8qaXYI1s_Mg.fuILmLMt1WIwct3FtZC5ijVKRHuWAFHM5P3kL0DMRdcg.JPEG/common%EF%BC%BF20241024%EF%BC%BF103344.jpg?type=w1600"}},
             {"insert": "\n\n전 아무 정보도 없이 보러 갔다, 소매에 눈물 쓱쓱 닦고 왔어요. 뒷자리 분은 오열하시고..\n휴지도 한장 없고 주머니엔 안경닦이만 굴러다니고요.\n한시간 정도 짧은 영화였는데 참 좋은 영화였어요.\n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfOTUg/MDAxNzI5NzM1NDUyMzE2.q-NG4dnCnHtQQjf02CzxCKk35e9UnyEHS1i3gSj2KLYg.XpTxS9Dlo8oVRu_2wlXWHG2r1bmJuv2Tzf2s_Nq6NYsg.JPEG/common%EF%BC%BF20241024%EF%BC%BF103350.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 192,
@@ -387,6 +396,7 @@ List<Post> allPost = [
             {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMTIw/MDAxNzI5MTMzMTQwMjY4.no3kiP4JP48jJlwkZdclJTj4UNxgZijJKvFsd0CeGUwg.AM9lpzOt32ci6qH3CqoKZKKYR5gNld5HLpw5rQkf8msg.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_843931921.jpg?type=w1600"}},
             {"insert": "\n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMjgw/MDAxNzI5MTMzMTM5ODM3.dGDryc1K9yEkBWxjFUvmAYA4-Tl5QFYv6UEQTJIMi0Ug.1tli3E409LI-Rs-NxUFC9mCJHZgnRi5goX63nUs9ABYg.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_353781006.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 88,
@@ -407,6 +417,7 @@ List<Post> allPost = [
         ],
         summary: "요즘 자전거 타기에 ",
         content: [{"insert":"요즘 자전거 타기에 \n푹~빠져있는 1인입니다^^\n\n어릴 때 자전거 타보고\n성인되어서는 한번도 안탔는데\n얼마전 친구랑 한강에 놀러갔다가\n자전거 타는 분들이 좋아보여서\n자전거를 빌려서 타봤어요\n\n해지는 노을바라보며 \n자전거 타는데 \n기분이 그렇게 좋을 수가\n없더라구요\n\n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDhfMjA1/MDAxNzI4Mzc1ODQ4MTQ2.FLy1LugOZR-vQCDmjwBvSwXqiByF-e-8hhRHm9-Rh10g.OrDH9AzOG8asf2eL8yXMFEP0TWzuLW1bw18CirIumfQg.JPEG/1%28%EB%8C%80%ED%91%9C%EC%82%AC%EC%A7%84%29.jpg?type=w1600"}},{"insert":"\n"}],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDhfMjA1/MDAxNzI4Mzc1ODQ4MTQ2.FLy1LugOZR-vQCDmjwBvSwXqiByF-e-8hhRHm9-Rh10g.OrDH9AzOG8asf2eL8yXMFEP0TWzuLW1bw18CirIumfQg.JPEG/1%28%EB%8C%80%ED%91%9C%EC%82%AC%EC%A7%84%29.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 37,
@@ -436,6 +447,7 @@ List<Post> allPost = [
             {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTFfMTIy/MDAxNzI4NjQ1NDAwMDA5.Sq3MgirG2V4qzynAceYnRru5SCS0-nCsE2w0EbhOgXgg.Q9u_XhKsPY0N7F62CX3OF08V7BldjXfor1mCTeXz1WAg.JPEG/20240905%EF%BC%BF083405.jpg?type=w1600"}},
             {"insert": "\n\n 요기조기 포토스팟 많은 올라카페 \n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTFfMjk4/MDAxNzI4NjQ1Mzk4OTgx.CkvL5VKbDzmCi9Zl_keBdFNt-8hUjAk8iz05z0275icg.HPU2Dybhw5PW5JrJ6HnNWkLLibH3m7MNpxAYTRsrlKIg.JPEG/20240905%EF%BC%BF083133.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 216,
@@ -473,6 +485,7 @@ List<Post> allPost = [
             },
             {"insert": "\n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMjk1/MDAxNzI5MTQ3Njg0NzMw.8125JaGMIIEILIBmArd1o7K93hLSiNbaxS49fOw2TfQg.2RuAQPsiUf3ChTaQ5DPVC2T5BzLagdjiGTKcDddREAYg.PNG/%EC%9D%BC%EB%B3%B8%EC%96%B4%EB%A7%90%ED%95%98%EA%B8%B0_%EC%8B%9C%ED%97%98.png?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 81,
@@ -493,6 +506,7 @@ List<Post> allPost = [
             Tag(tagId: 5495, tagName: "독일어", grade: 7),
             Tag(tagId: 3892, tagName: "추천", grade: 8),
             Tag(tagId: 7893, tagName: "대본", grade: 9),
+            Tag(tagId: 11111, tagName: "문화", grade: 10),
         ],
         summary: "공연",
         content: [
@@ -517,6 +531,7 @@ List<Post> allPost = [
             },
             {"insert": "\n\n"}
         ],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfODEg/MDAxNzI5MjE0Nzc5OTU2.ac2a5Zu1roV7mfbjDNavGjz23BuxXV835bpCJlisfGEg.TEedZbawD8pCT2fA4UdEQofWcMPCUSYnVnvQ_mwAJtQg.PNG/%ED%88%AC%EB%9E%80%EB%8F%84%ED%8A%B8_%EB%B2%A0%EB%A1%9C%EB%82%98.png?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 265,
@@ -536,6 +551,7 @@ List<Post> allPost = [
         ],
         summary: "또 다른 취미가 어떤게 있는지의 글을 보고,",
         content: [{"insert":"또 다른 취미가 어떤게 있는지의 글을 보고,\n제가 하는 취미가 흔치만은 않은 또 다른 취미인거 같아서 한 번 올려봅니다... ㅎㅎㅎ...\n분명 저랑 같은 취미 갖고 계신 분들이 계실거 같은데~~~\n설마 일, 집, 게임만 하시는건 아니죠? ^^;\n\n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfMTE1/MDAxNzI5MjQ2OTExMzI4.JUEzkH3AAc1c1mGGLsS5sbmwO8EUX8g9iqp0QtKlbI8g.pIq9c2Xjvy-h4FapIXbZlfZUKJxOIJldY522h1pki3Qg.JPEG/20231011%EF%BC%BF194148.jpg?type=w1600"}},{"insert":"\n"}],
+        imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfMTE1/MDAxNzI5MjQ2OTExMzI4.JUEzkH3AAc1c1mGGLsS5sbmwO8EUX8g9iqp0QtKlbI8g.pIq9c2Xjvy-h4FapIXbZlfZUKJxOIJldY522h1pki3Qg.JPEG/20231011%EF%BC%BF194148.jpg?type=w1600",
         updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
         isLiked: true,
         like: 353,
@@ -612,6 +628,7 @@ List<Tag> allTag = [
     Tag(tagId: 4867188, tagName: "건강관리", bookmarked: 9638543, count: 9545662, grade: 7, change: 8),
     Tag(tagId: 9200925, tagName: "팁공유", bookmarked: 7717298, count: 9629416, grade: 9, change: -20),
     Tag(tagId: 9059860, tagName: "업데이트정보", bookmarked: 4680554, count: 5432244, grade: 11, change: -17),
+    Tag(tagId: 11111, tagName: "문화", grade: 10),
     Tag(tagId: 4918, tagName: "드라마", grade: 1),
     Tag(tagId: 9620, tagName: "비", grade: 2),
     Tag(tagId: 2001, tagName: "날씨", grade: 3),
@@ -3254,9 +3271,360 @@ List<TempSearchData> tempSearchScreenData = [
 
 /// 메인 - 마인드맵
 List<OrbitData> mindmapData = [
-  OrbitData.fromJson(jsonDecode('{"uId": 123123123, "orbit": [{"primary": {"tId": 20000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 20000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 20000003, "grade": 7, "tagName": "애플케어"}, {"tId": 20000004, "grade": 2, "tagName": "애플워치"}, {"tId": 20000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 20000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 20000007, "grade": 11, "tagName": "토트넘"}, {"tId": 20000008, "grade": 1, "tagName": "축구"}, {"tId": 20000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 20000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 20000010, "grade": 10, "tagName": "백종원"}, {"tId": 20000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 20000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 20000002, "grade": 6, "tagName": "한화"}, {"tId": 20000003, "grade": 7, "tagName": "티원"}, {"tId": 20000004, "grade": 7, "tagName": "젠지"}, {"tId": 20000005, "grade": 9, "tagName": "딮기"}]}]}')),
-  OrbitData.fromJson(jsonDecode('{"uId": 123123123, "orbit": [{"primary": {"tId": 10000001, "grade": 9, "tagName": "자격증"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "정처기"}, {"tId": 10000003, "grade": 7, "tagName": "토익"}, {"tId": 10000004, "grade": 2, "tagName": "SQLD"}, {"tId": 10000005, "grade": 8, "tagName": "Qnet"}]}, {"primary": {"tId": 10000006, "grade": 6, "tagName": "인공지능"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "GPT"}, {"tId": 10000008, "grade": 1, "tagName": "빅데이터"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "소금빵"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "빵"}]}]}')),
-  OrbitData.fromJson(jsonDecode('{"uId": 123123123, "orbit": [{"primary": {"tId": 20000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 20000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 20000003, "grade": 7, "tagName": "애플케어"}, {"tId": 20000004, "grade": 2, "tagName": "애플워치"}, {"tId": 20000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 20000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 20000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 20000003, "grade": 7, "tagName": "애플케어"}, {"tId": 20000004, "grade": 2, "tagName": "애플워치"}, {"tId": 20000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 20000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 20000007, "grade": 11, "tagName": "토트넘"}, {"tId": 20000008, "grade": 1, "tagName": "축구"}, {"tId": 20000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 20000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 20000010, "grade": 10, "tagName": "백종원"}, {"tId": 20000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 20000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 20000002, "grade": 6, "tagName": "한화"}, {"tId": 20000003, "grade": 7, "tagName": "티원"}, {"tId": 20000004, "grade": 7, "tagName": "젠지"}, {"tId": 20000005, "grade": 9, "tagName": "딮기"}]}]}')),
+  OrbitData.fromJson(jsonDecode('''
+{
+  "uId": 1231213,
+      "orbit": [
+      {
+      "primary": {
+      "tId": 10000001,
+      "grade": 10,
+      "tagName": "아이폰"
+      },
+      "satellites": [
+      {
+      "tId": 10000002,
+      "grade": 5,
+      "tagName": "13pro중고"
+      },
+      {
+      "tId": 10000003,
+      "grade": 7,
+      "tagName": "애플케어"
+      },
+      {
+      "tId": 10000004,
+      "grade": 2,
+      "tagName": "애플워치"
+      },
+      {
+      "tId": 10000005,
+      "grade": 8,
+      "tagName": "에어팟프로2"
+      }
+      ]
+      },
+      {
+          "primary": {
+              "tId": 10000006,
+              "grade": 11,
+              "tagName": "손흥민"
+          },
+          "satellites": [
+              {
+                  "tId": 10000007,
+                  "grade": 11,
+                  "tagName": "토트넘"
+              },
+              {
+                  "tId": 10000008,
+                  "grade": 1,
+                  "tagName": "축구"
+              },
+              {
+                  "tId": 10000009,
+                  "grade": 4,
+                  "tagName": "계약"
+              }
+          ]
+      },
+      {
+          "primary": {
+              "tId": 10000010,
+              "grade": 4,
+              "tagName": "흑백요리사"
+          },
+          "satellites": [
+              {
+                  "tId": 10000011,
+                  "grade": 10,
+                  "tagName": "백종원"
+              },
+              {
+                  "tId": 10000012,
+                  "grade": 8,
+                  "tagName": "안성진"
+              }
+          ]
+      },
+      {
+          "primary": {
+              "tId": 10000013,
+              "grade": 9,
+              "tagName": "롤드컵"
+          },
+          "satellites": [
+              {
+                  "tId": 10000014,
+                  "grade": 6,
+                  "tagName": "한화"
+              },
+              {
+                  "tId": 10000015,
+                  "grade": 7,
+                  "tagName": "티원"
+              },
+              {
+                  "tId": 10000016,
+                  "grade": 7,
+                  "tagName": "젠지"
+              },
+              {
+                  "tId": 10000017,
+                  "grade": 9,
+                  "tagName": "딮기"
+              }
+          ]
+      }
+      ]
+      }
+      ''')),
+  OrbitData.fromJson(jsonDecode('''
+  {
+  "uId": 1231213,
+  "orbit": [
+    {
+      "primary": {
+        "tId": 10000036,
+        "grade": 9,
+        "tagName": "넷플릭스"
+      },
+      "satellites": [
+        {
+          "tId": 10000037,
+        "grade": 7,
+        "tagName": "오징어게임"
+        },
+        {
+          "tId": 10000038,
+        "grade": 6,
+        "tagName": "종이의집"
+        },
+        {
+          "tId": 10000039,
+        "grade": 8,
+        "tagName": "킹덤"
+        },
+        {
+          "tId": 10000040,
+        "grade": 4,
+        "tagName": "더글로리"
+        }
+      ]
+    },
+    {
+      "primary": {
+        "tId": 10000041,
+        "grade": 11,
+        "tagName": "테슬라"
+      },
+      "satellites": [
+        {
+          "tId": 10000042,
+        "grade": 10,
+        "tagName": "일론머스크"
+        },
+        {
+          "tId": 10000043,
+        "grade": 8,
+        "tagName": "전기차"
+        },
+        {
+          "tId": 10000044,
+        "grade": 7,
+        "tagName": "스페이스X"
+        },
+        {
+          "tId": 10000045,
+        "grade": 5,
+        "tagName": "AI"
+        }
+      ]
+    },
+    {
+      "primary": {
+        "tId": 10000046,
+        "grade": 8,
+        "tagName": "마블"
+      },
+      "satellites": [
+        {
+          "tId": 10000047,
+        "grade": 9,
+        "tagName": "아이언맨"
+        },
+        {
+          "tId": 10000048,
+        "grade": 7,
+        "tagName": "스파이더맨"
+        },
+        {
+          "tId": 10000049,
+        "grade": 6,
+        "tagName": "어벤져스"
+        },
+        {
+          "tId": 10000050,
+        "grade": 8,
+        "tagName": "블랙팬서"
+        }
+      ]
+    },
+    {
+      "primary": {
+        "tId": 10000051,
+        "grade": 10,
+        "tagName": "여행"
+      },
+      "satellites": [
+        {
+          "tId": 10000052,
+        "grade": 8,
+        "tagName": "유럽여행"
+        },
+        {
+          "tId": 10000053,
+        "grade": 9,
+        "tagName": "배낭여행"
+        },
+        {
+          "tId": 10000054,
+        "grade": 7,
+        "tagName": "세계일주"
+        },
+        {
+          "tId": 10000055,
+        "grade": 6,
+        "tagName": "국내여행"
+        }
+      ]
+    }
+  ]
+}
+  ''')),
+  OrbitData.fromJson(jsonDecode('''
+  {
+  "uId": 1231213,
+  "orbit": [
+    {
+      "primary": {
+        "tId": 10000056,
+        "grade": 8,
+        "tagName": "사진"
+      },
+      "satellites": [
+        {
+          "tId": 10000057,
+          "grade": 7,
+          "tagName": "드론촬영"
+        },
+        {
+          "tId": 10000058,
+          "grade": 6,
+          "tagName": "조명기술"
+        },
+        {
+          "tId": 10000059,
+          "grade": 8,
+          "tagName": "편집소프트웨어"
+        },
+        {
+          "tId": 10000060,
+          "grade": 5,
+          "tagName": "렌즈"
+        }
+      ]
+    },
+    {
+      "primary": {
+        "tId": 10000061,
+        "grade": 10,
+        "tagName": "음악"
+      },
+      "satellites": [
+        {
+          "tId": 10000062,
+          "grade": 9,
+          "tagName": "악기"
+        },
+        {
+          "tId": 10000063,
+          "grade": 8,
+          "tagName": "콘서트"
+        },
+        {
+          "tId": 10000064,
+          "grade": 7,
+          "tagName": "뮤지컬"
+        },
+        {
+          "tId": 10000065,
+          "grade": 6,
+          "tagName": "음반제작"
+        }
+      ]
+    },
+    {
+      "primary": {
+        "tId": 10000066,
+        "grade": 9,
+        "tagName": "테크놀로지"
+      },
+      "satellites": [
+        {
+          "tId": 10000067,
+          "grade": 8,
+          "tagName": "블록체인"
+        },
+        {
+          "tId": 10000068,
+          "grade": 7,
+          "tagName": "자율주행"
+        },
+        {
+          "tId": 10000069,
+          "grade": 6,
+          "tagName": "5G네트워크"
+        },
+        {
+          "tId": 10000070,
+          "grade": 5,
+          "tagName": "스마트기기"
+        }
+      ]
+    },
+    {
+      "primary": {
+        "tId": 10000071,
+        "grade": 7,
+        "tagName": "운동"
+      },
+      "satellites": [
+        {
+          "tId": 10000072,
+          "grade": 8,
+          "tagName": "러닝"
+        },
+        {
+          "tId": 10000073,
+          "grade": 6,
+          "tagName": "요가"
+        },
+        {
+          "tId": 10000074,
+          "grade": 7,
+          "tagName": "크로스핏"
+        },
+        {
+          "tId": 10000075,
+          "grade": 5,
+          "tagName": "수영"
+        }
+      ]
+    }
+  ]
+}
+  ''')),
 ];
 /// 게시글 상세
 PostDetailData fetchPostDetailScreenData(int postId) {
@@ -3466,85 +3834,78 @@ PostDetailData postDetailScreenData = PostDetailData.fromJson(jsonDecode('''
 RankData trendsMainData = RankData.fromJson(jsonDecode('''
     {
       "daily": [
-        {
-          "post_id": 67638,
-          "title": "새로운 취미를 찾다: 하루 만에 시작하는 5가지 방법",
-          "comments": 6600,
-          "like": 7797,
-          "change": 18
-        },
-        {
-          "post_id": 80603,
-          "title": "아침 루틴으로 성공을 잡는 법: 7가지 필수 팁",
-          "comments": 9892,
-          "like": 31611,
-          "change": 6
-        },
-        {
-          "post_id": 18550,
-          "title": "여행의 설렘, 그리고 놓치지 말아야 할 순간들",
-          "comments": 1940,
-          "like": 95441,
-          "change": -9
-        },
-        {
-          "post_id": 70709,
-          "title": "시간 관리의 비밀: 효율적으로 일하는 10가지 습관",
-          "comments": 4967,
-          "like": 149,
-          "change": 18
-        },
-        {
-          "post_id": 30827,
-          "title": "내가 몰랐던 커피의 세계: 당신이 알아야 할 정보",
-          "comments": 8451,
-          "like": 12065,
-          "change": -5
-        },
-        {
-          "post_id": 40604,
-          "title": "내 방을 아늑하게 꾸미는 방법: 인테리어 팁 5선",
-          "comments": 7243,
-          "like": 24354,
-          "change": 0
-        },
-        {
-          "post_id": 60880,
-          "title": "운동을 즐기는 방법: 초보자를 위한 가이드",
-          "comments": 4920,
-          "like": 55483,
-          "change": -7
-        },
-        {
-          "post_id": 9754,
-          "title": "디지털 디톡스: 일주일 동안 SNS 없이 살아보기",
-          "comments": 2296,
-          "like": 82045,
-          "change": -5
-        },
-        {
-          "post_id": 6668,
-          "title": "건강한 식습관으로의 첫걸음: 간단한 레시피 3가지",
-          "comments": 7811,
-          "like": 60625,
-          "change": 9
-        },
-        {
-          "post_id": 60207,
-          "title": "어떻게 하면 긍정적으로 생각할 수 있을까? 마음을 다스리는 법",
-          "comments": 1427,
-          "like": 72095,
-          "change": 10
-        }
-      ],
+    {
+        "post_id": 495475,
+        "title": "쿠팡파트너스와 함께하는 일상",
+        "comments": 3,
+        "like": 88,
+        "change": 18
+    },
+    {
+        "post_id": 80604,
+        "title": "아침 루틴으로 성공을 잡는 법: 5가지 효과적인 방법",
+        "comments": 1020,
+        "like": 15823,
+        "change": 12
+    },
+    {
+        "post_id": 18551,
+        "title": "여행의 즐거움, 꼭 기억해야 할 순간들",
+        "comments": 2075,
+        "like": 68954,
+        "change": 3
+    },
+    {
+        "post_id": 70710,
+        "title": "효율적인 시간 관리: 7가지 필수 습관",
+        "comments": 3201,
+        "like": 258,
+        "change": 14
+    },
+    {
+        "post_id": 30828,
+        "title": "커피에 대한 모든 것: 알아야 할 정보와 팁",
+        "comments": 4260,
+        "like": 11034,
+        "change": 1
+    },
+    {
+        "post_id": 40605,
+        "title": "아늑한 방 만들기: 인테리어 아이디어 5선",
+        "comments": 6132,
+        "like": 19854,
+        "change": 2
+    },
+    {
+        "post_id": 60881,
+        "title": "재미있게 운동하는 법: 초보자를 위한 간단한 가이드",
+        "comments": 3890,
+        "like": 45237,
+        "change": -4
+    },
+    {
+        "post_id": 9755,
+        "title": "디지털 디톡스: 일주일 SNS 끊기 도전기",
+        "comments": 1500,
+        "like": 76320,
+        "change": -2
+    },
+    {
+        "post_id": 6669,
+        "title": "건강한 식습관: 시작하기 위한 간단한 레시피",
+        "comments": 6023,
+        "like": 49576,
+        "change": 8
+    },
+    {
+        "post_id": 60208,
+        "title": "긍정적인 사고를 기르는 법: 마음을 다스리기",
+        "comments": 950,
+        "like": 81245,
+        "change": 15
+    }
+],
       "weekly": [
-        {
-          "post_id": 67638,
-          "title": "미래 직업 전망: 2030년에 뜰 산업 7가지",
-          "comments": 6600,
-          "like": 7797,
-          "change": 18
-        },
         {
           "post_id": 80603,
           "title": "성공적인 팀워크의 핵심: 협업을 위한 5가지 팁",
@@ -3553,11 +3914,18 @@ RankData trendsMainData = RankData.fromJson(jsonDecode('''
           "change": 6
         },
         {
+          "post_id": 151947,
+          "title": "[잡담] 주말에 기대 중인 공연 2개",
+          "comments": 2,
+          "like": 265,
+          "change": 5
+        },
+        {
           "post_id": 18550,
           "title": "집에서 만드는 힐링 스파: DIY 홈케어 방법",
           "comments": 1940,
           "like": 95441,
-          "change": -9
+          "change": -1
         },
         {
           "post_id": 70709,
@@ -3571,7 +3939,7 @@ RankData trendsMainData = RankData.fromJson(jsonDecode('''
           "title": "일 잘하는 사람들의 공통점: 생산성 높이는 습관",
           "comments": 8451,
           "like": 12065,
-          "change": -5
+          "change": -3
         },
         {
           "post_id": 40604,
@@ -3585,14 +3953,14 @@ RankData trendsMainData = RankData.fromJson(jsonDecode('''
           "title": "여행 사진 잘 찍는 법: 초보자를 위한 촬영 팁",
           "comments": 4920,
           "like": 55483,
-          "change": -7
+          "change": -2
         },
         {
           "post_id": 9754,
           "title": "아이디어가 넘치는 사람들의 사고방식: 창의력 향상 비법",
           "comments": 2296,
           "like": 82045,
-          "change": -5
+          "change": 5
         },
         {
           "post_id": 6668,
@@ -3606,7 +3974,7 @@ RankData trendsMainData = RankData.fromJson(jsonDecode('''
           "title": "매일 실천하는 자기 계발 습관: 삶을 바꾸는 작은 행동들",
           "comments": 1427,
           "like": 72095,
-          "change": 10
+          "change": 18
         }
       ]
     }
@@ -3616,7 +3984,7 @@ CommunityRankData trendsCommunityData = CommunityRankData.fromJson(jsonDecode(''
     {
       "rank": [
         {
-          "tagId": 3765,
+          "tagId": 11111,
           "tag_name": "Flutter",
           "bookmarked": 2260098,
           "count": 6054472,
@@ -3948,374 +4316,217 @@ CommunityRankData trendsCommunityData = CommunityRankData.fromJson(jsonDecode(''
     '''));
 /// 트랜드 - 전체
 PostData trendsPostData = PostData.fromJson(jsonDecode('''
+{
+  "posts": [
     {
-      "posts": [
-        {
-          "post_id": 87291,
-          "title": "오늘의 날씨는?",
-          "summary": "비가 올 것 같아요. 우산 챙기세요.",
-          "comments": 182,
-          "like": 521,
-          "viewed": 899,
-          "createdAt": "2021-04-25T12:34:00.000Z"
-        },
-        {
-          "post_id": 97852,
-          "title": "새로운 취미 추천",
-          "summary": "요즘 뜨는 취미는 무엇일까요?",
-          "comments": 249,
-          "like": 783,
-          "viewed": 1374,
-          "createdAt": "2022-02-15T08:22:00.000Z"
-        },
-        {
-          "post_id": 11237,
-          "title": "아침 운동의 중요성",
-          "summary": "매일 아침 운동하는 습관!",
-          "comments": 321,
-          "like": 456,
-          "viewed": 1023,
-          "createdAt": "2020-09-12T07:40:00.000Z"
-        },
-        {
-          "post_id": 56389,
-          "title": "재테크 꿀팁 공유",
-          "summary": "소액 투자로 시작하는 재테크",
-          "comments": 405,
-          "like": 642,
-          "viewed": 1845,
-          "createdAt": "2023-06-19T15:15:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 23876,
-          "title": "여행 준비물 리스트",
-          "summary": "꼭 챙겨야 할 필수 아이템들",
-          "comments": 92,
-          "like": 317,
-          "viewed": 744,
-          "createdAt": "2021-11-30T09:00:00.000Z"
-        },
-        {
-          "post_id": 46378,
-          "title": "추천 영화 리스트",
-          "summary": "주말에 보기 좋은 영화들",
-          "comments": 533,
-          "like": 910,
-          "viewed": 2458,
-          "createdAt": "2019-07-18T14:10:00.000Z"
-        },
-        {
-          "post_id": 91234,
-          "title": "책 읽기의 장점",
-          "summary": "매일 책 읽기의 중요성을 알아봅시다.",
-          "comments": 67,
-          "like": 155,
-          "viewed": 481,
-          "createdAt": "2020-10-10T18:24:00.000Z"
-        },
-        {
-          "post_id": 66728,
-          "title": "반려동물 관리 방법",
-          "summary": "강아지 털 관리 팁",
-          "comments": 187,
-          "like": 259,
-          "viewed": 891,
-          "createdAt": "2021-08-22T04:05:00.000Z"
-        },
-        {
-          "post_id": 57893,
-          "title": "헬스장 추천",
-          "summary": "어디 헬스장이 좋은가요?",
-          "comments": 200,
-          "like": 378,
-          "viewed": 1298,
-          "createdAt": "2022-01-02T11:45:00.000Z"
-        },
-        {
-          "post_id": 34892,
-          "title": "IT 트렌드 분석",
-          "summary": "올해 뜨는 IT 기술은?",
-          "comments": 450,
-          "like": 821,
-          "viewed": 2114,
-          "createdAt": "2020-02-24T16:18:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 89347,
-          "title": "최신 가전제품",
-          "summary": "최신 스마트 가전 소개합니다.",
-          "comments": 134,
-          "like": 452,
-          "viewed": 1203,
-          "createdAt": "2023-05-14T21:50:00.000Z"
-        },
-        {
-          "post_id": 23901,
-          "title": "등산 코스 추천",
-          "summary": "가을에 가기 좋은 산",
-          "comments": 98,
-          "like": 245,
-          "viewed": 621,
-          "createdAt": "2022-09-21T05:11:00.000Z"
-        },
-        {
-          "post_id": 70483,
-          "title": "홈 카페 인테리어",
-          "summary": "집에서 즐기는 홈 카페 꾸미기",
-          "comments": 301,
-          "like": 502,
-          "viewed": 1501,
-          "createdAt": "2021-03-10T14:55:00.000Z"
-        },
-        {
-          "post_id": 53692,
-          "title": "내일의 주식 전망",
-          "summary": "주식 시장 분석과 내일의 전망",
-          "comments": 775,
-          "like": 923,
-          "viewed": 3095,
-          "createdAt": "2023-02-28T08:40:00.000Z"
-        },
-        {
-          "post_id": 13290,
-          "title": "다이어트 식단",
-          "summary": "건강한 식단으로 체중 감량하기",
-          "comments": 354,
-          "like": 620,
-          "viewed": 1450,
-          "createdAt": "2020-06-17T07:30:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 49723,
-          "title": "쇼핑몰 추천",
-          "summary": "가성비 좋은 온라인 쇼핑몰 추천",
-          "comments": 156,
-          "like": 399,
-          "viewed": 1084,
-          "createdAt": "2019-12-05T03:17:00.000Z"
-        },
-        {
-          "post_id": 89014,
-          "title": "내가 사랑하는 음악",
-          "summary": "요즘 듣고 있는 음악 추천",
-          "comments": 66,
-          "like": 289,
-          "viewed": 672,
-          "createdAt": "2021-07-22T02:02:00.000Z"
-        },
-        {
-          "post_id": 78512,
-          "title": "명언 모음집",
-          "summary": "삶에 도움이 되는 명언들",
-          "comments": 402,
-          "like": 703,
-          "viewed": 1822,
-          "createdAt": "2020-11-12T09:50:00.000Z"
-        },
-        {
-          "post_id": 58329,
-          "title": "헬시푸드 레시피",
-          "summary": "간단하고 건강한 요리법",
-          "comments": 285,
-          "like": 563,
-          "viewed": 1307,
-          "createdAt": "2023-03-23T13:07:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 29387,
-          "title": "여행 후기 공유",
-          "summary": "최근 다녀온 여행 후기를 남겨요.",
-          "comments": 141,
-          "like": 329,
-          "viewed": 889,
-          "createdAt": "2022-05-06T12:14:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 97245,
-          "title": "독서 습관 들이기",
-          "summary": "하루 10분 독서로 시작하기",
-          "comments": 158,
-          "like": 487,
-          "viewed": 1249,
-          "createdAt": "2021-10-18T19:30:00.000Z"
-        },
-        {
-          "post_id": 40982,
-          "title": "간단한 운동법",
-          "summary": "5분 만에 하는 스트레칭",
-          "comments": 72,
-          "like": 205,
-          "viewed": 654,
-          "createdAt": "2023-08-07T17:25:00.000Z"
-        },
-        {
-          "post_id": 89120,
-          "title": "요리 초보의 도전",
-          "summary": "처음 해본 파스타 요리!",
-          "comments": 186,
-          "like": 423,
-          "viewed": 1140,
-          "createdAt": "2019-03-13T05:12:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 67653,
-          "title": "매일 아침 루틴",
-          "summary": "성공적인 아침 루틴 만들기",
-          "comments": 321,
-          "like": 612,
-          "viewed": 1504,
-          "createdAt": "2020-07-29T10:44:00.000Z"
-        },
-        {
-          "post_id": 13987,
-          "title": "온라인 클래스 추천",
-          "summary": "취미를 배울 수 있는 사이트",
-          "comments": 312,
-          "like": 581,
-          "viewed": 1319,
-          "createdAt": "2022-11-02T03:25:00.000Z"
-        },
-        {
-          "post_id": 91208,
-          "title": "반려동물 입양",
-          "summary": "입양 전 알아야 할 사항들",
-          "comments": 128,
-          "like": 394,
-          "viewed": 1012,
-          "createdAt": "2021-06-09T06:20:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 25781,
-          "title": "커피 원두 추천",
-          "summary": "향과 맛이 좋은 원두 추천",
-          "comments": 85,
-          "like": 221,
-          "viewed": 754,
-          "createdAt": "2020-01-15T18:35:00.000Z"
-        },
-        {
-          "post_id": 10987,
-          "title": "게임 추천",
-          "summary": "요즘 핫한 게임은?",
-          "comments": 411,
-          "like": 759,
-          "viewed": 2023,
-          "createdAt": "2019-09-29T13:56:00.000Z"
-        },
-        {
-          "post_id": 78012,
-          "title": "자동차 관리 팁",
-          "summary": "겨울철 자동차 관리 요령",
-          "comments": 142,
-          "like": 372,
-          "viewed": 936,
-          "createdAt": "2022-12-11T20:19:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 47982,
-          "title": "집에서 하는 간단 요리",
-          "summary": "쉬운 재료로 만드는 요리",
-          "comments": 98,
-          "like": 310,
-          "viewed": 890,
-          "createdAt": "2023-07-03T04:12:00.000Z"
-        },
-        {
-          "post_id": 68371,
-          "title": "책 추천",
-          "summary": "마음의 양식을 채우는 도서",
-          "comments": 183,
-          "like": 533,
-          "viewed": 1211,
-          "createdAt": "2021-05-28T09:18:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 29382,
-          "title": "공부 자극 글",
-          "summary": "열심히 공부하는 법을 배워보세요.",
-          "comments": 257,
-          "like": 687,
-          "viewed": 1589,
-          "createdAt": "2022-08-10T14:28:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 47281,
-          "title": "의류 쇼핑몰 추천",
-          "summary": "저렴하고 트렌디한 의류 추천",
-          "comments": 198,
-          "like": 489,
-          "viewed": 1187,
-          "createdAt": "2020-05-05T22:10:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        },
-        {
-          "post_id": 98237,
-          "title": "취미 만들기",
-          "summary": "취미로 시작하는 나만의 프로젝트",
-          "comments": 223,
-          "like": 431,
-          "viewed": 1205,
-          "createdAt": "2019-01-17T10:55:00.000Z"
-        },
-        {
-          "post_id": 13567,
-          "title": "알뜰 쇼핑 팁",
-          "summary": "저렴하게 쇼핑하는 방법",
-          "comments": 302,
-          "like": 675,
-          "viewed": 1432,
-          "createdAt": "2021-02-13T08:22:00.000Z"
-        },
-        {
-          "post_id": 62589,
-          "title": "겨울 스포츠 즐기기",
-          "summary": "스키, 스노우보드 즐기는 팁",
-          "comments": 109,
-          "like": 312,
-          "viewed": 819,
-          "createdAt": "2022-12-23T05:47:00.000Z"
-        },
-        {
-          "post_id": 32901,
-          "title": "맛집 추천",
-          "summary": "이번 주말 가볼만한 맛집",
-          "comments": 457,
-          "like": 801,
-          "viewed": 2301,
-          "createdAt": "2020-11-27T15:09:00.000Z",
-          "imageURL": "https://picsum.photos/200"
-        }
-      ]
+      "post_id": 422069,
+      "title": "영화 룩 백",
+      "summary": "지난주 비 오는 저녁에 영화 한편 보고 왔어요. 둘째아이가 좋아하는 작가 작품인데, 친구들이랑 시간이 안맞았는지 엄마 호출해 줬어요.",
+      "comments": 3,
+      "like": 192,
+      "viewed": 184,
+      "createdAt": "2023-06-19T15:15:00.000000Z",
+      "imageURL": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfOTUg/MDAxNzI5NzM1NDUyMzE2.q-NG4dnCnHtQQjf02CzxCKk35e9UnyEHS1i3gSj2KLYg.XpTxS9Dlo8oVRu_2wlXWHG2r1bmJuv2Tzf2s_Nq6NYsg.JPEG/common%EF%BC%BF20241024%EF%BC%BF103350.jpg?type=w1600"
+    },
+    {
+      "post_id": 89347,
+      "title": "최신 가전제품",
+      "summary": "최신 스마트 가전 소개합니다.",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2023-05-14T21:50:00.000000Z"
+    },
+    {
+      "post_id": 53692,
+      "title": "내일의 주식 전망",
+      "summary": "주식 시장 분석과 내일의 전망",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2023-02-28T08:40:00.000000Z"
+    },
+    {
+      "post_id": 23901,
+      "title": "등산 코스 추천",
+      "summary": "가을에 가기 좋은 산",
+      "comments": 4,
+      "like": 245,
+      "viewed": 276,
+      "createdAt": "2022-09-21T05:11:00.000000Z"
+    },
+    {
+      "post_id": 97852,
+      "title": "새로운 취미 추천",
+      "summary": "요즘 뜨는 취미는 무엇일까요?",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2022-02-15T08:22:00.000000Z"
+    },
+    {
+      "post_id": 57893,
+      "title": "헬스장 추천",
+      "summary": "어디 헬스장이 좋은가요?",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2022-01-02T11:45:00.000000Z"
+    },
+    {
+      "post_id": 23876,
+      "title": "여행 준비물 리스트",
+      "summary": "꼭 챙겨야 할 필수 아이템들",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2021-11-30T09:00:00.000000Z"
+    },
+    {
+      "post_id": 66728,
+      "title": "반려동물 관리 방법",
+      "summary": "강아지 털 관리 팁",
+      "comments": 4,
+      "like": 259,
+      "viewed": 276,
+      "createdAt": "2021-08-22T04:05:00.000000Z"
+    },
+    {
+      "post_id": 87291,
+      "title": "오늘의 날씨는?",
+      "summary": "비가 올 것 같아요. 우산 챙기세요.",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2021-04-25T12:34:00.000000Z"
+    },
+    {
+      "post_id": 70483,
+      "title": "홈 카페 인테리어",
+      "summary": "집에서 즐기는 홈 카페 꾸미기",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2021-03-10T14:55:00.000000Z"
+    },
+    {
+      "post_id": 91234,
+      "title": "책 읽기의 장점",
+      "summary": "매일 책 읽기의 중요성을 알아봅시다.",
+      "comments": 4,
+      "like": 155,
+      "viewed": 276,
+      "createdAt": "2020-10-10T18:24:00.000000Z"
+    },
+    {
+      "post_id": 11237,
+      "title": "아침 운동의 중요성",
+      "summary": "매일 아침 운동하는 습관!",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2020-09-12T07:40:00.000000Z"
+    },
+    {
+      "post_id": 13290,
+      "title": "다이어트 식단",
+      "summary": "건강한 식단으로 체중 감량하기",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2020-06-17T07:30:00.000000Z",
+      "imageURL": "https://picsum.photos/200"
+    },
+    {
+      "post_id": 34892,
+      "title": "IT 트렌드 분석",
+      "summary": "올해 뜨는 IT 기술은?",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2020-02-24T16:18:00.000000Z",
+      "imageURL": "https://picsum.photos/200"
+    },
+    {
+      "post_id": 46378,
+      "title": "추천 영화 리스트",
+      "summary": "주말에 보기 좋은 영화들",
+      "comments": 4,
+      "like": 288,
+      "viewed": 276,
+      "createdAt": "2019-07-18T14:10:00.000000Z"
     }
+  ]
+}
     '''));
 /// 드로워
 DrawerData customDrawerData = DrawerData.fromJson(jsonDecode('''
       {
-        "bookmarked": [
-          {"tagId": 44327, "tag_name": "결혼", "count": 1940, "grade": 3},
-          {"tagId": 859603, "tag_name": "팩", "count": 2732, "grade": 5},
-          {"tagId": 13217, "tag_name": "감", "count": 7988, "grade": 7},
-          {"tagId": 656626, "tag_name": "색종", "count": 43766, "grade": 9},
-          {"tagId": 181591, "tag_name": "앵무", "count": 80723, "grade": 11}
-        ],
-        "recommended": [
-          {"tagId": 156313, "tag_name": "공기청정기", "count": 63285, "grade": 3},
-          {"tagId": 120401, "tag_name": "대중교통", "count": 46609, "grade": 5},
-          {"tagId": 605716, "tag_name": "크리스마스", "count": 2559411, "grade": 7},
-          {"tagId": 835111, "tag_name": "게", "count": 4186504, "grade": 9},
-          {"tagId": 282296, "tag_name": "가상화폐", "count": 6823010, "grade": 11}
-        ]
-      }
+  "bookmarked": [
+    {
+      "tagId": 9041,
+      "tag_name": "플레이리스트",
+      "count": 319734,
+      "grade": 4
+    },
+    {
+      "tagId": 153924,
+      "tag_name": "다이어트",
+      "count": 8574866,
+      "grade": 7
+    },
+    {
+      "tagId": 557802,
+      "tag_name": "트위터",
+      "count": 1922750,
+      "grade": 1
+    },
+    {
+      "tagId": 904148,
+      "tag_name": "소금빵",
+      "count": 5895490,
+      "grade": 5
+    },
+    {
+      "tagId": 962281,
+      "tag_name": "강아지",
+      "count": 3665054,
+      "grade": 7
+    }
+  ],
+  "recommended": [
+    {
+      "tagId": 959591,
+      "tag_name": "한강",
+      "count": 2772649,
+      "grade": 9
+    },
+    {
+      "tagId": 437885,
+      "tag_name": "틱톡챌린지",
+      "count": 748850,
+      "grade": 9
+    },
+    {
+      "tagId": 613899,
+      "tag_name": "베이커리",
+      "count": 1797862,
+      "grade": 9
+    },
+    {
+      "tagId": 638732,
+      "tag_name": "바다",
+      "count": 6770103,
+      "grade": 2
+    },
+    {
+      "tagId": 605484,
+      "tag_name": "제주도",
+      "count": 1686647,
+      "grade": 10
+    }
+  ]
+}
     '''));
 /// 태그 스크린
 TagData fetchTagScreenData(int tagId) {
@@ -5933,7 +6144,10 @@ SearchTagData fetchSearchCommunityData(String term) {
         orElse: () => TempSearchData(term: term) // 기본값
     );
     if(foundData.searchCommunityData == null){
-        return searchCommunityData;
+        List<Tag> filteredTag = allTag.where((tag){
+            return tag.tagName.contains(term) && tag.grade! > 5;
+        }).toList();
+        return SearchTagData(tags: filteredTag);
     }
     return foundData.searchCommunityData!;
 }
@@ -6230,7 +6444,10 @@ SearchTagData fetchSearchTagData(String term) {
         orElse: () => TempSearchData(term: term) // 기본값
     );
     if(foundData.searchTagData == null){
-        return searchTagData;
+        List<Tag> filteredTag = allTag.where((tag){
+            return tag.tagName.contains(term) && tag.grade! < 6;
+        }).toList();
+        return SearchTagData(tags: filteredTag);
     }
     return foundData.searchTagData!;
 }
@@ -6527,7 +6744,10 @@ PostData fetchSearchPostData(String term) {
         orElse: () => TempSearchData(term: term) // 기본값
     );
     if(foundData.searchPostData == null){
-        return searchPostData;
+        List<Post> filteredPost = allPost.where((post){
+            return post.title.contains(term) || post.content.toString().contains(term);
+        }).toList();
+        return PostData(posts: filteredPost);
     }
     return foundData.searchPostData!;
 }
@@ -6889,7 +7109,10 @@ SearchUserData fetchSearchUserData(String term) {
         orElse: () => TempSearchData(term: term) // 기본값
     );
     if(foundData.searchUserData == null){
-        return searchUserData;
+        List<User> filteredUser = allUser.where((user){
+            return user.nickname!.contains(term);
+        }).toList();
+        return SearchUserData(users: filteredUser);
     }
     return foundData.searchUserData!;
 }
