@@ -9,7 +9,9 @@ import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/list/tag_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
+import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class MyPostScreen extends StatefulWidget {
@@ -21,6 +23,8 @@ class MyPostScreen extends StatefulWidget {
 
 class _MyPostScreenState extends State<MyPostScreen> {
   late PostData postData;
+  bool isLogin = false;
+  int userId = 0;
 
   @override
   void initState() {
@@ -377,11 +381,27 @@ class _MyPostScreenState extends State<MyPostScreen> {
       ]
     }
     ''';
-
     // JSON 문자열을 RankData 객체로 파싱
-    postData = PostData.fromJson(jsonDecode(jsonString));
+    _checkAccessToken();
+    // postData = fetchMyPostData(userId);
 
-    print(postData.posts.length);
+  }
+
+  void _checkAccessToken() async{
+    bool loginStatus = await isAccessToken();
+    int _userId = await getUserId();
+    setState(() {
+      isLogin = loginStatus;
+      userId = _userId;
+    });
+    // userId가 제대로 설정된 후에 postData를 가져옵니다.
+    if (isLogin) {
+      postData = await fetchMyPostData(userId);
+    } else {
+      // 로그인하지 않은 경우 처리
+      print("사용자가 로그인하지 않았습니다.");
+    }
+    // print(isLogin);
   }
 
   @override

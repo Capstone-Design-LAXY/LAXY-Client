@@ -244,17 +244,17 @@ class Post {
     this.comments,
     this.userId,
     this.nickname,
-    this.like,
-    this.change,
-    this.content,
+    this.like = 0,
+    this.change = 0,
+    List<Map<String, dynamic>>? content,
     this.createdAt,
     this.updatedAt,
-    this.viewed,
+    this.viewed = 0,
     this.imageURL,
-    this.isLiked,
-    this.summary,
+    this.isLiked = false,
+    this.summary = 'content',
     this.tags,
-  });
+  }) : this.content = content ?? [{"insert": "\n\n"}];
 
   // JSON 데이터를 Post 객체로 변환
   factory Post.fromJson(Map<String, dynamic> json) {
@@ -283,6 +283,8 @@ class Post {
     );
   }
   Post toggleIsLiked() {
+    int newlike;
+    newlike = isLiked! ? like! - 1 : like! + 1;
     return Post(
       isLiked: !isLiked!,
       postId: postId,
@@ -290,7 +292,7 @@ class Post {
       title: title,
       nickname: nickname,
       comments: comments,
-      like: like,
+      like: newlike,
       change: change,
       content: content,
       createdAt: createdAt,
@@ -298,6 +300,7 @@ class Post {
       viewed: viewed,
       imageURL: imageURL,
       tags: tags,
+      summary: summary,
     );
   }
 }
@@ -471,9 +474,9 @@ class Comment {
     required this.commentId,
     this.nickname,
     this.postId,
-    this.contents,
-    this.isLiked,
-    this.likes,
+    this.contents = 'null',
+    this.isLiked = false,
+    this.likes = 0,
     this.updatedAt,
     required this.userId,
   });
@@ -489,6 +492,20 @@ class Comment {
       likes: json['likes'],
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       userId: json['user_id'],
+    );
+  }
+  Comment toggleIsLiked() {
+    int newlike;
+    newlike = isLiked! ? likes! - 1 : likes! + 1;
+    return Comment(
+      userId: userId,
+      commentId: commentId,
+      nickname: nickname,
+      updatedAt: updatedAt,
+      likes: newlike,
+      contents: contents,
+      isLiked: !isLiked!,
+      postId: postId,
     );
   }
 }

@@ -123,7 +123,7 @@ List<Post> allPost = [
             }
         },
         {
-            "insert": "\\n\\n"
+            "insert": "\n\n"
         },
         {
             "insert": "iOS 18의 새로운 기능들을 정리해봤습니다.",
@@ -132,7 +132,7 @@ List<Post> allPost = [
             }
         },
         {
-            "insert": "\\n\\n직접 해보면서 간단하게 "
+            "insert": "\n\n직접 해보면서 간단하게 "
         },
         {
             "insert": "요약정리한",
@@ -141,7 +141,7 @@ List<Post> allPost = [
             }
         },
         {
-            "insert": " 것이니 참조만 해주세요~\\n\\n"
+            "insert": " 것이니 참조만 해주세요~\n\n"
         },
         {
             "insert": {
@@ -161,10 +161,10 @@ List<Post> allPost = [
             }
         },
         {
-            "insert": "에서는 홈화면을 자유롭게 꾸밀 수 있습니다.\\n새로운 홈화면 꾸미기"
+            "insert": "에서는 홈화면을 자유롭게 꾸밀 수 있습니다.\n새로운 홈화면 꾸미기"
         },
         {
-            "insert": "\\n",
+            "insert": "\n",
             "attributes": {
                 "blockquote": true
             }
@@ -173,7 +173,7 @@ List<Post> allPost = [
             "insert": "앱 배열 사용자화"
         },
         {
-            "insert": "\\n",
+            "insert": "\n",
             "attributes": {
                 "list": "bullet"
             }
@@ -182,7 +182,7 @@ List<Post> allPost = [
             "insert": "암호앱"
         },
         {
-            "insert": "\\n",
+            "insert": "\n",
             "attributes": {
                 "list": "bullet"
             }
@@ -191,7 +191,7 @@ List<Post> allPost = [
             "insert": "앱 색상 변경"
         },
         {
-            "insert": "\\n",
+            "insert": "\n",
             "attributes": {
                 "list": "bullet"
             }
@@ -200,7 +200,7 @@ List<Post> allPost = [
             "insert": "앱과 위젯을 자유롭게 변환하기"
         },
         {
-            "insert": "\\n",
+            "insert": "\n",
             "attributes": {
                 "list": "bullet"
             }
@@ -209,7 +209,7 @@ List<Post> allPost = [
             "insert": "잠금화면 설정 기능 선택, 액션 버튼의 기능 다양화"
         },
         {
-            "insert": "\\n",
+            "insert": "\n",
             "attributes": {
                 "indent": 1,
                 "list": "bullet"
@@ -224,7 +224,7 @@ List<Post> allPost = [
             }
         },
         {
-            "insert": "제어센터 기능의 다양함\\n설정 - 연결된 에어팟 선택 - 머리 제스처 켬\\n\\n끄덕끄덕🙂‍↕️ 도리도리🙂‍↔️로 걸려오는 전화를 수신 및 거부할 수 있습니다.\\n\\n"
+            "insert": "제어센터 기능의 다양함\n설정 - 연결된 에어팟 선택 - 머리 제스처 켬\n\n끄덕끄덕🙂‍↕️ 도리도리🙂‍↔️로 걸려오는 전화를 수신 및 거부할 수 있습니다.\n\n"
         },
         {
             "insert": "블로그 출처",
@@ -233,13 +233,13 @@ List<Post> allPost = [
             }
         },
         {
-            "insert": "\\n\\n"
+            "insert": "\n\n"
         }
     ], imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600", updatedAt: DateTime.parse("2024-09-22T14:05:00.000Z"), isLiked: true, like: 483, comments: 3),
 ];
 List<Tag> allTag = [
     Tag(tagId: 3765, tagName: "Flutter", grade: 1),
-    Tag(tagId: 5432, tagName: "API연동", grade: 5), 
+    Tag(tagId: 5432, tagName: "API연동", grade: 5),
     Tag(tagId: 8907, tagName: "개발팁", grade: 11),
     Tag(tagId: 10000001, tagName: "자격증", grade: 9),
     Tag(tagId: 10000002, tagName: "정처기", grade: 5),
@@ -312,7 +312,7 @@ List<Comment> allComment = [
     Comment(commentId: 125837, userId: 672394, postId: 982347, nickname: "CHUYA", contents: "깔끔한 정리 감사합니다! \\n 제어센터는 이것저것 커스텀이 가능해진건 너무 좋은데 데이터칸이 사분할 된건 너무 불편해서 별로에요 ㅠ 이 부분까지 완벽하게 커스텀이 가능하면 참 좋을 것 같은데...", likes: 102, isLiked: true, updatedAt: DateTime.parse("2024-09-22T15:30:00.000Z")),
     Comment(commentId: 392485, userId: 238472, postId: 982347, nickname: "FlutterFan", contents: "저도 최근에 비슷한 작업을 했는데, `dio` 패키지를 사용해보니 더 편리하더라고요. 특히 파일 업로드나 에러 처리가 더 쉬웠어요!", likes: 64, isLiked: false, updatedAt: DateTime.parse("2024-09-22T16:10:00.000Z")),
     Comment(commentId: 583749, userId: 912734, postId: 982347, nickname: "개발자준", contents: "저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다! 저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다!", likes: 89, isLiked: true, updatedAt: DateTime.parse("2024-09-22T17:05:00.000Z")),
-    Comment(commentId: 10001, userId: 67601, nickname: "김민수", contents: "이 글 정말 유익하네요!", likes: 15, isLiked: false, updatedAt: DateTime.parse("2024-09-01T10:00:00.000Z")),
+    Comment(commentId: 10001, userId: 451927, nickname: "김민수", contents: "이 글 정말 유익하네요!", likes: 15, isLiked: false, updatedAt: DateTime.parse("2024-09-01T10:00:00.000Z")),
     Comment(commentId: 10002, userId: 67602, nickname: "이영희", contents: "이런 내용은 처음 들어봐요.", likes: 22, isLiked: true, updatedAt: DateTime.parse("2024-09-02T12:30:00.000Z")),
     Comment(commentId: 10003, userId: 67603, nickname: "박준호", contents: "좋은 정보 감사합니다!", likes: 10, isLiked: false, updatedAt: DateTime.parse("2024-09-03T14:15:00.000Z")),
     Comment(commentId: 10004, userId: 67604, nickname: "최지민", contents: "실제로 해보니 더 좋은 것 같아요!", likes: 5, isLiked: false, updatedAt: DateTime.parse("2024-09-04T08:45:00.000Z")),
@@ -2838,6 +2838,210 @@ List<OrbitData> mindmapData = [
   OrbitData.fromJson(jsonDecode('{"uId": 123123123, "orbit": [{"primary": {"tId": 10000001, "grade": 9, "tagName": "자격증"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "정처기"}, {"tId": 10000003, "grade": 7, "tagName": "토익"}, {"tId": 10000004, "grade": 2, "tagName": "SQLD"}, {"tId": 10000005, "grade": 8, "tagName": "Qnet"}]}, {"primary": {"tId": 10000006, "grade": 6, "tagName": "인공지능"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "GPT"}, {"tId": 10000008, "grade": 1, "tagName": "빅데이터"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "소금빵"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "빵"}]}]}')),
   OrbitData.fromJson(jsonDecode('{"uId": 123123123, "orbit": [{"primary": {"tId": 20000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 20000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 20000003, "grade": 7, "tagName": "애플케어"}, {"tId": 20000004, "grade": 2, "tagName": "애플워치"}, {"tId": 20000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 20000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 20000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 20000003, "grade": 7, "tagName": "애플케어"}, {"tId": 20000004, "grade": 2, "tagName": "애플워치"}, {"tId": 20000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 20000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 20000007, "grade": 11, "tagName": "토트넘"}, {"tId": 20000008, "grade": 1, "tagName": "축구"}, {"tId": 20000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 20000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 20000010, "grade": 10, "tagName": "백종원"}, {"tId": 20000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 20000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 20000002, "grade": 6, "tagName": "한화"}, {"tId": 20000003, "grade": 7, "tagName": "티원"}, {"tId": 20000004, "grade": 7, "tagName": "젠지"}, {"tId": 20000005, "grade": 9, "tagName": "딮기"}]}]}')),
 ];
+/// 게시글 상세
+PostDetailData fetchPostDetailScreenData(int postId) {
+    // allPost 리스트에서 postId 일치하는 post의 isBookmarked를 받아오기 위함
+    Post foundPost = allPost.firstWhere(
+            (post) => post.postId == postId,
+        orElse: () => Post(postId: postId, title: "null") // 기본값
+    );
+    // allComment 리스트에서 해당 postId가 일치한 comment만 필터링
+    List<Comment> filteredComments = allComment.where((comment) {
+        return comment.postId == postId;
+    }).toList();
+    if (filteredComments.isEmpty){
+        return PostDetailData(post: foundPost, comments: postDetailScreenData.comments);
+    }
+    return PostDetailData(post: foundPost, comments: filteredComments);
+}
+void toggleIsLiked(int postId) {
+    // allPost 리스트에서 postId와 일치하는 post의 인덱스를 찾음
+    int postIndex = allPost.indexWhere((post) => post.postId == postId);
+    if (postIndex != -1) {
+        // 인덱스가 유효하면 해당 태그의 likes를 변경하고 isLiked 값을 반전시킨 새 객체로 저장
+        allPost[postIndex] = allPost[postIndex].toggleIsLiked();
+    }
+}
+PostDetailData postDetailScreenData = PostDetailData.fromJson(jsonDecode('''
+    {
+      "post": {
+        "post_id": 982347,
+        "user_id": 451927,
+        "nickname": "꼬부7I",
+        "title": "[iOS 18] 새로생긴 iOS 18의 기능들 요약 정리",
+        "tags": [
+          {
+            "tagId": 3765,
+            "tag_name": "Flutter",
+            "grade": 1
+          },
+          {
+            "tagId": 5432,
+            "tag_name": "API연동",
+            "grade": 5
+          },
+          {
+            "tagId": 8907,
+            "tag_name": "개발팁",
+            "grade": 11
+          }
+        ],
+        "content": [
+          {
+            "insert": {
+              "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600"
+            }
+          },
+          {
+            "insert": "\\n\\n"
+          },
+          {
+            "insert": "iOS 18의 새로운 기능들을 정리해봤습니다.",
+            "attributes": {
+              "bold": true
+            }
+          },
+          {
+            "insert": "\\n\\n직접 해보면서 간단하게 "
+          },
+          {
+            "insert": "요약정리한",
+            "attributes": {
+              "background": "#FFFFF59D"
+            }
+          },
+          {
+            "insert": " 것이니 참조만 해주세요~\\n\\n"
+          },
+          {
+            "insert": {
+              "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfNTUg/MDAxNzI2NTA4NzY0MDU2.lemsm24MuabUk8kJLYgM0OwHd6bSMdPtoSbWAP2zyYcg.Ljivq_OtVuadsoz-PTgDUHKCgvDRUl1b1UPMmNU1MW8g.PNG/%EC%95%94%ED%98%B8_%EC%95%B1%2C_%EB%B0%B0%EC%97%B4.png?type=w1600"
+            },
+            "attributes": {
+              "style": "width: 392.72727272727275; height: 310.176; "
+            }
+          },
+          {
+            "insert": " "
+          },
+          {
+            "insert": "ios 18 ",
+            "attributes": {
+              "color": "#FF1E88E5"
+            }
+          },
+          {
+            "insert": "에서는 홈화면을 자유롭게 꾸밀 수 있습니다.\\n새로운 홈화면 꾸미기"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "blockquote": true
+            }
+          },
+          {
+            "insert": "앱 배열 사용자화"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "암호앱"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "앱 색상 변경"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "앱과 위젯을 자유롭게 변환하기"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": "잠금화면 설정 기능 선택, 액션 버튼의 기능 다양화"
+          },
+          {
+            "insert": "\\n",
+            "attributes": {
+              "indent": 1,
+              "list": "bullet"
+            }
+          },
+          {
+            "insert": {
+              "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTI2/MDAxNzI2NTEwMDA3NDAy.0_rVzocXqv7x2VBYMFs1xVM_KXgGUX9R56lEf747YQMg.1uOPiLe74NdSdwFfYDk4aUkfW9owWj4x76_ui9ewsFUg.PNG/KakaoTalk_20240917_030630972.png?type=w1600"
+            },
+            "attributes": {
+              "style": "width: 392.72727272727275; height: 299.2101818181818; "
+            }
+          },
+          {
+            "insert": "제어센터 기능의 다양함\\n설정 - 연결된 에어팟 선택 - 머리 제스처 켬\\n\\n끄덕끄덕🙂‍↕️ 도리도리🙂‍↔️로 걸려오는 전화를 수신 및 거부할 수 있습니다.\\n\\n"
+          },
+          {
+            "insert": "블로그 출처",
+            "attributes": {
+              "link": "https://cafe.naver.com/appleiphone/8515120"
+            }
+          },
+          {
+            "insert": "\\n\\n"
+          }
+        ],
+        "imageURL": "https://picsum.photos/500",
+        "updatedAt": "2024-09-22T14:05:00.000Z",
+        "isLiked": true,
+        "like": 483
+      },
+      "comments": [
+        {
+          "comment_id": 125837,
+          "user_id": 672394,
+          "nickname": "CHUYA",
+          "contents": "깔끔한 정리 감사합니다! \\n 제어센터는 이것저것 커스텀이 가능해진건 너무 좋은데 데이터칸이 사분할 된건 너무 불편해서 별로에요 ㅠ 이 부분까지 완벽하게 커스텀이 가능하면 참 좋을 것 같은데...",
+          "likes": 102,
+          "isLiked": true,
+          "updatedAt": "2024-09-22T15:30:00.000Z"
+        },
+        {
+          "comment_id": 392485,
+          "user_id": 238472,
+          "nickname": "FlutterFan",
+          "contents": "저도 최근에 비슷한 작업을 했는데, `dio` 패키지를 사용해보니 더 편리하더라고요. 특히 파일 업로드나 에러 처리가 더 쉬웠어요!",
+          "likes": 64,
+          "isLiked": false,
+          "updatedAt": "2024-09-22T16:10:00.000Z"
+        },
+        {
+          "comment_id": 583749,
+          "user_id": 912734,
+          "nickname": "개발자준",
+          "contents": "저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다! 저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다!",
+          "likes": 89,
+          "isLiked": true,
+          "updatedAt": "2024-09-22T17:05:00.000Z"
+        }
+      ]
+    }
+    '''));
 /// 트랜드 - 메인
 RankData trendsMainData = RankData.fromJson(jsonDecode('''
     {
@@ -6922,6 +7126,15 @@ SearchTagData bookmarkedScreenData = SearchTagData.fromJson(jsonDecode('''
     }
     '''));
 /// 마이페이지 - 좋아요한 글
+PostData fetchLikedData() {
+    List<Post> filteredPost = allPost.where((post) {
+        return post.isLiked == true;
+    }).toList();
+    if (filteredPost.isEmpty){
+        return likedScreenData;
+    }
+    return PostData(posts: filteredPost);
+}
 PostData likedScreenData = PostData.fromJson(jsonDecode('''
     {
       "posts": [
@@ -7274,6 +7487,15 @@ PostData likedScreenData = PostData.fromJson(jsonDecode('''
     }
     '''));
 /// 마이페이지 - 작성한 글
+PostData fetchMyPostData(int userId) {
+    List<Post> filteredPost = allPost.where((post) {
+        return post.userId == userId;
+    }).toList();
+    if (filteredPost.isEmpty){
+        return likedScreenData;
+    }
+    return PostData(posts: filteredPost);
+}
 PostData myPostData = PostData.fromJson(jsonDecode('''
     {
       "posts": [
@@ -7626,6 +7848,23 @@ PostData myPostData = PostData.fromJson(jsonDecode('''
     }
     '''));
 /// 마이페이지 - 작성한 댓글
+CommentData fetchMyCommentData(int userId) {
+    List<Comment> filteredComment = allComment.where((comment) {
+        return comment.userId == userId;
+    }).toList();
+    if (filteredComment.isEmpty){
+        return myCommentData;
+    }
+    return CommentData(comments: filteredComment);
+}
+void toggleIsLikedComment(int commentId) {
+    // allComment 리스트에서 commentId와 일치하는 comment의 인덱스를 찾음
+    int commentIndex = allComment.indexWhere((comment) => comment.commentId == commentId);
+    if (commentIndex != -1) {
+        // 인덱스가 유효하면 해당 태그의 likes를 변경하고 isLiked 값을 반전시킨 새 객체로 저장
+        allComment[commentIndex] = allComment[commentIndex].toggleIsLiked();
+    }
+}
 CommentData myCommentData = CommentData.fromJson(jsonDecode('''
     {
       "comments": [

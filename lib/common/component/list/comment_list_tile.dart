@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
@@ -102,6 +103,7 @@ class _CommentListTileState extends State<CommentListTile> {
                     onTap: () {
                       if (isLogin){
                         setState(() {
+                          toggleIsLikedComment(widget.commentId);
                           isLiked = !isLiked;
                           // TODO: 동작 추가 필요
                         });

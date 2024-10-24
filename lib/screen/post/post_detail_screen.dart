@@ -15,6 +15,7 @@ import 'package:laxy/common/component/quill/custom_quill_reader.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/post_layout.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
@@ -225,7 +226,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     ''';
 
     // JSON 문자열을 RankData 객체로 파싱
-    postDetailData = PostDetailData.fromJson(jsonDecode(jsonString));
+    postDetailData = fetchPostDetailScreenData(widget.postId);
     _checkAccessToken();
     // for (int i = 0; i < (postDetailData.post.content?.length ?? 0); i++) {
     //   print(postDetailData.post.content?[i]);
@@ -330,6 +331,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             onPressed: () {
               if (isLogin){
                 setState(() {
+                  toggleIsLiked(widget.postId);
                   postDetailData = postDetailData.toggleIsLiked();
                   // TODO: 추가 동작 필요
                 });

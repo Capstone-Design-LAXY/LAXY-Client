@@ -11,7 +11,9 @@ import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/list/tag_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
+import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class MyCommentScreen extends StatefulWidget {
@@ -23,6 +25,8 @@ class MyCommentScreen extends StatefulWidget {
 
 class _MyCommentScreenState extends State<MyCommentScreen> {
   late CommentData commentData;
+  bool isLogin = false;
+  int userId = 0;
 
   @override
   void initState() {
@@ -474,8 +478,24 @@ class _MyCommentScreenState extends State<MyCommentScreen> {
       ]
     }
     ''';
-    commentData = CommentData.fromJson(jsonDecode(jsonString));
-    print(commentData.comments.length);
+    // commentData = CommentData.fromJson(jsonDecode(jsonString));
+    _checkAccessToken();
+  }
+  void _checkAccessToken() async{
+    bool loginStatus = await isAccessToken();
+    int _userId = await getUserId();
+    setState(() {
+      isLogin = loginStatus;
+      userId = _userId;
+    });
+    // userId가 제대로 설정된 후에 postData를 가져옵니다.
+    if (isLogin) {
+      commentData = await fetchMyCommentData(userId);
+    } else {
+      // 로그인하지 않은 경우 처리
+      print("사용자가 로그인하지 않았습니다.");
+    }
+    // print(isLogin);
   }
   // TODO: 북마크 기능 추가, 신고 모달
   @override
