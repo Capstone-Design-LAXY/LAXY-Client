@@ -158,6 +158,7 @@ class Tag {
   final int? bookmarked;
   final int? change;
   final int? grade;
+  final bool? isBookmarked;
 
   Tag({
     required this.tagId,
@@ -166,6 +167,7 @@ class Tag {
     this.bookmarked,
     this.change,
     this.grade,
+    this.isBookmarked,
   });
 
   // JSON 데이터를 Tag 객체로 변환
@@ -177,6 +179,7 @@ class Tag {
       bookmarked: json['bookmarked'],
       change: json['change'],
       grade: json['grade'],
+      isBookmarked: json['isBookmarked'],
     );
   }
 }
@@ -443,6 +446,7 @@ class PostDetailData {
 class Comment {
   final int commentId;
   final int userId;
+  final int? postId;
   final String? nickname;
   final String? contents;
   final int? likes;
@@ -452,6 +456,7 @@ class Comment {
   Comment({
     required this.commentId,
     this.nickname,
+    this.postId,
     this.contents,
     this.isLiked,
     this.likes,
@@ -463,6 +468,7 @@ class Comment {
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
       commentId: json['comment_id'],
+      postId: json['postId'],
       nickname: json['nickname'],
       contents: json['contents'],
       isLiked: json['isLiked'],
@@ -498,6 +504,8 @@ class User {
   final int? comments;
   final DateTime? updatedAt;
   final String? email;
+  final String? password;
+  final List<Tag>? bookmarked;
 
   User({
     required this.userId,
@@ -506,6 +514,8 @@ class User {
     this.comments,
     this.updatedAt,
     this.email,
+    this.password,
+    this.bookmarked,
   });
 
   // JSON 데이터를 Post 객체로 변환
@@ -516,6 +526,10 @@ class User {
       nickname: json['nickname'],
       posts: json['posts'],
       comments: json['comments'],
+      password: json['password'],
+      bookmarked: (json['boomarked'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList(),
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
     );
   }
