@@ -116,7 +116,8 @@ List<Post> allPost = [
     Post(postId: 9754, title: "아이디어가 넘치는 사람들의 사고방식: 창의력 향상 비법", comments: 2296, like: 82045, change: -5),
     Post(postId: 6668, title: "집에서도 가능한 쉬운 운동 루틴: 초보자 가이드", comments: 7811, like: 60625, change: 9),
     Post(postId: 60207, title: "매일 실천하는 자기 계발 습관: 삶을 바꾸는 작은 행동들", comments: 1427, like: 72095, change: 10),
-    Post(postId: 982347, title: "[iOS 18] 새로생긴 iOS 18의 기능들 요약 정리", userId: 451927, nickname: "꼬부7I", summary: "iOS 18의 새로운 기능들을 정리해봤습니다.", tags: [Tag(tagId: 3765, tagName: "Flutter", grade: 1), Tag(tagId: 5432, tagName: "API연동", grade: 5), Tag(tagId: 8907, tagName: "개발팁", grade: 11)], content: [
+    Post(postId: 982347, title: "[iOS 18] 새로생긴 iOS 18의 기능들 요약 정리", userId: 451927, nickname: "꼬부7I", summary: "iOS 18의 새로운 기능들을 정리해봤습니다.", tags: [Tag(tagId: 3765, tagName: "Flutter", grade: 1), Tag(tagId: 5432, tagName: "API연동", grade: 5), Tag(tagId: 8907, tagName: "개발팁", grade: 11)],
+        content: [
         {
             "insert": {
                 "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600"
@@ -236,6 +237,310 @@ List<Post> allPost = [
             "insert": "\n\n"
         }
     ], imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600", updatedAt: DateTime.parse("2024-09-22T14:05:00.000Z"), isLiked: true, like: 483, comments: 3),
+    Post(postId: 865124, title: "[난지금](7) 비오는 날 추천 드라마!", userId: 578599, nickname: "맑은하늘서쪽하늘", summary: "<이토록 친밀한 배신자>",
+        content: [{"insert":"\n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfMjI1/MDAxNzI5MjI5Mjc3Njk5.FZK-nmh5Mr0jMHzGDCiy2b7ju2w0ASy2_pBg6VpVdrkg.7TLnx-dCtPNreSjeSft572SIjTeuXgKvDRe52lqEfZ4g.JPEG/20241018%EF%BC%BF142138.jpg?type=w1600"}},{"insert":"\n<이토록 친밀한 배신자>\n지난 주 시작한 MBC 드라마인데..\n얼마만에 지상파 드라마 보는건지 모르겠네요.\n원래 이렇게 초반부터 드라마 안보는데.. 안볼수없었어요. \n\n금토 드라마여서 오늘 3회 방영하는데\n오늘 본방 전 2회 다시 정주행 한번 했네요. \n비 오는날 보시면 무서움+긴장감 몇배 더할듯요 ㅋ\n\n김은희 작가 시그널 잼나게 보셨다면 추천해요.\n한석규 님과 딸 역할 채원빈 님 연기, 장난 아님요~~\n\n\n"}],
+        tags: [
+            Tag(tagId: 4918, tagName: "드라마", grade: 1),
+            Tag(tagId: 9620, tagName: "비", grade: 2),
+            Tag(tagId: 2001, tagName: "날씨", grade: 3),
+            Tag(tagId: 6520, tagName: "작가", grade: 4),
+            Tag(tagId: 9205, tagName: "시그널", grade: 5),
+            Tag(tagId: 5886, tagName: "배우", grade: 6),
+            Tag(tagId: 4513, tagName: "연기", grade: 7),
+            Tag(tagId: 3236, tagName: "정주행", grade: 8),
+            Tag(tagId: 1017, tagName: "MBC", grade: 9),
+            Tag(tagId: 4774, tagName: "추천", grade: 10),
+        ],
+        updatedAt: DateTime.parse("2024-10-28T14:27:00.000Z"),
+        isLiked: false,
+        like: 15,
+        comments: 3
+    ),
+    Post(
+        postId: 656762,
+        title: "나의 유튜브 쇼츠 음악 플레이리스트",
+        tags: [
+            Tag(tagId: 5584, tagName: "음악", grade: 1),
+            Tag(tagId: 8073, tagName: "유튜브", grade: 2),
+            Tag(tagId: 4268, tagName: "쇼츠", grade: 3),
+            Tag(tagId: 9041, tagName: "플레이리스트", grade: 4),
+            Tag(tagId: 7145, tagName: "일상", grade: 5),
+            Tag(tagId: 9481, tagName: "친구", grade: 6),
+            Tag(tagId: 1788, tagName: "커피", grade: 7),
+            Tag(tagId: 3970, tagName: "행복", grade: 8),
+        ],
+        summary: "요즘은 하루의 소소한 순간들을 음악으로 채우는 것이 큰 즐거움이 되었어요. 특히 '나의 유튜브 쇼츠 음악 플레이리스트'는 일상 속에서 제 감정을 더욱 풍부하게 만들어 주는 소중한 친구 같답니다.",
+        content: [
+            {"insert": "요즘은 하루의 소소한 순간들을 음악으로 채우는 것이 큰 즐거움이 되었어요. 특히 '나의 유튜브 쇼츠 음악 플레이리스트'는 일상 속에서 제 감정을 더욱 풍부하게 만들어 주는 소중한 친구 같답니다.\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfNDcg/MDAxNzI5NzA3NTY4MTMw.4yvhtkNzUzEQB9JFtmjVL-NR-EAR7voTKj5mPQCD7l4g.rlEXqS7qupKgOLEbwJxyWMDjvluFxe20T0J1rpiRUyEg.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_1584624200.jpg?type=w1600"}},
+            {"insert": "\n\n아침에 일어나서 창문을 열면 상쾌한 공기와 함께 좋아하는 곡이 흘러나오고, 그 순간 하루가 시작되는 기분을 느껴요. 커피를 내리며 듣는 잔잔한 멜로디는 마치 작은 카페에 앉아 있는 듯한 기분을 주고, 길을 걸을 때는 경쾌한 비트가 발걸음을 가볍게 해주죠.\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfOTMg/MDAxNzI5NzA3NTY4NDQx.4O1b7V4_fnUPKh1maBeQNu98muqnBqFhnDP9yQ7bRW8g._12qAUfyLFHk6X2b1dCLOP8oljwUtlisAkVAR90arNog.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_1029708087.jpg?type=w1600"}},
+            {"insert": "\n\n또한, 친구들과의 소소한 만남에서도 이 플레이리스트는 빼놓을 수 없어요. 함께 웃고 떠드는 사이에 음악이 흐르면, 그 순간이 더욱 특별하게 느껴져요. 기억에 남는 순간들을 음악과 함께 간직할 수 있다는 건 정말 큰 행복이죠.\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfMjM3/MDAxNzI5NzA3NTY4Nzc2.800C5BUW8nPVr8urQ-FSHv_eddVHVrSnO1_6VyEBKLsg.MOeLPlL_i19jxPg94SqtBYya_0TPn1XqnpTt2fvAXG8g.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_399888503.jpg?type=w1600"}},
+            {"insert": "\n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-24T10:00:00.000Z"),
+        isLiked: false,
+        like: 0,
+        comments: 2
+    ),
+    Post(
+        postId: 938118,
+        userId: 563135,
+        nickname: "휴직",
+        title: "[멍청비용] 오늘, 세계여행 중 모든게 든 지갑을 잃어버렸습니다",
+        tags: [
+            Tag(tagId: 3636, tagName: "세계여행", grade: 1),
+            Tag(tagId: 3425, tagName: "지갑", grade: 2),
+            Tag(tagId: 8750, tagName: "모험", grade: 3),
+            Tag(tagId: 3188, tagName: "노이슈반타인", grade: 4),
+            Tag(tagId: 4578, tagName: "독일", grade: 5),
+            Tag(tagId: 2081, tagName: "여행", grade: 6),
+            Tag(tagId: 5278, tagName: "유럽", grade: 7),
+        ],
+        summary: "세계여행 190일째, 오늘 모든게 든 지갑을 노이슈반슈타인 성에서 잃어버렸습니다...",
+        content: [{"insert":"세계여행 190일째, 오늘 모든게 든 지갑을 노이슈반슈타인 성에서 잃어버렸습니다... \n과연.. 찾을 수 있을까요?\n\n안녕하세요. 아내와 함께 세계여행 중입니다. 지난 3월부터 여행을 시작해 오늘 딱 190일째네요.\n동남아와 코카서스 3국, 발칸반도를 거쳐 독일까지 왔습니다. 지금은 렌트로 유럽 구석구석을 다니는 중이고요. \n오늘은 그 유명한 노이슈반슈타인 성에 다녀왔어요.\n저렴한 에어비앤비를 찾아 독일 Biberach라는 시골 마을에 묵고 있는데 노이슈반슈타인 성까지 120km정도, 1시간 반 거리여서 당일치기로 다녀오려 했습니다. 이틀 전에 9시 타임만 자리가 남아 새벽 6시 반에 출발했어요. 주차장에서 성까지 3~40분 정도 걸어올라가야 해 넉넉하게 출발해야 합니다. \n\n새벽부터 비도 많이오고 캄캄한데 독일 사람들은 마을 도로에서도 시속 100km 정도로 마구 달리더라고요.. \n 도로폭도 좁고 가로등도 없는데 맞은편에서는 집채만한 화물차가 끊임없이 달려와 속도를 낼 수가 없었어요. 그랬더니 뒤차들은 쌍라이트 켜고 추월해가고 난리도 아닙니다... 독일 운전매너 좋다고 봤는데 말이죠. 구불구불 도로에 7~80km로 달렸는데도 그러더라고요. 내비에 뜬 시간보다 조금 늦게 도착했습니다. \n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDNfMTU4/MDAxNzI3OTA3NDM5MTY3.hgF0WCS44zN-RMqeD7YEIQp5KjDWlJoueOCom66NvF8g.Z-LNTp0yHpwowcYj72Gz7Y28i7pzFiJO39jvVqgOED8g.JPEG/KakaoTalk_20241003_063541121_01.jpg?type=w1600"}},{"insert":"\n 이제 지갑사건이 시작됩니다.(떠올리기도 싫은) \n\n 노이슈반슈타인 성 관람을 마치고 주차장에서 차를 찾았어요. 여긴 시간 상관없이 무조건 일일 12유로나 합니다. \n 다시 비오는 고속도로를 지나 너무 졸려 졸음쉼터에서 한숨 잠도 자고, 숙소 있는 마을까지 2시간 정도 걸려 왔습니다. \n 차에 기름을 넣어야해서 주유소로 갔죠. 그리고 결제를 하려고 지갑을 찾는데... 응? \n 응?! 응?!!!! 설마...?!!!!! 지갑이 없는 겁니다. \n 세계여행하면서 절대 잃어버리면 안되는게 둘있는데 휴대폰과 지갑이죠. \n 지갑에는 바로 어제 찾은 현금 200유로와 제 신용카드 2개, 아내 신용카드 1개, 운전면허증(영문), 이스탄불에서 사고 반환 실패한 이스탄불카르트, 그리고 여분 여권사진 여러장이 들어있었습니다. 아, 여행하며 만난 사람들이 건네준 명함도 몇장 들어있었네요. \n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDNfMjI5/MDAxNzI3OTA3NzM1MTUx.tyGU_oY9X-_586C0E4xFdG-Hv6Y1EhoYB97DIhUiWxYg.aHsrvXTNHlgAmr99BjsKtYN_0GBj_TW3YQIVPFeHBJEg.JPEG/KakaoTalk_20241003_063541121.jpg?type=w1600"}},
+            {"insert": "\n\n"}],
+        updatedAt: DateTime.parse("2024-10-03T07:22:00.000Z"),
+        isLiked: true,
+        like: 1088,
+        comments: 3
+    ),
+    Post(
+        postId: 766436,
+        userId: 740377,
+        nickname: "샤이니",
+        title: "엄마표 미술놀이로 제격이에요",
+        tags: [
+            Tag(tagId: 2288, tagName: "미술", grade: 1),
+            Tag(tagId: 2, tagName: "아이", grade: 2),
+            Tag(tagId: 5006, tagName: "엄마", grade: 3),
+            Tag(tagId: 9851, tagName: "감기", grade: 4),
+            Tag(tagId: 7334, tagName: "집", grade: 5),
+            Tag(tagId: 8661, tagName: "놀이", grade: 6),
+            Tag(tagId: 2271, tagName: "검색", grade: 7),
+            Tag(tagId: 6113, tagName: "색깔", grade: 8),
+        ],
+        summary: "엄마표 미술놀이로 제격이에요",
+        content: [
+            {"insert": "엄마표 미술놀이로 제격이에요\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTZfMTI0/MDAxNzI5MDQ2NzgzODgy.2a1ZukB3Miulq8Q9ix37UEwLvGbJoyCsXSwa19J4DYUg.JNJCd2hoYcAnSG4ZR0ejk3ZSrpNs7-NkvhkWIiU0MIUg.JPEG/1.jpg?type=w1600"}},
+            {"insert": "\n\n아이가 감기에 걸려서 요 몇일 집에서만 있었는데요\n어린이집에도 못가고, 엄마도 심심... 아이도 심심...\n혼자서도 잘 노는 아이지만 그래도\n이왕 집에서 보내는 엄마와의 시간을\n알차게 보내게 해주고 싶더라구요\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTZfMTk5/MDAxNzI5MDQ2NzgzODQ2.B0AHTKb-0LcLRYoR5uzRUoQXGW0sTpct3C1xU0VhzWYg.FqSbmBzYiEqpSzLER99uyrJpZX1GHcZZTLG2Ii7H1Iog.JPEG/2.jpg?type=w1600"}},
+            {"insert": "\n\n그래서 뭘해줄까 고민고민하다\n엄마표 미술놀이 해주면 좋겠다 싶어\n폭풍 검색했더니 물을 좋아하는 아이가 하면 좋을\n거품 놀이가 있더라구요\n따뜻한 물로 길지 않은 시간 하면 괜찮을 것 같아 바로 구매\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTZfMTY1/MDAxNzI5MDQ2Nzg0MDYy.HGPSuGgGAkCPeeqQIVVKsg_Nbj6NXBlDZva4IepaSVwg.1LyPWMZLnTuxa2S-Gp4C2isnoNMX5c4GKyXI9AQNCysg.JPEG/3.jpg?type=w1600"}},
+            {"insert": "\n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 70,
+        comments: 3
+    ),
+    Post(
+        postId: 422069,
+        userId: 483398,
+        title: "영화 룩 백",
+        tags: [
+            Tag(tagId: 4580, tagName: "영화", grade: 1),
+            Tag(tagId: 5461, tagName: "비", grade: 2),
+            Tag(tagId: 9934, tagName: "저녁", grade: 3),
+            Tag(tagId: 6504, tagName: "친구", grade: 4),
+            Tag(tagId: 2517, tagName: "시간", grade: 5),
+            Tag(tagId: 6677, tagName: "관객", grade: 6),
+            Tag(tagId: 7898, tagName: "정보", grade: 7),
+            Tag(tagId: 9818, tagName: "눈물", grade: 8),
+            Tag(tagId: 1919, tagName: "안경닦이", grade: 9),
+        ],
+        summary: "지난주 비 오는 저녁에 영화 한편 보고 왔어요. 둘째아이가 좋아하는 작가 작품인데, 친구들이랑 시간이 안맞았는지 엄마 호출해 줬어요.",
+        content: [
+            {"insert": "지난주 비 오는 저녁에 영화 한편 보고 왔어요. 둘째아이가 좋아하는 작가 작품인데, 친구들이랑 시간이 안맞았는지 엄마 호출해 줬어요.\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfOTUg/MDAxNzI5NzM1NDUyMzE2.q-NG4dnCnHtQQjf02CzxCKk35e9UnyEHS1i3gSj2KLYg.XpTxS9Dlo8oVRu_2wlXWHG2r1bmJuv2Tzf2s_Nq6NYsg.JPEG/common%EF%BC%BF20241024%EF%BC%BF103350.jpg?type=w1600"}},
+            {"insert": "\n\n관객은 저희 포함 총 다섯명.\n괜히 미안시런 마음... 아시죠?^^\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMjRfMjcw/MDAxNzI5NzM1NDUyMzQz.sEcFTP_Zu1j7EMqF6H4bplqiqVy38QQLq8qaXYI1s_Mg.fuILmLMt1WIwct3FtZC5ijVKRHuWAFHM5P3kL0DMRdcg.JPEG/common%EF%BC%BF20241024%EF%BC%BF103344.jpg?type=w1600"}},
+            {"insert": "\n\n전 아무 정보도 없이 보러 갔다, 소매에 눈물 쓱쓱 닦고 왔어요. 뒷자리 분은 오열하시고..\n휴지도 한장 없고 주머니엔 안경닦이만 굴러다니고요.\n한시간 정도 짧은 영화였는데 참 좋은 영화였어요.\n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 192,
+        comments: 3
+    ),
+    Post(
+        postId: 495475,
+        userId: 369023,
+        nickname: "물비늘",
+        title: "쿠팡파트너스와 함께하는 일상",
+        tags: [
+            Tag(tagId: 6290, tagName: "일상", grade: 1),
+            Tag(tagId: 8667, tagName: "쿠팡", grade: 2),
+            Tag(tagId: 5723, tagName: "파트너", grade: 3),
+            Tag(tagId: 3185, tagName: "아침", grade: 4),
+            Tag(tagId: 3578, tagName: "상품", grade: 5),
+            Tag(tagId: 5994, tagName: "루틴", grade: 6),
+            Tag(tagId: 3438, tagName: "집", grade: 7),
+            Tag(tagId: 3704, tagName: "생활용품", grade: 8),
+        ],
+        summary: "오늘은 '쿠팡파트너스와 함께하는 일상'에 대해 이야기해볼게요.",
+        content:[
+            {"insert": "오늘은 '쿠팡파트너스와 함께하는 일상'에 대해 이야기해볼게요.\n요즘 제 일상에서 쿠팡파트너스는 정말 큰 비중을 차지하고 있어요.\n아침에 일어나서 커피 한 잔과 함께 하루를 시작할 때, 쿠팡파트너스를 통해 다양한 상품을 살펴보는 것이 저의 작은 루틴이 되었답니다.\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMjgw/MDAxNzI5MTMzMTM5ODM3.dGDryc1K9yEkBWxjFUvmAYA4-Tl5QFYv6UEQTJIMi0Ug.1tli3E409LI-Rs-NxUFC9mCJHZgnRi5goX63nUs9ABYg.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_353781006.jpg?type=w1600"}},
+            {"insert": "\n\n특히 요즘은 집에서 보내는 시간이 많아지다 보니, 필요한 물건들을 쿠팡파트너스를 통해 쉽게 찾고 구매하는 재미가 쏠쏠해요.\n주말에는 가족들과 함께 간편하게 주문한 음식을 나누고, 필요한 생활용품들도 클릭 한 번으로 간편하게 해결할 수 있어 정말 편리하죠.\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMTIw/MDAxNzI5MTMzMTQwMjY4.no3kiP4JP48jJlwkZdclJTj4UNxgZijJKvFsd0CeGUwg.AM9lpzOt32ci6qH3CqoKZKKYR5gNld5HLpw5rQkf8msg.JPEG/%EB%8B%A4%EC%9A%B4%EC%9D%B4%EB%AF%B8%EC%A7%80_843931921.jpg?type=w1600"}},
+            {"insert": "\n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 88,
+        comments: 3
+    ),
+    Post(
+        postId: 638261,
+        userId: 941888,
+        nickname: "유나디나",
+        title: "[리뷰]스포츠 모자 추천 좀 해주세요!!!",
+        tags: [
+            Tag(tagId: 3711, tagName: "스포츠", grade: 1),
+            Tag(tagId: 4991, tagName: "자전거", grade: 2),
+            Tag(tagId: 2030, tagName: "힐링", grade: 3),
+            Tag(tagId: 6076, tagName: "운동", grade: 4),
+            Tag(tagId: 4521, tagName: "한강", grade: 5),
+            Tag(tagId: 2498, tagName: "노을", grade: 6),
+        ],
+        summary: "요즘 자전거 타기에 ",
+        content: [{"insert":"요즘 자전거 타기에 \n푹~빠져있는 1인입니다^^\n\n어릴 때 자전거 타보고\n성인되어서는 한번도 안탔는데\n얼마전 친구랑 한강에 놀러갔다가\n자전거 타는 분들이 좋아보여서\n자전거를 빌려서 타봤어요\n\n해지는 노을바라보며 \n자전거 타는데 \n기분이 그렇게 좋을 수가\n없더라구요\n\n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMDhfMjA1/MDAxNzI4Mzc1ODQ4MTQ2.FLy1LugOZR-vQCDmjwBvSwXqiByF-e-8hhRHm9-Rh10g.OrDH9AzOG8asf2eL8yXMFEP0TWzuLW1bw18CirIumfQg.JPEG/1%28%EB%8C%80%ED%91%9C%EC%82%AC%EC%A7%84%29.jpg?type=w1600"}},{"insert":"\n"}],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 37,
+        comments: 3
+    ),
+    Post(
+        postId: 580674,
+        userId: 896390,
+        nickname: "하나두",
+        title: "사진맛집 올라카페",
+        tags: [
+            Tag(tagId: 9097, tagName: "사진", grade: 1),
+            Tag(tagId: 9859, tagName: "맛집", grade: 2),
+            Tag(tagId: 2758, tagName: "카페", grade: 3),
+            Tag(tagId: 6254, tagName: "일상", grade: 4),
+            Tag(tagId: 5054, tagName: "꽃", grade: 5),
+            Tag(tagId: 3603, tagName: "디저트", grade: 6),
+            Tag(tagId: 7221, tagName: "포토스팟", grade: 7),
+        ],
+        summary: "카페투어를 착실히 실천한 이번여행",
+        content: [
+            {"insert": "카페투어를 착실히 실천한 이번여행\n사진 맛집이라는 올라카페도 다녀왔어요 ㅎㅎ\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTFfMjk4/MDAxNzI4NjQ1Mzk4OTgx.CkvL5VKbDzmCi9Zl_keBdFNt-8hUjAk8iz05z0275icg.HPU2Dybhw5PW5JrJ6HnNWkLLibH3m7MNpxAYTRsrlKIg.JPEG/20240905%EF%BC%BF083133.jpg?type=w1600"}},
+            {"insert": "\n\n입구부터 너무 이쁘죠♡\n요앞에 핀 꽃들이랑 사진찍기 최고\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTFfMSAg/MDAxNzI4NjQ1NDAyNDU0._znC0Aks32mIrxbJ5srzpnJIx5OqcUHIK12UwEF53BEg.iQpxz2dcIlb5W6mPuCJDMb_WFxP3ELWQ2rhsGnCxv_Ug.JPEG/1728645017177.jpg?type=w1600"}},
+            {"insert": "\n\n메뉴도 다양하고 디저트들도 있어요^^\n\n"},
+            {"insert": {"image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTFfMTIy/MDAxNzI4NjQ1NDAwMDA5.Sq3MgirG2V4qzynAceYnRru5SCS0-nCsE2w0EbhOgXgg.Q9u_XhKsPY0N7F62CX3OF08V7BldjXfor1mCTeXz1WAg.JPEG/20240905%EF%BC%BF083405.jpg?type=w1600"}},
+            {"insert": "\n\n 요기조기 포토스팟 많은 올라카페 \n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 216,
+        comments: 3
+    ),
+    Post(
+        postId: 568689,
+        userId: 427252,
+        nickname: "일공사학습도우미1",
+        title: "일본어말하기 시험 SJPT 독학 시험 정보",
+        tags: [
+            Tag(tagId: 8823, tagName: "외국어", grade: 1),
+            Tag(tagId: 9196, tagName: "일본어", grade: 2),
+            Tag(tagId: 8974, tagName: "일본", grade: 3),
+            Tag(tagId: 2360, tagName: "독학", grade: 4),
+            Tag(tagId: 9975, tagName: "시험", grade: 5),
+            Tag(tagId: 4229, tagName: "정보", grade: 6),
+            Tag(tagId: 2821, tagName: "SJPT", grade: 7),
+            Tag(tagId: 6527, tagName: "말하기", grade: 8),
+        ],
+        summary: "일본어말하기 시험을 측정하는",
+        content: [
+            {
+                "insert": {
+                    "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMjk1/MDAxNzI5MTQ3Njg0NzMw.8125JaGMIIEILIBmArd1o7K93hLSiNbaxS49fOw2TfQg.2RuAQPsiUf3ChTaQ5DPVC2T5BzLagdjiGTKcDddREAYg.PNG/%EC%9D%BC%EB%B3%B8%EC%96%B4%EB%A7%90%ED%95%98%EA%B8%B0_%EC%8B%9C%ED%97%98.png?type=w1600"
+                }
+            },
+            {
+                "insert": "\n\n일본어말하기 시험을 측정하는\n\n대표적인 시험 중 하나가\n\n바로 SJPT시험입니다.\n\n영어 말하기 시험은 많이 알려져있으나\n\n일본어말하기 시험에 대해서는\n\n낯설게 느끼시는 분들이 많더라구요.\n\n일본어를 배우는 사람들에게\n\n중요한 기준이 되는 SJPT시험은\n\n실생활이나 비즈니스에서\n\n사용되는 회화 능력을 평가합니다.\n\n이번 포스팅에서는 SJPT 시험의\n\n전반적인 정보와 시험 방식,\n\n점수 체계 등을 소개하여\n\n독학으로 준비하는 분들에게\n\n도움드리는 시간을 가져볼게요!\n\n"
+            },
+            {
+                "insert": {
+                    "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMTdfMTcy/MDAxNzI5MTQ3Njg0NzQ0.LrJwA9QgSsVowdRG6kcLAZbUDHKA1ayz3Tp5-43kbCkg.GuRmOnhvF7-bgQzP7ddUtA-8Y4YZxwrKEKzxxE8jXmgg.PNG/%EC%9D%BC%EB%B3%B8%EC%96%B4%EB%A7%90%ED%95%98%EA%B8%B0_%EC%8B%9C%ED%97%98_1.png?type=w1600"
+                }
+            },
+            {"insert": "\n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 81,
+        comments: 3
+    ),
+    Post(
+        postId: 151947,
+        userId: 239048,
+        nickname: "닥터큰돌",
+        title: "[잡담] 주말에 기대 중인 공연 2개",
+        tags: [
+            Tag(tagId: 9053, tagName: "공연", grade: 1),
+            Tag(tagId: 8303, tagName: "잡담", grade: 2),
+            Tag(tagId: 1144, tagName: "주말", grade: 3),
+            Tag(tagId: 9637, tagName: "오페라", grade: 4),
+            Tag(tagId: 3474, tagName: "투란도트", grade: 5),
+            Tag(tagId: 5339, tagName: "매력", grade: 6),
+            Tag(tagId: 5495, tagName: "독일어", grade: 7),
+            Tag(tagId: 3892, tagName: "추천", grade: 8),
+            Tag(tagId: 7893, tagName: "대본", grade: 9),
+        ],
+        summary: "공연",
+        content: [
+            {
+                "insert": "공연\n"
+            },
+            {
+                "insert": {
+                    "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfODEg/MDAxNzI5MjE0Nzc5OTU2.ac2a5Zu1roV7mfbjDNavGjz23BuxXV835bpCJlisfGEg.TEedZbawD8pCT2fA4UdEQofWcMPCUSYnVnvQ_mwAJtQg.PNG/%ED%88%AC%EB%9E%80%EB%8F%84%ED%8A%B8_%EB%B2%A0%EB%A1%9C%EB%82%98.png?type=w1600"
+                }
+            },
+            {
+                "insert": "\n\n"
+            },
+            {
+                "insert": {
+                    "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfOTAg/MDAxNzI5MjE0Nzc5NTYy.HaDpFzmKuzfUXUcLnHA38PNvUFDMABsFiTGEbLme26Qg.KFzw2RE92snF75bxnjNjypD-yF0b_kuA4up4Z8Ed_nQg.JPEG/%ED%83%84%ED%98%B8%EC%9D%B4%EC%A0%80%ED%8F%AC%EC%8A%A4%ED%84%B00625_%283%29.jpg?type=w1600"
+                }
+            },
+            {
+                "insert": "\n\n여기에는 오페라 좋아하는 분들이 많을 것 같진 않지만 ^^;\n\n토요일, 일요일에 오페라 하나씩 예매를 했는데 올해 가장 기대 중인 공연들입니다!\n\n\n\n오페라 입문한지 1년 정도 밖에 되지 않지만 여러 음반을 듣고 관련 서적과 대본을 읽고 영상물도 보고 실제 공연도 가면서 그 매력에 완전 빠져버렸습니다. 그동안 여러 공연을 봐왔지만 이 두 공연이 가장 기대가 크네요.\n\n 투란도트는 푸치니 서거 100주년 기념으로 명 연출가 제피렐리의 화려한 프로덕션을 그대로 가져와서 공연을 한다고 합니다. 후기들을 보니 진행과 음향 관련해서 크고 작은 문제가 없는건 아니지만 영상물로만 봐왔던 유명한 프로덕션을 국내에서 실제로 보게 되는 것만으로도 기대를 하고 있습니다."
+            },
+            {"insert": "\n\n"}
+        ],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 265,
+        comments: 2
+    ),
+    Post(
+        postId: 589954,
+        userId: 388466,
+        nickname: "이디스",
+        title: "또 다른 취미글을 보고 올려봅니다...",
+        tags: [
+            Tag(tagId: 2038, tagName: "취미", grade: 1),
+            Tag(tagId: 3583, tagName: "일", grade: 2),
+            Tag(tagId: 7591, tagName: "집", grade: 3),
+            Tag(tagId: 2072, tagName: "게임", grade: 4),
+            Tag(tagId: 6432, tagName: "전자시계", grade: 5),
+        ],
+        summary: "또 다른 취미가 어떤게 있는지의 글을 보고,",
+        content: [{"insert":"또 다른 취미가 어떤게 있는지의 글을 보고,\n제가 하는 취미가 흔치만은 않은 또 다른 취미인거 같아서 한 번 올려봅니다... ㅎㅎㅎ...\n분명 저랑 같은 취미 갖고 계신 분들이 계실거 같은데~~~\n설마 일, 집, 게임만 하시는건 아니죠? ^^;\n\n"},{"insert":{"image":"https://cafeptthumb-phinf.pstatic.net/MjAyNDEwMThfMTE1/MDAxNzI5MjQ2OTExMzI4.JUEzkH3AAc1c1mGGLsS5sbmwO8EUX8g9iqp0QtKlbI8g.pIq9c2Xjvy-h4FapIXbZlfZUKJxOIJldY522h1pki3Qg.JPEG/20231011%EF%BC%BF194148.jpg?type=w1600"}},{"insert":"\n"}],
+        updatedAt: DateTime.parse("2024-10-16T11:59:00.000Z"),
+        isLiked: true,
+        like: 353,
+        comments: 2
+    )
 ];
 List<Tag> allTag = [
     Tag(tagId: 3765, tagName: "Flutter", grade: 1),
@@ -307,9 +612,94 @@ List<Tag> allTag = [
     Tag(tagId: 4867188, tagName: "건강관리", bookmarked: 9638543, count: 9545662, grade: 7, change: 8),
     Tag(tagId: 9200925, tagName: "팁공유", bookmarked: 7717298, count: 9629416, grade: 9, change: -20),
     Tag(tagId: 9059860, tagName: "업데이트정보", bookmarked: 4680554, count: 5432244, grade: 11, change: -17),
+    Tag(tagId: 4918, tagName: "드라마", grade: 1),
+    Tag(tagId: 9620, tagName: "비", grade: 2),
+    Tag(tagId: 2001, tagName: "날씨", grade: 3),
+    Tag(tagId: 6520, tagName: "작가", grade: 4),
+    Tag(tagId: 9205, tagName: "시그널", grade: 5),
+    Tag(tagId: 5886, tagName: "배우", grade: 6),
+    Tag(tagId: 4513, tagName: "연기", grade: 7),
+    Tag(tagId: 3236, tagName: "정주행", grade: 8),
+    Tag(tagId: 1017, tagName: "MBC", grade: 9),
+    Tag(tagId: 4774, tagName: "추천", grade: 10),
+    Tag(tagId: 5584, tagName: "음악", grade: 1),
+    Tag(tagId: 8073, tagName: "유튜브", grade: 2),
+    Tag(tagId: 4268, tagName: "쇼츠", grade: 3),
+    Tag(tagId: 9041, tagName: "플레이리스트", grade: 4),
+    Tag(tagId: 7145, tagName: "일상", grade: 5),
+    Tag(tagId: 9481, tagName: "친구", grade: 6),
+    Tag(tagId: 1788, tagName: "커피", grade: 7),
+    Tag(tagId: 3970, tagName: "행복", grade: 8),
+    Tag(tagId: 3636, tagName: "세계여행", grade: 1),
+    Tag(tagId: 3425, tagName: "지갑", grade: 2),
+    Tag(tagId: 8750, tagName: "모험", grade: 3),
+    Tag(tagId: 3188, tagName: "노이슈반타인", grade: 4),
+    Tag(tagId: 4578, tagName: "독일", grade: 5),
+    Tag(tagId: 2081, tagName: "여행", grade: 6),
+    Tag(tagId: 5278, tagName: "유럽", grade: 7),
+    Tag(tagId: 2288, tagName: "미술", grade: 1),
+    Tag(tagId: 2, tagName: "아이", grade: 2),
+    Tag(tagId: 5006, tagName: "엄마", grade: 3),
+    Tag(tagId: 9851, tagName: "감기", grade: 4),
+    Tag(tagId: 7334, tagName: "집", grade: 5),
+    Tag(tagId: 8661, tagName: "놀이", grade: 6),
+    Tag(tagId: 2271, tagName: "검색", grade: 7),
+    Tag(tagId: 6113, tagName: "색깔", grade: 8),
+    Tag(tagId: 4580, tagName: "영화", grade: 1),
+    Tag(tagId: 5461, tagName: "비", grade: 2),
+    Tag(tagId: 9934, tagName: "저녁", grade: 3),
+    Tag(tagId: 6504, tagName: "친구", grade: 4),
+    Tag(tagId: 2517, tagName: "시간", grade: 5),
+    Tag(tagId: 6677, tagName: "관객", grade: 6),
+    Tag(tagId: 7898, tagName: "정보", grade: 7),
+    Tag(tagId: 9818, tagName: "눈물", grade: 8),
+    Tag(tagId: 1919, tagName: "안경닦이", grade: 9),
+    Tag(tagId: 6290, tagName: "일상", grade: 1),
+    Tag(tagId: 8667, tagName: "쿠팡", grade: 2),
+    Tag(tagId: 5723, tagName: "파트너", grade: 3),
+    Tag(tagId: 3185, tagName: "아침", grade: 4),
+    Tag(tagId: 3578, tagName: "상품", grade: 5),
+    Tag(tagId: 5994, tagName: "루틴", grade: 6),
+    Tag(tagId: 3438, tagName: "집", grade: 7),
+    Tag(tagId: 3704, tagName: "생활용품", grade: 8),
+    Tag(tagId: 3711, tagName: "스포츠", grade: 1),
+    Tag(tagId: 4991, tagName: "자전거", grade: 2),
+    Tag(tagId: 2030, tagName: "힐링", grade: 3),
+    Tag(tagId: 6076, tagName: "운동", grade: 4),
+    Tag(tagId: 4521, tagName: "한강", grade: 5),
+    Tag(tagId: 2498, tagName: "노을", grade: 6),
+    Tag(tagId: 9097, tagName: "사진", grade: 1),
+    Tag(tagId: 9859, tagName: "맛집", grade: 2),
+    Tag(tagId: 2758, tagName: "카페", grade: 3),
+    Tag(tagId: 6254, tagName: "일상", grade: 4),
+    Tag(tagId: 5054, tagName: "꽃", grade: 5),
+    Tag(tagId: 3603, tagName: "디저트", grade: 6),
+    Tag(tagId: 7221, tagName: "포토스팟", grade: 7),
+    Tag(tagId: 8823, tagName: "외국어", grade: 1),
+    Tag(tagId: 9196, tagName: "일본어", grade: 2),
+    Tag(tagId: 8974, tagName: "일본", grade: 3),
+    Tag(tagId: 2360, tagName: "독학", grade: 4),
+    Tag(tagId: 9975, tagName: "시험", grade: 5),
+    Tag(tagId: 4229, tagName: "정보", grade: 6),
+    Tag(tagId: 2821, tagName: "SJPT", grade: 7),
+    Tag(tagId: 6527, tagName: "말하기", grade: 8),
+    Tag(tagId: 9053, tagName: "공연", grade: 1),
+    Tag(tagId: 8303, tagName: "잡담", grade: 2),
+    Tag(tagId: 1144, tagName: "주말", grade: 3),
+    Tag(tagId: 9637, tagName: "오페라", grade: 4),
+    Tag(tagId: 3474, tagName: "투란도트", grade: 5),
+    Tag(tagId: 5339, tagName: "매력", grade: 6),
+    Tag(tagId: 5495, tagName: "독일어", grade: 7),
+    Tag(tagId: 3892, tagName: "추천", grade: 8),
+    Tag(tagId: 7893, tagName: "대본", grade: 9),
+    Tag(tagId: 2038, tagName: "취미", grade: 1),
+    Tag(tagId: 3583, tagName: "일", grade: 2),
+    Tag(tagId: 7591, tagName: "집", grade: 3),
+    Tag(tagId: 2072, tagName: "게임", grade: 4),
+    Tag(tagId: 6432, tagName: "전자시계", grade: 5),
 ];
 List<Comment> allComment = [
-    Comment(commentId: 125837, userId: 672394, postId: 982347, nickname: "CHUYA", contents: "깔끔한 정리 감사합니다! \\n 제어센터는 이것저것 커스텀이 가능해진건 너무 좋은데 데이터칸이 사분할 된건 너무 불편해서 별로에요 ㅠ 이 부분까지 완벽하게 커스텀이 가능하면 참 좋을 것 같은데...", likes: 102, isLiked: true, updatedAt: DateTime.parse("2024-09-22T15:30:00.000Z")),
+    Comment(commentId: 125837, userId: 672394, postId: 982347, nickname: "CHUYA", contents: "깔끔한 정리 감사합니다! \n 제어센터는 이것저것 커스텀이 가능해진건 너무 좋은데 데이터칸이 사분할 된건 너무 불편해서 별로에요 ㅠ 이 부분까지 완벽하게 커스텀이 가능하면 참 좋을 것 같은데...", likes: 102, isLiked: true, updatedAt: DateTime.parse("2024-09-22T15:30:00.000Z")),
     Comment(commentId: 392485, userId: 238472, postId: 982347, nickname: "FlutterFan", contents: "저도 최근에 비슷한 작업을 했는데, `dio` 패키지를 사용해보니 더 편리하더라고요. 특히 파일 업로드나 에러 처리가 더 쉬웠어요!", likes: 64, isLiked: false, updatedAt: DateTime.parse("2024-09-22T16:10:00.000Z")),
     Comment(commentId: 583749, userId: 912734, postId: 982347, nickname: "개발자준", contents: "저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다! 저는 상태 관리도 함께 사용해서 API 데이터 관리를 했는데, `provider` 패키지와 함께 사용하니 구조가 더 깔끔해지더라고요. 강추합니다!", likes: 89, isLiked: true, updatedAt: DateTime.parse("2024-09-22T17:05:00.000Z")),
     Comment(commentId: 10001, userId: 451927, nickname: "김민수", contents: "이 글 정말 유익하네요!", likes: 15, isLiked: false, updatedAt: DateTime.parse("2024-09-01T10:00:00.000Z")),
@@ -361,6 +751,36 @@ List<Comment> allComment = [
     Comment(commentId: 10047, userId: 67647, nickname: "장태연", contents: "훌륭한 정보입니다. 감사합니다.", likes: 15, isLiked: true, updatedAt: DateTime.parse("2024-10-17T09:15:00.000Z")),
     Comment(commentId: 10048, userId: 67648, nickname: "윤수아", contents: "더 많은 정보 공유해주세요.", likes: 11, isLiked: false, updatedAt: DateTime.parse("2024-10-18T11:25:00.000Z")),
     Comment(commentId: 10049, userId: 67649, nickname: "최성민", contents: "매우 유익한 내용이네요!", likes: 20, isLiked: true, updatedAt: DateTime.parse("2024-10-19T12:35:00.000Z")),
+    Comment(commentId: 124578, userId: 672394, postId: 865124, nickname: "썸데이", contents: "딸이 연루되잇는거죠..?무섭네유 비오는 날보면", likes: 1, isLiked: true, updatedAt: DateTime.parse("2024-10-18T14:51:00.000Z")),
+    Comment(commentId: 137642, userId: 384279, postId: 865124, nickname: "샤이닝스따", contents: "1부보는 중인데 이제 시작인거 알고 아껴 보고 있어요ㅎ 딸이 뭔가 사이코패스나 소시오패스쪽인가 싶은 암시가 있더라고요", likes: 5, isLiked: false, updatedAt: DateTime.parse("2024-10-18T15:11:00.000Z")),
+    Comment(commentId: 985431, userId: 125783, postId: 865124, nickname: "매니저쭈니맘", contents: "무서워서 안보려다 봤는데 숨막히게 재밌어요 ㅎㅎ", likes: 2, isLiked: true, updatedAt: DateTime.parse("2024-10-18T16:13:00.000Z")),
+    Comment(commentId: 564213, userId: 748159, postId: 656762, nickname: "북극꼼", contents: "아침에 좋아하는 곡을 듣는 느낌, 정말 공감해요!", likes: 81, isLiked: true, updatedAt: DateTime.parse("2024-10-24T03:19:00.000Z")),
+    Comment(commentId: 238947, userId: 462735, postId: 656762, nickname: "서울김치", contents: "플레이리스트 공유해 주세요~~", likes: 5, isLiked: false, updatedAt: DateTime.parse("2024-10-24T04:30:00.000Z")),
+    Comment(commentId: 847592, userId: 913284, postId: 938118, nickname: "잠실러", contents: "와… 읽는 동안 글쓴이에 빙의되어 안타까웠는데 지갑이 다시돌아오고 세계여행이 다시 진행되었다는 마지막에 같이 안도했습니다. 진짜 다행이네요.", likes: 33, isLiked: true, updatedAt: DateTime.parse("2024-10-03T07:39:00.000Z")),
+    Comment(commentId: 305721, userId: 675193, postId: 938118, nickname: "내가간다하와이", contents: "다행입니다. 더욱 재미있는 여행을 응원합니다.", likes: 17, isLiked: false, updatedAt: DateTime.parse("2024-10-03T07:41:00.000Z")),
+    Comment(commentId: 459126, userId: 218476, postId: 938118, nickname: "지니찡이", contents: "다행히 지갑을 찾고난 다음이라 추억으로 남을 경험이라고 말씀드리지만 당시엔 정말 멘탈 와장창 무너질 아찔한 순간이셨을거 같아요..ㅎ 남은 여행 더더 행운이 따르시길 바래요~^^", likes: 24, isLiked: false, updatedAt: DateTime.parse("2024-10-03T07:42:00.000Z")),
+    Comment(commentId: 182304, userId: 573294, postId: 766436, nickname: "은이영이", contents: "아이들 같이 놀아줄게 한 개가 있던데 이렇게 미술 놀이를 할 수 있으니 너무 좋으네요. 성분도 좋아서 더 마음에 드는 제품이네요.", likes: 27, isLiked: true, updatedAt: DateTime.parse("2024-10-16T12:03:00.000Z")),
+    Comment(commentId: 720158, userId: 829463, postId: 766436, nickname: "소담맘85", contents: "집에서 이렇게 해주면 좋아하죠~ \n 저희애도 아기때 많이 해줬네요.", likes: 7, isLiked: false, updatedAt: DateTime.parse("2024-10-16T12:04:00.000Z")),
+    Comment(commentId: 438201, userId: 194725, postId: 766436, nickname: "카놀라유", contents: "오호~~~ 성분이 좋네요^^", likes: 18, isLiked: true, updatedAt: DateTime.parse("2024-10-16T13:47:00.000Z")),
+    Comment(commentId: 597420, userId: 647158, postId: 422069, nickname: "은사시나무", contents: "보고 싶어지는 영화로군요. 룩북. 메모해두었다가 시간 되면 꼭 보고 싶어요. 겨울 냄새... 코 끝이 벌써 시리네요.ㅎㅎㅎ", likes: 100, isLiked: true, updatedAt: DateTime.parse("2024-10-24T12:11:42.000Z")),
+    Comment(commentId: 315794, userId: 820364, postId: 422069, nickname: "브라이드", contents: "일본애니 조아하는데 꼭 봐야겠어요 ^^ 영화관에 사람이 요즘 없긴 없나보네요 ㅎㅎ 정말 스키의 계절이 다가오네요! 콘도 예약하고 버스 알아보고 그랬던 시절이 기억이 아련해요 ㅋ", likes: 78, isLiked: true, updatedAt: DateTime.parse("2024-10-24T12:07:00.000Z")),
+    Comment(commentId: 829076, userId: 431587, postId: 422069, nickname: "조전", contents: "전 룩북 만화책으로 봤어요 아들이 엄청 명작이라고 꼭 보라해서 강제로요 ㅎㅎㅎ 전 눈물까진 안나던데.. 애니로 보면 좀 다르게 다가올 수도 있을거 같네요.", likes: 45, isLiked: true, updatedAt: DateTime.parse("2024-10-24T12:14:00.000Z")),
+    Comment(commentId: 640215, userId: 307498, postId: 495475, nickname: "이찌방", contents: "쿠팡파트너스를 통해 소소한 수익을 올릴 수 있다니, 너무 뿌듯하네요!", likes: 38, isLiked: true, updatedAt: DateTime.parse("2024-10-17T11:46:00.000Z")),
+    Comment(commentId: 217684, userId: 956721, postId: 495475, nickname: "샤커", contents: "요즘 집에서 보내는 시간이 많아지니, 쿠팡파트너스가 정말 유용하죠.", likes: 9, isLiked: false, updatedAt: DateTime.parse("2024-10-17T11:47:00.000Z")),
+    Comment(commentId: 874930, userId: 582034, postId: 495475, nickname: "북극곰", contents: "가족과 함께 음식을 나누는 시간이 정말 소중한 것 같아요.", likes: 11, isLiked: true, updatedAt: DateTime.parse("2024-10-17T11:48:00.000Z")),
+    Comment(commentId: 169452, userId: 423869, postId: 638261, nickname: "투바이마인", contents: "건강한 취미를 찾으셨네요~ 저도 얼른 운동시작해야하는데 몸이 따라주질 않아요ㅠㅠ", likes: 2, isLiked: true, updatedAt: DateTime.parse("2024-10-08T17:25:00.000Z")),
+    Comment(commentId: 230178, userId: 159374, postId: 638261, nickname: "플레이맨", contents: "저 얼마전에 테니스칠 때 사려고 스포츠 모자 하나 구매했는데 너무 만족해요!!", likes: 5, isLiked: true, updatedAt: DateTime.parse("2024-10-08T17:25:00.000Z")),
+    Comment(commentId: 987620, userId: 648205, postId: 638261, nickname: "뉴트", contents: "저는 등산용으로 모자 알아보는 중인데 가볍고 방수되는 모자로 사려구요~", likes: 10, isLiked: true, updatedAt: DateTime.parse("2024-10-08T17:26:00.000Z")),
+    Comment(commentId: 354862, userId: 812473, postId: 580674, nickname: "무지개84", contents: "여긴 정말 사진 맛집인거 같아요", likes: 122, isLiked: true, updatedAt: DateTime.parse("2024-10-22T18:47:00.000Z")),
+    Comment(commentId: 470253, userId: 937614, postId: 580674, nickname: "프쉬케의꿈", contents: "카페가 사진찍기에도 예쁜데 두두님이 사진을 또 예쁘게 잘 찍으신걸요^^*", likes: 111, isLiked: true, updatedAt: DateTime.parse("2024-10-22T18:37:00.000Z")),
+    Comment(commentId: 213890, userId: 760482, postId: 580674, nickname: "세나", contents: "여길 못가봤넹ㅋ", likes: 11, isLiked: false, updatedAt: DateTime.parse("2024-10-22T18:38:00.000Z")),
+    Comment(commentId: 582937, userId: 145736, postId: 568689, nickname: "일공사학습도우미1", contents: "일본어말하기 시험 SJPT 독학 시험 정보가 도움됐다면 좋아요와 댓글 부탁드립니다 :)", likes: 55, isLiked: true, updatedAt: DateTime.parse("2024-10-17T17:25:00.000Z")),
+    Comment(commentId: 741206, userId: 354189, postId: 568689, nickname: "오잉36", contents: "일본어말하기 시험 SJPT 독학 시험 정보 감사합니다 :)", likes: 33, isLiked: true, updatedAt: DateTime.parse("2024-10-17T17:35:00.000Z")),
+    Comment(commentId: 198504, userId: 826473, postId: 568689, nickname: "니뇨뇨뇨", contents: "일본어말하기 시험 SJPT 독학 시험 정보 잘보고갑니다.", likes: 46, isLiked: false, updatedAt: DateTime.parse("2024-10-17T17:38:00.000Z")),
+    Comment(commentId: 426178, userId: 391852, postId: 151947, nickname: "길가", contents: "좋은 정보 감사합니다. 공연은 못 가지만 아쉬운대로 타이달에서 정주행 달리겠습니다~", likes: 210, isLiked: true, updatedAt: DateTime.parse("2024-10-18T12:20:00.000Z")),
+    Comment(commentId: 583920, userId: 760294, postId: 151947, nickname: "별남비", contents: "탄호이저 서곡은 한때 제 기상송이었습니다 오페라가 뮤지컬보다 정적이고 성악가도 나이가 많고 마이크 없이 부르기 때문에 실연은 다소 졸린 경우가 많은데 무대연출 잘하면 그만큼 임팩트 있게 다가오더라고요 잘 보시길 바랍니다", likes: 158, isLiked: true, updatedAt: DateTime.parse("2024-10-18T12:56:00.000Z")),
+    Comment(commentId: 204681, userId: 318540, postId: 589954, nickname: "맨치", contents: "제 취미는 뒹굴대기와 잠자기인데… 부끄럽군요", likes: 122, isLiked: true, updatedAt: DateTime.parse("2024-10-18T19:51:00.000Z")),
+    Comment(commentId: 389576, userId: 462301, postId: 589954, nickname: "이만", contents: "크 취미가 있어야 인생에 감칠맛이 있죠 ㅎㅎ 레코드는 눈썹달lp에 좋은 추억이있어 찾아보고 아.. 추억으로 남겨야되겠더라구요 ㅋㅋ", likes: 300, isLiked: true, updatedAt: DateTime.parse("2024-10-19T04:19:00.000Z")),
 ];
 
 /// 태그별 커뮤니티 화면구성
@@ -371,70 +791,70 @@ List<TempCommunityData> tempCommunityScreenData = [
     {
       "daily": [
         {
-          "post_id": 67638,
+          "post_id": 865124,
           "title": "생활정보새로운 취미를 찾다: 하루 만에 시작하는 5가지 방법",
           "comments": 6600,
           "like": 7797,
           "change": 18
         },
         {
-          "post_id": 80603,
+          "post_id": 656762,
           "title": "생활정보아침 루틴으로 성공을 잡는 법: 7가지 필수 팁",
           "comments": 9892,
           "like": 31611,
           "change": 6
         },
         {
-          "post_id": 18550,
+          "post_id": 938118,
           "title": "생활정보여행의 설렘, 그리고 놓치지 말아야 할 순간들",
           "comments": 1940,
           "like": 95441,
           "change": -9
         },
         {
-          "post_id": 70709,
+          "post_id": 766436,
           "title": "생활정보시간 관리의 비밀: 효율적으로 일하는 10가지 습관",
           "comments": 4967,
           "like": 149,
           "change": 18
         },
         {
-          "post_id": 30827,
+          "post_id": 422069,
           "title": "생활정보내가 몰랐던 커피의 세계: 당신이 알아야 할 정보",
           "comments": 8451,
           "like": 12065,
           "change": -5
         },
         {
-          "post_id": 40604,
+          "post_id": 495475,
           "title": "내 방을 아늑하게 꾸미는 방법: 인테리어 팁 5선",
           "comments": 7243,
           "like": 24354,
           "change": 0
         },
         {
-          "post_id": 60880,
+          "post_id": 638261,
           "title": "운동을 즐기는 방법: 초보자를 위한 가이드",
           "comments": 4920,
           "like": 55483,
           "change": -7
         },
         {
-          "post_id": 9754,
+          "post_id": 580674,
           "title": "디지털 디톡스: 일주일 동안 SNS 없이 살아보기",
           "comments": 2296,
           "like": 82045,
           "change": -5
         },
         {
-          "post_id": 6668,
+          "post_id": 568689,
           "title": "건강한 식습관으로의 첫걸음: 간단한 레시피 3가지",
           "comments": 7811,
           "like": 60625,
           "change": 9
         },
         {
-          "post_id": 60207,
+          "post_id": 151947,
           "title": "어떻게 하면 긍정적으로 생각할 수 있을까? 마음을 다스리는 법",
           "comments": 1427,
           "like": 72095,
@@ -443,7 +863,7 @@ List<TempCommunityData> tempCommunityScreenData = [
       ],
       "weekly": [
         {
-          "post_id": 67638,
+          "post_id": 589954,
           "title": "미래 직업 전망: 2030년에 뜰 산업 7가지",
           "comments": 6600,
           "like": 7797,
@@ -2850,7 +3270,7 @@ PostDetailData fetchPostDetailScreenData(int postId) {
         return comment.postId == postId;
     }).toList();
     if (filteredComments.isEmpty){
-        return PostDetailData(post: foundPost, comments: postDetailScreenData.comments);
+        return PostDetailData(post: foundPost, comments: []);
     }
     return PostDetailData(post: foundPost, comments: filteredComments);
 }
