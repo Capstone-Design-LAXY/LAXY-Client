@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_popup_menu_button.dart';
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/tag/community_good_post_tab_view.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
 import 'package:laxy/common/const/enum.dart';
@@ -46,7 +47,8 @@ class _CommunityScreenState extends State<CommunityScreen>
     ''';
 
     // JSON 문자열을 RankData 객체로 파싱
-    communityData = CommunityData.fromJson(jsonDecode(jsonString));
+    print(widget.tagId);
+    communityData = fetchCommunityScreenData(widget.tagId);
     _checkAccessToken();
   }
 
@@ -80,6 +82,7 @@ class _CommunityScreenState extends State<CommunityScreen>
             onPressed: () {
               if (isLogin){
                 setState(() {
+                  toggleIsBookmarked(widget.tagId);
                   communityData = communityData.toggleIsBookmarked();
                 });
               }
@@ -115,10 +118,10 @@ class _CommunityScreenState extends State<CommunityScreen>
                 child: TabBarView(
                   controller: controller,
                   children: [
-                    CommunityMainTabView(),
-                    CommunityGoodPostTabView(),
-                    CommunityPostTabView(),
-                    CommunityRecommendTabView(),
+                    CommunityMainTabView(tagId: widget.tagId),
+                    CommunityGoodPostTabView(tagId: widget.tagId),
+                    CommunityPostTabView(tagId: widget.tagId),
+                    CommunityRecommendTabView(tagId: widget.tagId),
                   ],
                 ),
               ),

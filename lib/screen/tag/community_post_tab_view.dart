@@ -5,12 +5,15 @@ import 'package:laxy/common/component/custom/custom_dropdown_button.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommunityPostTabView extends StatefulWidget {
+  final int tagId;
 
   const CommunityPostTabView({
+    required this.tagId,
     Key? key,
   }) : super(key: key);
 
@@ -382,7 +385,7 @@ class _CommunityPostTabView extends State<CommunityPostTabView>
     ''';
 
     // JSON 문자열을 RankData 객체로 파싱
-    postData = PostData.fromJson(jsonDecode(jsonString));
+    postData = fetchCommunityPostData(widget.tagId);
 
     print(postData.posts.length);
   }

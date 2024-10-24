@@ -4,18 +4,18 @@ import 'package:laxy/utils/utils.dart';
 
 class PostListTile extends StatelessWidget {
   final String title;
-  final String summary;
-  final int comment;
-  final int like;
+  final String? summary;
+  final int? comment;
+  final int? like;
   final String? imageURL;
   final DateTime? dateTime;
   final Function() onPressed;
 
   const PostListTile({
     this.title = 'title',
-    this.summary = 'content content content content content content content content content ',
-    this.comment = 100,
-    this.like = 100,
+    this.summary = 'content',
+    this.comment = 0,
+    this.like = 0,
     this.imageURL,
     this.dateTime,
     required this.onPressed,
@@ -60,7 +60,7 @@ class PostListTile extends StatelessWidget {
                   ),
                   SizedBox(height: 2,),
                   Text(
-                    summary,
+                    summary!,
                     style: TextStyle(fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                   )

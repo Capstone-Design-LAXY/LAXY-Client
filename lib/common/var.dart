@@ -116,7 +116,7 @@ List<Post> allPost = [
     Post(postId: 9754, title: "아이디어가 넘치는 사람들의 사고방식: 창의력 향상 비법", comments: 2296, like: 82045, change: -5),
     Post(postId: 6668, title: "집에서도 가능한 쉬운 운동 루틴: 초보자 가이드", comments: 7811, like: 60625, change: 9),
     Post(postId: 60207, title: "매일 실천하는 자기 계발 습관: 삶을 바꾸는 작은 행동들", comments: 1427, like: 72095, change: 10),
-    Post(postId: 982347, title: "[iOS 18] 새로생긴 iOS 18의 기능들 요약 정리", userId: 451927, nickname: "꼬부7I", tags: [Tag(tagId: 3765, tagName: "Flutter", grade: 1), Tag(tagId: 5432, tagName: "API연동", grade: 5), Tag(tagId: 8907, tagName: "개발팁", grade: 11)], content: [
+    Post(postId: 982347, title: "[iOS 18] 새로생긴 iOS 18의 기능들 요약 정리", userId: 451927, nickname: "꼬부7I", summary: "iOS 18의 새로운 기능들을 정리해봤습니다.", tags: [Tag(tagId: 3765, tagName: "Flutter", grade: 1), Tag(tagId: 5432, tagName: "API연동", grade: 5), Tag(tagId: 8907, tagName: "개발팁", grade: 11)], content: [
         {
             "insert": {
                 "image": "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600"
@@ -235,10 +235,10 @@ List<Post> allPost = [
         {
             "insert": "\\n\\n"
         }
-    ], imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600", updatedAt: DateTime.parse("2024-09-22T14:05:00.000Z"), isLiked: true, like: 483),
+    ], imageURL: "https://cafeptthumb-phinf.pstatic.net/MjAyNDA5MTdfMTU0/MDAxNzI2NTE2MDg1NTk5.M_iay-1R8pS0EJ-gByASWK3uIvlzsAgwiOwe2q3Qn0kg.DwXRVt7bVLCKq-b6RdxpGVeMAMNDgvNSA5C8VC1O1eUg.JPEG/Generic-iOS-18-Feature-Real-Mock.jpg?type=w1600", updatedAt: DateTime.parse("2024-09-22T14:05:00.000Z"), isLiked: true, like: 483, comments: 3),
 ];
 List<Tag> allTag = [
-    Tag(tagId: 3765, tagName: "Flutter", grade: 1), 
+    Tag(tagId: 3765, tagName: "Flutter", grade: 1),
     Tag(tagId: 5432, tagName: "API연동", grade: 5), 
     Tag(tagId: 8907, tagName: "개발팁", grade: 11),
     Tag(tagId: 10000001, tagName: "자격증", grade: 9),
@@ -361,6 +361,2475 @@ List<Comment> allComment = [
     Comment(commentId: 10047, userId: 67647, nickname: "장태연", contents: "훌륭한 정보입니다. 감사합니다.", likes: 15, isLiked: true, updatedAt: DateTime.parse("2024-10-17T09:15:00.000Z")),
     Comment(commentId: 10048, userId: 67648, nickname: "윤수아", contents: "더 많은 정보 공유해주세요.", likes: 11, isLiked: false, updatedAt: DateTime.parse("2024-10-18T11:25:00.000Z")),
     Comment(commentId: 10049, userId: 67649, nickname: "최성민", contents: "매우 유익한 내용이네요!", likes: 20, isLiked: true, updatedAt: DateTime.parse("2024-10-19T12:35:00.000Z")),
+];
+
+/// 태그별 커뮤니티 화면구성
+List<TempCommunityData> tempCommunityScreenData = [
+    TempCommunityData(
+        tagId: 7951011,
+        communityMainData: RankData.fromJson(jsonDecode('''
+    {
+      "daily": [
+        {
+          "post_id": 67638,
+          "title": "생활정보새로운 취미를 찾다: 하루 만에 시작하는 5가지 방법",
+          "comments": 6600,
+          "like": 7797,
+          "change": 18
+        },
+        {
+          "post_id": 80603,
+          "title": "생활정보아침 루틴으로 성공을 잡는 법: 7가지 필수 팁",
+          "comments": 9892,
+          "like": 31611,
+          "change": 6
+        },
+        {
+          "post_id": 18550,
+          "title": "생활정보여행의 설렘, 그리고 놓치지 말아야 할 순간들",
+          "comments": 1940,
+          "like": 95441,
+          "change": -9
+        },
+        {
+          "post_id": 70709,
+          "title": "생활정보시간 관리의 비밀: 효율적으로 일하는 10가지 습관",
+          "comments": 4967,
+          "like": 149,
+          "change": 18
+        },
+        {
+          "post_id": 30827,
+          "title": "생활정보내가 몰랐던 커피의 세계: 당신이 알아야 할 정보",
+          "comments": 8451,
+          "like": 12065,
+          "change": -5
+        },
+        {
+          "post_id": 40604,
+          "title": "내 방을 아늑하게 꾸미는 방법: 인테리어 팁 5선",
+          "comments": 7243,
+          "like": 24354,
+          "change": 0
+        },
+        {
+          "post_id": 60880,
+          "title": "운동을 즐기는 방법: 초보자를 위한 가이드",
+          "comments": 4920,
+          "like": 55483,
+          "change": -7
+        },
+        {
+          "post_id": 9754,
+          "title": "디지털 디톡스: 일주일 동안 SNS 없이 살아보기",
+          "comments": 2296,
+          "like": 82045,
+          "change": -5
+        },
+        {
+          "post_id": 6668,
+          "title": "건강한 식습관으로의 첫걸음: 간단한 레시피 3가지",
+          "comments": 7811,
+          "like": 60625,
+          "change": 9
+        },
+        {
+          "post_id": 60207,
+          "title": "어떻게 하면 긍정적으로 생각할 수 있을까? 마음을 다스리는 법",
+          "comments": 1427,
+          "like": 72095,
+          "change": 10
+        }
+      ],
+      "weekly": [
+        {
+          "post_id": 67638,
+          "title": "미래 직업 전망: 2030년에 뜰 산업 7가지",
+          "comments": 6600,
+          "like": 7797,
+          "change": 18
+        },
+        {
+          "post_id": 80603,
+          "title": "성공적인 팀워크의 핵심: 협업을 위한 5가지 팁",
+          "comments": 9892,
+          "like": 31611,
+          "change": 6
+        },
+        {
+          "post_id": 18550,
+          "title": "집에서 만드는 힐링 스파: DIY 홈케어 방법",
+          "comments": 1940,
+          "like": 95441,
+          "change": -9
+        },
+        {
+          "post_id": 70709,
+          "title": "일상 속 작은 변화로 큰 행복 찾기",
+          "comments": 4967,
+          "like": 149,
+          "change": 18
+        },
+        {
+          "post_id": 30827,
+          "title": "일 잘하는 사람들의 공통점: 생산성 높이는 습관",
+          "comments": 8451,
+          "like": 12065,
+          "change": -5
+        },
+        {
+          "post_id": 40604,
+          "title": "바쁜 아침에도 가능한 10분 아침 요가 루틴",
+          "comments": 7243,
+          "like": 24354,
+          "change": 0
+        },
+        {
+          "post_id": 60880,
+          "title": "여행 사진 잘 찍는 법: 초보자를 위한 촬영 팁",
+          "comments": 4920,
+          "like": 55483,
+          "change": -7
+        },
+        {
+          "post_id": 9754,
+          "title": "아이디어가 넘치는 사람들의 사고방식: 창의력 향상 비법",
+          "comments": 2296,
+          "like": 82045,
+          "change": -5
+        },
+        {
+          "post_id": 6668,
+          "title": "집에서도 가능한 쉬운 운동 루틴: 초보자 가이드",
+          "comments": 7811,
+          "like": 60625,
+          "change": 9
+        },
+        {
+          "post_id": 60207,
+          "title": "매일 실천하는 자기 계발 습관: 삶을 바꾸는 작은 행동들",
+          "comments": 1427,
+          "like": 72095,
+          "change": 10
+        }
+      ]
+    }
+    ''')),
+        communityGoodPostData: PostData.fromJson(jsonDecode('''
+    {
+      "posts": [
+        {
+          "post_id": 87291,
+          "title": "오늘의 날씨는?",
+          "summary": "생활정보비가 올 것 같아요. 우산 챙기세요.",
+          "comments": 182,
+          "like": 521,
+          "viewed": 899,
+          "createdAt": "2021-04-25T12:34:00.000Z"
+        },
+        {
+          "post_id": 97852,
+          "title": "새로운 취미 추천",
+          "summary": "생활정보요즘 뜨는 취미는 무엇일까요?",
+          "comments": 249,
+          "like": 783,
+          "viewed": 1374,
+          "createdAt": "2022-02-15T08:22:00.000Z"
+        },
+        {
+          "post_id": 11237,
+          "title": "아침 운동의 중요성",
+          "summary": "생활정보매일 아침 운동하는 습관!",
+          "comments": 321,
+          "like": 456,
+          "viewed": 1023,
+          "createdAt": "2020-09-12T07:40:00.000Z"
+        },
+        {
+          "post_id": 56389,
+          "title": "재테크 꿀팁 공유",
+          "summary": "소액 투자로 시작하는 재테크",
+          "comments": 405,
+          "like": 642,
+          "viewed": 1845,
+          "createdAt": "2023-06-19T15:15:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 23876,
+          "title": "여행 준비물 리스트",
+          "summary": "꼭 챙겨야 할 필수 아이템들",
+          "comments": 92,
+          "like": 317,
+          "viewed": 744,
+          "createdAt": "2021-11-30T09:00:00.000Z"
+        },
+        {
+          "post_id": 46378,
+          "title": "추천 영화 리스트",
+          "summary": "주말에 보기 좋은 영화들",
+          "comments": 533,
+          "like": 910,
+          "viewed": 2458,
+          "createdAt": "2019-07-18T14:10:00.000Z"
+        },
+        {
+          "post_id": 91234,
+          "title": "책 읽기의 장점",
+          "summary": "매일 책 읽기의 중요성을 알아봅시다.",
+          "comments": 67,
+          "like": 155,
+          "viewed": 481,
+          "createdAt": "2020-10-10T18:24:00.000Z"
+        },
+        {
+          "post_id": 66728,
+          "title": "반려동물 관리 방법",
+          "summary": "강아지 털 관리 팁",
+          "comments": 187,
+          "like": 259,
+          "viewed": 891,
+          "createdAt": "2021-08-22T04:05:00.000Z"
+        },
+        {
+          "post_id": 57893,
+          "title": "헬스장 추천",
+          "summary": "어디 헬스장이 좋은가요?",
+          "comments": 200,
+          "like": 378,
+          "viewed": 1298,
+          "createdAt": "2022-01-02T11:45:00.000Z"
+        },
+        {
+          "post_id": 34892,
+          "title": "IT 트렌드 분석",
+          "summary": "올해 뜨는 IT 기술은?",
+          "comments": 450,
+          "like": 821,
+          "viewed": 2114,
+          "createdAt": "2020-02-24T16:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 89347,
+          "title": "최신 가전제품",
+          "summary": "최신 스마트 가전 소개합니다.",
+          "comments": 134,
+          "like": 452,
+          "viewed": 1203,
+          "createdAt": "2023-05-14T21:50:00.000Z"
+        },
+        {
+          "post_id": 23901,
+          "title": "등산 코스 추천",
+          "summary": "가을에 가기 좋은 산",
+          "comments": 98,
+          "like": 245,
+          "viewed": 621,
+          "createdAt": "2022-09-21T05:11:00.000Z"
+        },
+        {
+          "post_id": 70483,
+          "title": "홈 카페 인테리어",
+          "summary": "집에서 즐기는 홈 카페 꾸미기",
+          "comments": 301,
+          "like": 502,
+          "viewed": 1501,
+          "createdAt": "2021-03-10T14:55:00.000Z"
+        },
+        {
+          "post_id": 53692,
+          "title": "내일의 주식 전망",
+          "summary": "주식 시장 분석과 내일의 전망",
+          "comments": 775,
+          "like": 923,
+          "viewed": 3095,
+          "createdAt": "2023-02-28T08:40:00.000Z"
+        },
+        {
+          "post_id": 13290,
+          "title": "다이어트 식단",
+          "summary": "건강한 식단으로 체중 감량하기",
+          "comments": 354,
+          "like": 620,
+          "viewed": 1450,
+          "createdAt": "2020-06-17T07:30:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 49723,
+          "title": "쇼핑몰 추천",
+          "summary": "가성비 좋은 온라인 쇼핑몰 추천",
+          "comments": 156,
+          "like": 399,
+          "viewed": 1084,
+          "createdAt": "2019-12-05T03:17:00.000Z"
+        },
+        {
+          "post_id": 89014,
+          "title": "내가 사랑하는 음악",
+          "summary": "요즘 듣고 있는 음악 추천",
+          "comments": 66,
+          "like": 289,
+          "viewed": 672,
+          "createdAt": "2021-07-22T02:02:00.000Z"
+        },
+        {
+          "post_id": 78512,
+          "title": "명언 모음집",
+          "summary": "삶에 도움이 되는 명언들",
+          "comments": 402,
+          "like": 703,
+          "viewed": 1822,
+          "createdAt": "2020-11-12T09:50:00.000Z"
+        },
+        {
+          "post_id": 58329,
+          "title": "헬시푸드 레시피",
+          "summary": "간단하고 건강한 요리법",
+          "comments": 285,
+          "like": 563,
+          "viewed": 1307,
+          "createdAt": "2023-03-23T13:07:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29387,
+          "title": "여행 후기 공유",
+          "summary": "최근 다녀온 여행 후기를 남겨요.",
+          "comments": 141,
+          "like": 329,
+          "viewed": 889,
+          "createdAt": "2022-05-06T12:14:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 97245,
+          "title": "독서 습관 들이기",
+          "summary": "하루 10분 독서로 시작하기",
+          "comments": 158,
+          "like": 487,
+          "viewed": 1249,
+          "createdAt": "2021-10-18T19:30:00.000Z"
+        },
+        {
+          "post_id": 40982,
+          "title": "간단한 운동법",
+          "summary": "5분 만에 하는 스트레칭",
+          "comments": 72,
+          "like": 205,
+          "viewed": 654,
+          "createdAt": "2023-08-07T17:25:00.000Z"
+        },
+        {
+          "post_id": 89120,
+          "title": "요리 초보의 도전",
+          "summary": "처음 해본 파스타 요리!",
+          "comments": 186,
+          "like": 423,
+          "viewed": 1140,
+          "createdAt": "2019-03-13T05:12:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 67653,
+          "title": "매일 아침 루틴",
+          "summary": "성공적인 아침 루틴 만들기",
+          "comments": 321,
+          "like": 612,
+          "viewed": 1504,
+          "createdAt": "2020-07-29T10:44:00.000Z"
+        },
+        {
+          "post_id": 13987,
+          "title": "온라인 클래스 추천",
+          "summary": "취미를 배울 수 있는 사이트",
+          "comments": 312,
+          "like": 581,
+          "viewed": 1319,
+          "createdAt": "2022-11-02T03:25:00.000Z"
+        },
+        {
+          "post_id": 91208,
+          "title": "반려동물 입양",
+          "summary": "입양 전 알아야 할 사항들",
+          "comments": 128,
+          "like": 394,
+          "viewed": 1012,
+          "createdAt": "2021-06-09T06:20:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 25781,
+          "title": "커피 원두 추천",
+          "summary": "향과 맛이 좋은 원두 추천",
+          "comments": 85,
+          "like": 221,
+          "viewed": 754,
+          "createdAt": "2020-01-15T18:35:00.000Z"
+        },
+        {
+          "post_id": 10987,
+          "title": "게임 추천",
+          "summary": "요즘 핫한 게임은?",
+          "comments": 411,
+          "like": 759,
+          "viewed": 2023,
+          "createdAt": "2019-09-29T13:56:00.000Z"
+        },
+        {
+          "post_id": 78012,
+          "title": "자동차 관리 팁",
+          "summary": "겨울철 자동차 관리 요령",
+          "comments": 142,
+          "like": 372,
+          "viewed": 936,
+          "createdAt": "2022-12-11T20:19:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47982,
+          "title": "집에서 하는 간단 요리",
+          "summary": "쉬운 재료로 만드는 요리",
+          "comments": 98,
+          "like": 310,
+          "viewed": 890,
+          "createdAt": "2023-07-03T04:12:00.000Z"
+        },
+        {
+          "post_id": 68371,
+          "title": "책 추천",
+          "summary": "마음의 양식을 채우는 도서",
+          "comments": 183,
+          "like": 533,
+          "viewed": 1211,
+          "createdAt": "2021-05-28T09:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29382,
+          "title": "공부 자극 글",
+          "summary": "열심히 공부하는 법을 배워보세요.",
+          "comments": 257,
+          "like": 687,
+          "viewed": 1589,
+          "createdAt": "2022-08-10T14:28:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47281,
+          "title": "의류 쇼핑몰 추천",
+          "summary": "저렴하고 트렌디한 의류 추천",
+          "comments": 198,
+          "like": 489,
+          "viewed": 1187,
+          "createdAt": "2020-05-05T22:10:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 98237,
+          "title": "취미 만들기",
+          "summary": "취미로 시작하는 나만의 프로젝트",
+          "comments": 223,
+          "like": 431,
+          "viewed": 1205,
+          "createdAt": "2019-01-17T10:55:00.000Z"
+        },
+        {
+          "post_id": 13567,
+          "title": "알뜰 쇼핑 팁",
+          "summary": "저렴하게 쇼핑하는 방법",
+          "comments": 302,
+          "like": 675,
+          "viewed": 1432,
+          "createdAt": "2021-02-13T08:22:00.000Z"
+        },
+        {
+          "post_id": 62589,
+          "title": "겨울 스포츠 즐기기",
+          "summary": "스키, 스노우보드 즐기는 팁",
+          "comments": 109,
+          "like": 312,
+          "viewed": 819,
+          "createdAt": "2022-12-23T05:47:00.000Z"
+        },
+        {
+          "post_id": 32901,
+          "title": "맛집 추천",
+          "summary": "이번 주말 가볼만한 맛집",
+          "comments": 457,
+          "like": 801,
+          "viewed": 2301,
+          "createdAt": "2020-11-27T15:09:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        }
+      ]
+    }
+    ''')),
+        communityPostData: PostData.fromJson(jsonDecode('''
+    {
+      "posts": [
+        {
+          "post_id": 87291,
+          "title": "오늘의 날씨는?",
+          "summary": "생활정보비가 올 것 같아요. 우산 챙기세요.",
+          "comments": 182,
+          "like": 521,
+          "viewed": 899,
+          "createdAt": "2021-04-25T12:34:00.000Z"
+        },
+        {
+          "post_id": 97852,
+          "title": "새로운 취미 추천",
+          "summary": "생활정보요즘 뜨는 취미는 무엇일까요?",
+          "comments": 249,
+          "like": 783,
+          "viewed": 1374,
+          "createdAt": "2022-02-15T08:22:00.000Z"
+        },
+        {
+          "post_id": 11237,
+          "title": "아침 운동의 중요성",
+          "summary": "생활정보매일 아침 운동하는 습관!",
+          "comments": 321,
+          "like": 456,
+          "viewed": 1023,
+          "createdAt": "2020-09-12T07:40:00.000Z"
+        },
+        {
+          "post_id": 56389,
+          "title": "재테크 꿀팁 공유",
+          "summary": "생활정보소액 투자로 시작하는 재테크",
+          "comments": 405,
+          "like": 642,
+          "viewed": 1845,
+          "createdAt": "2023-06-19T15:15:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 23876,
+          "title": "여행 준비물 리스트",
+          "summary": "꼭 챙겨야 할 필수 아이템들",
+          "comments": 92,
+          "like": 317,
+          "viewed": 744,
+          "createdAt": "2021-11-30T09:00:00.000Z"
+        },
+        {
+          "post_id": 46378,
+          "title": "추천 영화 리스트",
+          "summary": "주말에 보기 좋은 영화들",
+          "comments": 533,
+          "like": 910,
+          "viewed": 2458,
+          "createdAt": "2019-07-18T14:10:00.000Z"
+        },
+        {
+          "post_id": 91234,
+          "title": "책 읽기의 장점",
+          "summary": "매일 책 읽기의 중요성을 알아봅시다.",
+          "comments": 67,
+          "like": 155,
+          "viewed": 481,
+          "createdAt": "2020-10-10T18:24:00.000Z"
+        },
+        {
+          "post_id": 66728,
+          "title": "반려동물 관리 방법",
+          "summary": "강아지 털 관리 팁",
+          "comments": 187,
+          "like": 259,
+          "viewed": 891,
+          "createdAt": "2021-08-22T04:05:00.000Z"
+        },
+        {
+          "post_id": 57893,
+          "title": "헬스장 추천",
+          "summary": "어디 헬스장이 좋은가요?",
+          "comments": 200,
+          "like": 378,
+          "viewed": 1298,
+          "createdAt": "2022-01-02T11:45:00.000Z"
+        },
+        {
+          "post_id": 34892,
+          "title": "IT 트렌드 분석",
+          "summary": "올해 뜨는 IT 기술은?",
+          "comments": 450,
+          "like": 821,
+          "viewed": 2114,
+          "createdAt": "2020-02-24T16:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 89347,
+          "title": "최신 가전제품",
+          "summary": "최신 스마트 가전 소개합니다.",
+          "comments": 134,
+          "like": 452,
+          "viewed": 1203,
+          "createdAt": "2023-05-14T21:50:00.000Z"
+        },
+        {
+          "post_id": 23901,
+          "title": "등산 코스 추천",
+          "summary": "가을에 가기 좋은 산",
+          "comments": 98,
+          "like": 245,
+          "viewed": 621,
+          "createdAt": "2022-09-21T05:11:00.000Z"
+        },
+        {
+          "post_id": 70483,
+          "title": "홈 카페 인테리어",
+          "summary": "집에서 즐기는 홈 카페 꾸미기",
+          "comments": 301,
+          "like": 502,
+          "viewed": 1501,
+          "createdAt": "2021-03-10T14:55:00.000Z"
+        },
+        {
+          "post_id": 53692,
+          "title": "내일의 주식 전망",
+          "summary": "주식 시장 분석과 내일의 전망",
+          "comments": 775,
+          "like": 923,
+          "viewed": 3095,
+          "createdAt": "2023-02-28T08:40:00.000Z"
+        },
+        {
+          "post_id": 13290,
+          "title": "다이어트 식단",
+          "summary": "건강한 식단으로 체중 감량하기",
+          "comments": 354,
+          "like": 620,
+          "viewed": 1450,
+          "createdAt": "2020-06-17T07:30:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 49723,
+          "title": "쇼핑몰 추천",
+          "summary": "가성비 좋은 온라인 쇼핑몰 추천",
+          "comments": 156,
+          "like": 399,
+          "viewed": 1084,
+          "createdAt": "2019-12-05T03:17:00.000Z"
+        },
+        {
+          "post_id": 89014,
+          "title": "내가 사랑하는 음악",
+          "summary": "요즘 듣고 있는 음악 추천",
+          "comments": 66,
+          "like": 289,
+          "viewed": 672,
+          "createdAt": "2021-07-22T02:02:00.000Z"
+        },
+        {
+          "post_id": 78512,
+          "title": "명언 모음집",
+          "summary": "삶에 도움이 되는 명언들",
+          "comments": 402,
+          "like": 703,
+          "viewed": 1822,
+          "createdAt": "2020-11-12T09:50:00.000Z"
+        },
+        {
+          "post_id": 58329,
+          "title": "헬시푸드 레시피",
+          "summary": "간단하고 건강한 요리법",
+          "comments": 285,
+          "like": 563,
+          "viewed": 1307,
+          "createdAt": "2023-03-23T13:07:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29387,
+          "title": "여행 후기 공유",
+          "summary": "최근 다녀온 여행 후기를 남겨요.",
+          "comments": 141,
+          "like": 329,
+          "viewed": 889,
+          "createdAt": "2022-05-06T12:14:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 97245,
+          "title": "독서 습관 들이기",
+          "summary": "하루 10분 독서로 시작하기",
+          "comments": 158,
+          "like": 487,
+          "viewed": 1249,
+          "createdAt": "2021-10-18T19:30:00.000Z"
+        },
+        {
+          "post_id": 40982,
+          "title": "간단한 운동법",
+          "summary": "5분 만에 하는 스트레칭",
+          "comments": 72,
+          "like": 205,
+          "viewed": 654,
+          "createdAt": "2023-08-07T17:25:00.000Z"
+        },
+        {
+          "post_id": 89120,
+          "title": "요리 초보의 도전",
+          "summary": "처음 해본 파스타 요리!",
+          "comments": 186,
+          "like": 423,
+          "viewed": 1140,
+          "createdAt": "2019-03-13T05:12:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 67653,
+          "title": "매일 아침 루틴",
+          "summary": "성공적인 아침 루틴 만들기",
+          "comments": 321,
+          "like": 612,
+          "viewed": 1504,
+          "createdAt": "2020-07-29T10:44:00.000Z"
+        },
+        {
+          "post_id": 13987,
+          "title": "온라인 클래스 추천",
+          "summary": "취미를 배울 수 있는 사이트",
+          "comments": 312,
+          "like": 581,
+          "viewed": 1319,
+          "createdAt": "2022-11-02T03:25:00.000Z"
+        },
+        {
+          "post_id": 91208,
+          "title": "반려동물 입양",
+          "summary": "입양 전 알아야 할 사항들",
+          "comments": 128,
+          "like": 394,
+          "viewed": 1012,
+          "createdAt": "2021-06-09T06:20:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 25781,
+          "title": "커피 원두 추천",
+          "summary": "향과 맛이 좋은 원두 추천",
+          "comments": 85,
+          "like": 221,
+          "viewed": 754,
+          "createdAt": "2020-01-15T18:35:00.000Z"
+        },
+        {
+          "post_id": 10987,
+          "title": "게임 추천",
+          "summary": "요즘 핫한 게임은?",
+          "comments": 411,
+          "like": 759,
+          "viewed": 2023,
+          "createdAt": "2019-09-29T13:56:00.000Z"
+        },
+        {
+          "post_id": 78012,
+          "title": "자동차 관리 팁",
+          "summary": "겨울철 자동차 관리 요령",
+          "comments": 142,
+          "like": 372,
+          "viewed": 936,
+          "createdAt": "2022-12-11T20:19:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47982,
+          "title": "집에서 하는 간단 요리",
+          "summary": "쉬운 재료로 만드는 요리",
+          "comments": 98,
+          "like": 310,
+          "viewed": 890,
+          "createdAt": "2023-07-03T04:12:00.000Z"
+        },
+        {
+          "post_id": 68371,
+          "title": "책 추천",
+          "summary": "마음의 양식을 채우는 도서",
+          "comments": 183,
+          "like": 533,
+          "viewed": 1211,
+          "createdAt": "2021-05-28T09:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29382,
+          "title": "공부 자극 글",
+          "summary": "열심히 공부하는 법을 배워보세요.",
+          "comments": 257,
+          "like": 687,
+          "viewed": 1589,
+          "createdAt": "2022-08-10T14:28:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47281,
+          "title": "의류 쇼핑몰 추천",
+          "summary": "저렴하고 트렌디한 의류 추천",
+          "comments": 198,
+          "like": 489,
+          "viewed": 1187,
+          "createdAt": "2020-05-05T22:10:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 98237,
+          "title": "취미 만들기",
+          "summary": "취미로 시작하는 나만의 프로젝트",
+          "comments": 223,
+          "like": 431,
+          "viewed": 1205,
+          "createdAt": "2019-01-17T10:55:00.000Z"
+        },
+        {
+          "post_id": 13567,
+          "title": "알뜰 쇼핑 팁",
+          "summary": "저렴하게 쇼핑하는 방법",
+          "comments": 302,
+          "like": 675,
+          "viewed": 1432,
+          "createdAt": "2021-02-13T08:22:00.000Z"
+        },
+        {
+          "post_id": 62589,
+          "title": "겨울 스포츠 즐기기",
+          "summary": "스키, 스노우보드 즐기는 팁",
+          "comments": 109,
+          "like": 312,
+          "viewed": 819,
+          "createdAt": "2022-12-23T05:47:00.000Z"
+        },
+        {
+          "post_id": 32901,
+          "title": "맛집 추천",
+          "summary": "이번 주말 가볼만한 맛집",
+          "comments": 457,
+          "like": 801,
+          "viewed": 2301,
+          "createdAt": "2020-11-27T15:09:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        }
+      ]
+    }
+    ''')),
+        communityRecommendData: CommunityRecommendData.fromJson(jsonDecode('''
+    {
+      "tags": [
+        {
+          "tagId": 5500584,
+          "tag_name": "생활정보정보공유",
+          "bookmarked": 2260098,
+          "count": 6054472,
+          "grade": 1,
+          "change": 3
+        },
+        {
+          "tagId": 6483579,
+          "tag_name": "생활정보꿀팁공유",
+          "bookmarked": 1907232,
+          "count": 1456826,
+          "grade": 3,
+          "change": 11
+        },
+        {
+          "tagId": 7951011,
+          "tag_name": "생활정보생활정보",
+          "bookmarked": 3614974,
+          "count": 4657548,
+          "grade": 7,
+          "change": 12
+        },
+        {
+          "tagId": 2488542,
+          "tag_name": "유용한팁",
+          "bookmarked": 3775929,
+          "count": 640068,
+          "grade": 9,
+          "change": -3
+        },
+        {
+          "tagId": 7615117,
+          "tag_name": "건강정보",
+          "bookmarked": 1751088,
+          "count": 4422214,
+          "grade": 11,
+          "change": 6
+        },
+        {
+          "tagId": 714703,
+          "tag_name": "노하우",
+          "bookmarked": 312407,
+          "count": 5254348,
+          "grade": 10,
+          "change": 9
+        },
+        {
+          "tagId": 215707,
+          "tag_name": "아이디어",
+          "bookmarked": 3795284,
+          "count": 5623334,
+          "grade": 8,
+          "change": 5
+        },
+        {
+          "tagId": 2557334,
+          "tag_name": "생활지혜",
+          "bookmarked": 8934600,
+          "count": 1063798,
+          "grade": 6,
+          "change": -3
+        },
+        {
+          "tagId": 5596651,
+          "tag_name": "DIY정보",
+          "bookmarked": 3209647,
+          "count": 2237288,
+          "grade": 4,
+          "change": 12
+        },
+        {
+          "tagId": 4223100,
+          "tag_name": "유익한정보",
+          "bookmarked": 2794107,
+          "count": 7819248,
+          "grade": 2,
+          "change": 7
+        },
+        {
+          "tagId": 7080658,
+          "tag_name": "공유합니다",
+          "bookmarked": 6767962,
+          "count": 3488927,
+          "grade": 1,
+          "change": 16
+        },
+        {
+          "tagId": 9519070,
+          "tag_name": "재테크팁",
+          "bookmarked": 5339900,
+          "count": 1616924,
+          "grade": 3,
+          "change": -8
+        },
+        {
+          "tagId": 4857952,
+          "tag_name": "경제정보",
+          "bookmarked": 6674531,
+          "count": 1682886,
+          "grade": 5,
+          "change": 17
+        },
+        {
+          "tagId": 2348171,
+          "tag_name": "신상정보",
+          "bookmarked": 8472470,
+          "count": 6828528,
+          "grade": 7,
+          "change": -5
+        },
+        {
+          "tagId": 5580618,
+          "tag_name": "최신트렌드",
+          "bookmarked": 5484617,
+          "count": 7964309,
+          "grade": 8,
+          "change": 19
+        },
+        {
+          "tagId": 2833521,
+          "tag_name": "취미생활",
+          "bookmarked": 7578623,
+          "count": 2622905,
+          "grade": 2,
+          "change": -14
+        },
+        {
+          "tagId": 2461206,
+          "tag_name": "자기계발",
+          "bookmarked": 3739094,
+          "count": 7101079,
+          "grade": 9,
+          "change": -16
+        },
+        {
+          "tagId": 7258920,
+          "tag_name": "공유팁",
+          "bookmarked": 7157341,
+          "count": 6396799,
+          "grade": 11,
+          "change": 5
+        },
+        {
+          "tagId": 1485554,
+          "tag_name": "효율적인삶",
+          "bookmarked": 5595206,
+          "count": 9024936,
+          "grade": 9,
+          "change": -5
+        },
+        {
+          "tagId": 624399,
+          "tag_name": "성공팁",
+          "bookmarked": 831223,
+          "count": 2078251,
+          "grade": 6,
+          "change": 20
+        },
+        {
+          "tagId": 2213407,
+          "tag_name": "일상공유",
+          "bookmarked": 6522985,
+          "count": 6053842,
+          "grade": 9,
+          "change": -8
+        },
+        {
+          "tagId": 9936855,
+          "tag_name": "정보나눔",
+          "bookmarked": 2015806,
+          "count": 9322703,
+          "grade": 2,
+          "change": -7
+        },
+        {
+          "tagId": 487626,
+          "tag_name": "자기관리",
+          "bookmarked": 5152772,
+          "count": 9895017,
+          "grade": 3,
+          "change": 0
+        },
+        {
+          "tagId": 6790516,
+          "tag_name": "꿀정보",
+          "bookmarked": 7201143,
+          "count": 6108552,
+          "grade": 10,
+          "change": 11
+        },
+        {
+          "tagId": 3268746,
+          "tag_name": "여행팁",
+          "bookmarked": 592881,
+          "count": 9947549,
+          "grade": 9,
+          "change": -2
+        },
+        {
+          "tagId": 9652110,
+          "tag_name": "핫아이템",
+          "bookmarked": 5440574,
+          "count": 8987255,
+          "grade": 11,
+          "change": -7
+        },
+        {
+          "tagId": 7724125,
+          "tag_name": "공부비법",
+          "bookmarked": 8407184,
+          "count": 2061683,
+          "grade": 10,
+          "change": 15
+        },
+        {
+          "tagId": 5180552,
+          "tag_name": "취업정보",
+          "bookmarked": 7699420,
+          "count": 2133848,
+          "grade": 4,
+          "change": 3
+        },
+        {
+          "tagId": 9375815,
+          "tag_name": "창업정보",
+          "bookmarked": 3901958,
+          "count": 317588,
+          "grade": 8,
+          "change": 12
+        },
+        {
+          "tagId": 5882355,
+          "tag_name": "트렌드",
+          "bookmarked": 2433930,
+          "count": 6811400,
+          "grade": 9,
+          "change": 3
+        },
+        {
+          "tagId": 7885176,
+          "tag_name": "생활꿀팁",
+          "bookmarked": 238735,
+          "count": 7528672,
+          "grade": 1,
+          "change": -5
+        },
+        {
+          "tagId": 5114369,
+          "tag_name": "새로운정보",
+          "bookmarked": 5381543,
+          "count": 7131875,
+          "grade": 2,
+          "change": -1
+        },
+        {
+          "tagId": 638358,
+          "tag_name": "유익한팁",
+          "bookmarked": 3460731,
+          "count": 9629388,
+          "grade": 6,
+          "change": 16
+        },
+        {
+          "tagId": 8677574,
+          "tag_name": "시간관리",
+          "bookmarked": 4262404,
+          "count": 3598322,
+          "grade": 8,
+          "change": 10
+        },
+        {
+          "tagId": 8160234,
+          "tag_name": "성공습관",
+          "bookmarked": 2253146,
+          "count": 4444424,
+          "grade": 11,
+          "change": -5
+        },
+        {
+          "tagId": 1423944,
+          "tag_name": "인생팁",
+          "bookmarked": 1839150,
+          "count": 4578354,
+          "grade": 1,
+          "change": -7
+        },
+        {
+          "tagId": 5908906,
+          "tag_name": "효율성향상",
+          "bookmarked": 8426309,
+          "count": 3904768,
+          "grade": 5,
+          "change": 18
+        },
+        {
+          "tagId": 4867188,
+          "tag_name": "건강관리",
+          "bookmarked": 9638543,
+          "count": 9545662,
+          "grade": 7,
+          "change": 8
+        },
+        {
+          "tagId": 9200925,
+          "tag_name": "팁공유",
+          "bookmarked": 7717298,
+          "count": 9629416,
+          "grade": 9,
+          "change": -20
+        },
+        {
+          "tagId": 9059860,
+          "tag_name": "업데이트정보",
+          "bookmarked": 4680554,
+          "count": 5432244,
+          "grade": 11,
+          "change": -17
+        }
+      ]
+    }
+    ''')),
+    ),
+];
+
+/// 검색어별 화면구성
+List<TempSearchData> tempSearchScreenData = [
+    TempSearchData(
+        term: '검색어',
+        searchCommunityData: SearchTagData.fromJson(jsonDecode('''
+    {
+      "tags": [
+        {
+          "tagId": 5500584,
+          "tag_name": "검색어정보공유",
+          "bookmarked": 2260098,
+          "count": 6054472,
+          "grade": 8
+        },
+        {
+          "tagId": 6483579,
+          "tag_name": "검색어꿀팁공유",
+          "bookmarked": 1907232,
+          "count": 1456826,
+          "grade": 10
+        },
+        {
+          "tagId": 7951011,
+          "tag_name": "생활정보",
+          "bookmarked": 3614974,
+          "count": 4657548,
+          "grade": 11
+        },
+        {
+          "tagId": 2488542,
+          "tag_name": "유용한팁",
+          "bookmarked": 3775929,
+          "count": 640068,
+          "grade": 7
+        },
+        {
+          "tagId": 7615117,
+          "tag_name": "건강정보",
+          "bookmarked": 1751088,
+          "count": 4422214,
+          "grade": 6
+        },
+        {
+          "tagId": 714703,
+          "tag_name": "노하우",
+          "bookmarked": 312407,
+          "count": 5254348,
+          "grade": 9
+        },
+        {
+          "tagId": 215707,
+          "tag_name": "아이디어",
+          "bookmarked": 3795284,
+          "count": 5623334,
+          "grade": 10
+        },
+        {
+          "tagId": 2557334,
+          "tag_name": "생활지혜",
+          "bookmarked": 8934600,
+          "count": 1063798,
+          "grade": 11
+        },
+        {
+          "tagId": 5596651,
+          "tag_name": "DIY정보",
+          "bookmarked": 3209647,
+          "count": 2237288,
+          "grade": 9
+        },
+        {
+          "tagId": 4223100,
+          "tag_name": "유익한정보",
+          "bookmarked": 2794107,
+          "count": 7819248,
+          "grade": 7
+        },
+        {
+          "tagId": 7080658,
+          "tag_name": "공유합니다",
+          "bookmarked": 6767962,
+          "count": 3488927,
+          "grade": 8
+        },
+        {
+          "tagId": 9519070,
+          "tag_name": "재테크팁",
+          "bookmarked": 5339900,
+          "count": 1616924,
+          "grade": 7
+        },
+        {
+          "tagId": 4857952,
+          "tag_name": "경제정보",
+          "bookmarked": 6674531,
+          "count": 1682886,
+          "grade": 6
+        },
+        {
+          "tagId": 2348171,
+          "tag_name": "신상정보",
+          "bookmarked": 8472470,
+          "count": 6828528,
+          "grade": 8
+        },
+        {
+          "tagId": 5580618,
+          "tag_name": "최신트렌드",
+          "bookmarked": 5484617,
+          "count": 7964309,
+          "grade": 6
+        },
+        {
+          "tagId": 2833521,
+          "tag_name": "취미생활",
+          "bookmarked": 7578623,
+          "count": 2622905,
+          "grade": 7
+        },
+        {
+          "tagId": 2461206,
+          "tag_name": "자기계발",
+          "bookmarked": 3739094,
+          "count": 7101079,
+          "grade": 10
+        },
+        {
+          "tagId": 7258920,
+          "tag_name": "공유팁",
+          "bookmarked": 7157341,
+          "count": 6396799,
+          "grade": 8
+        },
+        {
+          "tagId": 1485554,
+          "tag_name": "효율적인삶",
+          "bookmarked": 5595206,
+          "count": 9024936,
+          "grade": 11
+        },
+        {
+          "tagId": 624399,
+          "tag_name": "성공팁",
+          "bookmarked": 831223,
+          "count": 2078251,
+          "grade": 7
+        },
+        {
+          "tagId": 2213407,
+          "tag_name": "일상공유",
+          "bookmarked": 6522985,
+          "count": 6053842,
+          "grade": 11
+        },
+        {
+          "tagId": 9936855,
+          "tag_name": "정보나눔",
+          "bookmarked": 2015806,
+          "count": 9322703,
+          "grade": 8
+        },
+        {
+          "tagId": 487626,
+          "tag_name": "자기관리",
+          "bookmarked": 5152772,
+          "count": 9895017,
+          "grade": 9
+        },
+        {
+          "tagId": 6790516,
+          "tag_name": "꿀정보",
+          "bookmarked": 7201143,
+          "count": 6108552,
+          "grade": 11
+        },
+        {
+          "tagId": 3268746,
+          "tag_name": "여행팁",
+          "bookmarked": 592881,
+          "count": 9947549,
+          "grade": 11
+        },
+        {
+          "tagId": 9652110,
+          "tag_name": "핫아이템",
+          "bookmarked": 5440574,
+          "count": 8987255,
+          "grade": 7
+        },
+        {
+          "tagId": 7724125,
+          "tag_name": "공부비법",
+          "bookmarked": 8407184,
+          "count": 2061683,
+          "grade": 9
+        },
+        {
+          "tagId": 5180552,
+          "tag_name": "취업정보",
+          "bookmarked": 7699420,
+          "count": 2133848,
+          "grade": 8
+        },
+        {
+          "tagId": 9375815,
+          "tag_name": "창업정보",
+          "bookmarked": 3901958,
+          "count": 317588,
+          "grade": 11
+        },
+        {
+          "tagId": 5882355,
+          "tag_name": "트렌드",
+          "bookmarked": 2433930,
+          "count": 6811400,
+          "grade": 7
+        },
+        {
+          "tagId": 7885176,
+          "tag_name": "생활꿀팁",
+          "bookmarked": 238735,
+          "count": 7528672,
+          "grade": 11
+        },
+        {
+          "tagId": 5114369,
+          "tag_name": "새로운정보",
+          "bookmarked": 5381543,
+          "count": 7131875,
+          "grade": 10
+        },
+        {
+          "tagId": 638358,
+          "tag_name": "유익한팁",
+          "bookmarked": 3460731,
+          "count": 9629388,
+          "grade": 7
+        },
+        {
+          "tagId": 8677574,
+          "tag_name": "시간관리",
+          "bookmarked": 4262404,
+          "count": 3598322,
+          "grade": 10
+        },
+        {
+          "tagId": 8160234,
+          "tag_name": "성공습관",
+          "bookmarked": 2253146,
+          "count": 4444424,
+          "grade": 6
+        },
+        {
+          "tagId": 1423944,
+          "tag_name": "인생팁",
+          "bookmarked": 1839150,
+          "count": 4578354,
+          "grade": 11
+        },
+        {
+          "tagId": 5908906,
+          "tag_name": "효율성향상",
+          "bookmarked": 8426309,
+          "count": 3904768,
+          "grade": 6
+        },
+        {
+          "tagId": 4867188,
+          "tag_name": "건강관리",
+          "bookmarked": 9638543,
+          "count": 9545662,
+          "grade": 8
+        },
+        {
+          "tagId": 9200925,
+          "tag_name": "팁공유",
+          "bookmarked": 7717298,
+          "count": 9629416,
+          "grade": 8
+        },
+        {
+          "tagId": 9059860,
+          "tag_name": "업데이트정보",
+          "bookmarked": 4680554,
+          "count": 5432244,
+          "grade": 6
+        }
+      ]
+    }
+    ''')),
+        searchTagData: SearchTagData.fromJson(jsonDecode('''
+    {
+      "tags": [
+        {
+          "tagId": 5500584,
+          "tag_name": "검색어정보공유",
+          "bookmarked": 2260098,
+          "count": 6054472,
+          "grade": 8
+        },
+        {
+          "tagId": 6483579,
+          "tag_name": "검색어꿀팁공유",
+          "bookmarked": 1907232,
+          "count": 1456826,
+          "grade": 10
+        },
+        {
+          "tagId": 7951011,
+          "tag_name": "검색어생활정보",
+          "bookmarked": 3614974,
+          "count": 4657548,
+          "grade": 11
+        },
+        {
+          "tagId": 2488542,
+          "tag_name": "유용한팁",
+          "bookmarked": 3775929,
+          "count": 640068,
+          "grade": 7
+        },
+        {
+          "tagId": 7615117,
+          "tag_name": "건강정보",
+          "bookmarked": 1751088,
+          "count": 4422214,
+          "grade": 6
+        },
+        {
+          "tagId": 714703,
+          "tag_name": "노하우",
+          "bookmarked": 312407,
+          "count": 5254348,
+          "grade": 9
+        },
+        {
+          "tagId": 215707,
+          "tag_name": "아이디어",
+          "bookmarked": 3795284,
+          "count": 5623334,
+          "grade": 10
+        },
+        {
+          "tagId": 2557334,
+          "tag_name": "생활지혜",
+          "bookmarked": 8934600,
+          "count": 1063798,
+          "grade": 11
+        },
+        {
+          "tagId": 5596651,
+          "tag_name": "DIY정보",
+          "bookmarked": 3209647,
+          "count": 2237288,
+          "grade": 9
+        },
+        {
+          "tagId": 4223100,
+          "tag_name": "유익한정보",
+          "bookmarked": 2794107,
+          "count": 7819248,
+          "grade": 7
+        },
+        {
+          "tagId": 7080658,
+          "tag_name": "공유합니다",
+          "bookmarked": 6767962,
+          "count": 3488927,
+          "grade": 8
+        },
+        {
+          "tagId": 9519070,
+          "tag_name": "재테크팁",
+          "bookmarked": 5339900,
+          "count": 1616924,
+          "grade": 7
+        },
+        {
+          "tagId": 4857952,
+          "tag_name": "경제정보",
+          "bookmarked": 6674531,
+          "count": 1682886,
+          "grade": 6
+        },
+        {
+          "tagId": 2348171,
+          "tag_name": "신상정보",
+          "bookmarked": 8472470,
+          "count": 6828528,
+          "grade": 8
+        },
+        {
+          "tagId": 5580618,
+          "tag_name": "최신트렌드",
+          "bookmarked": 5484617,
+          "count": 7964309,
+          "grade": 6
+        },
+        {
+          "tagId": 2833521,
+          "tag_name": "취미생활",
+          "bookmarked": 7578623,
+          "count": 2622905,
+          "grade": 7
+        },
+        {
+          "tagId": 2461206,
+          "tag_name": "자기계발",
+          "bookmarked": 3739094,
+          "count": 7101079,
+          "grade": 10
+        },
+        {
+          "tagId": 7258920,
+          "tag_name": "공유팁",
+          "bookmarked": 7157341,
+          "count": 6396799,
+          "grade": 8
+        },
+        {
+          "tagId": 1485554,
+          "tag_name": "효율적인삶",
+          "bookmarked": 5595206,
+          "count": 9024936,
+          "grade": 11
+        },
+        {
+          "tagId": 624399,
+          "tag_name": "성공팁",
+          "bookmarked": 831223,
+          "count": 2078251,
+          "grade": 7
+        },
+        {
+          "tagId": 2213407,
+          "tag_name": "일상공유",
+          "bookmarked": 6522985,
+          "count": 6053842,
+          "grade": 11
+        },
+        {
+          "tagId": 9936855,
+          "tag_name": "정보나눔",
+          "bookmarked": 2015806,
+          "count": 9322703,
+          "grade": 8
+        },
+        {
+          "tagId": 487626,
+          "tag_name": "자기관리",
+          "bookmarked": 5152772,
+          "count": 9895017,
+          "grade": 9
+        },
+        {
+          "tagId": 6790516,
+          "tag_name": "꿀정보",
+          "bookmarked": 7201143,
+          "count": 6108552,
+          "grade": 11
+        },
+        {
+          "tagId": 3268746,
+          "tag_name": "여행팁",
+          "bookmarked": 592881,
+          "count": 9947549,
+          "grade": 11
+        },
+        {
+          "tagId": 9652110,
+          "tag_name": "핫아이템",
+          "bookmarked": 5440574,
+          "count": 8987255,
+          "grade": 7
+        },
+        {
+          "tagId": 7724125,
+          "tag_name": "공부비법",
+          "bookmarked": 8407184,
+          "count": 2061683,
+          "grade": 9
+        },
+        {
+          "tagId": 5180552,
+          "tag_name": "취업정보",
+          "bookmarked": 7699420,
+          "count": 2133848,
+          "grade": 8
+        },
+        {
+          "tagId": 9375815,
+          "tag_name": "창업정보",
+          "bookmarked": 3901958,
+          "count": 317588,
+          "grade": 11
+        },
+        {
+          "tagId": 5882355,
+          "tag_name": "트렌드",
+          "bookmarked": 2433930,
+          "count": 6811400,
+          "grade": 7
+        },
+        {
+          "tagId": 7885176,
+          "tag_name": "생활꿀팁",
+          "bookmarked": 238735,
+          "count": 7528672,
+          "grade": 11
+        },
+        {
+          "tagId": 5114369,
+          "tag_name": "새로운정보",
+          "bookmarked": 5381543,
+          "count": 7131875,
+          "grade": 10
+        },
+        {
+          "tagId": 638358,
+          "tag_name": "유익한팁",
+          "bookmarked": 3460731,
+          "count": 9629388,
+          "grade": 7
+        },
+        {
+          "tagId": 8677574,
+          "tag_name": "시간관리",
+          "bookmarked": 4262404,
+          "count": 3598322,
+          "grade": 10
+        },
+        {
+          "tagId": 8160234,
+          "tag_name": "성공습관",
+          "bookmarked": 2253146,
+          "count": 4444424,
+          "grade": 6
+        },
+        {
+          "tagId": 1423944,
+          "tag_name": "인생팁",
+          "bookmarked": 1839150,
+          "count": 4578354,
+          "grade": 11
+        },
+        {
+          "tagId": 5908906,
+          "tag_name": "효율성향상",
+          "bookmarked": 8426309,
+          "count": 3904768,
+          "grade": 6
+        },
+        {
+          "tagId": 4867188,
+          "tag_name": "건강관리",
+          "bookmarked": 9638543,
+          "count": 9545662,
+          "grade": 8
+        },
+        {
+          "tagId": 9200925,
+          "tag_name": "팁공유",
+          "bookmarked": 7717298,
+          "count": 9629416,
+          "grade": 8
+        },
+        {
+          "tagId": 9059860,
+          "tag_name": "업데이트정보",
+          "bookmarked": 4680554,
+          "count": 5432244,
+          "grade": 6
+        }
+      ]
+    }
+    ''')),
+        searchPostData: PostData.fromJson(jsonDecode('''
+    {
+      "posts": [
+        {
+          "post_id": 87291,
+          "title": "오늘의 날씨는?",
+          "summary": "검색어비가 올 것 같아요. 우산 챙기세요.",
+          "comments": 182,
+          "like": 521,
+          "viewed": 899,
+          "createdAt": "2021-04-25T12:34:00.000Z"
+        },
+        {
+          "post_id": 97852,
+          "title": "새로운 취미 추천",
+          "summary": "검색어요즘 뜨는 취미는 무엇일까요?",
+          "comments": 249,
+          "like": 783,
+          "viewed": 1374,
+          "createdAt": "2022-02-15T08:22:00.000Z"
+        },
+        {
+          "post_id": 11237,
+          "title": "아침 운동의 중요성",
+          "summary": "검색어매일 아침 운동하는 습관!",
+          "comments": 321,
+          "like": 456,
+          "viewed": 1023,
+          "createdAt": "2020-09-12T07:40:00.000Z"
+        },
+        {
+          "post_id": 56389,
+          "title": "재테크 꿀팁 공유",
+          "summary": "생활정보소액 투자로 시작하는 재테크",
+          "comments": 405,
+          "like": 642,
+          "viewed": 1845,
+          "createdAt": "2023-06-19T15:15:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 23876,
+          "title": "여행 준비물 리스트",
+          "summary": "꼭 챙겨야 할 필수 아이템들",
+          "comments": 92,
+          "like": 317,
+          "viewed": 744,
+          "createdAt": "2021-11-30T09:00:00.000Z"
+        },
+        {
+          "post_id": 46378,
+          "title": "추천 영화 리스트",
+          "summary": "주말에 보기 좋은 영화들",
+          "comments": 533,
+          "like": 910,
+          "viewed": 2458,
+          "createdAt": "2019-07-18T14:10:00.000Z"
+        },
+        {
+          "post_id": 91234,
+          "title": "책 읽기의 장점",
+          "summary": "매일 책 읽기의 중요성을 알아봅시다.",
+          "comments": 67,
+          "like": 155,
+          "viewed": 481,
+          "createdAt": "2020-10-10T18:24:00.000Z"
+        },
+        {
+          "post_id": 66728,
+          "title": "반려동물 관리 방법",
+          "summary": "강아지 털 관리 팁",
+          "comments": 187,
+          "like": 259,
+          "viewed": 891,
+          "createdAt": "2021-08-22T04:05:00.000Z"
+        },
+        {
+          "post_id": 57893,
+          "title": "헬스장 추천",
+          "summary": "어디 헬스장이 좋은가요?",
+          "comments": 200,
+          "like": 378,
+          "viewed": 1298,
+          "createdAt": "2022-01-02T11:45:00.000Z"
+        },
+        {
+          "post_id": 34892,
+          "title": "IT 트렌드 분석",
+          "summary": "올해 뜨는 IT 기술은?",
+          "comments": 450,
+          "like": 821,
+          "viewed": 2114,
+          "createdAt": "2020-02-24T16:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 89347,
+          "title": "최신 가전제품",
+          "summary": "최신 스마트 가전 소개합니다.",
+          "comments": 134,
+          "like": 452,
+          "viewed": 1203,
+          "createdAt": "2023-05-14T21:50:00.000Z"
+        },
+        {
+          "post_id": 23901,
+          "title": "등산 코스 추천",
+          "summary": "가을에 가기 좋은 산",
+          "comments": 98,
+          "like": 245,
+          "viewed": 621,
+          "createdAt": "2022-09-21T05:11:00.000Z"
+        },
+        {
+          "post_id": 70483,
+          "title": "홈 카페 인테리어",
+          "summary": "집에서 즐기는 홈 카페 꾸미기",
+          "comments": 301,
+          "like": 502,
+          "viewed": 1501,
+          "createdAt": "2021-03-10T14:55:00.000Z"
+        },
+        {
+          "post_id": 53692,
+          "title": "내일의 주식 전망",
+          "summary": "주식 시장 분석과 내일의 전망",
+          "comments": 775,
+          "like": 923,
+          "viewed": 3095,
+          "createdAt": "2023-02-28T08:40:00.000Z"
+        },
+        {
+          "post_id": 13290,
+          "title": "다이어트 식단",
+          "summary": "건강한 식단으로 체중 감량하기",
+          "comments": 354,
+          "like": 620,
+          "viewed": 1450,
+          "createdAt": "2020-06-17T07:30:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 49723,
+          "title": "쇼핑몰 추천",
+          "summary": "가성비 좋은 온라인 쇼핑몰 추천",
+          "comments": 156,
+          "like": 399,
+          "viewed": 1084,
+          "createdAt": "2019-12-05T03:17:00.000Z"
+        },
+        {
+          "post_id": 89014,
+          "title": "내가 사랑하는 음악",
+          "summary": "요즘 듣고 있는 음악 추천",
+          "comments": 66,
+          "like": 289,
+          "viewed": 672,
+          "createdAt": "2021-07-22T02:02:00.000Z"
+        },
+        {
+          "post_id": 78512,
+          "title": "명언 모음집",
+          "summary": "삶에 도움이 되는 명언들",
+          "comments": 402,
+          "like": 703,
+          "viewed": 1822,
+          "createdAt": "2020-11-12T09:50:00.000Z"
+        },
+        {
+          "post_id": 58329,
+          "title": "헬시푸드 레시피",
+          "summary": "간단하고 건강한 요리법",
+          "comments": 285,
+          "like": 563,
+          "viewed": 1307,
+          "createdAt": "2023-03-23T13:07:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29387,
+          "title": "여행 후기 공유",
+          "summary": "최근 다녀온 여행 후기를 남겨요.",
+          "comments": 141,
+          "like": 329,
+          "viewed": 889,
+          "createdAt": "2022-05-06T12:14:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 97245,
+          "title": "독서 습관 들이기",
+          "summary": "하루 10분 독서로 시작하기",
+          "comments": 158,
+          "like": 487,
+          "viewed": 1249,
+          "createdAt": "2021-10-18T19:30:00.000Z"
+        },
+        {
+          "post_id": 40982,
+          "title": "간단한 운동법",
+          "summary": "5분 만에 하는 스트레칭",
+          "comments": 72,
+          "like": 205,
+          "viewed": 654,
+          "createdAt": "2023-08-07T17:25:00.000Z"
+        },
+        {
+          "post_id": 89120,
+          "title": "요리 초보의 도전",
+          "summary": "처음 해본 파스타 요리!",
+          "comments": 186,
+          "like": 423,
+          "viewed": 1140,
+          "createdAt": "2019-03-13T05:12:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 67653,
+          "title": "매일 아침 루틴",
+          "summary": "성공적인 아침 루틴 만들기",
+          "comments": 321,
+          "like": 612,
+          "viewed": 1504,
+          "createdAt": "2020-07-29T10:44:00.000Z"
+        },
+        {
+          "post_id": 13987,
+          "title": "온라인 클래스 추천",
+          "summary": "취미를 배울 수 있는 사이트",
+          "comments": 312,
+          "like": 581,
+          "viewed": 1319,
+          "createdAt": "2022-11-02T03:25:00.000Z"
+        },
+        {
+          "post_id": 91208,
+          "title": "반려동물 입양",
+          "summary": "입양 전 알아야 할 사항들",
+          "comments": 128,
+          "like": 394,
+          "viewed": 1012,
+          "createdAt": "2021-06-09T06:20:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 25781,
+          "title": "커피 원두 추천",
+          "summary": "향과 맛이 좋은 원두 추천",
+          "comments": 85,
+          "like": 221,
+          "viewed": 754,
+          "createdAt": "2020-01-15T18:35:00.000Z"
+        },
+        {
+          "post_id": 10987,
+          "title": "게임 추천",
+          "summary": "요즘 핫한 게임은?",
+          "comments": 411,
+          "like": 759,
+          "viewed": 2023,
+          "createdAt": "2019-09-29T13:56:00.000Z"
+        },
+        {
+          "post_id": 78012,
+          "title": "자동차 관리 팁",
+          "summary": "겨울철 자동차 관리 요령",
+          "comments": 142,
+          "like": 372,
+          "viewed": 936,
+          "createdAt": "2022-12-11T20:19:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47982,
+          "title": "집에서 하는 간단 요리",
+          "summary": "쉬운 재료로 만드는 요리",
+          "comments": 98,
+          "like": 310,
+          "viewed": 890,
+          "createdAt": "2023-07-03T04:12:00.000Z"
+        },
+        {
+          "post_id": 68371,
+          "title": "책 추천",
+          "summary": "마음의 양식을 채우는 도서",
+          "comments": 183,
+          "like": 533,
+          "viewed": 1211,
+          "createdAt": "2021-05-28T09:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29382,
+          "title": "공부 자극 글",
+          "summary": "열심히 공부하는 법을 배워보세요.",
+          "comments": 257,
+          "like": 687,
+          "viewed": 1589,
+          "createdAt": "2022-08-10T14:28:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47281,
+          "title": "의류 쇼핑몰 추천",
+          "summary": "저렴하고 트렌디한 의류 추천",
+          "comments": 198,
+          "like": 489,
+          "viewed": 1187,
+          "createdAt": "2020-05-05T22:10:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 98237,
+          "title": "취미 만들기",
+          "summary": "취미로 시작하는 나만의 프로젝트",
+          "comments": 223,
+          "like": 431,
+          "viewed": 1205,
+          "createdAt": "2019-01-17T10:55:00.000Z"
+        },
+        {
+          "post_id": 13567,
+          "title": "알뜰 쇼핑 팁",
+          "summary": "저렴하게 쇼핑하는 방법",
+          "comments": 302,
+          "like": 675,
+          "viewed": 1432,
+          "createdAt": "2021-02-13T08:22:00.000Z"
+        },
+        {
+          "post_id": 62589,
+          "title": "겨울 스포츠 즐기기",
+          "summary": "스키, 스노우보드 즐기는 팁",
+          "comments": 109,
+          "like": 312,
+          "viewed": 819,
+          "createdAt": "2022-12-23T05:47:00.000Z"
+        },
+        {
+          "post_id": 32901,
+          "title": "맛집 추천",
+          "summary": "이번 주말 가볼만한 맛집",
+          "comments": 457,
+          "like": 801,
+          "viewed": 2301,
+          "createdAt": "2020-11-27T15:09:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        }
+      ]
+    }
+    ''')),
+        searchUserData: SearchUserData.fromJson(jsonDecode('''
+    {
+      "users": [
+        {
+          "user_id": 67601,
+          "nickname": "김민수검색어",
+          "comments": 1024,
+          "posts": 512,
+          "updatedAt": "2023-01-10T14:00:00.000Z"
+        },
+        {
+          "user_id": 67602,
+          "nickname": "이영희검색어",
+          "comments": 2048,
+          "posts": 1024,
+          "updatedAt": "2023-01-15T08:30:00.000Z"
+        },
+        {
+          "user_id": 67603,
+          "nickname": "박준호검색어",
+          "comments": 3072,
+          "posts": 2048,
+          "updatedAt": "2023-01-20T11:15:00.000Z"
+        },
+        {
+          "user_id": 67604,
+          "nickname": "최지민",
+          "comments": 1500,
+          "posts": 800,
+          "updatedAt": "2023-01-25T09:00:00.000Z"
+        },
+        {
+          "user_id": 67605,
+          "nickname": "정수빈",
+          "comments": 800,
+          "posts": 1500,
+          "updatedAt": "2023-01-30T15:30:00.000Z"
+        },
+        {
+          "user_id": 67606,
+          "nickname": "강서연",
+          "comments": 2400,
+          "posts": 1900,
+          "updatedAt": "2023-02-05T13:20:00.000Z"
+        },
+        {
+          "user_id": 67607,
+          "nickname": "임하준",
+          "comments": 3200,
+          "posts": 2500,
+          "updatedAt": "2023-02-10T16:45:00.000Z"
+        },
+        {
+          "user_id": 67608,
+          "nickname": "오세훈",
+          "comments": 1280,
+          "posts": 640,
+          "updatedAt": "2023-02-15T12:00:00.000Z"
+        },
+        {
+          "user_id": 67609,
+          "nickname": "배수빈",
+          "comments": 1900,
+          "posts": 860,
+          "updatedAt": "2023-02-20T09:30:00.000Z"
+        },
+        {
+          "user_id": 67610,
+          "nickname": "윤찬미",
+          "comments": 2200,
+          "posts": 3000,
+          "updatedAt": "2023-02-25T11:10:00.000Z"
+        },
+        {
+          "user_id": 67611,
+          "nickname": "서지혜",
+          "comments": 1750,
+          "posts": 1300,
+          "updatedAt": "2023-03-02T14:50:00.000Z"
+        },
+        {
+          "user_id": 67612,
+          "nickname": "진호",
+          "comments": 400,
+          "posts": 1000,
+          "updatedAt": "2023-03-07T08:00:00.000Z"
+        },
+        {
+          "user_id": 67613,
+          "nickname": "장유진",
+          "comments": 3100,
+          "posts": 2700,
+          "updatedAt": "2023-03-12T18:00:00.000Z"
+        },
+        {
+          "user_id": 67614,
+          "nickname": "한상진",
+          "comments": 2600,
+          "posts": 2100,
+          "updatedAt": "2023-03-17T09:45:00.000Z"
+        },
+        {
+          "user_id": 67615,
+          "nickname": "송하늘",
+          "comments": 900,
+          "posts": 750,
+          "updatedAt": "2023-03-22T12:20:00.000Z"
+        },
+        {
+          "user_id": 67616,
+          "nickname": "이승민",
+          "comments": 1500,
+          "posts": 1900,
+          "updatedAt": "2023-03-27T13:15:00.000Z"
+        },
+        {
+          "user_id": 67617,
+          "nickname": "안현수",
+          "comments": 1850,
+          "posts": 900,
+          "updatedAt": "2023-04-01T10:40:00.000Z"
+        },
+        {
+          "user_id": 67618,
+          "nickname": "신유정",
+          "comments": 2900,
+          "posts": 1500,
+          "updatedAt": "2023-04-06T11:05:00.000Z"
+        },
+        {
+          "user_id": 67619,
+          "nickname": "문주희",
+          "comments": 3200,
+          "posts": 2000,
+          "updatedAt": "2023-04-11T15:30:00.000Z"
+        },
+        {
+          "user_id": 67620,
+          "nickname": "허정훈",
+          "comments": 1800,
+          "posts": 2400,
+          "updatedAt": "2023-04-16T16:45:00.000Z"
+        },
+        {
+          "user_id": 67621,
+          "nickname": "이재현",
+          "comments": 1500,
+          "posts": 800,
+          "updatedAt": "2023-04-21T09:50:00.000Z"
+        },
+        {
+          "user_id": 67622,
+          "nickname": "양지수",
+          "comments": 2600,
+          "posts": 1400,
+          "updatedAt": "2023-04-26T12:30:00.000Z"
+        },
+        {
+          "user_id": 67623,
+          "nickname": "차유나",
+          "comments": 3000,
+          "posts": 1800,
+          "updatedAt": "2023-05-01T10:00:00.000Z"
+        },
+        {
+          "user_id": 67624,
+          "nickname": "조민호",
+          "comments": 1300,
+          "posts": 1600,
+          "updatedAt": "2023-05-06T17:15:00.000Z"
+        },
+        {
+          "user_id": 67625,
+          "nickname": "원서연",
+          "comments": 2400,
+          "posts": 2200,
+          "updatedAt": "2023-05-11T14:30:00.000Z"
+        },
+        {
+          "user_id": 67626,
+          "nickname": "곽상우",
+          "comments": 2100,
+          "posts": 1950,
+          "updatedAt": "2023-05-16T13:00:00.000Z"
+        },
+        {
+          "user_id": 67627,
+          "nickname": "유하은",
+          "comments": 800,
+          "posts": 1500,
+          "updatedAt": "2023-05-21T12:20:00.000Z"
+        },
+        {
+          "user_id": 67628,
+          "nickname": "홍민서",
+          "comments": 2900,
+          "posts": 2700,
+          "updatedAt": "2023-05-26T11:00:00.000Z"
+        },
+        {
+          "user_id": 67629,
+          "nickname": "한지민",
+          "comments": 1700,
+          "posts": 1100,
+          "updatedAt": "2023-05-31T10:10:00.000Z"
+        },
+        {
+          "user_id": 67630,
+          "nickname": "이도현",
+          "comments": 2200,
+          "posts": 1300,
+          "updatedAt": "2023-06-05T14:40:00.000Z"
+        },
+        {
+          "user_id": 67631,
+          "nickname": "김하나",
+          "comments": 3600,
+          "posts": 3200,
+          "updatedAt": "2023-06-10T15:00:00.000Z"
+        },
+        {
+          "user_id": 67632,
+          "nickname": "윤서영",
+          "comments": 2800,
+          "posts": 2100,
+          "updatedAt": "2023-06-15T17:30:00.000Z"
+        },
+        {
+          "user_id": 67633,
+          "nickname": "주원",
+          "comments": 1500,
+          "posts": 500,
+          "updatedAt": "2023-06-20T08:30:00.000Z"
+        },
+        {
+          "user_id": 67634,
+          "nickname": "차진우",
+          "comments": 1600,
+          "posts": 1000,
+          "updatedAt": "2023-06-25T09:00:00.000Z"
+        },
+        {
+          "user_id": 67635,
+          "nickname": "배현우",
+          "comments": 2200,
+          "posts": 1500,
+          "updatedAt": "2023-06-30T12:45:00.000Z"
+        },
+        {
+          "user_id": 67636,
+          "nickname": "정민",
+          "comments": 1400,
+          "posts": 700,
+          "updatedAt": "2023-07-05T11:15:00.000Z"
+        },
+        {
+          "user_id": 67637,
+          "nickname": "이재아",
+          "comments": 3000,
+          "posts": 1800,
+          "updatedAt": "2023-07-10T09:00:00.000Z"
+        },
+        {
+          "user_id": 67638,
+          "nickname": "남기훈",
+          "comments": 3200,
+          "posts": 2100,
+          "updatedAt": "2023-07-15T14:00:00.000Z"
+        },
+        {
+          "user_id": 67639,
+          "nickname": "정희원",
+          "comments": 2800,
+          "posts": 2500,
+          "updatedAt": "2023-07-20T08:30:00.000Z"
+        },
+        {
+          "user_id": 67640,
+          "nickname": "오재현",
+          "comments": 1700,
+          "posts": 1300,
+          "updatedAt": "2023-07-25T12:15:00.000Z"
+        },
+        {
+          "user_id": 67641,
+          "nickname": "서현",
+          "comments": 1900,
+          "posts": 800,
+          "updatedAt": "2023-07-30T10:00:00.000Z"
+        },
+        {
+          "user_id": 67642,
+          "nickname": "추민재",
+          "comments": 1500,
+          "posts": 900,
+          "updatedAt": "2023-08-04T14:30:00.000Z"
+        },
+        {
+          "user_id": 67643,
+          "nickname": "윤다솜",
+          "comments": 1200,
+          "posts": 1100,
+          "updatedAt": "2023-08-09T15:45:00.000Z"
+        },
+        {
+          "user_id": 67644,
+          "nickname": "고정훈",
+          "comments": 800,
+          "posts": 600,
+          "updatedAt": "2023-08-14T12:00:00.000Z"
+        },
+        {
+          "user_id": 67645,
+          "nickname": "이서준",
+          "comments": 2100,
+          "posts": 1200,
+          "updatedAt": "2023-08-19T09:20:00.000Z"
+        },
+        {
+          "user_id": 67646,
+          "nickname": "변영수",
+          "comments": 1300,
+          "posts": 950,
+          "updatedAt": "2023-08-24T10:00:00.000Z"
+        },
+        {
+          "user_id": 67647,
+          "nickname": "장세훈",
+          "comments": 2400,
+          "posts": 2000,
+          "updatedAt": "2023-08-29T14:00:00.000Z"
+        },
+        {
+          "user_id": 67648,
+          "nickname": "서진",
+          "comments": 1900,
+          "posts": 850,
+          "updatedAt": "2023-09-03T16:30:00.000Z"
+        },
+        {
+          "user_id": 67649,
+          "nickname": "배가영",
+          "comments": 3000,
+          "posts": 1800,
+          "updatedAt": "2023-09-08T12:00:00.000Z"
+        },
+        {
+          "user_id": 67650,
+          "nickname": "김상호",
+          "comments": 1800,
+          "posts": 1500,
+          "updatedAt": "2023-09-13T11:00:00.000Z"
+        }
+      ]
+    }
+    ''')),
+    ),
 ];
 
 /// 메인 - 마인드맵
@@ -521,148 +2990,334 @@ RankData trendsMainData = RankData.fromJson(jsonDecode('''
 /// 트랜드 - 커뮤니티
 CommunityRankData trendsCommunityData = CommunityRankData.fromJson(jsonDecode('''
     {
-      "daily": [
+      "rank": [
         {
-          "post_id": 67638,
-          "title": "새로운 취미를 찾다: 하루 만에 시작하는 5가지 방법",
-          "comments": 6600,
-          "like": 7797,
-          "change": 18
+          "tagId": 3765,
+          "tag_name": "Flutter",
+          "bookmarked": 2260098,
+          "count": 6054472,
+          "grade": 1,
+          "change": 3
         },
         {
-          "post_id": 80603,
-          "title": "아침 루틴으로 성공을 잡는 법: 7가지 필수 팁",
-          "comments": 9892,
-          "like": 31611,
+          "tagId": 5500584,
+          "tag_name": "정보공유",
+          "bookmarked": 2260098,
+          "count": 6054472,
+          "grade": 1,
+          "change": 3
+        },
+        {
+          "tagId": 6483579,
+          "tag_name": "꿀팁공유",
+          "bookmarked": 1907232,
+          "count": 1456826,
+          "grade": 3,
+          "change": 11
+        },
+        {
+          "tagId": 7951011,
+          "tag_name": "생활정보",
+          "bookmarked": 3614974,
+          "count": 4657548,
+          "grade": 7,
+          "change": 12
+        },
+        {
+          "tagId": 2488542,
+          "tag_name": "유용한팁",
+          "bookmarked": 3775929,
+          "count": 640068,
+          "grade": 9,
+          "change": -3
+        },
+        {
+          "tagId": 7615117,
+          "tag_name": "건강정보",
+          "bookmarked": 1751088,
+          "count": 4422214,
+          "grade": 11,
           "change": 6
         },
         {
-          "post_id": 18550,
-          "title": "여행의 설렘, 그리고 놓치지 말아야 할 순간들",
-          "comments": 1940,
-          "like": 95441,
-          "change": -9
-        },
-        {
-          "post_id": 70709,
-          "title": "시간 관리의 비밀: 효율적으로 일하는 10가지 습관",
-          "comments": 4967,
-          "like": 149,
-          "change": 18
-        },
-        {
-          "post_id": 30827,
-          "title": "내가 몰랐던 커피의 세계: 당신이 알아야 할 정보",
-          "comments": 8451,
-          "like": 12065,
-          "change": -5
-        },
-        {
-          "post_id": 40604,
-          "title": "내 방을 아늑하게 꾸미는 방법: 인테리어 팁 5선",
-          "comments": 7243,
-          "like": 24354,
-          "change": 0
-        },
-        {
-          "post_id": 60880,
-          "title": "운동을 즐기는 방법: 초보자를 위한 가이드",
-          "comments": 4920,
-          "like": 55483,
-          "change": -7
-        },
-        {
-          "post_id": 9754,
-          "title": "디지털 디톡스: 일주일 동안 SNS 없이 살아보기",
-          "comments": 2296,
-          "like": 82045,
-          "change": -5
-        },
-        {
-          "post_id": 6668,
-          "title": "건강한 식습관으로의 첫걸음: 간단한 레시피 3가지",
-          "comments": 7811,
-          "like": 60625,
+          "tagId": 714703,
+          "tag_name": "노하우",
+          "bookmarked": 312407,
+          "count": 5254348,
+          "grade": 10,
           "change": 9
         },
         {
-          "post_id": 60207,
-          "title": "어떻게 하면 긍정적으로 생각할 수 있을까? 마음을 다스리는 법",
-          "comments": 1427,
-          "like": 72095,
-          "change": 10
-        }
-      ],
-      "weekly": [
-        {
-          "post_id": 67638,
-          "title": "미래 직업 전망: 2030년에 뜰 산업 7가지",
-          "comments": 6600,
-          "like": 7797,
-          "change": 18
+          "tagId": 215707,
+          "tag_name": "아이디어",
+          "bookmarked": 3795284,
+          "count": 5623334,
+          "grade": 8,
+          "change": 5
         },
         {
-          "post_id": 80603,
-          "title": "성공적인 팀워크의 핵심: 협업을 위한 5가지 팁",
-          "comments": 9892,
-          "like": 31611,
-          "change": 6
+          "tagId": 2557334,
+          "tag_name": "생활지혜",
+          "bookmarked": 8934600,
+          "count": 1063798,
+          "grade": 6,
+          "change": -3
         },
         {
-          "post_id": 18550,
-          "title": "집에서 만드는 힐링 스파: DIY 홈케어 방법",
-          "comments": 1940,
-          "like": 95441,
-          "change": -9
+          "tagId": 5596651,
+          "tag_name": "DIY정보",
+          "bookmarked": 3209647,
+          "count": 2237288,
+          "grade": 4,
+          "change": 12
         },
         {
-          "post_id": 70709,
-          "title": "일상 속 작은 변화로 큰 행복 찾기",
-          "comments": 4967,
-          "like": 149,
-          "change": 18
+          "tagId": 4223100,
+          "tag_name": "유익한정보",
+          "bookmarked": 2794107,
+          "count": 7819248,
+          "grade": 2,
+          "change": 7
         },
         {
-          "post_id": 30827,
-          "title": "일 잘하는 사람들의 공통점: 생산성 높이는 습관",
-          "comments": 8451,
-          "like": 12065,
+          "tagId": 7080658,
+          "tag_name": "공유합니다",
+          "bookmarked": 6767962,
+          "count": 3488927,
+          "grade": 1,
+          "change": 16
+        },
+        {
+          "tagId": 9519070,
+          "tag_name": "재테크팁",
+          "bookmarked": 5339900,
+          "count": 1616924,
+          "grade": 3,
+          "change": -8
+        },
+        {
+          "tagId": 4857952,
+          "tag_name": "경제정보",
+          "bookmarked": 6674531,
+          "count": 1682886,
+          "grade": 5,
+          "change": 17
+        },
+        {
+          "tagId": 2348171,
+          "tag_name": "신상정보",
+          "bookmarked": 8472470,
+          "count": 6828528,
+          "grade": 7,
           "change": -5
         },
         {
-          "post_id": 40604,
-          "title": "바쁜 아침에도 가능한 10분 아침 요가 루틴",
-          "comments": 7243,
-          "like": 24354,
-          "change": 0
+          "tagId": 5580618,
+          "tag_name": "최신트렌드",
+          "bookmarked": 5484617,
+          "count": 7964309,
+          "grade": 8,
+          "change": 19
         },
         {
-          "post_id": 60880,
-          "title": "여행 사진 잘 찍는 법: 초보자를 위한 촬영 팁",
-          "comments": 4920,
-          "like": 55483,
+          "tagId": 2833521,
+          "tag_name": "취미생활",
+          "bookmarked": 7578623,
+          "count": 2622905,
+          "grade": 2,
+          "change": -14
+        },
+        {
+          "tagId": 2461206,
+          "tag_name": "자기계발",
+          "bookmarked": 3739094,
+          "count": 7101079,
+          "grade": 9,
+          "change": -16
+        },
+        {
+          "tagId": 7258920,
+          "tag_name": "공유팁",
+          "bookmarked": 7157341,
+          "count": 6396799,
+          "grade": 11,
+          "change": 5
+        },
+        {
+          "tagId": 1485554,
+          "tag_name": "효율적인삶",
+          "bookmarked": 5595206,
+          "count": 9024936,
+          "grade": 9,
+          "change": -5
+        },
+        {
+          "tagId": 624399,
+          "tag_name": "성공팁",
+          "bookmarked": 831223,
+          "count": 2078251,
+          "grade": 6,
+          "change": 20
+        },
+        {
+          "tagId": 2213407,
+          "tag_name": "일상공유",
+          "bookmarked": 6522985,
+          "count": 6053842,
+          "grade": 9,
+          "change": -8
+        },
+        {
+          "tagId": 9936855,
+          "tag_name": "정보나눔",
+          "bookmarked": 2015806,
+          "count": 9322703,
+          "grade": 2,
           "change": -7
         },
         {
-          "post_id": 9754,
-          "title": "아이디어가 넘치는 사람들의 사고방식: 창의력 향상 비법",
-          "comments": 2296,
-          "like": 82045,
+          "tagId": 487626,
+          "tag_name": "자기관리",
+          "bookmarked": 5152772,
+          "count": 9895017,
+          "grade": 3,
+          "change": 0
+        },
+        {
+          "tagId": 6790516,
+          "tag_name": "꿀정보",
+          "bookmarked": 7201143,
+          "count": 6108552,
+          "grade": 10,
+          "change": 11
+        },
+        {
+          "tagId": 3268746,
+          "tag_name": "여행팁",
+          "bookmarked": 592881,
+          "count": 9947549,
+          "grade": 9,
+          "change": -2
+        },
+        {
+          "tagId": 9652110,
+          "tag_name": "핫아이템",
+          "bookmarked": 5440574,
+          "count": 8987255,
+          "grade": 11,
+          "change": -7
+        },
+        {
+          "tagId": 7724125,
+          "tag_name": "공부비법",
+          "bookmarked": 8407184,
+          "count": 2061683,
+          "grade": 10,
+          "change": 15
+        },
+        {
+          "tagId": 5180552,
+          "tag_name": "취업정보",
+          "bookmarked": 7699420,
+          "count": 2133848,
+          "grade": 4,
+          "change": 3
+        },
+        {
+          "tagId": 9375815,
+          "tag_name": "창업정보",
+          "bookmarked": 3901958,
+          "count": 317588,
+          "grade": 8,
+          "change": 12
+        },
+        {
+          "tagId": 5882355,
+          "tag_name": "트렌드",
+          "bookmarked": 2433930,
+          "count": 6811400,
+          "grade": 9,
+          "change": 3
+        },
+        {
+          "tagId": 7885176,
+          "tag_name": "생활꿀팁",
+          "bookmarked": 238735,
+          "count": 7528672,
+          "grade": 1,
           "change": -5
         },
         {
-          "post_id": 6668,
-          "title": "집에서도 가능한 쉬운 운동 루틴: 초보자 가이드",
-          "comments": 7811,
-          "like": 60625,
-          "change": 9
+          "tagId": 5114369,
+          "tag_name": "새로운정보",
+          "bookmarked": 5381543,
+          "count": 7131875,
+          "grade": 2,
+          "change": -1
         },
         {
-          "post_id": 60207,
-          "title": "매일 실천하는 자기 계발 습관: 삶을 바꾸는 작은 행동들",
-          "comments": 1427,
-          "like": 72095,
+          "tagId": 638358,
+          "tag_name": "유익한팁",
+          "bookmarked": 3460731,
+          "count": 9629388,
+          "grade": 6,
+          "change": 16
+        },
+        {
+          "tagId": 8677574,
+          "tag_name": "시간관리",
+          "bookmarked": 4262404,
+          "count": 3598322,
+          "grade": 8,
           "change": 10
+        },
+        {
+          "tagId": 8160234,
+          "tag_name": "성공습관",
+          "bookmarked": 2253146,
+          "count": 4444424,
+          "grade": 11,
+          "change": -5
+        },
+        {
+          "tagId": 1423944,
+          "tag_name": "인생팁",
+          "bookmarked": 1839150,
+          "count": 4578354,
+          "grade": 1,
+          "change": -7
+        },
+        {
+          "tagId": 5908906,
+          "tag_name": "효율성향상",
+          "bookmarked": 8426309,
+          "count": 3904768,
+          "grade": 5,
+          "change": 18
+        },
+        {
+          "tagId": 4867188,
+          "tag_name": "건강관리",
+          "bookmarked": 9638543,
+          "count": 9545662,
+          "grade": 7,
+          "change": 8
+        },
+        {
+          "tagId": 9200925,
+          "tag_name": "팁공유",
+          "bookmarked": 7717298,
+          "count": 9629416,
+          "grade": 9,
+          "change": -20
+        },
+        {
+          "tagId": 9059860,
+          "tag_name": "업데이트정보",
+          "bookmarked": 4680554,
+          "count": 5432244,
+          "grade": 11,
+          "change": -17
         }
       ]
     }
@@ -670,148 +3325,351 @@ CommunityRankData trendsCommunityData = CommunityRankData.fromJson(jsonDecode(''
 /// 트랜드 - 전체
 PostData trendsPostData = PostData.fromJson(jsonDecode('''
     {
-      "daily": [
+      "posts": [
         {
-          "post_id": 67638,
-          "title": "새로운 취미를 찾다: 하루 만에 시작하는 5가지 방법",
-          "comments": 6600,
-          "like": 7797,
-          "change": 18
+          "post_id": 87291,
+          "title": "오늘의 날씨는?",
+          "summary": "비가 올 것 같아요. 우산 챙기세요.",
+          "comments": 182,
+          "like": 521,
+          "viewed": 899,
+          "createdAt": "2021-04-25T12:34:00.000Z"
         },
         {
-          "post_id": 80603,
-          "title": "아침 루틴으로 성공을 잡는 법: 7가지 필수 팁",
-          "comments": 9892,
-          "like": 31611,
-          "change": 6
+          "post_id": 97852,
+          "title": "새로운 취미 추천",
+          "summary": "요즘 뜨는 취미는 무엇일까요?",
+          "comments": 249,
+          "like": 783,
+          "viewed": 1374,
+          "createdAt": "2022-02-15T08:22:00.000Z"
         },
         {
-          "post_id": 18550,
-          "title": "여행의 설렘, 그리고 놓치지 말아야 할 순간들",
-          "comments": 1940,
-          "like": 95441,
-          "change": -9
+          "post_id": 11237,
+          "title": "아침 운동의 중요성",
+          "summary": "매일 아침 운동하는 습관!",
+          "comments": 321,
+          "like": 456,
+          "viewed": 1023,
+          "createdAt": "2020-09-12T07:40:00.000Z"
         },
         {
-          "post_id": 70709,
-          "title": "시간 관리의 비밀: 효율적으로 일하는 10가지 습관",
-          "comments": 4967,
-          "like": 149,
-          "change": 18
+          "post_id": 56389,
+          "title": "재테크 꿀팁 공유",
+          "summary": "소액 투자로 시작하는 재테크",
+          "comments": 405,
+          "like": 642,
+          "viewed": 1845,
+          "createdAt": "2023-06-19T15:15:00.000Z",
+          "imageURL": "https://picsum.photos/200"
         },
         {
-          "post_id": 30827,
-          "title": "내가 몰랐던 커피의 세계: 당신이 알아야 할 정보",
-          "comments": 8451,
-          "like": 12065,
-          "change": -5
+          "post_id": 23876,
+          "title": "여행 준비물 리스트",
+          "summary": "꼭 챙겨야 할 필수 아이템들",
+          "comments": 92,
+          "like": 317,
+          "viewed": 744,
+          "createdAt": "2021-11-30T09:00:00.000Z"
         },
         {
-          "post_id": 40604,
-          "title": "내 방을 아늑하게 꾸미는 방법: 인테리어 팁 5선",
-          "comments": 7243,
-          "like": 24354,
-          "change": 0
+          "post_id": 46378,
+          "title": "추천 영화 리스트",
+          "summary": "주말에 보기 좋은 영화들",
+          "comments": 533,
+          "like": 910,
+          "viewed": 2458,
+          "createdAt": "2019-07-18T14:10:00.000Z"
         },
         {
-          "post_id": 60880,
-          "title": "운동을 즐기는 방법: 초보자를 위한 가이드",
-          "comments": 4920,
-          "like": 55483,
-          "change": -7
+          "post_id": 91234,
+          "title": "책 읽기의 장점",
+          "summary": "매일 책 읽기의 중요성을 알아봅시다.",
+          "comments": 67,
+          "like": 155,
+          "viewed": 481,
+          "createdAt": "2020-10-10T18:24:00.000Z"
         },
         {
-          "post_id": 9754,
-          "title": "디지털 디톡스: 일주일 동안 SNS 없이 살아보기",
-          "comments": 2296,
-          "like": 82045,
-          "change": -5
+          "post_id": 66728,
+          "title": "반려동물 관리 방법",
+          "summary": "강아지 털 관리 팁",
+          "comments": 187,
+          "like": 259,
+          "viewed": 891,
+          "createdAt": "2021-08-22T04:05:00.000Z"
         },
         {
-          "post_id": 6668,
-          "title": "건강한 식습관으로의 첫걸음: 간단한 레시피 3가지",
-          "comments": 7811,
-          "like": 60625,
-          "change": 9
+          "post_id": 57893,
+          "title": "헬스장 추천",
+          "summary": "어디 헬스장이 좋은가요?",
+          "comments": 200,
+          "like": 378,
+          "viewed": 1298,
+          "createdAt": "2022-01-02T11:45:00.000Z"
         },
         {
-          "post_id": 60207,
-          "title": "어떻게 하면 긍정적으로 생각할 수 있을까? 마음을 다스리는 법",
-          "comments": 1427,
-          "like": 72095,
-          "change": 10
-        }
-      ],
-      "weekly": [
-        {
-          "post_id": 67638,
-          "title": "미래 직업 전망: 2030년에 뜰 산업 7가지",
-          "comments": 6600,
-          "like": 7797,
-          "change": 18
+          "post_id": 34892,
+          "title": "IT 트렌드 분석",
+          "summary": "올해 뜨는 IT 기술은?",
+          "comments": 450,
+          "like": 821,
+          "viewed": 2114,
+          "createdAt": "2020-02-24T16:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
         },
         {
-          "post_id": 80603,
-          "title": "성공적인 팀워크의 핵심: 협업을 위한 5가지 팁",
-          "comments": 9892,
-          "like": 31611,
-          "change": 6
+          "post_id": 89347,
+          "title": "최신 가전제품",
+          "summary": "최신 스마트 가전 소개합니다.",
+          "comments": 134,
+          "like": 452,
+          "viewed": 1203,
+          "createdAt": "2023-05-14T21:50:00.000Z"
         },
         {
-          "post_id": 18550,
-          "title": "집에서 만드는 힐링 스파: DIY 홈케어 방법",
-          "comments": 1940,
-          "like": 95441,
-          "change": -9
+          "post_id": 23901,
+          "title": "등산 코스 추천",
+          "summary": "가을에 가기 좋은 산",
+          "comments": 98,
+          "like": 245,
+          "viewed": 621,
+          "createdAt": "2022-09-21T05:11:00.000Z"
         },
         {
-          "post_id": 70709,
-          "title": "일상 속 작은 변화로 큰 행복 찾기",
-          "comments": 4967,
-          "like": 149,
-          "change": 18
+          "post_id": 70483,
+          "title": "홈 카페 인테리어",
+          "summary": "집에서 즐기는 홈 카페 꾸미기",
+          "comments": 301,
+          "like": 502,
+          "viewed": 1501,
+          "createdAt": "2021-03-10T14:55:00.000Z"
         },
         {
-          "post_id": 30827,
-          "title": "일 잘하는 사람들의 공통점: 생산성 높이는 습관",
-          "comments": 8451,
-          "like": 12065,
-          "change": -5
+          "post_id": 53692,
+          "title": "내일의 주식 전망",
+          "summary": "주식 시장 분석과 내일의 전망",
+          "comments": 775,
+          "like": 923,
+          "viewed": 3095,
+          "createdAt": "2023-02-28T08:40:00.000Z"
         },
         {
-          "post_id": 40604,
-          "title": "바쁜 아침에도 가능한 10분 아침 요가 루틴",
-          "comments": 7243,
-          "like": 24354,
-          "change": 0
+          "post_id": 13290,
+          "title": "다이어트 식단",
+          "summary": "건강한 식단으로 체중 감량하기",
+          "comments": 354,
+          "like": 620,
+          "viewed": 1450,
+          "createdAt": "2020-06-17T07:30:00.000Z",
+          "imageURL": "https://picsum.photos/200"
         },
         {
-          "post_id": 60880,
-          "title": "여행 사진 잘 찍는 법: 초보자를 위한 촬영 팁",
-          "comments": 4920,
-          "like": 55483,
-          "change": -7
+          "post_id": 49723,
+          "title": "쇼핑몰 추천",
+          "summary": "가성비 좋은 온라인 쇼핑몰 추천",
+          "comments": 156,
+          "like": 399,
+          "viewed": 1084,
+          "createdAt": "2019-12-05T03:17:00.000Z"
         },
         {
-          "post_id": 9754,
-          "title": "아이디어가 넘치는 사람들의 사고방식: 창의력 향상 비법",
-          "comments": 2296,
-          "like": 82045,
-          "change": -5
+          "post_id": 89014,
+          "title": "내가 사랑하는 음악",
+          "summary": "요즘 듣고 있는 음악 추천",
+          "comments": 66,
+          "like": 289,
+          "viewed": 672,
+          "createdAt": "2021-07-22T02:02:00.000Z"
         },
         {
-          "post_id": 6668,
-          "title": "집에서도 가능한 쉬운 운동 루틴: 초보자 가이드",
-          "comments": 7811,
-          "like": 60625,
-          "change": 9
+          "post_id": 78512,
+          "title": "명언 모음집",
+          "summary": "삶에 도움이 되는 명언들",
+          "comments": 402,
+          "like": 703,
+          "viewed": 1822,
+          "createdAt": "2020-11-12T09:50:00.000Z"
         },
         {
-          "post_id": 60207,
-          "title": "매일 실천하는 자기 계발 습관: 삶을 바꾸는 작은 행동들",
-          "comments": 1427,
-          "like": 72095,
-          "change": 10
+          "post_id": 58329,
+          "title": "헬시푸드 레시피",
+          "summary": "간단하고 건강한 요리법",
+          "comments": 285,
+          "like": 563,
+          "viewed": 1307,
+          "createdAt": "2023-03-23T13:07:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29387,
+          "title": "여행 후기 공유",
+          "summary": "최근 다녀온 여행 후기를 남겨요.",
+          "comments": 141,
+          "like": 329,
+          "viewed": 889,
+          "createdAt": "2022-05-06T12:14:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 97245,
+          "title": "독서 습관 들이기",
+          "summary": "하루 10분 독서로 시작하기",
+          "comments": 158,
+          "like": 487,
+          "viewed": 1249,
+          "createdAt": "2021-10-18T19:30:00.000Z"
+        },
+        {
+          "post_id": 40982,
+          "title": "간단한 운동법",
+          "summary": "5분 만에 하는 스트레칭",
+          "comments": 72,
+          "like": 205,
+          "viewed": 654,
+          "createdAt": "2023-08-07T17:25:00.000Z"
+        },
+        {
+          "post_id": 89120,
+          "title": "요리 초보의 도전",
+          "summary": "처음 해본 파스타 요리!",
+          "comments": 186,
+          "like": 423,
+          "viewed": 1140,
+          "createdAt": "2019-03-13T05:12:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 67653,
+          "title": "매일 아침 루틴",
+          "summary": "성공적인 아침 루틴 만들기",
+          "comments": 321,
+          "like": 612,
+          "viewed": 1504,
+          "createdAt": "2020-07-29T10:44:00.000Z"
+        },
+        {
+          "post_id": 13987,
+          "title": "온라인 클래스 추천",
+          "summary": "취미를 배울 수 있는 사이트",
+          "comments": 312,
+          "like": 581,
+          "viewed": 1319,
+          "createdAt": "2022-11-02T03:25:00.000Z"
+        },
+        {
+          "post_id": 91208,
+          "title": "반려동물 입양",
+          "summary": "입양 전 알아야 할 사항들",
+          "comments": 128,
+          "like": 394,
+          "viewed": 1012,
+          "createdAt": "2021-06-09T06:20:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 25781,
+          "title": "커피 원두 추천",
+          "summary": "향과 맛이 좋은 원두 추천",
+          "comments": 85,
+          "like": 221,
+          "viewed": 754,
+          "createdAt": "2020-01-15T18:35:00.000Z"
+        },
+        {
+          "post_id": 10987,
+          "title": "게임 추천",
+          "summary": "요즘 핫한 게임은?",
+          "comments": 411,
+          "like": 759,
+          "viewed": 2023,
+          "createdAt": "2019-09-29T13:56:00.000Z"
+        },
+        {
+          "post_id": 78012,
+          "title": "자동차 관리 팁",
+          "summary": "겨울철 자동차 관리 요령",
+          "comments": 142,
+          "like": 372,
+          "viewed": 936,
+          "createdAt": "2022-12-11T20:19:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47982,
+          "title": "집에서 하는 간단 요리",
+          "summary": "쉬운 재료로 만드는 요리",
+          "comments": 98,
+          "like": 310,
+          "viewed": 890,
+          "createdAt": "2023-07-03T04:12:00.000Z"
+        },
+        {
+          "post_id": 68371,
+          "title": "책 추천",
+          "summary": "마음의 양식을 채우는 도서",
+          "comments": 183,
+          "like": 533,
+          "viewed": 1211,
+          "createdAt": "2021-05-28T09:18:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 29382,
+          "title": "공부 자극 글",
+          "summary": "열심히 공부하는 법을 배워보세요.",
+          "comments": 257,
+          "like": 687,
+          "viewed": 1589,
+          "createdAt": "2022-08-10T14:28:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 47281,
+          "title": "의류 쇼핑몰 추천",
+          "summary": "저렴하고 트렌디한 의류 추천",
+          "comments": 198,
+          "like": 489,
+          "viewed": 1187,
+          "createdAt": "2020-05-05T22:10:00.000Z",
+          "imageURL": "https://picsum.photos/200"
+        },
+        {
+          "post_id": 98237,
+          "title": "취미 만들기",
+          "summary": "취미로 시작하는 나만의 프로젝트",
+          "comments": 223,
+          "like": 431,
+          "viewed": 1205,
+          "createdAt": "2019-01-17T10:55:00.000Z"
+        },
+        {
+          "post_id": 13567,
+          "title": "알뜰 쇼핑 팁",
+          "summary": "저렴하게 쇼핑하는 방법",
+          "comments": 302,
+          "like": 675,
+          "viewed": 1432,
+          "createdAt": "2021-02-13T08:22:00.000Z"
+        },
+        {
+          "post_id": 62589,
+          "title": "겨울 스포츠 즐기기",
+          "summary": "스키, 스노우보드 즐기는 팁",
+          "comments": 109,
+          "like": 312,
+          "viewed": 819,
+          "createdAt": "2022-12-23T05:47:00.000Z"
+        },
+        {
+          "post_id": 32901,
+          "title": "맛집 추천",
+          "summary": "이번 주말 가볼만한 맛집",
+          "comments": 457,
+          "like": 801,
+          "viewed": 2301,
+          "createdAt": "2020-11-27T15:09:00.000Z",
+          "imageURL": "https://picsum.photos/200"
         }
       ]
     }
@@ -836,6 +3694,29 @@ DrawerData customDrawerData = DrawerData.fromJson(jsonDecode('''
       }
     '''));
 /// 태그 스크린
+TagData fetchTagScreenData(int tagId) {
+    // allTag 리스트에서 tagId가 일치하는 tag의 isBookmarked를 받아오기 위함
+    Tag foundTag = allTag.firstWhere(
+            (tag) => tag.tagId == tagId,
+        orElse: () => Tag(tagId: tagId, tagName: "null", isBookmarked: false) // 기본값
+    );
+    // allPost 리스트에서 해당 tagId가 포함된 Post만 필터링
+    List<Post> filteredPosts = allPost.where((post) {
+        return post.tags != null && post.tags!.any((tag) => tag.tagId == tagId);
+    }).toList();
+    if (filteredPosts.isEmpty){
+        return TagData(isBookmarked: foundTag.isBookmarked!, posts: tagScreenData.posts);
+    }
+    return TagData(isBookmarked: foundTag.isBookmarked!, posts: filteredPosts);
+}
+void toggleIsBookmarked(int tagId) {
+    // allTag 리스트에서 tagId와 일치하는 Tag의 인덱스를 찾음
+    int tagIndex = allTag.indexWhere((tag) => tag.tagId == tagId);
+    if (tagIndex != -1) {
+        // 인덱스가 유효하면 해당 태그의 bookmarked를 변경하고 isBookmarked 값을 반전시킨 새 객체로 저장
+        allTag[tagIndex] = allTag[tagIndex].toggleIsBookmarked();
+    }
+}
 TagData tagScreenData = TagData.fromJson(jsonDecode('''
     {
       "is_bookmarked": false,
@@ -1189,12 +4070,29 @@ TagData tagScreenData = TagData.fromJson(jsonDecode('''
     }
     '''));
 /// 커뮤니티 스크린
+CommunityData fetchCommunityScreenData(int tagId) {
+    Tag foundTag = allTag.firstWhere(
+            (tag) => tag.tagId == tagId,
+        orElse: () => Tag(tagId: tagId, tagName: "null", isBookmarked: false) // 기본값
+    );
+    return CommunityData(isBookmarked: foundTag.isBookmarked!);
+}
 CommunityData communityScreenData = CommunityData.fromJson(jsonDecode('''
     {
       "is_bookmarked": false
     }
     '''));
 /// 커뮤니티 메인
+RankData fetchCommunityMainData(int tagId) {
+    TempCommunityData foundData = tempCommunityScreenData.firstWhere(
+            (data) => data.tagId == tagId,
+        orElse: () => TempCommunityData(tagId: tagId) // 기본값
+    );
+    if(foundData.communityMainData == null){
+        return communityMainData;
+    }
+    return foundData.communityMainData!;
+}
 RankData communityMainData = RankData.fromJson(jsonDecode('''
     {
       "daily": [
@@ -1344,6 +4242,16 @@ RankData communityMainData = RankData.fromJson(jsonDecode('''
     }
     '''));
 /// 커뮤니티 - 공감글
+PostData fetchCommunityGoodData(int tagId) {
+    TempCommunityData foundData = tempCommunityScreenData.firstWhere(
+            (data) => data.tagId == tagId,
+        orElse: () => TempCommunityData(tagId: tagId) // 기본값
+    );
+    if(foundData.communityGoodPostData == null){
+        return communityGoodPostData;
+    }
+    return foundData.communityGoodPostData!;
+}
 PostData communityGoodPostData = PostData.fromJson(jsonDecode('''
     {
       "posts": [
@@ -1696,6 +4604,16 @@ PostData communityGoodPostData = PostData.fromJson(jsonDecode('''
     }
     '''));
 /// 커뮤니티 - 전체
+PostData fetchCommunityPostData(int tagId) {
+    TempCommunityData foundData = tempCommunityScreenData.firstWhere(
+            (data) => data.tagId == tagId,
+        orElse: () => TempCommunityData(tagId: tagId) // 기본값
+    );
+    if(foundData.communityPostData == null){
+        return communityPostData;
+    }
+    return foundData.communityPostData!;
+}
 PostData communityPostData = PostData.fromJson(jsonDecode('''
     {
       "posts": [
@@ -2048,6 +4966,16 @@ PostData communityPostData = PostData.fromJson(jsonDecode('''
     }
     '''));
 /// 커뮤니티 - 추천
+CommunityRecommendData fetchCommunityRecommendData(int tagId) {
+    TempCommunityData foundData = tempCommunityScreenData.firstWhere(
+            (data) => data.tagId == tagId,
+        orElse: () => TempCommunityData(tagId: tagId) // 기본값
+    );
+    if(foundData.communityRecommendData == null){
+        return communityRecommendData;
+    }
+    return foundData.communityRecommendData!;
+}
 CommunityRecommendData communityRecommendData = CommunityRecommendData.fromJson(jsonDecode('''
     {
       "tags": [
@@ -2375,6 +5303,16 @@ CommunityRecommendData communityRecommendData = CommunityRecommendData.fromJson(
     }
     '''));
 /// 검색결과 - 커뮤니티
+SearchTagData fetchSearchCommunityData(String term) {
+    TempSearchData foundData = tempSearchScreenData.firstWhere(
+            (data) => data.term == term,
+        orElse: () => TempSearchData(term: term) // 기본값
+    );
+    if(foundData.searchCommunityData == null){
+        return searchCommunityData;
+    }
+    return foundData.searchCommunityData!;
+}
 SearchTagData searchCommunityData = SearchTagData.fromJson(jsonDecode('''
     {
       "tags": [
@@ -2662,6 +5600,16 @@ SearchTagData searchCommunityData = SearchTagData.fromJson(jsonDecode('''
     }
     '''));
 /// 검색결과 - 태그
+SearchTagData fetchSearchTagData(String term) {
+    TempSearchData foundData = tempSearchScreenData.firstWhere(
+            (data) => data.term == term,
+        orElse: () => TempSearchData(term: term) // 기본값
+    );
+    if(foundData.searchTagData == null){
+        return searchTagData;
+    }
+    return foundData.searchTagData!;
+}
 SearchTagData searchTagData = SearchTagData.fromJson(jsonDecode('''
     {
       "tags": [
@@ -2949,6 +5897,16 @@ SearchTagData searchTagData = SearchTagData.fromJson(jsonDecode('''
     }
     '''));
 /// 검색결과 - 게시글
+PostData fetchSearchPostData(String term) {
+    TempSearchData foundData = tempSearchScreenData.firstWhere(
+            (data) => data.term == term,
+        orElse: () => TempSearchData(term: term) // 기본값
+    );
+    if(foundData.searchPostData == null){
+        return searchPostData;
+    }
+    return foundData.searchPostData!;
+}
 PostData searchPostData = PostData.fromJson(jsonDecode('''
     {
       "posts": [
@@ -3301,6 +6259,16 @@ PostData searchPostData = PostData.fromJson(jsonDecode('''
     }
     '''));
 /// 검색결과 - 사용자
+SearchUserData fetchSearchUserData(String term) {
+    TempSearchData foundData = tempSearchScreenData.firstWhere(
+            (data) => data.term == term,
+        orElse: () => TempSearchData(term: term) // 기본값
+    );
+    if(foundData.searchUserData == null){
+        return searchUserData;
+    }
+    return foundData.searchUserData!;
+}
 SearchUserData searchUserData = SearchUserData.fromJson(jsonDecode('''
     {
       "users": [
@@ -3658,6 +6626,15 @@ SearchUserData searchUserData = SearchUserData.fromJson(jsonDecode('''
     }
     '''));
 /// 마이페이지 - 즐겨찾기한 태그
+SearchTagData fetchBookmarkedData() {
+    List<Tag> filteredTag = allTag.where((tag) {
+        return tag.isBookmarked == true;
+    }).toList();
+    if (filteredTag.isEmpty){
+        return SearchTagData(tags: bookmarkedScreenData.tags);
+    }
+    return SearchTagData(tags: filteredTag);
+}
 SearchTagData bookmarkedScreenData = SearchTagData.fromJson(jsonDecode('''
     {
       "tags": [

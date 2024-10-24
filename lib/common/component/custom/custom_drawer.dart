@@ -6,6 +6,7 @@ import 'package:laxy/common/component/custom/custom_drawer_item.dart';
 import 'package:laxy/common/component/login_button.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/component/theme_switch.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/my/liked_screen.dart';
 import 'package:laxy/screen/my/my_page_screen.dart';
@@ -32,28 +33,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   void initState() {
     super.initState();
-    String jsonString = '''
-      {
-        "bookmarked": [
-          {"tagId": 44327, "tag_name": "결혼", "count": 1940, "grade": 3},
-          {"tagId": 859603, "tag_name": "팩", "count": 2732, "grade": 5},
-          {"tagId": 13217, "tag_name": "감", "count": 7988, "grade": 7},
-          {"tagId": 656626, "tag_name": "색종", "count": 43766, "grade": 9},
-          {"tagId": 181591, "tag_name": "앵무", "count": 80723, "grade": 11}
-        ],
-        "recommended": [
-          {"tagId": 156313, "tag_name": "공기청정기", "count": 63285, "grade": 3},
-          {"tagId": 120401, "tag_name": "대중교통", "count": 46609, "grade": 5},
-          {"tagId": 605716, "tag_name": "크리스마스", "count": 2559411, "grade": 7},
-          {"tagId": 835111, "tag_name": "게", "count": 4186504, "grade": 9},
-          {"tagId": 282296, "tag_name": "가상화폐", "count": 6823010, "grade": 11}
-        ]
-      }
-    ''';
-    // JSON 파싱
-    Map<String, dynamic> parsedJson = jsonDecode(jsonString);
     // DrawerData 객체 생성
-    drawerData = DrawerData.fromJson(parsedJson);
+    drawerData = customDrawerData;
     _checkAccessToken();
   }
 

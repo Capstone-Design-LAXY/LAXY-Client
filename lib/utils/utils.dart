@@ -163,11 +163,11 @@ class Tag {
   Tag({
     required this.tagId,
     required this.tagName,
-    this.count,
-    this.bookmarked,
-    this.change,
-    this.grade,
-    this.isBookmarked,
+    this.count = 0,
+    this.bookmarked = 0,
+    this.change = 0,
+    this.grade = 1,
+    this.isBookmarked = false,
   });
 
   // JSON 데이터를 Tag 객체로 변환
@@ -180,6 +180,19 @@ class Tag {
       change: json['change'],
       grade: json['grade'],
       isBookmarked: json['isBookmarked'],
+    );
+  }
+  Tag toggleIsBookmarked() {
+    int newBookmarked;
+    newBookmarked = isBookmarked! ? bookmarked! - 1 : bookmarked! + 1;
+    return Tag(
+      tagName: tagName,
+      tagId: tagId,
+      isBookmarked: !isBookmarked!,
+      grade: grade,
+      change: change,
+      count: count,
+      bookmarked: newBookmarked,
     );
   }
 }
@@ -369,6 +382,7 @@ class TagData {
   }
 
   TagData toggleIsBookmarked() {
+
     return TagData(
       isBookmarked: !isBookmarked,
       posts: posts, // posts는 그대로 유지
@@ -527,9 +541,11 @@ class User {
       posts: json['posts'],
       comments: json['comments'],
       password: json['password'],
-      bookmarked: (json['boomarked'] as List)
+      bookmarked:json['boomarked'] != null
+          ? (json['boomarked'] as List)
           .map((data) => Tag.fromJson(data))
-          .toList(),
+          .toList()
+          : null,
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
     );
   }
@@ -565,6 +581,56 @@ class CommentData {
       comments: (json['comments'] as List)
           .map((data) => Comment.fromJson(data))
           .toList(),
+    );
+  }
+}
+
+class TempCommunityData {
+  final int tagId;
+  final RankData? communityMainData;
+  final PostData? communityGoodPostData;
+  final PostData? communityPostData;
+  final CommunityRecommendData? communityRecommendData;
+
+  TempCommunityData({
+    required this.tagId,
+    this.communityRecommendData,
+    this.communityMainData,
+    this.communityGoodPostData,
+    this.communityPostData,
+  });
+  factory TempCommunityData.fromJson(Map<String, dynamic> json) {
+    return TempCommunityData(
+      tagId: json['tagId'],
+      communityMainData: RankData.fromJson(json['communityMainData']),
+      communityGoodPostData: PostData.fromJson(json['communityGoodPostData']),
+      communityPostData: PostData.fromJson(json['communityPostData']),
+      communityRecommendData: CommunityRecommendData.fromJson(json['communityRecommendData']),
+    );
+  }
+}
+
+class TempSearchData {
+  final String term;
+  final SearchTagData? searchCommunityData;
+  final SearchTagData? searchTagData;
+  final PostData? searchPostData;
+  final SearchUserData? searchUserData;
+
+  TempSearchData({
+    required this.term,
+    this.searchCommunityData,
+    this.searchTagData,
+    this.searchPostData,
+    this.searchUserData,
+  });
+  factory TempSearchData.fromJson(Map<String, dynamic> json) {
+    return TempSearchData(
+      term: json['term'],
+      searchCommunityData: SearchTagData.fromJson(json['searchCommunityData']),
+      searchTagData: SearchTagData.fromJson(json['searchTagData']),
+      searchPostData: PostData.fromJson(json['searchPostData']),
+      searchUserData: SearchUserData.fromJson(json['searchUserData']),
     );
   }
 }

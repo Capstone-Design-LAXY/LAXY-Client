@@ -9,6 +9,7 @@ import 'package:laxy/common/component/list/post_list_tile.dart';
 import 'package:laxy/common/component/list/tag_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/tag/community_screen.dart';
 import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/utils/utils.dart';
@@ -313,7 +314,7 @@ class _BookmarkedScreenState extends State<BookmarkedScreen> {
     }
     ''';
     // JSON 문자열을 RankData 객체로 파싱
-    searchTagData = SearchTagData.fromJson(jsonDecode(jsonString));
+    searchTagData = fetchBookmarkedData();
 
     print(searchTagData.tags.length);
   }

@@ -7,6 +7,7 @@ import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/common/layout/mindmap_layout.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/utils/utils.dart';
 import 'package:laxy/common/component/background.dart';
 import 'mindmap_detail_screen.dart';
@@ -20,16 +21,12 @@ class MindmapScreen extends StatefulWidget {
 
 class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProviderStateMixin {
   late OrbitData orbitData;
+  int index = 0;
 
   @override
   void initState() {
     super.initState();
-
-    String jsonString = '{"uId": 1231213, "orbit": [{"primary": {"tId": 10000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 10000003, "grade": 7, "tagName": "애플케어"}, {"tId": 10000004, "grade": 2, "tagName": "애플워치"}, {"tId": 10000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 10000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "토트넘"}, {"tId": 10000008, "grade": 1, "tagName": "축구"}, {"tId": 10000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "백종원"}, {"tId": 10000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 10000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 10000002, "grade": 6, "tagName": "한화"}, {"tId": 10000003, "grade": 7, "tagName": "티원"}, {"tId": 10000004, "grade": 7, "tagName": "젠지"}, {"tId": 10000005, "grade": 9, "tagName": "딮기"}]}]}';
-
-    // JSON 문자열을 OrbitData 객체로 파싱
-    orbitData = OrbitData.fromJson(jsonDecode(jsonString));
-
+    orbitData = mindmapData[index];
     print(orbitData.orbit.length);
   }
 
@@ -82,16 +79,15 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
               enableFeedback: false,
               primary: Globe(
                 onPressed: () {
-                  String jsonString;
-                  if (orbitData.uId == 1231213){
-                    jsonString = '{"uId": 123123123123, "orbit": [{"primary": {"tId": 10000001, "grade": 9, "tagName": "자격증"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "정처기"}, {"tId": 10000003, "grade": 7, "tagName": "토익"}, {"tId": 10000004, "grade": 2, "tagName": "SQLD"}, {"tId": 10000005, "grade": 8, "tagName": "Qnet"}]}, {"primary": {"tId": 10000006, "grade": 6, "tagName": "인공지능"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "GPT"}, {"tId": 10000008, "grade": 1, "tagName": "빅데이터"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "소금빵"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "빵"}]}]}';
-                  }
-                  else {
-                    jsonString = '{"uId": 1231213, "orbit": [{"primary": {"tId": 10000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 10000003, "grade": 7, "tagName": "애플케어"}, {"tId": 10000004, "grade": 2, "tagName": "애플워치"}, {"tId": 10000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 10000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 10000003, "grade": 7, "tagName": "애플케어"}, {"tId": 10000004, "grade": 2, "tagName": "애플워치"}, {"tId": 10000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 10000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "토트넘"}, {"tId": 10000008, "grade": 1, "tagName": "축구"}, {"tId": 10000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "백종원"}, {"tId": 10000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 10000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 10000002, "grade": 6, "tagName": "한화"}, {"tId": 10000003, "grade": 7, "tagName": "티원"}, {"tId": 10000004, "grade": 7, "tagName": "젠지"}, {"tId": 10000005, "grade": 9, "tagName": "딮기"}]}]}';
-                  }
                   setState(() {
                     // JSON 문자열을 OrbitData 객체로 파싱
-                    orbitData = OrbitData.fromJson(jsonDecode(jsonString));
+                    if(index < mindmapData.length - 1){
+                      index++;
+                    }
+                    else {
+                      index = 0;
+                    }
+                    orbitData = mindmapData[index];
                   });
                 },
               ),

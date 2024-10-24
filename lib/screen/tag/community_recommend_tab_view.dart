@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_header.dart';
 import 'package:laxy/common/component/list/tag_ranking_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/common/var.dart';
 import 'package:laxy/screen/tag/community_screen.dart';
 import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommunityRecommendTabView extends StatefulWidget {
+  final int tagId;
 
   const CommunityRecommendTabView({
+    required this.tagId,
     Key? key,
   }) : super(key: key);
 
@@ -353,7 +356,7 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
     ''';
 
     // JSON 문자열을 RankData 객체로 파싱
-    communityRecommendData = CommunityRecommendData.fromJson(jsonDecode(jsonString));
+    communityRecommendData = fetchCommunityRecommendData(widget.tagId);
 
     print(communityRecommendData.tags.length);
   }
