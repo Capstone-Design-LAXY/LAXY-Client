@@ -518,7 +518,7 @@ class _MyCommentScreenState extends State<MyCommentScreen> {
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                   // TODO: 임시로 commentId를 사용 중 수정 필요
-                    PostDetailScreen(postId: commentData.comments[i].commentId,));
+                    PostDetailScreen(postId: commentData.comments[i].postId,));
                 Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
               },
             )
