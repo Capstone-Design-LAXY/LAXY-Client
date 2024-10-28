@@ -81,11 +81,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Navigator.pop(context);
                 if(drawerData.bookmarked[i].grade! <= 5){
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },
             )
@@ -105,11 +105,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Navigator.pop(context);
                 if(drawerData.bookmarked[i].grade! <= 5){
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },
             )
@@ -136,22 +136,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
               CustomDrawerItem(name: '즐겨찾기한 태그', onPressed: () {
                 Navigator.pop(context);
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(BookmarkedScreen());
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               }),
               CustomDrawerItem(name: '좋아요한 글', onPressed: () {
                 Navigator.pop(context);
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(LikedScreen());
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               }),
               CustomDrawerItem(name: '내가 작성한 글', onPressed: () {
                 Navigator.pop(context);
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPostScreen());
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               }),
               CustomDrawerItem(name: '마이페이지', onPressed: () {
                 Navigator.pop(context);
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPageScreen());
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               }),
               // CustomDrawerItem(name: '알림', onPressed: (){}, isNew: true),
               // CustomDrawerItem(name: '설정', onPressed: (){},),

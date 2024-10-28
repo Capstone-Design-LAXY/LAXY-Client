@@ -423,7 +423,7 @@ class _TagScreenState extends State<TagScreen> {
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: tagData.posts[i].postId,));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               },
             )
         );

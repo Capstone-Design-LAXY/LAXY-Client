@@ -374,11 +374,11 @@ class _TrendsCommunityTabViewState extends State<TrendsCommunityTabView> {
               onPressed: () {
                 if(communityRankData.rank[i].grade! <= 5){
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].tagName,));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },
             )

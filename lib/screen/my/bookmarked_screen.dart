@@ -332,11 +332,11 @@ class _BookmarkedScreenState extends State<BookmarkedScreen> {
               onPressed: () {
                 if(searchTagData.tags[i].grade! <= 5){
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },
             )

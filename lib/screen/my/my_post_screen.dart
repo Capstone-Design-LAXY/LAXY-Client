@@ -401,7 +401,7 @@ class _MyPostScreenState extends State<MyPostScreen> {
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: postData.posts[i].postId,));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               },
             )
         );

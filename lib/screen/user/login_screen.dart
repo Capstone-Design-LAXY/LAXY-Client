@@ -12,6 +12,7 @@ import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
 import 'package:laxy/common/const/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:laxy/utils/http_utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,35 +27,16 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<CustomTextFieldState> emailKey = GlobalKey<CustomTextFieldState>();
   final GlobalKey<CustomTextFieldState> passwordKey = GlobalKey<CustomTextFieldState>();
 
-  String? accessToken = ""; //user의 정보를 저장하기 위한 변수
-  static final storage = new FlutterSecureStorage();
-
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   _asyncMethod();
-    // });
-  }
-
-  // 비동기로 FlutterSecureStorage 정보 불러오기
-  _asyncMethod() async {
-    //read 함수를 통하여 key값에 맞는 정보를 불러오게 됩니다. 이때 불러오는 결과의 타입은 String 타입임을 기억해야 합니다.
-    //(데이터가 없을때는 null을 반환을 합니다.)
-    accessToken = await storage.read(key: "accessToken");
-    print(accessToken);
-
-    //user의 정보가 있다면 바로 로그아웃 페이지로 넝어가게 합니다.
-    if (accessToken != null) {
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => TrendsScreen()));
-    }
   }
 
   // 이메일 및 비밀번호 검증
   bool _validateForm() {
     String email = emailController.text;
     String password = passwordController.text;
-    if (email.isEmpty){
+    if (email.isEmpty) {
       emailKey.currentState?.setError('이메일을 입력하세요.');
       return false;
     }
@@ -79,69 +61,25 @@ class _LoginScreenState extends State<LoginScreen> {
     return regExp.hasMatch(email);
   }
 
-  // TODO: 연결 필요
-  // 로그인 처리 함수 (API 요청)
-  Future<void> _handleLogin() async {
-    if (_validateForm()) {
-      String email = emailController.text;
-      String password = passwordController.text;
-      print('email: ' + email);
-      print('password: ' + password);
+  Future<void> _login() async {
+    // 입력 검증
+    if (!_validateForm()) return;
 
-      await storage.write(
-        key: 'accessToken',
-        value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-      );
+    String email = emailController.text;
+    String password = passwordController.text;
 
-      await storage.write(key: 'userId', value: '451927');
-
-      // Read all values
-      Map<String, String> allValues = await storage.readAll();
-
-      // Print all values
-      allValues.forEach((key, value) { print('$key: $value'); });
-
+    try {
+      await loginUser(email: email, password: password);
+      // 로그인 성공 후의 추가 처리 (예: 메인 화면으로 이동)
       PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapScreen());
       Navigator.pushAndRemoveUntil(
         context,
-        PageRouteWithAnimation(MindmapScreen()).slideRitghtToLeft(),
+        PageRouteWithAnimation(MindmapScreen()).slideRightToLeft(),
             (Route<dynamic> route) => false,
       );
-
-      // final url = Uri.parse('$BASE_URL/login');
-      //
-      // // HTTP 클라이언트 생성
-      // final client = http.Client();
-      //
-      // try {
-      //   final response = await client.post(
-      //     url,
-      //     headers: <String, String>{
-      //       'Content-Type': 'application/json; charset=UTF-8',
-      //     },
-      //     body: jsonEncode(<String, String>{
-      //       'email': email,
-      //       'password': password,
-      //     }),
-      //     // 요청 시간 초과 설정 (예: 10초)
-      //   ).timeout(Duration(seconds: 5));
-      //
-      //   if (response.statusCode == 200) {
-      //     // 로그인 성공 시 처리 (홈 화면으로 이동)
-      //     Navigator.pushReplacementNamed(context, '/home');
-      //   } else {
-      //     // 로그인 실패 시 처리 (오류 메시지 보여주기)
-      //     showErrorDialog(context, '로그인에 실패했습니다. 상태 코드: ${response.statusCode}');
-      //   }
-      // } on TimeoutException catch (_) {
-      //   // 시간 초과 오류 처리
-      //   showErrorDialog(context, '요청이 시간 초과되었습니다. 인터넷 연결을 확인해 주세요.');
-      // } catch (error) {
-      //   // 네트워크 오류 처리
-      //   showErrorDialog(context, '로그인 요청 중 오류가 발생했습니다: $error');
-      // } finally {
-      //   client.close(); // HTTP 클라이언트 자원 해제
-      // }
+    } catch (e) {
+      // 오류 처리 (예: 에러 메시지 표시)
+      print('로그인 오류: $e');
     }
   }
 
@@ -213,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: passwordController,
                             obscureText: true,
                             labelText: '비밀번호',
-                            onSubmitted: (value) {_handleLogin();},
+                            onSubmitted: (value) {_login();},
                           ),
                         ],
                       ),
@@ -244,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             backgroundColor: Color(0xFFFFFFFF),
                             foregroundColor: Color(0xFF5589D3),
                           ),
-                          onPressed: _handleLogin,
+                          onPressed: _login,
                           child: Text('로그인'),
                         ),
                       ],

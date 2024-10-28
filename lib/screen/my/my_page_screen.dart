@@ -102,7 +102,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         TextListTile(
                           onPressed: () {
                             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(BookmarkedScreen());
-                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                            Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                           },
                           title: '즐겨찾기한 태그',
                         ),
@@ -110,7 +110,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         TextListTile(
                           onPressed: () {
                             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(LikedScreen());
-                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                            Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                           },
                           title: '좋아요한 글',
                         ),
@@ -118,7 +118,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         TextListTile(
                           onPressed: () {
                             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyPostScreen());
-                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                            Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                           },
                           title: '작성한 글',
                         ),
@@ -126,7 +126,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         TextListTile(
                           onPressed: () {
                             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyCommentScreen());
-                            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                            Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                             },
                           title: '작성한 댓글',
                         ),

@@ -404,7 +404,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: postData.posts[i].postId,));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               },
             )
         );

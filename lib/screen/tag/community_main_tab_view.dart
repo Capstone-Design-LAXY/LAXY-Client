@@ -205,7 +205,7 @@ class _CommunityMainTabView extends State<CommunityMainTabView>
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: rankData.daily[i].postId,));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               },
             )
         );
@@ -226,7 +226,7 @@ class _CommunityMainTabView extends State<CommunityMainTabView>
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: rankData.weekly[i].postId,));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               },
             )
         );

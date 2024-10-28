@@ -61,7 +61,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                   title: _titleController.text,
                   tagList: tagList,
                 ));
-                Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 print('작성 종료');
                 print(tagList);
                 print('제목: ${_titleController.text}');

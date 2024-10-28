@@ -7,6 +7,7 @@ import 'package:laxy/common/component/custom/custom_radio.dart';
 import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -111,12 +112,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
       print('nickname: '+nickname);
       print('birthday: ${birthday.year} - ${birthday.month} - ${birthday.day}');
       print('gender: ${_selectedGender.toString().split('.').last}');
-      Navigator.pop(context);
+      // Navigator.pop(context);
       return true;
     }
     return false;
   }
 
+  // 서버에 회원가입 요청 보내기
+  Future<void> _register() async {
+    if (!_validateFrom()) return; // 입력 검증
+
+    // 요청 데이터
+    String birth = '${birthday.year}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}';
+    String gender = _selectedGender.toString().split('.').last; // 성별
+
+    try {
+      await registerUser(
+        email: emailController.text,
+        password: passwordController.text,
+        name: nicknameController.text,
+        birth: birth,
+        gender: gender,
+      );
+      Navigator.pop(context); // 페이지 닫기
+    } catch (e) {
+      // 오류 처리 (예: 에러 메시지 표시)
+      print('회원가입 오류: $e');
+    }
+  }
 
   @override
   void dispose() {
@@ -285,7 +308,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        _validateFrom();
+                        _register();
                       },
                       child: Text('회원가입'),
                     ),

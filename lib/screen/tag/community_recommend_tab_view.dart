@@ -373,11 +373,11 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
               onPressed: () {
                 if(communityRecommendData.tags[i].grade! <= 5){
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].tagName,));
-                  Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },
             )

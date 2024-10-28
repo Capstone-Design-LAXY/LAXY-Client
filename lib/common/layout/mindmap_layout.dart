@@ -40,7 +40,7 @@ class MindmapLayout extends StatelessWidget {
                   icon: Icons.mode_outlined,
                   onPressed: () {
                     PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostRegisterScreen());
-                    Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+                    Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                   },
                 ),
               ),

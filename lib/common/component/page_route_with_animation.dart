@@ -7,7 +7,7 @@ class PageRouteWithAnimation {
 
   PageRouteWithAnimation(this.page);
 
-  Route slideRitghtToLeft() {
+  Route slideRightToLeft() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) {
         return page;

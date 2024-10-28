@@ -44,7 +44,7 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
               title: widget.title!,
               contents: widget.content!,
             ));
-            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
             print("Viewer selected");
             break;
           case Menu.report:
@@ -64,7 +64,7 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
               title: widget.title!,
               tagList: widget.tags!,
             ));
-            Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+            Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
             break;
           case Menu.delete:
             showDeletePostDialog(context, widget.postId!);

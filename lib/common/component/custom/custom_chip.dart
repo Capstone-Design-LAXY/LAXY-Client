@@ -30,12 +30,12 @@ class CustomChip extends StatelessWidget {
               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                 TagScreen(tagId: tagId, tagName: tagName),
               );
-              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
             } else {
               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                 CommunityScreen(tagId: tagId, tagName: tagName),
               );
-              Navigator.push(context, pageRouteWithAnimation.slideRitghtToLeft());
+              Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
             }
           },
         )
