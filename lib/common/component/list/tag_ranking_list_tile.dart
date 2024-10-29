@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_info.dart';
 
 class TagRankingListTile extends StatelessWidget {
-  final String? title;
-  final int? bookmarked;
-  final int? post;
-  final int? shift;
+  final String? name;
+  final int? bookmarkCount;
+  final int? postCount;
+  // final int? shift;
   final int? rank;
   final int? grade;
   final Function() onPressed;
 
   const TagRankingListTile({
     this.rank = 1,
-    this.title = 'title',
-    this.bookmarked = 100,
-    this.post = 100,
-    this.shift,
+    this.name = 'title',
+    this.bookmarkCount = 100,
+    this.postCount = 100,
+    // this.shift,
     this.grade = 1,
     required this.onPressed,
     Key? key,
@@ -41,14 +41,14 @@ class TagRankingListTile extends StatelessWidget {
             ),
             SizedBox(width: 4,),
             // 타이틀
-            Expanded(child: Text('$title', overflow: TextOverflow.ellipsis,)),
+            Expanded(child: Text('$name', overflow: TextOverflow.ellipsis,)),
             ListInfo(
               icon: Icons.bookmark,
-              num: bookmarked,
+              num: bookmarkCount,
             ),
             ListInfo(
               icon: Icons.description_outlined,
-              num: post,
+              num: postCount,
             ),
             SizedBox(width: 2,),
             Icon(

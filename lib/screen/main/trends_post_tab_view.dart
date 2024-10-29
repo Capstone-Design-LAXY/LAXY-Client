@@ -24,7 +24,7 @@ const List<String> criteriaList = <String>['최신순', '좋아요', '조회수'
 class _TrendsPostTabView extends State<TrendsPostTabView>
     with SingleTickerProviderStateMixin {
   String dropdownValueCriteria = criteriaList.first;
-  late List<Post> data;
+  List<Post>? data;
 
   @override
   void initState() {
@@ -54,22 +54,27 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
 
   @override
   Widget build(BuildContext context) {
+    if (data == null) {
+      return Center(child: CircularProgressIndicator()); // 데이터 로드 중 로딩 인디케이터 표시
+    }
 
     List<Widget> _buildPosts() {
       List<Widget> posts = [];
-      for (int i = 0; i < data.length; i++) {
+      if (data == null) return [Container()];
+
+      for (int i = 0; i < data!.length; i++) {
         posts.add(
             PostListTile(
-              title: data[i].title,
-              author: data[i].author,
-              likeCount: data[i].likeCount,
-              commentCount: data[i].commentCount,
-              viewCount: data[i].viewCount,
-              imageUrl: data[i].imageUrl,
-              createdAt: data[i].createdAt,
+              title: data![i].title,
+              author: data![i].author,
+              likeCount: data![i].likeCount,
+              commentCount: data![i].commentCount,
+              viewCount: data![i].viewCount,
+              imageUrl: data![i].imageUrl,
+              createdAt: data![i].createdAt,
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
-                    PostDetailScreen(postId: data[i].postId,));
+                    PostDetailScreen(postId: data![i].postId,));
                 Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
               },
             )

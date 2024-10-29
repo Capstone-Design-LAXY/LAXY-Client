@@ -367,10 +367,10 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
       for (int i = 0; i < communityRecommendData.tags.length; i++) {
         rank.add(
             TagRankingListTile(
-              title: communityRecommendData.tags[i].name,
+              name: communityRecommendData.tags[i].name,
               rank: i + 1,
-              bookmarked: communityRecommendData.tags[i].bookmarkCount,
-              post: communityRecommendData.tags[i].postCount,
+              bookmarkCount: communityRecommendData.tags[i].bookmarkCount,
+              postCount: communityRecommendData.tags[i].postCount,
               grade: communityRecommendData.tags[i].grade,
               onPressed: () {
                 if(communityRecommendData.tags[i].grade! <= 5){

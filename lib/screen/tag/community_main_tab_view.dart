@@ -199,8 +199,8 @@ class _CommunityMainTabView extends State<CommunityMainTabView>
             PostRankingListTile(
               title: rankData.daily[i].title,
               rank: i + 1,
-              comment: rankData.daily[i].commentCount,
-              like: rankData.daily[i].likeCount,
+              commentCount: rankData.daily[i].commentCount,
+              likeCount: rankData.daily[i].likeCount,
               // shift: rankData.daily[i].change,
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
@@ -220,8 +220,8 @@ class _CommunityMainTabView extends State<CommunityMainTabView>
             PostRankingListTile(
               title: rankData.weekly[i].title,
               rank: i + 1,
-              comment: rankData.weekly[i].commentCount,
-              like: rankData.weekly[i].likeCount,
+              commentCount: rankData.weekly[i].commentCount,
+              likeCount: rankData.weekly[i].likeCount,
               // shift: rankData.weekly[i].change,
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(

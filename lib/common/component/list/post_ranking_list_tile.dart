@@ -3,16 +3,16 @@ import 'package:laxy/common/component/list/list_info.dart';
 
 class PostRankingListTile extends StatelessWidget {
   final String? title;
-  final int? comment;
-  final int? like;
+  final int? commentCount;
+  final int? likeCount;
   final int? rank;
   final Function() onPressed;
 
   const PostRankingListTile({
     this.rank = 1,
     this.title = 'title',
-    this.comment = 100,
-    this.like = 100,
+    this.commentCount = 100,
+    this.likeCount = 100,
     required this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -40,11 +40,11 @@ class PostRankingListTile extends StatelessWidget {
             Expanded(child: Text('$title', overflow: TextOverflow.ellipsis,)),
             ListInfo(
               icon: Icons.comment_outlined,
-              num: comment,
+              num: commentCount,
             ),
             ListInfo(
               icon: Icons.favorite,
-              num: like,
+              num: likeCount,
             ),
             // ListInfo(
             //   icon: shift == 0

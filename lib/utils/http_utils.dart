@@ -250,40 +250,42 @@ Future<void> editUser(BuildContext context, {
     throw Exception('서버와의 연결에 실패했습니다.');
   }
 }
-// 드로워 - 추천 요청
-Future<List<Tag>> recommentDrawer(BuildContext context) async {
-  final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
+Future<List<Post>> trendAllPost(BuildContext context, {String sortBy = 'recent'}) async {
+  final String url = '$baseUrl/all?sortBy=$sortBy'; // 기본 URL에 로그인 엔드포인트 추가
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
-  if(accessToken == null) {
-    return [];
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
+  // accessToken이 존재하는 경우 Authorization 헤더 추가
+  if (accessToken != null) {
+    headers["Authorization"] = "Bearer $accessToken";
   }
   try {
-    // 요청 보내는 부분 메소드, body 채우면 됌
-    final response = await http.delete(
+    // 요청 보내는 부분
+    final response = await http.get(
       Uri.parse(url),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        "Authorization": "Bearer $accessToken", // accessToken 추가
-      },
+      headers: headers,
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('드로워-추천 요청 성공: ${response.body}');
+      print('트랜드-전체 요청 성공: ${response.body}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
-      print(data);
+      List<Post> data = (jsonDecode(response.body) as List)
+          .map<Post>((json) => Post.fromJson(json))
+          .toList();
       return data;
     } else {
       // 에러 코드 출력
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      print('드로워-추천 요청 실패: ${errorResponse['message']}');
+      print('트랜드-전체 요청 실패: ${errorResponse['message']}');
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
         String? newAccessToken = await refreshAccessToken();
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
-          return await recommentDrawer(context); // 재호출;
+          return await trendAllPost(context, sortBy: sortBy); // 재호출
         } else {
           showErrorDialog(context, '토큰 갱신에 실패했습니다.');
         }
@@ -298,40 +300,139 @@ Future<List<Tag>> recommentDrawer(BuildContext context) async {
     throw Exception('서버와의 연결에 실패했습니다.');
   }
 }
-// 트랜드 - 전체 요청
-Future<List<Post>> trendAllPost(BuildContext context, {String sortBy = 'recent'}) async {
-  final String url = '$baseUrl/all?sortBy=$sortBy'; // 기본 URL에 로그인 엔드포인트 추가
-  print(url);
+// 트랜드 - 메인 - 일간 요청
+Future<List<Post>> trendMainDaily(BuildContext context) async {
+  final String url = '$baseUrl/daily'; // 기본 URL에 로그인 엔드포인트 추가
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
-  if(accessToken == null) {
-    return [];
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
+  // accessToken이 존재하는 경우 Authorization 헤더 추가
+  if (accessToken != null) {
+    headers["Authorization"] = "Bearer $accessToken";
   }
   try {
-    // 요청 보내는 부분 메소드, body 채우면 됌
+    // 요청 보내는 부분
     final response = await http.get(
       Uri.parse(url),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        "Authorization": "Bearer $accessToken", // accessToken 추가
-      },
+      headers: headers,
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('트랜드-전체 요청 성공: ${response.body}');
+      print('트랜드-메인-일간 요청 성공: ${response.body}');
       // 성공 시 동작
       List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      print('트랜드-전체 요청 실패: ${errorResponse['message']}');
+      print('트랜드-메인-일간 요청 실패: ${errorResponse['message']}');
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
         String? newAccessToken = await refreshAccessToken();
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
-          return await trendAllPost(context); // 재호출;
+          return await trendMainDaily(context); // 재호출;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 트랜드 - 메인 - 주간 요청
+Future<List<Post>> trendMainWeekly(BuildContext context) async {
+  final String url = '$baseUrl/weekly'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
+  // accessToken이 존재하는 경우 Authorization 헤더 추가
+  if (accessToken != null) {
+    headers["Authorization"] = "Bearer $accessToken";
+  }
+  try {
+    // 요청 보내는 부분
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('트랜드-메인-주간 요청 성공: ${response.body}');
+      // 성공 시 동작
+      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      return data;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('트랜드-메인-주간 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await trendMainWeekly(context); // 재호출;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 트랜드 - 커뮤니티 요청
+Future<List<Tag>> trendCommunity(BuildContext context) async {
+  final String url = '$baseUrl/tag/popular'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
+  // accessToken이 존재하는 경우 Authorization 헤더 추가
+  if (accessToken != null) {
+    headers["Authorization"] = "Bearer $accessToken";
+  }
+  try {
+    // 요청 보내는 부분
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('트랜드-커뮤니티 요청 성공: ${response.body}');
+      // 성공 시 동작
+      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      return data;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('트랜드-커뮤니티 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await trendCommunity(context); // 재호출;
         } else {
           showErrorDialog(context, '토큰 갱신에 실패했습니다.');
         }
@@ -350,23 +451,24 @@ Future<List<Post>> trendAllPost(BuildContext context, {String sortBy = 'recent'}
 Future<void> actionObject(BuildContext context) async {
   final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
-  if(accessToken == null) {
-    return;
-  }
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
   // Request body에 담을 data  ( 'email', 'password' 자리가 변수 )
   final Map<String, dynamic> data = {
     "email": 'email',
     "password": 'password',
   };
+  // accessToken이 존재하는 경우 Authorization 헤더 추가
+  if (accessToken != null) {
+    headers["Authorization"] = "Bearer $accessToken";
+  }
   try {
-    // 요청 보내는 부분 메소드, body 채우면 됌
-    final response = await http.delete(
+    // 요청 보내는 부분
+    final response = await http.get(
       Uri.parse(url),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        "Authorization": "Bearer $accessToken", // accessToken 추가
-      },
-      body: jsonEncode(data),
+      headers: headers,
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
