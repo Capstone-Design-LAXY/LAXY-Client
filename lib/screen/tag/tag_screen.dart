@@ -418,8 +418,8 @@ class _TagScreenState extends State<TagScreen> {
               author: tagData.posts[i].author!,
               likeCount: tagData.posts[i].likeCount!,
               commentCount: tagData.posts[i].commentCount!,
-              imageURL: tagData.posts[i].imageURL,
-              dateTime: tagData.posts[i].createdAt,
+              imageUrl: tagData.posts[i].imageUrl,
+              createdAt: tagData.posts[i].createdAt,
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: tagData.posts[i].postId,));

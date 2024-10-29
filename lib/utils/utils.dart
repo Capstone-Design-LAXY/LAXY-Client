@@ -191,9 +191,9 @@ class Post {
   final int? likeCount;
   final int? viewCount;
   final DateTime? createdAt;
-  final String? imageURL;
+  final String? imageUrl;
   final bool? isLiked;
-  final bool? isMypost;
+  final bool? isMyPost;
   final List<Tag>? tags;
 
   Post({
@@ -205,10 +205,10 @@ class Post {
     this.contents,
     this.createdAt,
     this.viewCount,
-    this.imageURL,
+    this.imageUrl,
     this.isLiked,
     this.tags,
-    this.isMypost,
+    this.isMyPost,
   });
 
   // JSON 데이터를 Post 객체로 변환
@@ -225,7 +225,8 @@ class Post {
       isLiked: json['isLiked'],
       createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
       viewCount: json['viewCount'],
-      imageURL: json['imageURL'],
+      imageUrl: json['imageUrl'],
+      isMyPost: json['isMyPost'],
       tags: json['tags'] != null
           ? (json['tags'] as List)
           .map((data) => Tag.fromJson(data))
@@ -246,9 +247,9 @@ class Post {
       contents: contents,
       createdAt: createdAt,
       viewCount: viewCount,
-      imageURL: imageURL,
+      imageUrl: imageUrl,
       tags: tags,
-      isMypost: isMypost,
+      isMyPost: isMyPost,
     );
   }
 }

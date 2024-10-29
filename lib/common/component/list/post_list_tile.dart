@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_info.dart';
 import 'package:laxy/utils/utils.dart';
 
-// TODO : summary -> author 로 수정, viewCount 추가
 class PostListTile extends StatelessWidget {
-  final String title;
-  final String author;
-  final int commentCount;
-  final int likeCount;
-  final String? imageURL;
-  final DateTime? dateTime;
+  final String? title;
+  final String? author;
+  final int? commentCount;
+  final int? likeCount;
+  final int? viewCount;
+  final String? imageUrl;
+  final DateTime? createdAt;
   final Function() onPressed;
 
   const PostListTile({
@@ -17,8 +17,9 @@ class PostListTile extends StatelessWidget {
     this.author = 'author',
     this.commentCount = 100,
     this.likeCount = 100,
-    this.imageURL,
-    this.dateTime,
+    this.viewCount = 100,
+    this.imageUrl,
+    this.createdAt,
     required this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -45,18 +46,18 @@ class PostListTile extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(child: Text(title, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
+                      Expanded(child: Text(title!, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
                       SizedBox(width: 2,),
                     ],
                   ),
                   SizedBox(height: 2,),
                   Row(
                     children: [
-                      Text(formatDate(dateTime), style: TextStyle(fontSize: 10)),
+                      Text(formatDate(createdAt), style: TextStyle(fontSize: 10)),
                       Text(" | "),
                       Expanded(
                         child: Text(
-                          author,
+                          author!,
                           style: TextStyle(fontSize: 12),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -70,10 +71,9 @@ class PostListTile extends StatelessWidget {
                         icon: Icons.favorite,
                         num: likeCount,
                       ),
-                      /// viewCount 자리
                       ListInfo(
                         icon: Icons.visibility_outlined,
-                        num: commentCount,
+                        num: viewCount,
                       ),
                     ],
                   ),
@@ -81,13 +81,13 @@ class PostListTile extends StatelessWidget {
               ),
             ),
           ),
-          if (imageURL != null)
+          if (imageUrl != null)
             Container(
               height: 60,
               width: 60,
               color: Color(0xFFD4E3FF),
               child: Image(
-                image: NetworkImage('$imageURL'),
+                image: NetworkImage('$imageUrl'),
                 fit: BoxFit.contain,
               ),
             ),

@@ -285,7 +285,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             isLiked: postDetailData.comments[i].isLiked,
             createAt: postDetailData.comments[i].createdAt,
             isMyComment: postDetailData.comments[i].isMyComment,
-            isMyPost: postDetailData.post.isMypost,
+            isMyPost: postDetailData.post.isMyPost,
             isPoster: false, // TODO : 임시
           )
         );
@@ -295,7 +295,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
     List<Menu> _buildPopupMenu() {
       List<Menu> menuItems = [Menu.viewer];
-      if(!postDetailData.post.isMypost!) {
+      if(!postDetailData.post.isMyPost!) {
         menuItems.add(Menu.report);
       }
       else {

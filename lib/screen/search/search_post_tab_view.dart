@@ -397,8 +397,8 @@ class _SearchPostTabViewState extends State<SearchPostTabView> {
               author: postData.posts[i].author!,
               likeCount: postData.posts[i].likeCount!,
               commentCount: postData.posts[i].commentCount!,
-              imageURL: postData.posts[i].imageURL,
-              dateTime: postData.posts[i].createdAt,
+              imageUrl: postData.posts[i].imageUrl,
+              createdAt: postData.posts[i].createdAt,
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                     PostDetailScreen(postId: postData.posts[i].postId,));

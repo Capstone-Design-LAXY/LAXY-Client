@@ -298,6 +298,53 @@ Future<List<Tag>> recommentDrawer(BuildContext context) async {
     throw Exception('서버와의 연결에 실패했습니다.');
   }
 }
+// 트랜드 - 전체 요청
+Future<List<Post>> trendAllPost(BuildContext context) async {
+  final String url = '$baseUrl/all'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if(accessToken == null) {
+    return [];
+  }
+  try {
+    // 요청 보내는 부분 메소드, body 채우면 됌
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "Bearer $accessToken", // accessToken 추가
+      },
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('트랜드-전체 요청 성공: ${response.body}');
+      // 성공 시 동작
+      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      return data;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('트랜드-전체 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await trendAllPost(context); // 재호출;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
 /// 요청 함수 기본 틀
 Future<void> actionObject(BuildContext context) async {
   final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
