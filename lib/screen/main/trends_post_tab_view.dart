@@ -29,11 +29,26 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadData('최신순');
   }
 
-  Future<void> _loadData() async{
-    data = await trendAllPost(context);
+  Future<void> _loadData(String sortBy) async{
+    // sortBy 매핑
+    String sortCriteria;
+    switch (sortBy) {
+      case '최신순':
+        sortCriteria = 'recent';
+        break;
+      case '좋아요':
+        sortCriteria = 'likes';
+        break;
+      case '조회수':
+        sortCriteria = 'views';
+        break;
+      default:
+        sortCriteria = 'recent'; // 기본값
+    }
+    data = await trendAllPost(context, sortBy: sortCriteria);
     setState(() {});
   }
 
@@ -75,6 +90,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
               onChanged: (String? criteriaValue) {
                 setState(() {
                   dropdownValueCriteria = criteriaValue!;
+                  _loadData(dropdownValueCriteria); // 정렬 기준 변경 시 데이터 로드
                 });
               },
               valueGender: dropdownValueCriteria,

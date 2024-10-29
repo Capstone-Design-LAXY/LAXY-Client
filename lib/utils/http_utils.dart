@@ -299,8 +299,9 @@ Future<List<Tag>> recommentDrawer(BuildContext context) async {
   }
 }
 // 트랜드 - 전체 요청
-Future<List<Post>> trendAllPost(BuildContext context) async {
-  final String url = '$baseUrl/all'; // 기본 URL에 로그인 엔드포인트 추가
+Future<List<Post>> trendAllPost(BuildContext context, {String sortBy = 'recent'}) async {
+  final String url = '$baseUrl/all?sortBy=$sortBy'; // 기본 URL에 로그인 엔드포인트 추가
+  print(url);
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
   if(accessToken == null) {
     return [];
