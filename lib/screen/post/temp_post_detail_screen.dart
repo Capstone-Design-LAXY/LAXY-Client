@@ -51,25 +51,24 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
 
     List<Tag> tagModelList = [];
     for (int i = 0; i < widget.tagList.length; i++){
-      tagModelList.add(Tag(tagId: i, tagName: widget.tagList[i], grade: i));
+      tagModelList.add(Tag(tagId: i, name: widget.tagList[i], grade: i));
     }
     postDetailData = PostDetailData(
       post: Post(
         postId: widget.postId,
-        nickname: "팀LAXY",
-        userId: 12131414,
-        like: 0,
-        comments: 0,
+        author: "팀LAXY",
+        likeCount: 0,
+        commentCount: 0,
         isLiked: false,
         title: widget.title,
-        content: widget.contents,
+        contents: widget.contents,
         tags: tagModelList),
         comments: []
       );
 
     _controller = quill.QuillController(
       document: quill.Document.fromJson(
-          postDetailData.post.content!
+          postDetailData.post.contents!
       ),
       selection: const TextSelection.collapsed(offset: 0),
     );
@@ -109,7 +108,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
         tag.add(
             CustomChip(
               tagId: postDetailData.post.tags![i].tagId,
-              tagName: postDetailData.post.tags![i].tagName,
+              tagName: postDetailData.post.tags![i].name,
               grade: postDetailData.post.tags![i].grade!,
             )
         );
@@ -123,15 +122,14 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
         comment.add(
           CommentListTile(
             commentId: postDetailData.comments[i].commentId,
-            userId: postDetailData.comments[i].userId,
-            nickname: postDetailData.comments[i].nickname,
-            content: postDetailData.comments[i].contents,
-            likes: postDetailData.comments[i].likes,
+            name: postDetailData.comments[i].author,
+            contents: postDetailData.comments[i].contents,
+            likeCount: postDetailData.comments[i].likeCount,
             isLiked: postDetailData.comments[i].isLiked,
-            updatedAt: postDetailData.comments[i].updatedAt,
-            isMyComment: postDetailData.comments[i].userId == myUserId,
-            isMyPost: postDetailData.post.userId == myUserId,
-            isPosterComment: postDetailData.comments[i].userId == postDetailData.post.userId,
+            createAt: postDetailData.comments[i].createdAt,
+            isMyComment: postDetailData.comments[i].isMyComment,
+            isMyPost: postDetailData.post.isMypost,
+            isPoster: false, //TODO: 임시
           )
         );
       }
@@ -140,7 +138,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
 
     List<Menu> _buildPopupMenu() {
       List<Menu> menuItems = [Menu.viewer];
-      if(postDetailData.post.userId != myUserId) {
+      if(!postDetailData.post.isMypost!) {
         menuItems.add(Menu.report);
       }
       else {
@@ -157,7 +155,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
         return tags;
       }
       for (int i = 0; i < postDetailData.post.tags!.length; i++) {
-        tags.add(postDetailData.post.tags![i].tagName);
+        tags.add(postDetailData.post.tags![i].name);
       }
       return tags;
     }
@@ -170,7 +168,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
             icon: postDetailData.post.isLiked!
               ? Icons.favorite
               : Icons.favorite_outline,
-            num: postDetailData.post.like,
+            num: postDetailData.post.likeCount,
             onPressed: () {
               setState(() {
                 postDetailData = postDetailData.toggleIsLiked();
@@ -202,7 +200,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
             menuItems: _buildPopupMenu(),
             postId: postDetailData.post.postId,
             title: postDetailData.post.title,
-            content: postDetailData.post.content,
+            content: postDetailData.post.contents,
             tags: _TagToString(),
           ),
         ],
@@ -227,7 +225,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
             ),
           ),
           SizedBox(height: 3,),
-          CustomQuillReader(content: postDetailData.post.content!,),
+          CustomQuillReader(content: postDetailData.post.contents!,),
           SizedBox(height: 3,),
           // 게시글 정보
           Container(
@@ -239,14 +237,14 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
             child: Row(
               children: [
                 Text(
-                  '작성자: ${postDetailData.post.nickname}',
+                  '작성자: ${postDetailData.post.author}',
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
                 Spacer(),
                 Text(
-                  formatDate(postDetailData.post.updatedAt),
+                  formatDate(postDetailData.post.createdAt),
                   style: TextStyle(
                     fontSize: 10,
                   ),

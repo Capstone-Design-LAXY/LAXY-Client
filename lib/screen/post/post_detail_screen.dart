@@ -265,7 +265,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         tag.add(
             CustomChip(
               tagId: postDetailData.post.tags![i].tagId,
-              tagName: postDetailData.post.tags![i].tagName,
+              tagName: postDetailData.post.tags![i].name,
               grade: postDetailData.post.tags![i].grade!,
             )
         );
@@ -279,15 +279,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         comment.add(
           CommentListTile(
             commentId: postDetailData.comments[i].commentId,
-            userId: postDetailData.comments[i].userId,
-            nickname: postDetailData.comments[i].nickname,
-            content: postDetailData.comments[i].contents,
-            likes: postDetailData.comments[i].likes,
+            name: postDetailData.comments[i].author,
+            contents: postDetailData.comments[i].contents,
+            likeCount: postDetailData.comments[i].likeCount,
             isLiked: postDetailData.comments[i].isLiked,
-            updatedAt: postDetailData.comments[i].updatedAt,
-            isMyComment: postDetailData.comments[i].userId == myUserId,
-            isMyPost: postDetailData.post.userId == myUserId,
-            isPosterComment: postDetailData.comments[i].userId == postDetailData.post.userId,
+            createAt: postDetailData.comments[i].createdAt,
+            isMyComment: postDetailData.comments[i].isMyComment,
+            isMyPost: postDetailData.post.isMypost,
+            isPoster: false, // TODO : 임시
           )
         );
       }
@@ -296,7 +295,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
     List<Menu> _buildPopupMenu() {
       List<Menu> menuItems = [Menu.viewer];
-      if(postDetailData.post.userId != myUserId) {
+      if(!postDetailData.post.isMypost!) {
         menuItems.add(Menu.report);
       }
       else {
@@ -313,7 +312,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         return tags;
       }
       for (int i = 0; i < postDetailData.post.tags!.length; i++) {
-        tags.add(postDetailData.post.tags![i].tagName);
+        tags.add(postDetailData.post.tags![i].name);
       }
       return tags;
     }
@@ -326,7 +325,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             icon: postDetailData.post.isLiked! && isLogin
               ? Icons.favorite
               : Icons.favorite_outline,
-            num: postDetailData.post.like,
+            num: postDetailData.post.likeCount,
             onPressed: () {
               if (isLogin){
                 setState(() {
@@ -368,7 +367,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             menuItems: _buildPopupMenu(),
             postId: postDetailData.post.postId,
             title: postDetailData.post.title,
-            content: postDetailData.post.content,
+            content: postDetailData.post.contents,
             tags: _TagToString(),
           ),
         ],
@@ -393,7 +392,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ),
           ),
           SizedBox(height: 3,),
-          CustomQuillReader(content: postDetailData.post.content!,),
+          CustomQuillReader(content: postDetailData.post.contents!,),
           SizedBox(height: 3,),
           // 게시글 정보
           Container(
@@ -405,14 +404,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             child: Row(
               children: [
                 Text(
-                  '작성자: ${postDetailData.post.nickname}',
+                  '작성자: ${postDetailData.post.author}',
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
                 Spacer(),
                 Text(
-                  formatDate(postDetailData.post.updatedAt),
+                  formatDate(postDetailData.post.createdAt),
                   style: TextStyle(
                     fontSize: 10,
                   ),

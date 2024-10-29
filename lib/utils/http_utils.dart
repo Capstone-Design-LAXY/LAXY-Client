@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/utils/utils.dart';
 
 // API URL을 하나의 변수로 저장
 const String baseUrl = 'http://43.202.77.176:8001/api';
@@ -233,8 +234,56 @@ Future<void> editUser(BuildContext context, {
         String? newAccessToken = await refreshAccessToken();
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
-          await editUser(context); // 재호출
+          await editUser(context, gender: gender, birth: birth, name: name, password: password); // 재호출
           return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 드로워 - 추천 요청
+Future<List<Tag>> recommentDrawer(BuildContext context) async {
+  final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if(accessToken == null) {
+    return [];
+  }
+  try {
+    // 요청 보내는 부분 메소드, body 채우면 됌
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "Bearer $accessToken", // accessToken 추가
+      },
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('드로워-추천 요청 성공: ${response.body}');
+      // 성공 시 동작
+      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      print(data);
+      return data;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('드로워-추천 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await recommentDrawer(context); // 재호출;
         } else {
           showErrorDialog(context, '토큰 갱신에 실패했습니다.');
         }

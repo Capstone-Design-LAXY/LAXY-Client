@@ -13,6 +13,7 @@ import 'package:laxy/screen/my/my_post_screen.dart';
 import 'package:laxy/screen/tag/community_screen.dart';
 import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/utils/auth_utils.dart';
+import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -35,18 +36,18 @@ class _CustomDrawerState extends State<CustomDrawer> {
     String jsonString = '''
       {
         "bookmarked": [
-          {"tagId": 44327, "tag_name": "결혼", "count": 1940, "grade": 3},
-          {"tagId": 859603, "tag_name": "팩", "count": 2732, "grade": 5},
-          {"tagId": 13217, "tag_name": "감", "count": 7988, "grade": 7},
-          {"tagId": 656626, "tag_name": "색종", "count": 43766, "grade": 9},
-          {"tagId": 181591, "tag_name": "앵무", "count": 80723, "grade": 11}
+          {"tagId": 44327, "name": "결혼", "postCount": 1940, "grade": 3},
+          {"tagId": 859603, "name": "팩", "postCount": 2732, "grade": 5},
+          {"tagId": 13217, "name": "감", "postCount": 7988, "grade": 7},
+          {"tagId": 656626, "name": "색종", "postCount": 43766, "grade": 9},
+          {"tagId": 181591, "name": "앵무", "postCount": 80723, "grade": 11}
         ],
         "recommended": [
-          {"tagId": 156313, "tag_name": "공기청정기", "count": 63285, "grade": 3},
-          {"tagId": 120401, "tag_name": "대중교통", "count": 46609, "grade": 5},
-          {"tagId": 605716, "tag_name": "크리스마스", "count": 2559411, "grade": 7},
-          {"tagId": 835111, "tag_name": "게", "count": 4186504, "grade": 9},
-          {"tagId": 282296, "tag_name": "가상화폐", "count": 6823010, "grade": 11}
+          {"tagId": 156313, "name": "공기청정기", "postCount": 63285, "grade": 3},
+          {"tagId": 120401, "name": "대중교통", "postCount": 46609, "grade": 5},
+          {"tagId": 605716, "name": "크리스마스", "postCount": 2559411, "grade": 7},
+          {"tagId": 835111, "name": "게", "postCount": 4186504, "grade": 9},
+          {"tagId": 282296, "name": "가상화폐", "postCount": 6823010, "grade": 11}
         ]
       }
     ''';
@@ -55,6 +56,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     // DrawerData 객체 생성
     drawerData = DrawerData.fromJson(parsedJson);
     _checkAccessToken();
+    // recommentDrawer(context);
   }
 
   void _checkAccessToken() async{
@@ -75,16 +77,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
       for (int i = 0; i < drawerData.bookmarked.length; i++) {
         bookmarked.add(
             CustomDrawerItem(
-              name: drawerData.bookmarked[i].tagName,
-              posts: drawerData.bookmarked[i].count,
+              name: drawerData.bookmarked[i].name,
+              posts: drawerData.bookmarked[i].postCount,
               onPressed: () {
                 Navigator.pop(context);
                 if(drawerData.bookmarked[i].grade! <= 5){
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },
@@ -99,16 +101,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
       for (int i = 0; i < drawerData.bookmarked.length; i++) {
         recommended.add(
             CustomDrawerItem(
-              name: drawerData.recommended[i].tagName,
-              posts: drawerData.recommended[i].count,
+              name: drawerData.recommended[i].name,
+              posts: drawerData.recommended[i].postCount,
               onPressed: () {
                 Navigator.pop(context);
                 if(drawerData.bookmarked[i].grade! <= 5){
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },

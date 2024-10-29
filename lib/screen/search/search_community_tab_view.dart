@@ -325,12 +325,12 @@ class _SearchCommunityTabViewState extends State<SearchCommunityTabView> {
         tags.add(
           TagListTile(
             tagId: searchTagData.tags[i].tagId,
-            tagName: searchTagData.tags[i].tagName,
-            posts: searchTagData.tags[i].count!,
-            bookmarked: searchTagData.tags[i].bookmarked!,
+            tagName: searchTagData.tags[i].name,
+            posts: searchTagData.tags[i].postCount!,
+            bookmarked: searchTagData.tags[i].bookmarkCount!,
             grade: searchTagData.tags[i].grade!,
             onPressed: () {
-              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
+              PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].name,));
               Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
             },
           )

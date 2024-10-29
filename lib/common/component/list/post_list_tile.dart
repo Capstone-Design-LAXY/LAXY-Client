@@ -5,18 +5,18 @@ import 'package:laxy/utils/utils.dart';
 // TODO : summary -> author 로 수정, viewCount 추가
 class PostListTile extends StatelessWidget {
   final String title;
-  final String summary;
-  final int comment;
-  final int like;
+  final String author;
+  final int commentCount;
+  final int likeCount;
   final String? imageURL;
   final DateTime? dateTime;
   final Function() onPressed;
 
   const PostListTile({
     this.title = 'title',
-    this.summary = '',
-    this.comment = 100,
-    this.like = 100,
+    this.author = 'author',
+    this.commentCount = 100,
+    this.likeCount = 100,
     this.imageURL,
     this.dateTime,
     required this.onPressed,
@@ -56,7 +56,7 @@ class PostListTile extends StatelessWidget {
                       Text(" | "),
                       Expanded(
                         child: Text(
-                          "작성자",
+                          author,
                           style: TextStyle(fontSize: 12),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -64,16 +64,16 @@ class PostListTile extends StatelessWidget {
                       SizedBox(width: 2,),
                       ListInfo(
                         icon: Icons.comment_outlined,
-                        num: comment,
+                        num: commentCount,
                       ),
                       ListInfo(
                         icon: Icons.favorite,
-                        num: like,
+                        num: likeCount,
                       ),
                       /// viewCount 자리
                       ListInfo(
                         icon: Icons.visibility_outlined,
-                        num: comment,
+                        num: commentCount,
                       ),
                     ],
                   ),

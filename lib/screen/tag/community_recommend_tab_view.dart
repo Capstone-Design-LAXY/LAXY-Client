@@ -367,18 +367,18 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
       for (int i = 0; i < communityRecommendData.tags.length; i++) {
         rank.add(
             TagRankingListTile(
-              title: communityRecommendData.tags[i].tagName,
+              title: communityRecommendData.tags[i].name,
               rank: i + 1,
-              bookmarked: communityRecommendData.tags[i].bookmarked,
-              post: communityRecommendData.tags[i].count,
+              bookmarked: communityRecommendData.tags[i].bookmarkCount,
+              post: communityRecommendData.tags[i].postCount,
               grade: communityRecommendData.tags[i].grade,
               onPressed: () {
                 if(communityRecommendData.tags[i].grade! <= 5){
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },

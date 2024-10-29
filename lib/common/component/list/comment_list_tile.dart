@@ -6,28 +6,26 @@ import 'package:laxy/utils/utils.dart';
 
 class CommentListTile extends StatefulWidget {
   final int commentId;
-  final int userId;
-  final String? nickname;
-  final DateTime? updatedAt;
-  final int? likes;
-  final String? content;
+  final String? name;
+  final DateTime? createAt;
+  final int? likeCount;
+  final String? contents;
   final bool? isLiked;
   final bool? isMyPost;
   final bool? isMyComment;
-  final bool? isPosterComment;
+  final bool? isPoster;
   final VoidCallback? onPressed;
 
   const CommentListTile({
     required this.commentId,
-    required this.userId,
-    this.nickname = '',
-    this.content = '',
-    this.likes = 0,
+    this.name = '',
+    this.contents = '',
+    this.likeCount = 0,
     this.isLiked = false,
     this.isMyPost = false,
     this.isMyComment = false,
-    this.isPosterComment = false,
-    this.updatedAt,
+    this.isPoster = false,
+    this.createAt,
     this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -75,7 +73,7 @@ class _CommentListTileState extends State<CommentListTile> {
       ),
       onPressed: widget.onPressed ?? _defaultOnPressed,
       onLongPress: () {
-        showCommentDialog(context, widget.commentId, widget.content!, widget.isMyPost!, widget.isMyComment!);
+        showCommentDialog(context, widget.commentId, widget.contents!, widget.isMyPost!, widget.isMyComment!);
       },
       elevation: 0,
       padding: EdgeInsets.zero,
@@ -88,15 +86,15 @@ class _CommentListTileState extends State<CommentListTile> {
                 children: [
                   // 작성자 아이콘
                   Visibility(
-                    visible: widget.isPosterComment!,
+                    visible: widget.isPoster!,
                     child: Padding(
                       padding: const EdgeInsets.only(right: 3),
                       child: Icon(Icons.edit, size: 12, color: Color(0xFF5589D3),),
                     ),
                   ),
-                  Text(widget.nickname!, style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
+                  Text(widget.name!, style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
                   Text(' ৹ ', style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
-                  Text(formatDate(widget.updatedAt), style: TextStyle(fontSize: 10, color: Color(0xFF141218).withOpacity(0.7)),),
+                  Text(formatDate(widget.createAt), style: TextStyle(fontSize: 10, color: Color(0xFF141218).withOpacity(0.7)),),
                   Spacer(),
                   InkWell(
                     onTap: () {
@@ -125,7 +123,7 @@ class _CommentListTileState extends State<CommentListTile> {
                           SizedBox(width: 2,),
                           SizedBox(
                               width: 23,
-                              child: Text(formatNum(widget.likes), style: TextStyle(fontSize: 10))
+                              child: Text(formatNum(widget.likeCount), style: TextStyle(fontSize: 10))
                           ),
                         ],
                       ),
@@ -135,7 +133,7 @@ class _CommentListTileState extends State<CommentListTile> {
               ),
               HorizontalExpanded(
                 child: Text(
-                  widget.content!,
+                  widget.contents!,
                   style: TextStyle(fontSize: 14, height: 1.1),
                   maxLines: isExpanded? null: 3,
                   overflow: isExpanded? null: TextOverflow.ellipsis,

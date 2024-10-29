@@ -391,9 +391,9 @@ class _CommunityGoodPostTabViewState extends State<CommunityGoodPostTabView> {
         posts.add(
             PostListTile(
               title: postData.posts[i].title,
-              summary: postData.posts[i].summary!,
-              like: postData.posts[i].like!,
-              comment: postData.posts[i].comments!,
+              author: postData.posts[i].author!,
+              likeCount: postData.posts[i].likeCount!,
+              commentCount: postData.posts[i].commentCount!,
               imageURL: postData.posts[i].imageURL,
               dateTime: postData.posts[i].createdAt,
               onPressed: () {

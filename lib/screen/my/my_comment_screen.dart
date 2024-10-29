@@ -486,15 +486,14 @@ class _MyCommentScreenState extends State<MyCommentScreen> {
         comment.add(
             CommentListTile(
               commentId: commentData.comments[i].commentId,
-              userId: commentData.comments[i].userId,
-              nickname: commentData.comments[i].nickname,
-              content: commentData.comments[i].contents,
-              likes: commentData.comments[i].likes,
+              name: commentData.comments[i].author,
+              contents: commentData.comments[i].contents,
+              likeCount: commentData.comments[i].likeCount,
               isLiked: commentData.comments[i].isLiked,
-              updatedAt: commentData.comments[i].updatedAt,
+              createAt: commentData.comments[i].createdAt,
               isMyComment: true,
               isMyPost: false,
-              isPosterComment: false,
+              isPoster: false,
               onPressed: () {
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(
                   // TODO: 임시로 commentId를 사용 중 수정 필요

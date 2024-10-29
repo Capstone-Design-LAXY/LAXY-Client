@@ -325,17 +325,17 @@ class _BookmarkedScreenState extends State<BookmarkedScreen> {
         tags.add(
             TagListTile(
               tagId: searchTagData.tags[i].tagId,
-              tagName: searchTagData.tags[i].tagName,
-              posts: searchTagData.tags[i].count!,
-              bookmarked: searchTagData.tags[i].bookmarked!,
+              tagName: searchTagData.tags[i].name,
+              posts: searchTagData.tags[i].postCount!,
+              bookmarked: searchTagData.tags[i].bookmarkCount!,
               grade: searchTagData.tags[i].grade!,
               onPressed: () {
                 if(searchTagData.tags[i].grade! <= 5){
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },

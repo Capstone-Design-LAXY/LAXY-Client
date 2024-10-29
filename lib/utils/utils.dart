@@ -153,34 +153,144 @@ class OrbitData {
 // Tag 데이터 모델
 class Tag {
   final int tagId;
-  final String tagName;
-  final int? count;
-  final int? bookmarked;
-  final int? change;
-  final int? grade;
+  final String name;
+  final int? postCount;
+  final int? bookmarkCount;
+  final int grade;
+  final bool? isCommunity;
 
   Tag({
     required this.tagId,
-    required this.tagName,
-    this.count,
-    this.bookmarked,
-    this.change,
-    this.grade,
+    required this.name,
+    required this.grade,
+    this.postCount,
+    this.bookmarkCount,
+    this.isCommunity,
   });
 
   // JSON 데이터를 Tag 객체로 변환
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
       tagId: json['tagId'],
-      tagName: json['tag_name'],
-      count: json['count'],
-      bookmarked: json['bookmarked'],
-      change: json['change'],
+      name: json['name'],
+      postCount: json['postCount'],
+      bookmarkCount: json['bookmarkCount'],
       grade: json['grade'],
+      isCommunity: json['isCommunity'],
     );
   }
 }
 
+// Post 데이터 모델
+class Post {
+  final int postId;
+  final String title;
+  final List<Map<String, dynamic>>? contents;
+  final String? author;
+  final int? commentCount;
+  final int? likeCount;
+  final int? viewCount;
+  final DateTime? createdAt;
+  final String? imageURL;
+  final bool? isLiked;
+  final bool? isMypost;
+  final List<Tag>? tags;
+
+  Post({
+    required this.postId,
+    required this.title,
+    this.commentCount,
+    this.author,
+    this.likeCount,
+    this.contents,
+    this.createdAt,
+    this.viewCount,
+    this.imageURL,
+    this.isLiked,
+    this.tags,
+    this.isMypost,
+  });
+
+  // JSON 데이터를 Post 객체로 변환
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      postId: json['postId'],
+      title: json['title'],
+      author: json['author'],
+      commentCount: json['commentCount'],
+      likeCount: json['likeCount'],
+      contents: json['contents'] != null
+          ? List<Map<String, dynamic>>.from(json['contents'])
+          : null,
+      isLiked: json['isLiked'],
+      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      viewCount: json['viewCount'],
+      imageURL: json['imageURL'],
+      tags: json['tags'] != null
+          ? (json['tags'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList()
+          : null,
+    );
+  }
+  Post toggleIsLiked() {
+    int newLikeCount;
+    newLikeCount = isLiked! ? likeCount! - 1 : likeCount! + 1;
+    return Post(
+      isLiked: !isLiked!,
+      postId: postId,
+      title: title,
+      author: author,
+      commentCount: commentCount,
+      likeCount: newLikeCount,
+      contents: contents,
+      createdAt: createdAt,
+      viewCount: viewCount,
+      imageURL: imageURL,
+      tags: tags,
+      isMypost: isMypost,
+    );
+  }
+}
+// Comment 데이터 모델
+class Comment {
+  final int commentId;
+  final String? contents;
+  final String? author;
+  final DateTime? createdAt;
+  final int? likeCount;
+  final int? postId;
+  final bool? isPoster;
+  final bool? isMyComment;
+  final bool? isLiked;
+
+  Comment({
+    required this.commentId,
+    this.contents,
+    this.author,
+    this.createdAt,
+    this.likeCount,
+    this.postId,
+    this.isPoster,
+    this.isMyComment,
+    this.isLiked,
+  });
+
+  // JSON 데이터를 Post 객체로 변환
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return Comment(
+      commentId: json['commentId'],
+      contents: json['contents'],
+      author: json['author'],
+      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
+      likeCount: json['likeCount'],
+      postId: json['postId'],
+      isPoster: json['isPoster'],
+      isMyComment: json['isMyComment'],
+      isLiked: json['isLiked'],
+    );
+  }
+}
 // DrawerData 모델
 class DrawerData {
   final List<Tag> bookmarked;
@@ -200,88 +310,6 @@ class DrawerData {
       recommended: (json['recommended'] as List)
           .map((data) => Tag.fromJson(data))
           .toList(),
-    );
-  }
-}
-
-// Post 데이터 모델
-class Post {
-  final int postId;
-  final String title;
-  final List<Map<String, dynamic>>? content;
-  final String? nickname;
-  final String? summary;
-  final int? userId;
-  final int? comments;
-  final int? like;
-  final int? viewed;
-  final int? change;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final String? imageURL;
-  final bool? isLiked;
-  final List<Tag>? tags;
-
-  Post({
-    required this.postId,
-    required this.title,
-    this.comments,
-    this.userId,
-    this.nickname,
-    this.like,
-    this.change,
-    this.content,
-    this.createdAt,
-    this.updatedAt,
-    this.viewed,
-    this.imageURL,
-    this.isLiked,
-    this.summary,
-    this.tags,
-  });
-
-  // JSON 데이터를 Post 객체로 변환
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
-      postId: json['post_id'],
-      userId: json['user_id'],
-      title: json['title'],
-      nickname: json['nickname'],
-      comments: json['comments'],
-      like: json['like'],
-      change: json['change'],
-      content: json['content'] != null
-        ? List<Map<String, dynamic>>.from(json['content'])
-        : null,
-      isLiked: json['isLiked'],
-      summary: json['summary'],
-      createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
-      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
-      viewed: json['viewed'],
-      imageURL: json['imageURL'],
-      tags: json['tags'] != null
-        ? (json['tags'] as List)
-          .map((data) => Tag.fromJson(data))
-          .toList()
-        : null,
-    );
-  }
-  Post toggleIsLiked() {
-    return Post(
-      isLiked: !isLiked!,
-      postId: postId,
-      userId: userId,
-      title: title,
-      nickname: nickname,
-      comments: comments,
-      like: like,
-      change: change,
-      content: content,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      viewed: viewed,
-      imageURL: imageURL,
-      tags: tags,
     );
   }
 }
@@ -435,40 +463,6 @@ class PostDetailData {
     return PostDetailData(
       post: post.toggleIsLiked(),
       comments: comments
-    );
-  }
-}
-
-// Comment 데이터 모델
-class Comment {
-  final int commentId;
-  final int userId;
-  final String? nickname;
-  final String? contents;
-  final int? likes;
-  final bool? isLiked;
-  final DateTime? updatedAt;
-
-  Comment({
-    required this.commentId,
-    this.nickname,
-    this.contents,
-    this.isLiked,
-    this.likes,
-    this.updatedAt,
-    required this.userId,
-  });
-
-  // JSON 데이터를 Post 객체로 변환
-  factory Comment.fromJson(Map<String, dynamic> json) {
-    return Comment(
-      commentId: json['comment_id'],
-      nickname: json['nickname'],
-      contents: json['contents'],
-      isLiked: json['isLiked'],
-      likes: json['likes'],
-      updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
-      userId: json['user_id'],
     );
   }
 }

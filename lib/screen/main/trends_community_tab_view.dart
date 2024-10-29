@@ -366,19 +366,19 @@ class _TrendsCommunityTabViewState extends State<TrendsCommunityTabView> {
       for (int i = 0; i < communityRankData.rank.length; i++) {
         rank.add(
             TagRankingListTile(
-              title: communityRankData.rank[i].tagName,
+              title: communityRankData.rank[i].name,
               rank: i + 1,
-              bookmarked: communityRankData.rank[i].bookmarked,
-              post: communityRankData.rank[i].count,
-              shift: communityRankData.rank[i].change,
+              bookmarked: communityRankData.rank[i].bookmarkCount,
+              post: communityRankData.rank[i].postCount,
+              // shift: communityRankData.rank[i].change,
               grade: communityRankData.rank[i].grade,
               onPressed: () {
                 if(communityRankData.rank[i].grade! <= 5){
-                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].tagName,));
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].name,));
                 Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
                 else {
-                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].tagName,));
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
               },

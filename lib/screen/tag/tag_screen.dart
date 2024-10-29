@@ -415,9 +415,9 @@ class _TagScreenState extends State<TagScreen> {
         posts.add(
             PostListTile(
               title: tagData.posts[i].title,
-              summary: tagData.posts[i].summary!,
-              like: tagData.posts[i].like!,
-              comment: tagData.posts[i].comments!,
+              author: tagData.posts[i].author!,
+              likeCount: tagData.posts[i].likeCount!,
+              commentCount: tagData.posts[i].commentCount!,
               imageURL: tagData.posts[i].imageURL,
               dateTime: tagData.posts[i].createdAt,
               onPressed: () {
