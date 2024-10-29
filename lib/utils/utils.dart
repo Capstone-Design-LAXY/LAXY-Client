@@ -492,7 +492,7 @@ class SearchTagData {
 
 // User 데이터 모델
 class User {
-  final int userId;
+  final int? userId;
   final String? nickname;
   final int? posts;
   final int? comments;
@@ -500,7 +500,7 @@ class User {
   final String? email;
 
   User({
-    required this.userId,
+    this.userId,
     this.nickname,
     this.posts,
     this.comments,

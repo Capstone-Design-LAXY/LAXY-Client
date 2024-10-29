@@ -69,7 +69,7 @@ Future<void> loginUser({
     final response = await http.post(
       Uri.parse(url),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=UTF-8",
       },
       body: jsonEncode(data),
     );
@@ -80,8 +80,9 @@ Future<void> loginUser({
       await _saveLoginResponse(response.body);
       return;
     } else {
-      print('로그인 실패: ${response.body}');
-      throw Exception('로그인 실패');
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('로그인 실패: ${errorResponse['message']}');
+      throw Exception(errorResponse['message']);
     }
   } catch (e) {
     print('예외 발생: $e');

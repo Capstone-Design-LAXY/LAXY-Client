@@ -88,7 +88,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '닉네임',
+                              widget.nickname,
                               style: TextStyle(
                                 fontSize: 25,
                                 color: Color(0xFFFFFFFF),
@@ -96,7 +96,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                               ),
                             ),
                             Text(
-                              '이메일',
+                              widget.email,
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFFFFFFFF),

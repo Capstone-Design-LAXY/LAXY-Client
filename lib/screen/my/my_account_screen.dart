@@ -118,7 +118,7 @@ class MyAccountScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
-                    // 로그인 버튼
+                    // 회원 탈퇴 버튼
                     ElevatedButton(
                       style: TextButton.styleFrom(
                         backgroundColor: Color(0xFFFF4949),

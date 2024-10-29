@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
@@ -36,7 +37,26 @@ class _MyPageScreenState extends State<MyPageScreen> {
     }
     ''';
     // JSON 문자열을 RankData 객체로 파싱
-    me = User.fromJson(jsonDecode(jsonString));
+    // me = User.fromJson(jsonDecode(jsonString));
+    _checkAccessToken();
+  }
+
+  void _checkAccessToken() async{
+    String? name = await FlutterSecureStorage().read(key: "name");
+    String? email = await FlutterSecureStorage().read(key: "email");
+    
+    if(name != null && email != null){
+      setState(() {
+        me = User(
+            nickname: name,
+            email: email
+        );
+      });
+    }
+    else {
+      print("닉네임, 이메일 불러오기 실패");
+    }
+    // print(isLogin);
   }
 
   @override
