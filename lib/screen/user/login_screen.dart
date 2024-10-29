@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String password = passwordController.text;
 
     try {
-      await loginUser(email: email, password: password);
+      await loginUser(context, email: email, password: password);
       // 로그인 성공 후의 추가 처리 (예: 메인 화면으로 이동)
       PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapScreen());
       Navigator.pushAndRemoveUntil(

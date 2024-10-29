@@ -128,6 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     try {
       await registerUser(
+        context,
         email: emailController.text,
         password: passwordController.text,
         name: nicknameController.text,

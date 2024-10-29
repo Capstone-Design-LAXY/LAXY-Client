@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:laxy/common/component/show_dialog.dart';
 
 // API URL을 하나의 변수로 저장
 const String baseUrl = 'http://43.202.77.176:8001/api';
@@ -8,7 +10,7 @@ const String baseUrl = 'http://43.202.77.176:8001/api';
 final storage = FlutterSecureStorage(); // FlutterSecureStorage 인스턴스 생성
 
 // 회원가입 요청을 처리하는 함수
-Future<void> registerUser({
+Future<void> registerUser(BuildContext context, {
   required String email,
   required String password,
   required String name,
@@ -43,8 +45,9 @@ Future<void> registerUser({
       print('회원가입 성공: ${response.body}');
       return; // 성공 시 추가 처리 필요 시 반환
     } else {
-      // 오류 처리
-      print('회원가입 실패: ${response.body}');
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('로그인 실패: ${errorResponse['message']}');
+      showErrorDialog(context, errorResponse['message']);
       throw Exception('회원가입 실패');
     }
   } catch (e) {
@@ -54,7 +57,7 @@ Future<void> registerUser({
 }
 
 // 로그인 요청을 처리하는 함수
-Future<void> loginUser({
+Future<void> loginUser(BuildContext context, {
   required String email,
   required String password,
 }) async {
@@ -82,6 +85,7 @@ Future<void> loginUser({
     } else {
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
       print('로그인 실패: ${errorResponse['message']}');
+      showErrorDialog(context, errorResponse['message']);
       throw Exception(errorResponse['message']);
     }
   } catch (e) {
@@ -102,4 +106,45 @@ Future<void> _saveLoginResponse(String responseBody) async {
   await storage.write(key: 'imageUrl', value: responseData['imageUrl']?.toString());
 
   print('로그인 응답 저장 완료');
+}
+// 로그아웃 사용자 데이터 삭제
+Future<void> _logout() async {
+  await storage.deleteAll(); // 모든 데이터 삭제
+  print('로그아웃 : 로그인 사용자 데이터 삭제');
+}
+
+// 회원탈퇴 요청을 처리하는 함수
+Future<void> deleteUser(BuildContext context) async {
+  final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+
+  if(accessToken == null) {
+    return;
+  }
+
+  try {
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "Bearer $accessToken", // accessToken 추가
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('회원탈퇴 성공: ${response.body}');
+      // 응답 데이터를 저장하는 함수 호출
+      await _logout();
+      return;
+    } else {
+      // TODO: 액세스 토큰 만료 시 
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('회원탈퇴 실패: ${errorResponse['message']}');
+      showErrorDialog(context, errorResponse['message']);
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
 }

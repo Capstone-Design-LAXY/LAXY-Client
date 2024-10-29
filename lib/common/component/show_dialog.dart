@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/custom/custom_modal_bottom_sheet_builder.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/user/login_screen.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 
 void showErrorDialog(
@@ -336,9 +338,12 @@ void showWithdrawalDialog(
               foregroundColor: Color(0xFF5589D3),
             ),
             onPressed: () {
-              // TODO: 연결 필요
+              deleteUser(context);
               print('------회원 탈퇴-------');
-              Navigator.of(context).pop();
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => TrendsScreen()), // 홈 화면으로 이동
+                    (Route<dynamic> route) => false, // 모든 기존 라우트 제거
+              );
             },
             child: Text('탈퇴', style: TextStyle(color: Colors.red),),
           ),
