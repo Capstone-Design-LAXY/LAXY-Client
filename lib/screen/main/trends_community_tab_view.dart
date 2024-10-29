@@ -371,6 +371,7 @@ class _TrendsCommunityTabViewState extends State<TrendsCommunityTabView> {
               bookmarked: communityRankData.rank[i].bookmarked,
               post: communityRankData.rank[i].count,
               shift: communityRankData.rank[i].change,
+              grade: communityRankData.rank[i].grade,
               onPressed: () {
                 if(communityRankData.rank[i].grade! <= 5){
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRankData.rank[i].tagId, tagName: communityRankData.rank[i].tagName,));

@@ -7,6 +7,7 @@ class TagRankingListTile extends StatelessWidget {
   final int? post;
   final int? shift;
   final int? rank;
+  final int? grade;
   final Function() onPressed;
 
   const TagRankingListTile({
@@ -15,6 +16,7 @@ class TagRankingListTile extends StatelessWidget {
     this.bookmarked = 100,
     this.post = 100,
     this.shift,
+    this.grade = 1,
     required this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -48,20 +50,29 @@ class TagRankingListTile extends StatelessWidget {
               icon: Icons.description_outlined,
               num: post,
             ),
-            if (shift != null)
-              ListInfo(
-                icon: shift == 0
-                    ? Icons.remove
-                    : shift! < 0
-                    ? Icons.arrow_drop_down
-                    : Icons.arrow_drop_up,
-                iconColor: shift == 0
-                    ? Colors.grey
-                    : shift! < 0
-                    ? Color(0xFFFF4949)
-                    : Color(0xFF5589D3),
-                num: shift,
-              )
+            SizedBox(width: 2,),
+            Icon(
+              grade! <= 5
+                ? Icons.sell_outlined
+                : Icons.loyalty_outlined,
+              color: Color(0xFF001C3A),
+              size: 16,
+            ),
+            SizedBox(width: 5,)
+            // if (shift != null)
+            //   ListInfo(
+            //     icon: shift == 0
+            //         ? Icons.remove
+            //         : shift! < 0
+            //         ? Icons.arrow_drop_down
+            //         : Icons.arrow_drop_up,
+            //     iconColor: shift == 0
+            //         ? Colors.grey
+            //         : shift! < 0
+            //         ? Color(0xFFFF4949)
+            //         : Color(0xFF5589D3),
+            //     num: shift,
+            //   )
           ],
         ),
       ),

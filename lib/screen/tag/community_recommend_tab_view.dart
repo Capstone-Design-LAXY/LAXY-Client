@@ -371,6 +371,7 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
               rank: i + 1,
               bookmarked: communityRecommendData.tags[i].bookmarked,
               post: communityRecommendData.tags[i].count,
+              grade: communityRecommendData.tags[i].grade,
               onPressed: () {
                 if(communityRecommendData.tags[i].grade! <= 5){
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: communityRecommendData.tags[i].tagId, tagName: communityRecommendData.tags[i].tagName,));
