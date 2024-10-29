@@ -18,15 +18,15 @@ class TrendsMainTabView extends StatefulWidget {
   State<TrendsMainTabView> createState() => _TrendsMainTabView();
 }
 
-const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
-const List<String> genderList = <String>['성별', '남자', '여자', '비공개'];
+// const List<String> ageList = <String>['연령', '10대', '20대', '30대', '40대', '50대', '60대'];
+// const List<String> genderList = <String>['성별', '남자', '여자', '비공개'];
 
 class _TrendsMainTabView extends State<TrendsMainTabView>
     with SingleTickerProviderStateMixin {
-  String dropdownValueAge1 = ageList.first;
-  String dropdownValueGender1 = genderList.first;
-  String dropdownValueAge2 = ageList.first;
-  String dropdownValueGender2 = genderList.first;
+  // String dropdownValueAge1 = ageList.first;
+  // String dropdownValueGender1 = genderList.first;
+  // String dropdownValueAge2 = ageList.first;
+  // String dropdownValueGender2 = genderList.first;
   late RankData rankData;
 
   @override
@@ -243,24 +243,24 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
           iconColor: const Color(0xFFFF4949),
           title: '일간 인기 게시글',
           children: [
-            CustomDropdownButton(
-              items: genderList,
-              onChanged: (String? genderValue) {
-                setState(() {
-                  dropdownValueGender1 = genderValue!;
-                });
-              },
-              valueGender: dropdownValueGender1
-            ),
-            CustomDropdownButton(
-                items: ageList,
-                onChanged: (String? ageValue) {
-                  setState(() {
-                    dropdownValueAge1 = ageValue!;
-                  });
-                },
-                valueGender: dropdownValueAge1
-            ),
+            // CustomDropdownButton(
+            //   items: genderList,
+            //   onChanged: (String? genderValue) {
+            //     setState(() {
+            //       dropdownValueGender1 = genderValue!;
+            //     });
+            //   },
+            //   valueGender: dropdownValueGender1
+            // ),
+            // CustomDropdownButton(
+            //     items: ageList,
+            //     onChanged: (String? ageValue) {
+            //       setState(() {
+            //         dropdownValueAge1 = ageValue!;
+            //       });
+            //     },
+            //     valueGender: dropdownValueAge1
+            // ),
           ]
         ),
         const Padding(
@@ -276,24 +276,24 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
             iconColor: const Color(0xFFFF4949),
             title: '주간 인기 게시글',
             children: [
-              CustomDropdownButton(
-                  items: genderList,
-                  onChanged: (String? genderValue) {
-                    setState(() {
-                      dropdownValueGender2 = genderValue!;
-                    });
-                  },
-                  valueGender: dropdownValueGender2
-              ),
-              CustomDropdownButton(
-                  items: ageList,
-                  onChanged: (String? ageValue) {
-                    setState(() {
-                      dropdownValueAge2 = ageValue!;
-                    });
-                  },
-                  valueGender: dropdownValueAge2
-              ),
+              // CustomDropdownButton(
+              //     items: genderList,
+              //     onChanged: (String? genderValue) {
+              //       setState(() {
+              //         dropdownValueGender2 = genderValue!;
+              //       });
+              //     },
+              //     valueGender: dropdownValueGender2
+              // ),
+              // CustomDropdownButton(
+              //     items: ageList,
+              //     onChanged: (String? ageValue) {
+              //       setState(() {
+              //         dropdownValueAge2 = ageValue!;
+              //       });
+              //     },
+              //     valueGender: dropdownValueAge2
+              // ),
             ]
         ),
         const Padding(
