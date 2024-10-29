@@ -18,7 +18,7 @@ class MindmapDetailScreen extends StatefulWidget {
   @override
   _MindmapDetailScreenState createState() => _MindmapDetailScreenState();
 }
-
+// TODO : 직접 추천 타고 가는 api 추가
 class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
 
   @override

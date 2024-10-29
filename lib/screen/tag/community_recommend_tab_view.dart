@@ -18,6 +18,7 @@ class CommunityRecommendTabView extends StatefulWidget {
   State<CommunityRecommendTabView> createState() => _CommunityRecommendTabView();
 }
 
+// TODO : 직접 추천 타고 가는 api 추가
 class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
   late CommunityRecommendData communityRecommendData;
 

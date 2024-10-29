@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/list/list_info.dart';
 import 'package:laxy/utils/utils.dart';
 
+// TODO : summary -> author 로 수정, viewCount 추가
 class PostListTile extends StatelessWidget {
   final String title;
   final String summary;
@@ -13,7 +14,7 @@ class PostListTile extends StatelessWidget {
 
   const PostListTile({
     this.title = 'title',
-    this.summary = 'content content content content content content content content content ',
+    this.summary = '',
     this.comment = 100,
     this.like = 100,
     this.imageURL,
@@ -24,7 +25,6 @@ class PostListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 테마 적용, onPress 연결해서 페이지 열기, 이미지 불러오기, 날짜 렌더링
     return MaterialButton(
       shape: Border(
         bottom: BorderSide(
@@ -46,7 +46,21 @@ class PostListTile extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(child: Text(title, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
+                      SizedBox(width: 2,),
+                    ],
+                  ),
+                  SizedBox(height: 2,),
+                  Row(
+                    children: [
                       Text(formatDate(dateTime), style: TextStyle(fontSize: 10)),
+                      Text(" | "),
+                      Expanded(
+                        child: Text(
+                          "작성자",
+                          style: TextStyle(fontSize: 12),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                       SizedBox(width: 2,),
                       ListInfo(
                         icon: Icons.comment_outlined,
@@ -56,14 +70,13 @@ class PostListTile extends StatelessWidget {
                         icon: Icons.favorite,
                         num: like,
                       ),
+                      /// viewCount 자리
+                      ListInfo(
+                        icon: Icons.visibility_outlined,
+                        num: comment,
+                      ),
                     ],
                   ),
-                  SizedBox(height: 2,),
-                  Text(
-                    summary,
-                    style: TextStyle(fontSize: 12),
-                    overflow: TextOverflow.ellipsis,
-                  )
                 ],
               ),
             ),
