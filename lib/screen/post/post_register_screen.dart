@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
@@ -12,6 +13,7 @@ import 'package:laxy/common/layout/post_layout.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/screen/post/temp_post_detail_screen.dart';
 import 'package:laxy/utils/utils.dart';
+import 'package:http/http.dart' as http;
 
 class PostRegisterScreen extends StatefulWidget {
   const PostRegisterScreen({super.key});
@@ -23,6 +25,7 @@ class PostRegisterScreen extends StatefulWidget {
 class _PostRegisterScreenState extends State<PostRegisterScreen> {
   TextEditingController _titleController = TextEditingController();
   quill.QuillController _controller = quill.QuillController.basic();
+  String? _uploadedFileUrl; // 업로드된 파일 URL을 저장할 변수
 
   @override
   void dispose() {
@@ -35,6 +38,71 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
   // 태그 리스트
   List<String> tagList = [];
 
+  String _getContentType(String path) {
+    final extension = path.split('.').last.toLowerCase();
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'bmp':
+        return 'image/bmp';
+      default:
+        return 'application/octet-stream'; // 기본값
+    }
+  }
+
+  Future<void> _uploadImage(String localPath) async {
+    final contentType = _getContentType(localPath);
+    final bytes = await File(localPath).readAsBytes();
+
+    final response = await http.post(
+      Uri.parse('https://api.bytescale.com/v2/accounts/kW15cGZ/uploads/binary'),
+      headers: {
+        'Authorization': 'Bearer public_kW15cGZ3pbvhDgeuAVKuifkQ2PFB',
+        'Content-Type': contentType,
+      },
+      body: bytes,
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      setState(() {
+        _uploadedFileUrl = jsonResponse['fileUrl']; // 파일 URL 저장
+      });
+    } else {
+      setState(() {
+        _uploadedFileUrl = null; // 실패 시 URL 초기화
+      });
+    }
+  }
+
+  Future<void> _processContent() async {
+    final contents = jsonEncode(_controller.document.toDelta().toJson());
+    final List<dynamic> delta = jsonDecode(contents);
+
+    for (var item in delta) {
+      if (item['insert'] is Map && item['insert'].containsKey('image')) {
+        String imagePath = item['insert']['image'];
+
+        // 이미지 경로가 로컬 경로인지 확인
+        if (imagePath.startsWith('/data/user/') || imagePath.startsWith('file://')) {
+          await _uploadImage(imagePath); // 이미지 업로드
+          // 로컬 이미지 경로를 서버 URL로 교체
+          item['insert']['image'] = _uploadedFileUrl ?? imagePath; // 업로드 실패 시 원본 경로 유지
+        }
+        // URL인 경우에는 아무 것도 하지 않음
+      }
+    }
+
+    // 최종 게시글 내용 확인
+    print('최종 게시글 내용: $delta');
+  }
+
+
   // TODO: 이미지 업로드 기능 추가 필요
   @override
   Widget build(BuildContext context) {
@@ -44,7 +112,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
         children: [
           IconButton(
             icon: Icon(Icons.check),
-            onPressed: () {
+            onPressed: () async{
               String? contents = jsonEncode(_controller.document.toDelta().toJson());
               bool contentsEmpty = contents == "\[\{\"insert\"\:\"\\n\"\}\]";
               if (contentsEmpty || tagList.isEmpty || _titleController.text.isEmpty) {
@@ -54,7 +122,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                 showFullDialog(context, contents.length);
               }
               else {
-                Navigator.pop(context);
+                // Navigator.pop(context);
                 PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TempPostDetailScreen(
                   postId: 14141252,
                   contents: extractQuillController(_controller),
@@ -62,6 +130,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                   tagList: tagList,
                 ));
                 Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                await _processContent(); // 내용 처리
                 print('작성 종료');
                 print(tagList);
                 print('제목: ${_titleController.text}');
