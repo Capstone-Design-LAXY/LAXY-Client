@@ -6,7 +6,6 @@ import 'package:laxy/common/component/show_dialog.dart';
 
 // API URL을 하나의 변수로 저장
 const String baseUrl = 'http://43.202.77.176:8001/api';
-
 final storage = FlutterSecureStorage(); // FlutterSecureStorage 인스턴스 생성
 
 // 회원가입 요청을 처리하는 함수
@@ -18,7 +17,6 @@ Future<void> registerUser(BuildContext context, {
   required String gender,
 }) async {
   final String url = '$baseUrl/signUp'; // 기본 URL에 회원가입 엔드포인트 추가
-
   // 요청 데이터 생성
   final Map<String, dynamic> data = {
     "email": email,
@@ -27,8 +25,6 @@ Future<void> registerUser(BuildContext context, {
     "birth": birth,
     "gender": gender,
   };
-  print(jsonEncode(data));
-
   try {
     // POST 요청 보내기
     final response = await http.post(
@@ -38,7 +34,6 @@ Future<void> registerUser(BuildContext context, {
       },
       body: jsonEncode(data), // Map을 JSON으로 변환
     );
-
     // 응답 처리
     if (response.statusCode == 200) {
       // 성공적으로 회원가입 처리
@@ -62,12 +57,10 @@ Future<void> loginUser(BuildContext context, {
   required String password,
 }) async {
   final String url = '$baseUrl/login'; // 기본 URL에 로그인 엔드포인트 추가
-
   final Map<String, dynamic> data = {
     "email": email,
     "password": password,
   };
-
   try {
     final response = await http.post(
       Uri.parse(url),
@@ -76,7 +69,6 @@ Future<void> loginUser(BuildContext context, {
       },
       body: jsonEncode(data),
     );
-
     if (response.statusCode == 200) {
       print('로그인 성공: ${response.body}');
       // 응답 데이터를 저장하는 함수 호출
@@ -117,11 +109,9 @@ Future<void> _logout() async {
 Future<void> deleteUser(BuildContext context) async {
   final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
-
   if(accessToken == null) {
     return;
   }
-
   try {
     final response = await http.delete(
       Uri.parse(url),
@@ -137,10 +127,175 @@ Future<void> deleteUser(BuildContext context) async {
       await _logout();
       return;
     } else {
-      // TODO: 액세스 토큰 만료 시 
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
       print('회원탈퇴 실패: ${errorResponse['message']}');
-      showErrorDialog(context, errorResponse['message']);
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 회원탈퇴 요청
+          await deleteUser(context); // 재호출
+          return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        showErrorDialog(context, errorResponse['message']);
+      }
+
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 액세스 토큰 갱신
+Future<String?> refreshAccessToken() async {
+  final String url = '$baseUrl/refreshAccessToken'; // 토큰 갱신 엔드포인트
+  String? refreshToken = await FlutterSecureStorage().read(key: "refreshToken");
+
+  if (refreshToken == null) {
+    return null; // refreshToken이 없으면 null 반환
+  }
+
+  try {
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "Bearer $refreshToken", // accessToken 추가
+      },
+    );
+    // TODO: refreshToken 만료 시 로그아웃 만들어야함
+    if (response.statusCode == 200) {
+      String newAccessToken = response.body; // 응답이 문자열일 경우
+      // 새로운 accessToken 저장
+      await storage.write(key: "accessToken", value: newAccessToken);
+      return newAccessToken; // 새로운 accessToken 반환
+    } else {
+      print('토큰 갱신 실패: ${response.body}');
+      return null;
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    return null;
+  }
+}
+// 사용자 정보 수정 요청
+Future<void> editUser(BuildContext context, {
+  String? name,
+  String? password,
+  String? birth,
+  String? gender,
+}) async {
+  final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if(accessToken == null) {
+    return;
+  }
+  // Request body에 담을 data  ( 'email', 'password' 자리가 변수 )
+  final Map<String, dynamic> data = {
+    "password": password,
+    "name": name,
+    "birth": birth,
+    "gender": gender,
+  };
+  try {
+    // 요청 보내는 부분 메소드, body 채우면 됌
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "Bearer $accessToken", // accessToken 추가
+      },
+      body: jsonEncode(data),
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('회원정보수정 성공: ${response.body}');
+      // 성공 시 동작 : 닉네임이 변경될 경우만 저장해주면 됌
+      if(name != null){
+        await storage.write(key: 'name', value: name);
+      }
+      if(password != null){
+        _logout();
+      }
+      return;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('회원정보수정 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          await editUser(context); // 재호출
+          return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+/// 요청 함수 기본 틀
+Future<void> actionObject(BuildContext context) async {
+  final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if(accessToken == null) {
+    return;
+  }
+  // Request body에 담을 data  ( 'email', 'password' 자리가 변수 )
+  final Map<String, dynamic> data = {
+    "email": 'email',
+    "password": 'password',
+  };
+  try {
+    // 요청 보내는 부분 메소드, body 채우면 됌
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "Bearer $accessToken", // accessToken 추가
+      },
+      body: jsonEncode(data),
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('회원탈퇴 성공: ${response.body}');
+      // 성공 시 동작
+      await _logout();
+      return;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('회원탈퇴 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          await deleteUser(context); // 재호출
+          return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
       throw Exception(errorResponse['message']);
     }
   } catch (e) {

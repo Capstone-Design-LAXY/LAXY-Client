@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
@@ -5,8 +7,11 @@ import 'package:laxy/common/component/custom/custom_radio.dart';
 import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
+import 'package:laxy/screen/user/login_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 class MyAccountPasswordScreen extends StatefulWidget {
   final String nickname;
@@ -51,18 +56,19 @@ class _MyAccountPasswordScreenState extends State<MyAccountPasswordScreen> {
     return true;
   }
 
-  // TODO: 연결 필요
-  // 입력 필드 검증
-  bool _validateFrom() {
-    String password = passwordController.text;
-    String confirmPassword = confirmPasswordController.text;
-    if (_isPasswordValid()){
-      print('password: '+password);
-      print('confirmPassword: '+confirmPassword);
-      Navigator.pop(context);
-      return true;
+  Future<void> _edit() async {
+    if (!_isPasswordValid()) return;
+    try {
+      await editUser(context,
+        password: passwordController.text,
+      );
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => LoginScreen()), // 홈 화면으로 이동
+          (Route<dynamic> route) => false, // 모든 기존 라우트 제거
+      );
+    } catch (e) {
+      print('회원정보수정 오류: $e');
     }
-    return false;
   }
 
   @override
@@ -161,7 +167,7 @@ class _MyAccountPasswordScreenState extends State<MyAccountPasswordScreen> {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        _validateFrom();
+                        _edit();
                       },
                       child: Text('비밀번호 변경'),
                     ),

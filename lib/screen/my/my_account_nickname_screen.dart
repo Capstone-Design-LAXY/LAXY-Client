@@ -5,8 +5,10 @@ import 'package:laxy/common/component/custom/custom_radio.dart';
 import 'package:laxy/common/component/custom/custom_text_field.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 class MyAccountNicknameScreen extends StatefulWidget {
   final String nickname;
@@ -37,20 +39,25 @@ class _MyAccountNicknameScreenState extends State<MyAccountNicknameScreen> {
     return true;
   }
 
+  Future<void> _edit() async {
+    if (!_isNicknameValid()) return;
+    try {
+      await editUser(context,
+        name: nicknameController.text
+      );
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => TrendsScreen()), // 홈 화면으로 이동
+            (Route<dynamic> route) => false, // 모든 기존 라우트 제거
+      );
+    } catch (e) {
+      print('회원정보수정 오류: $e');
+    }
+  }
+
   @override
   void dispose() {
     nicknameController.dispose();
     super.dispose();
-  }
-
-  bool _validateFrom() {
-    String nickname = nicknameController.text;
-    if (_isNicknameValid()){
-      print('nickname: '+nickname);
-      Navigator.pop(context);
-      return true;
-    }
-    return false;
   }
 
   @override
@@ -131,7 +138,7 @@ class _MyAccountNicknameScreenState extends State<MyAccountNicknameScreen> {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        _validateFrom();
+                        _edit();
                       },
                       child: Text('닉네임 변경'),
                     ),

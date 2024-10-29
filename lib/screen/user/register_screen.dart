@@ -125,6 +125,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // 요청 데이터
     String birth = '${birthday.year}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}';
     String gender = _selectedGender.toString().split('.').last; // 성별
+    switch (gender) {
+      case 'M':
+        gender = '남자';
+        break;
+      case 'F':
+        gender = '여자';
+        break;
+      default:
+        gender = '비공개';
+        break;
+    }
 
     try {
       await registerUser(

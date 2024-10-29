@@ -5,8 +5,10 @@ import 'package:laxy/common/component/custom/custom_radio.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/user/register_screen.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 class MyAccountEditScreen extends StatefulWidget {
   final String nickname;
@@ -44,16 +46,34 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
     return true;
   }
 
-  // TODO: 연결 필요
-  // 입력 필드 검증
-  bool _validateFrom() {
-    if (_isBirthdayValid()){
-      print('birthday: ${birthday.year} - ${birthday.month} - ${birthday.day}');
-      print('gender: ${_selectedGender.toString().split('.').last}');
-      Navigator.pop(context);
-      return true;
+  Future<void> _edit() async {
+    if (!_isBirthdayValid()) return;
+    // 요청 데이터
+    String birth = '${birthday.year}-${birthday.month.toString().padLeft(2, '0')}-${birthday.day.toString().padLeft(2, '0')}';
+    String gender = _selectedGender.toString().split('.').last; // 성별
+    switch (gender) {
+      case 'M':
+        gender = '남자';
+        break;
+      case 'F':
+        gender = '여자';
+        break;
+      default:
+        gender = '비공개';
+        break;
     }
-    return false;
+    try {
+      await editUser(context,
+        birth: birth,
+        gender: gender
+      );
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => TrendsScreen()), // 홈 화면으로 이동
+            (Route<dynamic> route) => false, // 모든 기존 라우트 제거
+      );
+    } catch (e) {
+      print('회원정보수정 오류: $e');
+    }
   }
 
   @override
@@ -194,7 +214,7 @@ class _MyAccountEditScreenState extends State<MyAccountEditScreen> {
                         foregroundColor: Color(0xFF5589D3),
                       ),
                       onPressed: () {
-                        _validateFrom();
+                        _edit();
                       },
                       child: Text('정보 수정'),
                     ),
