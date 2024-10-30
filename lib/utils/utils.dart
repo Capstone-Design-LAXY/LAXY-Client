@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:intl/intl.dart';
 
@@ -84,68 +85,23 @@ String escapeSpecialCharacters(String input) {
   });
 }
 
-class ParseSatellite {
-  final int tId;
-  final int grade;
-  final String tagName;
-
-  ParseSatellite({required this.tId, required this.grade, required this.tagName});
-
-  factory ParseSatellite.fromJson(Map<String, dynamic> json) {
-    return ParseSatellite(
-      tId: json['tId'],
-      grade: json['grade'],
-      tagName: json['tagName'],
-    );
-  }
-}
-
-class ParsePrimary {
-  final int tId;
-  final int grade;
-  final String tagName;
-
-  ParsePrimary({required this.tId, required this.grade, required this.tagName});
-
-  factory ParsePrimary.fromJson(Map<String, dynamic> json) {
-    return ParsePrimary(
-      tId: json['tId'],
-      grade: json['grade'],
-      tagName: json['tagName'],
-    );
-  }
-}
-
-class ParseOrbit {
-  final ParsePrimary primary;
-  final List<ParseSatellite> satellites;
-
-  ParseOrbit({required this.primary, required this.satellites});
-
-  factory ParseOrbit.fromJson(Map<String, dynamic> json) {
-    var satellitesList = json['satellites'] as List;
-    List<ParseSatellite> satellites = satellitesList.map((i) => ParseSatellite.fromJson(i)).toList();
-
-    return ParseOrbit(
-      primary: ParsePrimary.fromJson(json['primary']),
-      satellites: satellites,
-    );
-  }
-}
-
 class OrbitData {
-  final int uId;
-  final List<ParseOrbit> orbit;
+  final Tag? center;
+  final List<Tag>? satellites;
 
-  OrbitData({required this.uId, required this.orbit});
+  OrbitData({
+    this.center,
+    this.satellites,
+  });
 
   factory OrbitData.fromJson(Map<String, dynamic> json) {
-    var orbitList = json['orbit'] as List;
-    List<ParseOrbit> orbit = orbitList.map((i) => ParseOrbit.fromJson(i)).toList();
-
     return OrbitData(
-      uId: json['uId'],
-      orbit: orbit,
+      center: Tag.fromJson(json['center']),
+      satellites: json['satellites'] != null
+          ? (json['satellites'] as List)
+          .map((data) => Tag.fromJson(data))
+          .toList()
+          : null,
     );
   }
 }

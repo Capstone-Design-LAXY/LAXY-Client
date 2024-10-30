@@ -7,6 +7,7 @@ import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/common/layout/mindmap_layout.dart';
+import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 import 'package:laxy/common/component/background.dart';
 import 'mindmap_detail_screen.dart';
@@ -19,32 +20,35 @@ class MindmapScreen extends StatefulWidget {
 }
 
 class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProviderStateMixin {
-  late OrbitData orbitData;
+  List<OrbitData>? data;
 
   @override
   void initState() {
     super.initState();
+    _loadData();
+  }
 
-    String jsonString = '{"uId": 1231213, "orbit": [{"primary": {"tId": 10000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 10000003, "grade": 7, "tagName": "애플케어"}, {"tId": 10000004, "grade": 2, "tagName": "애플워치"}, {"tId": 10000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 10000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "토트넘"}, {"tId": 10000008, "grade": 1, "tagName": "축구"}, {"tId": 10000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "백종원"}, {"tId": 10000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 10000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 10000002, "grade": 6, "tagName": "한화"}, {"tId": 10000003, "grade": 7, "tagName": "티원"}, {"tId": 10000004, "grade": 7, "tagName": "젠지"}, {"tId": 10000005, "grade": 9, "tagName": "딮기"}]}]}';
-
-    // JSON 문자열을 OrbitData 객체로 파싱
-    orbitData = OrbitData.fromJson(jsonDecode(jsonString));
-
-    print(orbitData.orbit.length);
+  Future<void> _loadData() async{
+    data = await mindmapOrbit(context);
+    setState(() {});
   }
 
   // TODO: 테마 적용, 새로고침 기능 추가
   @override
   Widget build(BuildContext context) {
+    if (data == null) {
+      return Center(child: CircularProgressIndicator()); // 데이터 로드 중 로딩 인디케이터 표시
+    }
 
     List<Widget> _buildInnerSatellites(int index) {
       List<Widget> satellites = [];
-      for (int i = 0; i < orbitData.orbit[index].satellites.length; i++) {
+      if (data![index].satellites == null) return [];
+      for (int i = 0; i < data![index].satellites!.length; i++) {
         satellites.add(
           OrbitStar(
-            grade: orbitData.orbit[index].satellites[i].grade,
-            tagName: orbitData.orbit[index].satellites[i].tagName,
-            tagId: orbitData.orbit[index].satellites[i].tId,
+            grade: data![index].satellites![i].grade,
+            name: data![index].satellites![i].name,
+            tagId: data![index].satellites![i].tagId,
           )
         );
       }
@@ -53,18 +57,20 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
 
     List<Widget> _buildSatellites() {
       List<Widget> satellites = [];
-      for (int i = 0; i < orbitData.orbit.length; i++) {
+      for (int i = 0; i < data!.length; i++) {
         satellites.add(Orbit(
           onPressed: () {
-            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapDetailScreen(orbit: orbitData.orbit[i]));
+            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MindmapDetailScreen(orbit: data![i]));
             Navigator.push(context, pageRouteWithAnimation.fadeTransition());
           },
-          primary: OrbitStar(
-            grade: orbitData.orbit[i].primary.grade,
-            tagName: orbitData.orbit[i].primary.tagName,
-            showName: true,
-            tagId: orbitData.orbit[i].primary.tId,
-          ),
+          center: data![i].center == null
+            ? null
+            : OrbitStar(
+                grade: data![i].center!.grade,
+                name: data![i].center!.name,
+                showName: true,
+                tagId: data![i].center!.tagId,
+              ),
           type: OrbitType.satellite,
           satellites: _buildInnerSatellites(i),
         ));
@@ -80,19 +86,9 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
             child: Orbit(
               onPressed: (){},
               enableFeedback: false,
-              primary: Globe(
+              center: Globe(
                 onPressed: () {
-                  String jsonString;
-                  if (orbitData.uId == 1231213){
-                    jsonString = '{"uId": 123123123123, "orbit": [{"primary": {"tId": 10000001, "grade": 9, "tagName": "자격증"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "정처기"}, {"tId": 10000003, "grade": 7, "tagName": "토익"}, {"tId": 10000004, "grade": 2, "tagName": "SQLD"}, {"tId": 10000005, "grade": 8, "tagName": "Qnet"}]}, {"primary": {"tId": 10000006, "grade": 6, "tagName": "인공지능"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "GPT"}, {"tId": 10000008, "grade": 1, "tagName": "빅데이터"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "소금빵"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "빵"}]}]}';
-                  }
-                  else {
-                    jsonString = '{"uId": 1231213, "orbit": [{"primary": {"tId": 10000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 10000003, "grade": 7, "tagName": "애플케어"}, {"tId": 10000004, "grade": 2, "tagName": "애플워치"}, {"tId": 10000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 10000001, "grade": 10, "tagName": "아이폰"}, "satellites": [{"tId": 10000002, "grade": 5, "tagName": "13pro중고"}, {"tId": 10000003, "grade": 7, "tagName": "애플케어"}, {"tId": 10000004, "grade": 2, "tagName": "애플워치"}, {"tId": 10000005, "grade": 8, "tagName": "에어팟프로2"}]}, {"primary": {"tId": 10000006, "grade": 11, "tagName": "손흥민"}, "satellites": [{"tId": 10000007, "grade": 11, "tagName": "토트넘"}, {"tId": 10000008, "grade": 1, "tagName": "축구"}, {"tId": 10000008, "grade": 4, "tagName": "계약"}]}, {"primary": {"tId": 10000009, "grade": 4, "tagName": "흑백요리사"}, "satellites": [{"tId": 10000010, "grade": 10, "tagName": "백종원"}, {"tId": 10000010, "grade": 8, "tagName": "안성진"}]}, {"primary": {"tId": 10000001, "grade": 9, "tagName": "롤드컵"}, "satellites": [{"tId": 10000002, "grade": 6, "tagName": "한화"}, {"tId": 10000003, "grade": 7, "tagName": "티원"}, {"tId": 10000004, "grade": 7, "tagName": "젠지"}, {"tId": 10000005, "grade": 9, "tagName": "딮기"}]}]}';
-                  }
-                  setState(() {
-                    // JSON 문자열을 OrbitData 객체로 파싱
-                    orbitData = OrbitData.fromJson(jsonDecode(jsonString));
-                  });
+                  _loadData();
                 },
               ),
               satellites: _buildSatellites(),

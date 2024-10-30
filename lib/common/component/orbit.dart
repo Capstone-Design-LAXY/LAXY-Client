@@ -1,22 +1,25 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:laxy/common/component/orbit_star.dart';
 import 'package:laxy/common/const/enum.dart';
+import 'package:laxy/utils/utils.dart';
 
 class Orbit extends StatefulWidget {
-  final List<Widget> satellites;
-  final Widget primary;
+  final List<Widget> satellites; // Nullable을 제거하고 기본값을 설정
+  final Widget center; // Nullable을 제거하고 기본값을 설정
   final Function() onPressed;
   final OrbitType? type;
-  final bool enableFeedback;
+  final bool? enableFeedback;
 
-  const Orbit({
-    required this.satellites,
-    required this.primary,
+  Orbit({
+    List<Widget>? satellites,
+    Widget? center,
     required this.onPressed,
     this.type,
     this.enableFeedback = true,
     super.key,
-  });
+  })  : center = center ?? OrbitStar(showName: true,), // 기본값 설정
+        satellites = satellites ?? [OrbitStar()]; // 기본값 설정
 
   @override
   _OrbitState createState() => _OrbitState();
@@ -70,7 +73,7 @@ class _OrbitState extends State<Orbit> with SingleTickerProviderStateMixin {
             ),
             clipBehavior: Clip.hardEdge,
             // OrbitType.satellite일 경우에 궤도를 클릭했을 때 동작
-            child: widget.enableFeedback
+            child: widget.enableFeedback!
                 ? MaterialButton(
               onPressed: widget.onPressed,
               splashColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
@@ -81,7 +84,7 @@ class _OrbitState extends State<Orbit> with SingleTickerProviderStateMixin {
           // 중앙 행성
           Transform.scale(
               scale: widget.type == OrbitType.primary ? 0.8 : 1,
-              child: widget.primary
+              child: widget.center
           ),
           // 행성
           for (int i = 0; i < widget.satellites.length; i++)

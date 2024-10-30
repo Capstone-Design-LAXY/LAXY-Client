@@ -8,7 +8,7 @@ import 'package:laxy/utils/utils.dart';
 import 'package:laxy/common/component/orbit_star.dart';
 
 class MindmapDetailScreen extends StatefulWidget {
-  final ParseOrbit orbit;
+  final OrbitData orbit;
 
   const MindmapDetailScreen({
     required this.orbit,
@@ -26,12 +26,13 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
 
     List<Widget> _buildSatellites() {
       List<Widget> satellites = [];
-      for (int i = 0; i < widget.orbit.satellites.length; i++) {
+      if (widget.orbit.satellites == null) return [];
+      for (int i = 0; i < widget.orbit.satellites!.length; i++) {
         satellites.add(
             OrbitStar(
-              grade: widget.orbit.satellites[i].grade,
-              tagName: widget.orbit.satellites[i].tagName,
-              tagId: widget.orbit.satellites[i].tId,
+              grade: widget.orbit.satellites![i].grade,
+              name: widget.orbit.satellites![i].name,
+              tagId: widget.orbit.satellites![i].tagId,
               showName: true,
             )
         );
@@ -48,12 +49,14 @@ class _MindmapDetailScreenState extends State<MindmapDetailScreen> {
               onPressed: () {Navigator.of(context).pop();},
               satellites: _buildSatellites(),
               type: OrbitType.primary,
-              primary: OrbitStar(
-                tagId: widget.orbit.primary.tId,
-                showName: true,
-                tagName: widget.orbit.primary.tagName,
-                grade: widget.orbit.primary.grade,
-              ),
+              center: widget.orbit.center == null
+                ? null
+                : OrbitStar(
+                    tagId: widget.orbit.center!.tagId,
+                    showName: true,
+                    name: widget.orbit.center!.name,
+                    grade: widget.orbit.center!.grade,
+                  ),
             ),
           ),
           // FAB, 세그먼트 버튼

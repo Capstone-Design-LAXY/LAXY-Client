@@ -5,7 +5,7 @@ import 'package:laxy/common/component/orbit_star.dart';
 
 class TagListTile extends StatelessWidget {
   final int tagId;
-  final String tagName;
+  final String name;
   final int bookmarked;
   final int posts;
   final int grade;
@@ -13,7 +13,7 @@ class TagListTile extends StatelessWidget {
 
   const TagListTile({
     required this.tagId,
-    this.tagName = 'tag_name',
+    this.name = 'name',
     this.bookmarked = 110,
     this.posts = 100,
     this.grade = 5,
@@ -44,7 +44,7 @@ class TagListTile extends StatelessWidget {
             child: OrbitStar(
               grade: grade,
               tagId: tagId,
-              tagName: tagName,
+              name: name,
             ),
           ),
           // 내용
@@ -54,7 +54,7 @@ class TagListTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HorizontalExpanded(child: Text(tagName, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
+                  HorizontalExpanded(child: Text(name, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
                   SizedBox(height: 2,),
                   Row(
                     children: [

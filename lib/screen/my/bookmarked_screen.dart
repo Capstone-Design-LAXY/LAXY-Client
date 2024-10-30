@@ -325,7 +325,7 @@ class _BookmarkedScreenState extends State<BookmarkedScreen> {
         tags.add(
             TagListTile(
               tagId: searchTagData.tags[i].tagId,
-              tagName: searchTagData.tags[i].name,
+              name: searchTagData.tags[i].name,
               posts: searchTagData.tags[i].postCount!,
               bookmarked: searchTagData.tags[i].bookmarkCount!,
               grade: searchTagData.tags[i].grade!,

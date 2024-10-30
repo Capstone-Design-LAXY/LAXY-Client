@@ -8,15 +8,15 @@ import 'package:laxy/screen/tag/tag_screen.dart';
 class OrbitStar extends StatefulWidget {
   final int? grade;
   final bool? showName;
-  final String? tagName;
+  final String? name;
   final int? tagId;
 
   const OrbitStar({
     super.key,
     this.grade = 1,
     this.showName = false,
-    this.tagName = "tagName",
-    this.tagId,
+    this.name = "name",
+    this.tagId = 0,
   });
 
   @override
@@ -33,10 +33,10 @@ class _OrbitStarState extends State<OrbitStar> {
 
     void _defaultOnPressed() {
       if (widget.grade! > 5) {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
+        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: widget.name!, tagId: widget.tagId!,));
         Navigator.push(context, pageRouteWithAnimation.fadeTransition());
       } else {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: widget.tagName!, tagId: widget.tagId!,));
+        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: widget.name!, tagId: widget.tagId!,));
         Navigator.push(context, pageRouteWithAnimation.fadeTransition());
       }
     }
@@ -76,7 +76,7 @@ class _OrbitStarState extends State<OrbitStar> {
                 width: 130,
                 height: 25,
                 child: Text(
-                  widget.tagName!,
+                  widget.name!,
                   // TODO: Marquee 적용가능하면 좋을듯
                   overflow: TextOverflow.visible,
                   textAlign: TextAlign.center,
