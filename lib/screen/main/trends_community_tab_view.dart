@@ -49,7 +49,6 @@ class _TrendsCommunityTabViewState extends State<TrendsCommunityTabView> {
               rank: i + 1,
               bookmarkCount: data![i].bookmarkCount,
               postCount: data![i].postCount,
-              // shift: data[i].change,
               grade: data![i].grade,
               onPressed: () {
                 if(data![i].grade <= 5){
@@ -83,6 +82,7 @@ class _TrendsCommunityTabViewState extends State<TrendsCommunityTabView> {
         Column(
           children: _buildRank(),
         ),
+        if(data!.isEmpty) Center(child: Text('인기 커뮤니티 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
       ],
     );
   }

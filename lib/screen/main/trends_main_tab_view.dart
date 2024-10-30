@@ -127,6 +127,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
          Column(
           children: _buildDaily(),
         ),
+        if(daily!.isEmpty) Center(child: Text('일간 인기 게시글 없음'),),
         const Divider(height: 1, color: Color(0xFF48464C),),
         ListHeader(
             icon: Icons.local_fire_department,
@@ -159,7 +160,8 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
         ),
         Column(
           children: _buildWeekly(),
-        )
+        ),
+        if(daily!.isEmpty) Center(child: Text('주간 인기 게시글 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
       ],
     );
   }

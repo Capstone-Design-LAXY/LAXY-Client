@@ -19,37 +19,46 @@ class CustomDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: 테마 적용
-    return SizedBox(
-      height: 30,
-      child: MaterialButton(
-        onPressed: onPressed,
-        elevation: 0,
-        enableFeedback: enableFeedback!,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        child: Row(
-          children: [
+    Widget buildItem() {
+      Widget innerItem = Row(
+        children: [
+          Text(
+            name!,
+            style: TextStyle(fontSize: 12),
+          ),
+          // 벳지
+          if (isNew!)
+            const Padding(
+              padding: EdgeInsets.only(left: 5.0, top: 3),
+              child: Badge(
+                backgroundColor: Color(0xFFFF4949),
+              ),
+            ),
+          Spacer(),
+          if (postCount != null) // posts가 null이 아닌 경우에만 Text 위젯을 렌더링
             Text(
-              name!,
+              formatNum(postCount),
               style: TextStyle(fontSize: 12),
             ),
-            // 벳지
-            if (isNew!)
-              const Padding(
-                padding: EdgeInsets.only(left: 5.0, top: 3),
-                child: Badge(
-                  backgroundColor: Color(0xFFFF4949),
-                ),
-              ),
-            Spacer(),
-            if (postCount != null) // posts가 null이 아닌 경우에만 Text 위젯을 렌더링
-              Text(
-                formatNum(postCount),
-                style: TextStyle(fontSize: 12),
-              ),
-          ],
-        ),
-      ),
-    );
+        ],
+      );
+      Widget item = enableFeedback!
+        ? MaterialButton(
+            onPressed: onPressed,
+            elevation: 0,
+            enableFeedback: enableFeedback!,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: innerItem
+          )
+        : GestureDetector(
+            onTap: onPressed,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: innerItem
+            )
+          );
+      return SizedBox(height: 30, child: item,);
+    }
+    return buildItem();
   }
 }

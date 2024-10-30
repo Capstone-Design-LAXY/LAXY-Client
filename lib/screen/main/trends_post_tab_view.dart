@@ -60,8 +60,6 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
 
     List<Widget> _buildPosts() {
       List<Widget> posts = [];
-      if (data == null) return [Container()];
-
       for (int i = 0; i < data!.length; i++) {
         posts.add(
             PostListTile(
@@ -109,6 +107,7 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
         Column(
           children: _buildPosts(),
         ),
+        if(data!.isEmpty) Center(child: Text('게시글 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
       ],
     );
   }

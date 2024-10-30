@@ -30,7 +30,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   bool isLogin = false;
   List<Tag>? random;
   List<Tag>? recommended;
-  List<Tag>? my;
+  List<Tag>? bookmarked;
 
   @override
   void initState() {
@@ -41,8 +41,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Future<void> _loadData() async{
     isLogin = await isAccessToken();
     if (isLogin){
-      recommended = await randomDrawer(context);
-      my = await randomDrawer(context);
+      recommended = await recommendedDrawer(context);
+      bookmarked = await bookmarkedDrawer(context);
     }
     else {
       random = await randomDrawer(context);
@@ -52,7 +52,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    if (random == null && (recommended == null || my == null)) {
+    if (random == null && (recommended == null || bookmarked == null)) {
       return Center(child: CircularProgressIndicator()); // 데이터 로드 중 로딩 인디케이터 표시
     }
 
@@ -81,55 +81,56 @@ class _CustomDrawerState extends State<CustomDrawer> {
       return data;
     }
 
-    // List<Widget> _buildBookmarked() {
-    //   List<Widget> bookmarked = [];
-    //   for (int i = 0; i < drawerData.bookmarked.length; i++) {
-    //     bookmarked.add(
-    //         CustomDrawerItem(
-    //           name: drawerData.bookmarked[i].name,
-    //           postCount: drawerData.bookmarked[i].postCount,
-    //           onPressed: () {
-    //             Navigator.pop(context);
-    //             if(drawerData.bookmarked[i].grade! <= 5){
-    //               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
-    //               Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
-    //             }
-    //             else {
-    //               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
-    //               Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
-    //             }
-    //           },
-    //         )
-    //     );
-    //   }
-    //   return bookmarked;
-    // }
+    List<Widget> _buildRecommended() {
+      List<Widget> data = [];
+      if(recommended == null || recommended!.isEmpty) return [CustomDrawerItem(name: '추천 없음', enableFeedback: false, onPressed: () {},)];
+      for (int i = 0; i < recommended!.length; i++) {
+        data.add(
+            CustomDrawerItem(
+              name: recommended![i].name,
+              postCount: recommended![i].postCount,
+              onPressed: () {
+                Navigator.pop(context);
+                if(recommended![i].grade <= 5){
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: recommended![i].tagId, tagName: recommended![i].name,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                }
+                else {
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: recommended![i].tagId, tagName: recommended![i].name,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                }
+              },
+            )
+        );
+      }
+      return data;
+    }
 
-    // List<Widget> _buildRecommended() {
-    //   List<Widget> recommended = [];
-    //   for (int i = 0; i < drawerData.bookmarked.length; i++) {
-    //     recommended.add(
-    //         CustomDrawerItem(
-    //           name: drawerData.recommended[i].name,
-    //           postCount: drawerData.recommended[i].postCount,
-    //           onPressed: () {
-    //             Navigator.pop(context);
-    //             if(drawerData.bookmarked[i].grade! <= 5){
-    //               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
-    //               Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
-    //             }
-    //             else {
-    //               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: drawerData.bookmarked[i].tagId, tagName: drawerData.bookmarked[i].name,));
-    //               Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
-    //             }
-    //           },
-    //         )
-    //     );
-    //   }
-    //   return recommended;
-    // }
+    List<Widget> _buildBookmarked() {
+      List<Widget> data = [];
+      if(bookmarked == null || bookmarked!.isEmpty) return [CustomDrawerItem(name: '즐겨찾기 없음', enableFeedback: false, onPressed: () {},)];
+      for (int i = 0; i < bookmarked!.length; i++) {
+        data.add(
+            CustomDrawerItem(
+              name: bookmarked![i].name,
+              postCount: bookmarked![i].postCount,
+              onPressed: () {
+                Navigator.pop(context);
+                if(bookmarked![i].grade <= 5){
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: bookmarked![i].tagId, tagName: bookmarked![i].name,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                }
+                else {
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: bookmarked![i].tagId, tagName: bookmarked![i].name,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                }
+              },
+            )
+        );
+      }
+      return data;
+    }
 
-    // TODO: 테마 적용
     return Drawer(
       backgroundColor: Color(0xFFD4E3FF),
       width: 200,
@@ -140,7 +141,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             SizedBox(height: 10),
             if (isLogin) ...[
               CustomDrawerHeader(title: '즐겨찾기'),
-              // ..._buildBookmarked(),
+              ..._buildBookmarked(),
               Divider(),
               // 메뉴 (로그인 시 노출)
               CustomDrawerHeader(title: '메뉴'),
@@ -169,11 +170,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
               Divider(),
               // 추천 커뮤니티
               CustomDrawerHeader(title: '추천 커뮤니티',),
-              // ..._buildRecommended(),
+              ..._buildRecommended(),
             ],
-            // 랜덤 커뮤니티
-            CustomDrawerHeader(title: '추천 커뮤니티',),
-            ..._buildRandom(),
+            if (!isLogin) ...[
+              // 랜덤 커뮤니티
+              CustomDrawerHeader(title: '추천 커뮤니티',),
+              ..._buildRandom(),
+            ],
             Spacer(),
             SizedBox(
               height: 30,

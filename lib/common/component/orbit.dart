@@ -60,26 +60,29 @@ class _OrbitState extends State<Orbit> with SingleTickerProviderStateMixin {
               ),
             ),
           // 궤도
-          Container(
-            width: 380,
-            height: 380,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(190)),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.5),
-                width: 1.0,
-                style: BorderStyle.solid,
+          Visibility(
+            visible: widget.satellites.isNotEmpty,
+            child: Container(
+              width: 380,
+              height: 380,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(190)),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.5),
+                  width: 1.0,
+                  style: BorderStyle.solid,
+                ),
               ),
+              clipBehavior: Clip.hardEdge,
+              // OrbitType.satellite일 경우에 궤도를 클릭했을 때 동작
+              child: widget.enableFeedback!
+                  ? MaterialButton(
+                onPressed: widget.onPressed,
+                splashColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
+                highlightColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
+              )
+                  : null, // type이 primary일 경우 클릭 없음
             ),
-            clipBehavior: Clip.hardEdge,
-            // OrbitType.satellite일 경우에 궤도를 클릭했을 때 동작
-            child: widget.enableFeedback!
-                ? MaterialButton(
-              onPressed: widget.onPressed,
-              splashColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
-              highlightColor: Color(0xFF5589D3).withOpacity(0.2), // 클릭 시 효과
-            )
-                : null, // type이 primary일 경우 클릭 없음
           ),
           // 중앙 행성
           Transform.scale(
