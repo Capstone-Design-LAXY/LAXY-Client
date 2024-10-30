@@ -81,7 +81,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
     }
   }
 
-  Future<void> _processContent() async {
+  Future<String> _processContent() async {
     final contents = jsonEncode(_controller.document.toDelta().toJson());
     final List<dynamic> delta = jsonDecode(contents);
 
@@ -98,9 +98,9 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
         // URL인 경우에는 아무 것도 하지 않음
       }
     }
-
     // 최종 게시글 내용 확인
-    print('최종 게시글 내용: $delta');
+    // print('최종 게시글 내용: ${jsonEncode(delta)}');
+    return jsonEncode(delta);
   }
 
 
@@ -123,22 +123,28 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
                 showFullDialog(context, contents.length);
               }
               else {
-                // Navigator.pop(context);
-                // PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TempPostDetailScreen(
-                //   postId: 14141252,
-                //   contents: extractQuillController(_controller),
-                //   title: _titleController.text,
-                //   tagList: tagList,
-                // ));
-                // Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
-                await _processContent(); // 내용 처리
-                print('작성 종료');
-                print(tagList);
-                print('제목: ${_titleController.text}');
-                print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
-                await writePost(context, title: _titleController.text, content: jsonEncode(_controller.document.toDelta().toJson()), tags: tagList);
+                // 로딩 인디케이터 표시
+                showDialog(
+                  context: context,
+                  barrierDismissible: false, // 배경 클릭으로 닫히지 않도록 설정
+                  builder: (context) {
+                    return Center(child: CircularProgressIndicator()); // 로딩 인디케이터
+                  },
+                );
+
+                try {
+                  // 내용 처리
+                  String content = await _processContent();
+                  int newPostId = await writePost(context, title: _titleController.text, content: content, tags: tagList);
+                  Navigator.pop(context); // 로딩 인디케이터 닫기
+                  Navigator.pop(context); // 게시글 작성 창 닽기
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostDetailScreen(postId: newPostId,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                } catch (e) {
+                  Navigator.pop(context); // 오류 발생 시 로딩 인디케이터 닫기
+                  showErrorDialog(context, '게시글 등록에 실패했습니다.'); // 오류 메시지 표시
+                }
               }
-              // print(escapeSpecialCharacters(jsonEncode(_controller.document.toDelta().toJson())));
             }
           ),
           SizedBox(width: 8,)

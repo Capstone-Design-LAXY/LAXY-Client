@@ -1512,7 +1512,6 @@ Future<int> writePost(BuildContext context,{
     "content": content,
     "tags": tags,
   };
-  print("요청 보내기 전 출력: ${jsonEncode(data)}");
   try {
     // 요청 보내는 부분
     final response = await http.post(
