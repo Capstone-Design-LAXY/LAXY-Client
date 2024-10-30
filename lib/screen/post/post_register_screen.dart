@@ -12,6 +12,7 @@ import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
 import 'package:laxy/screen/post/temp_post_detail_screen.dart';
+import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
@@ -123,19 +124,19 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
               }
               else {
                 // Navigator.pop(context);
-                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TempPostDetailScreen(
-                  postId: 14141252,
-                  contents: extractQuillController(_controller),
-                  title: _titleController.text,
-                  tagList: tagList,
-                ));
-                Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                // PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TempPostDetailScreen(
+                //   postId: 14141252,
+                //   contents: extractQuillController(_controller),
+                //   title: _titleController.text,
+                //   tagList: tagList,
+                // ));
+                // Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 await _processContent(); // 내용 처리
                 print('작성 종료');
                 print(tagList);
                 print('제목: ${_titleController.text}');
-                print(jsonEncode(_controller.document.toDelta().toJson()));
                 print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
+                await writePost(context, title: _titleController.text, content: jsonEncode(_controller.document.toDelta().toJson()), tags: tagList);
               }
               // print(escapeSpecialCharacters(jsonEncode(_controller.document.toDelta().toJson())));
             }

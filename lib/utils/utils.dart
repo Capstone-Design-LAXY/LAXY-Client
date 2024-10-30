@@ -127,7 +127,7 @@ class Tag {
   // JSON 데이터를 Tag 객체로 변환
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
-      tagId: json['tagId'],
+      tagId: json['tagId'] ?? json['id'],
       name: json['name'],
       postCount: json['postCount'],
       bookmarkCount: json['bookmarkCount'],
@@ -169,15 +169,20 @@ class Post {
 
   // JSON 데이터를 Post 객체로 변환
   factory Post.fromJson(Map<String, dynamic> json) {
+    // contents를 JSON 문자열로부터 List<Map<String, dynamic>>로 변환
+    List<Map<String, dynamic>>? contentsList;
+    if (json['contents'] != null) {
+      String contentsString = json['contents'];
+      // JSON 문자열을 List<Map<String, dynamic>>로 파싱
+      contentsList = List<Map<String, dynamic>>.from(jsonDecode(contentsString));
+    }
     return Post(
       postId: json['postId'],
       title: json['title'],
       author: json['author'],
       commentCount: json['commentCount'],
       likeCount: json['likeCount'],
-      contents: json['contents'] != null
-          ? List<Map<String, dynamic>>.from(json['contents'])
-          : null,
+      contents: contentsList,
       isLiked: json['isLiked'],
       createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
       viewCount: json['viewCount'],
