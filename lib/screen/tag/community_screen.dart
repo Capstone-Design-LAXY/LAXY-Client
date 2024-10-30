@@ -11,6 +11,7 @@ import 'package:laxy/screen/tag/community_main_tab_view.dart';
 import 'package:laxy/screen/tag/community_post_tab_view.dart';
 import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
 import 'package:laxy/utils/auth_utils.dart';
+import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommunityScreen extends StatefulWidget {
@@ -33,29 +34,22 @@ class _CommunityScreenState extends State<CommunityScreen>
   late TabController controller;
   late CommunityData communityData;
   bool isLogin = false;
+  bool isBookmarked = false;
 
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 4, vsync: this);
-    String jsonString = '''
-    {
-      "is_bookmarked": false
-    }
-    ''';
-
-    // JSON 문자열을 RankData 객체로 파싱
-    communityData = CommunityData.fromJson(jsonDecode(jsonString));
-    _checkAccessToken();
+    _loadData();
   }
 
-  void _checkAccessToken() async{
-    bool loginStatus = await isAccessToken();
-    setState(() {
-      isLogin = loginStatus;
-    });
-    // print(isLogin);
+  Future<void> _loadData() async{
+    isLogin = await isAccessToken();
+    if(isLogin) {
+      isBookmarked = await checkBookmark(context, tagId: widget.tagId);
+    }
+    setState(() {});
   }
 
   @override
@@ -73,15 +67,20 @@ class _CommunityScreenState extends State<CommunityScreen>
         children: [
           IconButton(
             icon: Icon(
-              communityData.isBookmarked && isLogin
+              isLogin && isBookmarked
                   ? Icons.bookmark
                   : Icons.bookmark_outline,
             ),
             onPressed: () {
               if (isLogin){
-                setState(() {
-                  communityData = communityData.toggleIsBookmarked();
-                });
+                if (isBookmarked) {
+                  deleteBookmark(context, tagId: widget.tagId);
+                  setState(() {isBookmarked = false;});
+                }
+                else {
+                  addBookmark(context, tagId: widget.tagId);
+                  setState(() {isBookmarked = true;});
+                }
               }
               else {
                 showLoginDialog(context);
@@ -115,10 +114,10 @@ class _CommunityScreenState extends State<CommunityScreen>
                 child: TabBarView(
                   controller: controller,
                   children: [
-                    CommunityMainTabView(),
-                    CommunityGoodPostTabView(),
-                    CommunityPostTabView(),
-                    CommunityRecommendTabView(),
+                    CommunityMainTabView(name: widget.tagName,),
+                    CommunityGoodPostTabView(name: widget.tagName,),
+                    CommunityPostTabView(name: widget.tagName,),
+                    CommunityRecommendTabView(tagId: widget.tagId,),
                   ],
                 ),
               ),

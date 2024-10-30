@@ -51,7 +51,8 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
 
     List<Widget> _buildDaily() {
       List<Widget> data = [];
-      for (int i = 0; i < daily!.length; i++) {
+      int len = daily!.length > 10 ? 10 : daily!.length;
+      for (int i = 0; i < len; i++) {
         data.add(
             PostRankingListTile(
               title: daily![i].title,
@@ -72,7 +73,8 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
 
     List<Widget> _buildWeekly() {
       List<Widget> data = [];
-      for (int i = 0; i < weekly!.length; i++) {
+      int len = weekly!.length > 10 ? 10 : weekly!.length;
+      for (int i = 0; i < len; i++) {
         data.add(
             PostRankingListTile(
               title: weekly![i].title,
@@ -127,7 +129,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
          Column(
           children: _buildDaily(),
         ),
-        if(daily!.isEmpty) Center(child: Text('일간 인기 게시글 없음'),),
+        if(daily!.isEmpty) Center(child: Text('일간 인기 게시글 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
         const Divider(height: 1, color: Color(0xFF48464C),),
         ListHeader(
             icon: Icons.local_fire_department,

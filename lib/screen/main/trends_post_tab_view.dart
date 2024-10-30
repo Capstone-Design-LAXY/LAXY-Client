@@ -81,7 +81,6 @@ class _TrendsPostTabView extends State<TrendsPostTabView>
       return posts;
     }
 
-    // TODO: 테마 적용
     return ListView(
       children: [
         // 헤더
