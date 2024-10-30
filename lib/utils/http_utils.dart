@@ -38,7 +38,7 @@ Future<void> registerUser(BuildContext context, {
     // 응답 처리
     if (response.statusCode == 200) {
       // 성공적으로 회원가입 처리
-      print('회원가입 성공: ${response.body}');
+      print('회원가입 성공: ${utf8.decode(response.bodyBytes)}');
       return; // 성공 시 추가 처리 필요 시 반환
     } else {
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
@@ -71,9 +71,9 @@ Future<void> loginUser(BuildContext context, {
       body: jsonEncode(data),
     );
     if (response.statusCode == 200) {
-      print('로그인 성공: ${response.body}');
+      print('로그인 성공: ${utf8.decode(response.bodyBytes)}');
       // 응답 데이터를 저장하는 함수 호출
-      await _saveLoginResponse(response.body);
+      await _saveLoginResponse(utf8.decode(response.bodyBytes));
       return;
     } else {
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
@@ -123,7 +123,7 @@ Future<void> deleteUser(BuildContext context) async {
     );
 
     if (response.statusCode == 200) {
-      print('회원탈퇴 성공: ${response.body}');
+      print('회원탈퇴 성공: ${utf8.decode(response.bodyBytes)}');
       // 응답 데이터를 저장하는 함수 호출
       await _logout();
       return;
@@ -171,7 +171,7 @@ Future<String?> refreshAccessToken() async {
     );
     // TODO: refreshToken 만료 시 로그아웃 만들어야함
     if (response.statusCode == 200) {
-      String newAccessToken = response.body; // 응답이 문자열일 경우
+      String newAccessToken = utf8.decode(response.bodyBytes); // 응답이 문자열일 경우
       // 새로운 accessToken 저장
       await storage.write(key: "accessToken", value: newAccessToken);
       return newAccessToken; // 새로운 accessToken 반환
@@ -216,7 +216,7 @@ Future<void> editUser(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('회원정보수정 성공: ${response.body}');
+      print('회원정보수정 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작 : 닉네임이 변경될 경우만 저장해주면 됌
       if(name != null){
         await storage.write(key: 'name', value: name);
@@ -271,9 +271,9 @@ Future<List<Post>> trendAllPost(BuildContext context, {String sortBy = 'recent'}
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('트랜드-전체 요청 성공: ${response.body}');
+      print('트랜드-전체 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = (jsonDecode(response.body) as List)
+      List<Post> data = (jsonDecode(utf8.decode(response.bodyBytes)) as List)
           .map<Post>((json) => Post.fromJson(json))
           .toList();
       return data;
@@ -322,9 +322,9 @@ Future<List<Post>> trendMainDaily(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('트랜드-메인-일간 요청 성공: ${response.body}');
+      print('트랜드-메인-일간 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -371,9 +371,9 @@ Future<List<Post>> trendMainWeekly(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('트랜드-메인-주간 요청 성공: ${response.body}');
+      print('트랜드-메인-주간 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -420,9 +420,9 @@ Future<List<Tag>> trendCommunity(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('트랜드-커뮤니티 요청 성공: ${response.body}');
+      print('트랜드-커뮤니티 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -470,9 +470,9 @@ Future<List<OrbitData>> mindmapOrbit(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('마인드맵 요청 성공: ${response.body}');
+      print('마인드맵 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<OrbitData> data = jsonDecode(response.body).map<OrbitData>((json) => OrbitData.fromJson(json)).toList();
+      List<OrbitData> data = jsonDecode(utf8.decode(response.bodyBytes)).map<OrbitData>((json) => OrbitData.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -519,9 +519,9 @@ Future<List<Tag>> randomDrawer(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('드로워-랜덤 요청 성공: ${response.body}');
+      print('드로워-랜덤 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -568,9 +568,9 @@ Future<List<Tag>> recommendedDrawer(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('드로워-추천 요청 성공: ${response.body}');
+      print('드로워-추천 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -617,9 +617,9 @@ Future<List<Tag>> bookmarkedDrawer(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('드로워-즐겨찾기 요청 성공: ${response.body}');
+      print('드로워-즐겨찾기 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -668,9 +668,9 @@ Future<bool> checkBookmark(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('태그 북마크 여부 요청 성공: ${response.body}');
+      print('태그 북마크 여부 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      bool result = response.body.toLowerCase() == 'true';
+      bool result = utf8.decode(response.bodyBytes).toLowerCase() == 'true';
       return result;
     } else {
       // 에러 코드 출력
@@ -719,7 +719,7 @@ Future<void> addBookmark(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('태그 북마크 등록 요청 성공: ${response.body}');
+      print('태그 북마크 등록 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -769,7 +769,7 @@ Future<void> deleteBookmark(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('태그 북마크 해제 요청 성공: ${response.body}');
+      print('태그 북마크 해제 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -820,9 +820,9 @@ Future<List<Post>> tagPost(BuildContext context,{
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('태그 페이지 요청 성공: ${response.body}');
+      print('태그 페이지 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -871,9 +871,9 @@ Future<List<Post>> communtyMainDaily(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('커뮤니티-메인-일간 요청 성공: ${response.body}');
+      print('커뮤니티-메인-일간 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -922,9 +922,9 @@ Future<List<Post>> communityMainWeekly(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('커뮤니티-메인-주간 요청 성공: ${response.body}');
+      print('커뮤니티-메인-주간 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -973,9 +973,9 @@ Future<List<Post>> communityGoodPost(BuildContext context,{
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('커뮤니티-공감글 요청 성공: ${response.body}');
+      print('커뮤니티-공감글 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1025,9 +1025,9 @@ Future<List<Post>> communityAllPost(BuildContext context,{
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('커뮤니티-전체 요청 성공: ${response.body}');
+      print('커뮤니티-전체 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1076,9 +1076,9 @@ Future<List<Tag>> communityRelated(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('커뮤니티-추천 요청 성공: ${response.body}');
+      print('커뮤니티-추천 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1123,9 +1123,9 @@ Future<List<Tag>> bookmarkedTag(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('마이페이지-즐겨찾기태그 요청 성공: ${response.body}');
+      print('마이페이지-즐겨찾기태그 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Tag> data = jsonDecode(response.body).map<Tag>((json) => Tag.fromJson(json)).toList();
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1170,9 +1170,9 @@ Future<List<Post>> likedPost(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('마이페이지-좋아요한글 요청 성공: ${response.body}');
+      print('마이페이지-좋아요한글 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1217,9 +1217,9 @@ Future<List<Post>> myPost(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('마이페이지-작성한글 요청 성공: ${response.body}');
+      print('마이페이지-작성한글 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Post> data = jsonDecode(response.body).map<Post>((json) => Post.fromJson(json)).toList();
+      List<Post> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Post>((json) => Post.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1264,9 +1264,9 @@ Future<List<Comment>> myComment(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('마이페이지-작성한댓글 요청 성공: ${response.body}');
+      print('마이페이지-작성한댓글 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Comment> data = jsonDecode(response.body).map<Comment>((json) => Comment.fromJson(json)).toList();
+      List<Comment> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Comment>((json) => Comment.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1313,7 +1313,7 @@ Future<void> likeComment(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('댓글 좋아요 요청 성공: ${response.body}');
+      print('댓글 좋아요 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return ;
     } else {
@@ -1362,7 +1362,7 @@ Future<void> deleteLikeComment(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('댓글 좋아요 해제 요청 성공: ${response.body}');
+      print('댓글 좋아요 해제 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return ;
     } else {
@@ -1411,7 +1411,7 @@ Future<void> deleteComment(BuildContext context,{
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('댓글 삭제 요청 성공: ${response.body}');
+      print('댓글 삭제 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1462,9 +1462,9 @@ Future<Post> detailPost(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 상세 요청 성공: ${response.body}');
+      print('게시글 상세 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      Post result = Post.fromJson(jsonDecode(response.body));
+      Post result = Post.fromJson(jsonDecode(utf8.decode(response.bodyBytes)));
       print(result);
       return result;
     } else {
@@ -1521,9 +1521,9 @@ Future<int> writePost(BuildContext context,{
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 등록 요청 성공: ${response.body}');
+      print('게시글 등록 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      int result = int.parse(response.body);
+      int result = int.parse(utf8.decode(response.bodyBytes));
       return result;
     } else {
       // 에러 코드 출력
@@ -1573,9 +1573,9 @@ Future<List<Comment>> postDetailComment(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 상세 댓글 요청 성공: ${response.body}');
+      print('게시글 상세 댓글 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
-      List<Comment> data = jsonDecode(response.body).map<Comment>((json) => Comment.fromJson(json)).toList();
+      List<Comment> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Comment>((json) => Comment.fromJson(json)).toList();
       return data;
     } else {
       // 에러 코드 출력
@@ -1622,7 +1622,7 @@ Future<void> likePost(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 좋아요 요청 성공: ${response.body}');
+      print('게시글 좋아요 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1671,7 +1671,7 @@ Future<void> deleteLikePost(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 좋아요 해제 요청 성공: ${response.body}');
+      print('게시글 좋아요 해제 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1726,7 +1726,7 @@ Future<void> writeComment(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('댓글 등록 성공: ${response.body}');
+      print('댓글 등록 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1775,7 +1775,7 @@ Future<void> deletePost(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 삭제 요청 성공: ${response.body}');
+      print('게시글 삭제 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1834,7 +1834,7 @@ Future<void> editPost(BuildContext context,{
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('게시글 수정 요청 성공: ${response.body}');
+      print('게시글 수정 요청 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1888,7 +1888,7 @@ Future<void> editComment(BuildContext context, {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('댓글 수정 성공: ${response.body}');
+      print('댓글 수정 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       return;
     } else {
@@ -1903,6 +1903,57 @@ Future<void> editComment(BuildContext context, {
           // 새로운 accessToken으로 다시 요청
           await editComment(context, commentId: commentId, contents: contents); // 재호출
           return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 태그 검색 요청
+Future<List<Tag>> searchTag(BuildContext context, {
+  required String query
+}) async {
+  final String url = '$baseUrl/tag/search?query=$query'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
+  // accessToken이 존재하는 경우 Authorization 헤더 추가
+  if (accessToken != null) {
+    headers["Authorization"] = "Bearer $accessToken";
+  }
+  try {
+    // 요청 보내는 부분
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('태그 검색 요청 성공: ${utf8.decode(response.bodyBytes)}');
+      // 성공 시 동작
+      List<Tag> data = jsonDecode(utf8.decode(response.bodyBytes)).map<Tag>((json) => Tag.fromJson(json)).toList();
+      return data;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('태그 검색 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await searchTag(context, query: query); // 재호출
         } else {
           showErrorDialog(context, '토큰 갱신에 실패했습니다.');
         }
@@ -1942,7 +1993,7 @@ Future<void> actionObject(BuildContext context) async {
     );
     // 서버 응답 판별부
     if (response.statusCode == 200) {
-      print('회원탈퇴 성공: ${response.body}');
+      print('회원탈퇴 성공: ${utf8.decode(response.bodyBytes)}');
       // 성공 시 동작
       await _logout();
       return;
