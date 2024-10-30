@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/screen/main/trends_screen.dart';
+import 'package:laxy/screen/user/login_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 // API URL을 하나의 변수로 저장
@@ -133,7 +136,7 @@ Future<void> deleteUser(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 회원탈퇴 요청
           await deleteUser(context); // 재호출
@@ -153,7 +156,7 @@ Future<void> deleteUser(BuildContext context) async {
   }
 }
 // 액세스 토큰 갱신
-Future<String?> refreshAccessToken() async {
+Future<String?> refreshAccessToken(BuildContext context) async {
   final String url = '$baseUrl/refreshAccessToken'; // 토큰 갱신 엔드포인트
   String? refreshToken = await FlutterSecureStorage().read(key: "refreshToken");
 
@@ -162,7 +165,7 @@ Future<String?> refreshAccessToken() async {
   }
 
   try {
-    final response = await http.post(
+    final response = await http.get(
       Uri.parse(url),
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
@@ -176,9 +179,24 @@ Future<String?> refreshAccessToken() async {
       await storage.write(key: "accessToken", value: newAccessToken);
       return newAccessToken; // 새로운 accessToken 반환
     } else {
+      // 에러 코드 출력
       final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      print('토큰 갱신 실패: ${errorResponse['message']}');
-      return null;
+      print('회원정보수정 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E104") {
+        // 로그아웃
+        showErrorDialog(context, '토큰이 만료되어 로그아웃됩니다.');
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => TrendsScreen()),
+              (Route<dynamic> route) => false, // 모든 기존 라우트를 제거
+        ).then((_) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+          );
+        });
+        // 페이지 이동
+      }
+      throw Exception(errorResponse['message']);
     }
   } catch (e) {
     print('예외 발생: $e');
@@ -232,7 +250,7 @@ Future<void> editUser(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await editUser(context, gender: gender, birth: birth, name: name, password: password); // 재호출
@@ -284,7 +302,7 @@ Future<List<Post>> trendAllPost(BuildContext context, {String sortBy = 'recent'}
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await trendAllPost(context, sortBy: sortBy); // 재호출
@@ -333,7 +351,7 @@ Future<List<Post>> trendMainDaily(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await trendMainDaily(context); // 재호출;
@@ -382,7 +400,7 @@ Future<List<Post>> trendMainWeekly(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await trendMainWeekly(context); // 재호출;
@@ -431,7 +449,7 @@ Future<List<Tag>> trendCommunity(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await trendCommunity(context); // 재호출;
@@ -481,7 +499,7 @@ Future<List<OrbitData>> mindmapOrbit(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await mindmapOrbit(context); // 재호출
@@ -530,7 +548,7 @@ Future<List<Tag>> randomDrawer(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await randomDrawer(context); // 재호출;
@@ -579,7 +597,7 @@ Future<List<Tag>> recommendedDrawer(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await recommendedDrawer(context); // 재호출;
@@ -628,7 +646,7 @@ Future<List<Tag>> bookmarkedDrawer(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await bookmarkedDrawer(context); // 재호출;
@@ -679,7 +697,7 @@ Future<bool> checkBookmark(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await checkBookmark(context, tagId: tagId); // 재호출;
@@ -729,7 +747,7 @@ Future<void> addBookmark(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await addBookmark(context, tagId: tagId); // 재호출;
@@ -779,7 +797,7 @@ Future<void> deleteBookmark(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await deleteBookmark(context, tagId: tagId); // 재호출;
@@ -831,7 +849,7 @@ Future<List<Post>> tagPost(BuildContext context,{
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await tagPost(context, name: name, sortBy: sortBy); // 재호출;
@@ -882,7 +900,7 @@ Future<List<Post>> communtyMainDaily(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await communtyMainDaily(context, name: name); // 재호출;
@@ -933,7 +951,7 @@ Future<List<Post>> communityMainWeekly(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await communityMainWeekly(context, name: name); // 재호출;
@@ -984,7 +1002,7 @@ Future<List<Post>> communityGoodPost(BuildContext context,{
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await communityGoodPost(context, name: name); // 재호출;
@@ -1036,7 +1054,7 @@ Future<List<Post>> communityAllPost(BuildContext context,{
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await communityAllPost(context, name: name, sortBy: sortBy); // 재호출;
@@ -1087,7 +1105,7 @@ Future<List<Tag>> communityRelated(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await communityRelated(context, tagId: tagId); // 재호출;
@@ -1134,7 +1152,7 @@ Future<List<Tag>> bookmarkedTag(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await bookmarkedTag(context); // 재호출;
@@ -1181,7 +1199,7 @@ Future<List<Post>> likedPost(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await likedPost(context); // 재호출;
@@ -1228,7 +1246,7 @@ Future<List<Post>> myPost(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await myPost(context); // 재호출;
@@ -1275,7 +1293,7 @@ Future<List<Comment>> myComment(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await myComment(context); // 재호출;
@@ -1323,7 +1341,7 @@ Future<void> likeComment(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await likeComment(context, commentId: commentId); // 재호출
@@ -1372,7 +1390,7 @@ Future<void> deleteLikeComment(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await likeComment(context, commentId: commentId); // 재호출
@@ -1421,7 +1439,7 @@ Future<void> deleteComment(BuildContext context,{
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await deleteComment(context, commentId: commentId); // 재호출
@@ -1474,7 +1492,7 @@ Future<Post> detailPost(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await detailPost(context, postId: postId); // 재호출
@@ -1532,7 +1550,7 @@ Future<int> writePost(BuildContext context,{
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await writePost(context, title: title, content: content, tags: tags); // 재호출
@@ -1584,7 +1602,7 @@ Future<List<Comment>> postDetailComment(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await postDetailComment(context, postId: postId, sortBy: sortBy); // 재호출
@@ -1632,7 +1650,7 @@ Future<void> likePost(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await likePost(context, postId: postId); // 재호출
@@ -1681,7 +1699,7 @@ Future<void> deleteLikePost(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await deleteLikePost(context, postId: postId); // 재호출
@@ -1736,7 +1754,7 @@ Future<void> writeComment(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await writeComment(context, postId: postId, contents: contents); // 재호출
@@ -1785,7 +1803,7 @@ Future<void> deletePost(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await deletePost(context, postId: postId); // 재호출
@@ -1844,7 +1862,7 @@ Future<void> editPost(BuildContext context,{
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await editPost(context, postId: postId, title: title, content: content, tags: tags); // 재호출
@@ -1898,7 +1916,7 @@ Future<void> editComment(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await editComment(context, commentId: commentId, contents: contents); // 재호출
@@ -1950,7 +1968,7 @@ Future<List<Tag>> searchTag(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           return await searchTag(context, query: query); // 재호출
@@ -2007,7 +2025,7 @@ Future<void> relateTag(BuildContext context, {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await relateTag(context, originalTagId: originalTagId, relatedTagId: relatedTagId); // 재호출
@@ -2062,7 +2080,7 @@ Future<void> actionObject(BuildContext context) async {
       // accessToken 만료 시 처리
       if (errorResponse['code'] == "E103") {
         // 새로운 accessToken 발급
-        String? newAccessToken = await refreshAccessToken();
+        String? newAccessToken = await refreshAccessToken(context);
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await deleteUser(context); // 재호출

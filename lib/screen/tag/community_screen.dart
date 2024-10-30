@@ -10,7 +10,6 @@ import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/screen/tag/community_main_tab_view.dart';
 import 'package:laxy/screen/tag/community_post_tab_view.dart';
 import 'package:laxy/screen/tag/community_recommend_tab_view.dart';
-import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
@@ -32,7 +31,6 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
-  late CommunityData communityData;
   bool isLogin = false;
   bool isBookmarked = false;
 

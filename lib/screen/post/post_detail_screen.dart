@@ -15,7 +15,6 @@ import 'package:laxy/common/component/quill/custom_quill_reader.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/post_layout.dart';
-import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 

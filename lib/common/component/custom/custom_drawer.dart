@@ -12,7 +12,6 @@ import 'package:laxy/screen/my/my_page_screen.dart';
 import 'package:laxy/screen/my/my_post_screen.dart';
 import 'package:laxy/screen/tag/community_screen.dart';
 import 'package:laxy/screen/tag/tag_screen.dart';
-import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 

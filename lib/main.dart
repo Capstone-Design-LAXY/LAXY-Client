@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/screen/main/mindmap_screen.dart';
 import 'package:laxy/screen/main/trends_screen.dart';
-import 'package:laxy/screen/temp_start_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'utils/auth_utils.dart';
+import 'package:laxy/utils/utils.dart';
 
 void main() {
   // CustomThemeMode.instance;

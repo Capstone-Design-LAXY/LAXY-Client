@@ -10,7 +10,7 @@ import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/screen/main/trends_post_tab_view.dart';
 import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_tab_bar.dart';
-import 'package:laxy/utils/auth_utils.dart';
+import 'package:laxy/utils/utils.dart';
 
 class TrendsScreen extends StatefulWidget {
 

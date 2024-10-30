@@ -10,7 +10,6 @@ import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
-import 'package:laxy/utils/auth_utils.dart';
 import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 

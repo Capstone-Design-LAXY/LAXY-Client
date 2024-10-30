@@ -2,7 +2,16 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
+
+Future<bool> isAccessToken() async{
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if ( accessToken == null ){
+    return false;
+  }
+  return true;
+}
 
 String formatNum(int? number) {
   // null 처리
@@ -195,24 +204,6 @@ class Post {
           : null,
     );
   }
-  Post toggleIsLiked() {
-    int newLikeCount;
-    newLikeCount = isLiked! ? likeCount! - 1 : likeCount! + 1;
-    return Post(
-      isLiked: !isLiked!,
-      postId: postId,
-      title: title,
-      author: author,
-      commentCount: commentCount,
-      likeCount: newLikeCount,
-      contents: contents,
-      createdAt: createdAt,
-      viewCount: viewCount,
-      imageUrl: imageUrl,
-      tags: tags,
-      isMyPost: isMyPost,
-    );
-  }
 }
 // Comment 데이터 모델
 class Comment {
@@ -256,199 +247,6 @@ class Comment {
     );
   }
 }
-// DrawerData 모델
-class DrawerData {
-  final List<Tag> bookmarked;
-  final List<Tag> recommended;
-
-  DrawerData({
-    required this.bookmarked,
-    required this.recommended,
-  });
-
-  // JSON 데이터를 DrawerData 객체로 변환
-  factory DrawerData.fromJson(Map<String, dynamic> json) {
-    return DrawerData(
-      bookmarked: (json['bookmarked'] as List)
-          .map((data) => Tag.fromJson(data))
-          .toList(),
-      recommended: (json['recommended'] as List)
-          .map((data) => Tag.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
-// RankData 모델
-class RankData {
-  final List<Post> daily;
-  final List<Post> weekly;
-
-  RankData({
-    required this.daily,
-    required this.weekly,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory RankData.fromJson(Map<String, dynamic> json) {
-    return RankData(
-      daily: (json['daily'] as List)
-          .map((data) => Post.fromJson(data))
-          .toList(),
-      weekly: (json['weekly'] as List)
-          .map((data) => Post.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
-// CommunityRankData 모델
-class CommunityRankData {
-  final List<Tag> rank;
-
-  CommunityRankData({
-    required this.rank,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory CommunityRankData.fromJson(Map<String, dynamic> json) {
-    return CommunityRankData(
-      rank: (json['rank'] as List)
-          .map((data) => Tag.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
-// PostData 모델
-class PostData {
-  final List<Post> posts;
-
-  PostData({
-    required this.posts,
-  });
-
-  // JSON 데이터를 PostData 객체로 변환
-  factory PostData.fromJson(Map<String, dynamic> json) {
-    return PostData(
-      posts: (json['posts'] as List)
-          .map((data) => Post.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
-// TagData 모델
-class TagData {
-  final bool isBookmarked;
-  final List<Post> posts;
-
-  TagData({
-    required this.isBookmarked,
-    required this.posts,
-  });
-
-  // JSON 데이터를 PostData 객체로 변환
-  factory TagData.fromJson(Map<String, dynamic> json) {
-    return TagData(
-      isBookmarked: json['is_bookmarked'],
-      posts: (json['posts'] as List)
-          .map((data) => Post.fromJson(data))
-          .toList(),
-    );
-  }
-
-  TagData toggleIsBookmarked() {
-    return TagData(
-      isBookmarked: !isBookmarked,
-      posts: posts, // posts는 그대로 유지
-    );
-  }
-}
-
-// CommunityData 모델
-class CommunityData {
-  final bool isBookmarked;
-
-  CommunityData({
-    required this.isBookmarked,
-  });
-
-  // JSON 데이터를 CommunityData 객체로 변환
-  factory CommunityData.fromJson(Map<String, dynamic> json) {
-    return CommunityData(
-      isBookmarked: json['is_bookmarked']
-    );
-  }
-
-  CommunityData toggleIsBookmarked() {
-    return CommunityData(
-      isBookmarked: !isBookmarked,
-    );
-  }
-}
-
-// CommunityRecommendData 모델
-class CommunityRecommendData {
-  final List<Tag> tags;
-
-  CommunityRecommendData({
-    required this.tags,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory CommunityRecommendData.fromJson(Map<String, dynamic> json) {
-    return CommunityRecommendData(
-      tags: (json['tags'] as List)
-          .map((data) => Tag.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
-class PostDetailData {
-  final Post post;
-  final List<Comment> comments;
-
-  PostDetailData({
-    required this.post,
-    required this.comments,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory PostDetailData.fromJson(Map<String, dynamic> json) {
-    return PostDetailData(
-      post: Post.fromJson(json['post']),
-      comments: (json['comments'] as List)
-          .map((data) => Comment.fromJson(data))
-          .toList(),
-    );
-  }
-  PostDetailData toggleIsLiked() {
-    return PostDetailData(
-      post: post.toggleIsLiked(),
-      comments: comments
-    );
-  }
-}
-
-class SearchTagData {
-  final List<Tag> tags;
-
-  SearchTagData({
-    required this.tags,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory SearchTagData.fromJson(Map<String, dynamic> json) {
-    return SearchTagData(
-      tags: (json['tags'] as List)
-          .map((data) => Tag.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
 // User 데이터 모델
 class User {
   final int? userId;
@@ -476,40 +274,6 @@ class User {
       posts: json['posts'],
       comments: json['comments'],
       updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
-    );
-  }
-}
-
-class SearchUserData {
-  final List<User> users;
-
-  SearchUserData({
-    required this.users,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory SearchUserData.fromJson(Map<String, dynamic> json) {
-    return SearchUserData(
-      users: (json['users'] as List)
-          .map((data) => User.fromJson(data))
-          .toList(),
-    );
-  }
-}
-
-class CommentData {
-  final List<Comment> comments;
-
-  CommentData({
-    required this.comments,
-  });
-
-  // JSON 데이터를 RankData 객체로 변환
-  factory CommentData.fromJson(Map<String, dynamic> json) {
-    return CommentData(
-      comments: (json['comments'] as List)
-          .map((data) => Comment.fromJson(data))
-          .toList(),
     );
   }
 }
