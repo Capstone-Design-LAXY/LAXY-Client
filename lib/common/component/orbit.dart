@@ -18,8 +18,8 @@ class Orbit extends StatefulWidget {
     this.type,
     this.enableFeedback = true,
     super.key,
-  })  : center = center ?? OrbitStar(showName: true,), // 기본값 설정
-        satellites = satellites ?? [OrbitStar()]; // 기본값 설정
+  })  : center = center ?? OrbitStar(showName: true, onPressed: (){},), // 기본값 설정
+        satellites = satellites ?? [OrbitStar(onPressed: (){},)]; // 기본값 설정
 
   @override
   _OrbitState createState() => _OrbitState();

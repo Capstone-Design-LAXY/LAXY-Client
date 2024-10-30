@@ -7,6 +7,8 @@ import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/const/enum.dart';
 import 'package:laxy/common/layout/default_layout.dart';
 import 'package:laxy/common/layout/mindmap_layout.dart';
+import 'package:laxy/screen/tag/community_screen.dart';
+import 'package:laxy/screen/tag/tag_screen.dart';
 import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 import 'package:laxy/common/component/background.dart';
@@ -49,6 +51,15 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
             grade: data![index].satellites![i].grade,
             name: data![index].satellites![i].name,
             tagId: data![index].satellites![i].tagId,
+            onPressed: (){
+              if (data![index].satellites![i].grade> 5) {
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: data![index].satellites![i].name, tagId: data![index].satellites![i].tagId,));
+                Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+              } else {
+                PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: data![index].satellites![i].name, tagId: data![index].satellites![i].tagId,));
+                Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+              }
+            },
           )
         );
       }
@@ -70,6 +81,15 @@ class _MindmapScreenState extends State<MindmapScreen> with SingleTickerProvider
                 name: data![i].center!.name,
                 showName: true,
                 tagId: data![i].center!.tagId,
+                onPressed: () {
+                  if (data![i].center!.grade > 5) {
+                    PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: data![i].center!.name, tagId: data![i].center!.tagId,));
+                    Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+                  } else {
+                    PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: data![i].center!.name, tagId: data![i].center!.tagId,));
+                    Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+                  }
+                },
               ),
           type: OrbitType.satellite,
           satellites: _buildInnerSatellites(i),

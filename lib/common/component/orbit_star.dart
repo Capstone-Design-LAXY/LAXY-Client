@@ -10,6 +10,7 @@ class OrbitStar extends StatefulWidget {
   final bool? showName;
   final String? name;
   final int? tagId;
+  final Function() onPressed;
 
   const OrbitStar({
     super.key,
@@ -17,6 +18,7 @@ class OrbitStar extends StatefulWidget {
     this.showName = false,
     this.name = "name",
     this.tagId = 0,
+    required this.onPressed,
   });
 
   @override
@@ -30,16 +32,6 @@ class _OrbitStarState extends State<OrbitStar> {
   Widget build(BuildContext context) {
     String imagePath;
     double size = 130;
-
-    void _defaultOnPressed() {
-      if (widget.grade! > 5) {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: widget.name!, tagId: widget.tagId!,));
-        Navigator.push(context, pageRouteWithAnimation.fadeTransition());
-      } else {
-        PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: widget.name!, tagId: widget.tagId!,));
-        Navigator.push(context, pageRouteWithAnimation.fadeTransition());
-      }
-    }
     // 이미지 불러오기
     if (widget.grade! > 5) {
       imagePath = 'assets/star/LAXY_star${widget.grade! - 5}.png';
@@ -92,7 +84,7 @@ class _OrbitStarState extends State<OrbitStar> {
               ),
               clipBehavior: Clip.hardEdge,
               child: MaterialButton(
-                onPressed: _defaultOnPressed,
+                onPressed: widget.onPressed,
                 splashColor: const Color(0xFF5589D3).withOpacity(0.2),
                 // 클릭 시 효과
                 highlightColor: const Color(0xFF5589D3).withOpacity(

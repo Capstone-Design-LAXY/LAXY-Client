@@ -52,7 +52,7 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
               bookmarkCount: data![i].bookmarkCount,
               postCount: data![i].postCount,
               grade: data![i].grade,
-              onPressed: () {
+              onPressed: () async{
                 if(data![i].grade <= 5){
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagId: data![i].tagId, tagName: data![i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
@@ -61,6 +61,7 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
                   PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: data![i].tagId, tagName: data![i].name,));
                   Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
                 }
+                await relateTag(context, originalTagId: data![i].tagId, relatedTagId: widget.tagId);
               },
             )
         );

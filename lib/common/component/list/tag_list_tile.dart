@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/list/list_info.dart';
 import 'package:laxy/common/component/orbit_star.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/tag/community_screen.dart';
+import 'package:laxy/screen/tag/tag_screen.dart';
 
 class TagListTile extends StatelessWidget {
   final int? tagId;
@@ -45,6 +48,15 @@ class TagListTile extends StatelessWidget {
               grade: grade,
               tagId: tagId,
               name: name,
+              onPressed:() {
+                if (grade! > 5) {
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagName: name!, tagId: tagId!,));
+                  Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+                } else {
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(TagScreen(tagName: name!, tagId: tagId!,));
+                  Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+                }
+              },
             ),
           ),
           // 내용
