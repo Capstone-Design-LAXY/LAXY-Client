@@ -220,6 +220,7 @@ class Comment {
   final bool? isPoster;
   final bool? isMyComment;
   final bool? isLiked;
+  final bool? isMyPost;
 
   Comment({
     required this.commentId,
@@ -231,6 +232,7 @@ class Comment {
     this.isPoster,
     this.isMyComment,
     this.isLiked,
+    this.isMyPost,
   });
 
   // JSON 데이터를 Post 객체로 변환
@@ -245,6 +247,7 @@ class Comment {
       isPoster: json['isPoster'],
       isMyComment: json['isMyComment'],
       isLiked: json['isLiked'],
+      isMyPost: json['isMyPost'],
     );
   }
 }

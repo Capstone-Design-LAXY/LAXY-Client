@@ -79,9 +79,9 @@ class _TagScreenState extends State<TagScreen> {
         posts.add(
             PostListTile(
               title: data![i].title,
-              author: data![i].author!,
-              likeCount: data![i].likeCount!,
-              commentCount: data![i].commentCount!,
+              author: data![i].author,
+              likeCount: data![i].likeCount,
+              commentCount: data![i].commentCount,
               viewCount: data![i].viewCount,
               imageUrl: data![i].imageUrl,
               createdAt: data![i].createdAt,

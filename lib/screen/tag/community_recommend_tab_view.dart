@@ -83,7 +83,7 @@ class _CommunityRecommendTabView extends State<CommunityRecommendTabView> {
         Column(
           children: _buildRank(),
         ),
-        if(data!.isEmpty) Center(child: Text('인기 커뮤니티 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
+        if(data!.isEmpty) Center(child: Text('추천 태그 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
       ],
     );
   }

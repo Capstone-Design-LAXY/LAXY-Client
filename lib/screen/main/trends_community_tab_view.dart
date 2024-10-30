@@ -20,7 +20,6 @@ class TrendsCommunityTabView extends StatefulWidget {
 }
 
 class _TrendsCommunityTabViewState extends State<TrendsCommunityTabView> {
-  late CommunityRankData communityRankData;
   List<Tag>? data;
 
   @override

@@ -326,8 +326,8 @@ class _SearchCommunityTabViewState extends State<SearchCommunityTabView> {
           TagListTile(
             tagId: searchTagData.tags[i].tagId,
             name: searchTagData.tags[i].name,
-            posts: searchTagData.tags[i].postCount!,
-            bookmarked: searchTagData.tags[i].bookmarkCount!,
+            postCount: searchTagData.tags[i].postCount!,
+            bookmarkCount: searchTagData.tags[i].bookmarkCount!,
             grade: searchTagData.tags[i].grade!,
             onPressed: () {
               PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(CommunityScreen(tagId: searchTagData.tags[i].tagId, tagName: searchTagData.tags[i].name,));

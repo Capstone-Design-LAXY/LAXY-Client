@@ -2,29 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:laxy/common/component/horizontal_expanded.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/utils/auth_utils.dart';
+import 'package:laxy/utils/http_utils.dart';
 import 'package:laxy/utils/utils.dart';
 
 class CommentListTile extends StatefulWidget {
-  final int commentId;
-  final String? name;
+  final int? commentId;
+  final String? author;
   final DateTime? createAt;
   final int? likeCount;
   final String? contents;
   final bool? isLiked;
-  final bool? isMyPost;
   final bool? isMyComment;
+  final bool? isMyPost;
   final bool? isPoster;
   final VoidCallback? onPressed;
 
   const CommentListTile({
-    required this.commentId,
-    this.name = '',
-    this.contents = '',
-    this.likeCount = 0,
+    this.commentId = 0,
+    this.author = 'author',
+    this.contents = 'contents',
+    this.likeCount = 100,
     this.isLiked = false,
-    this.isMyPost = false,
     this.isMyComment = false,
     this.isPoster = false,
+    this.isMyPost = false,
     this.createAt,
     this.onPressed,
     Key? key,
@@ -36,6 +37,7 @@ class CommentListTile extends StatefulWidget {
 
 class _CommentListTileState extends State<CommentListTile> {
   late bool isLiked;
+  late int likeCount;
   bool isExpanded = false;
   bool isLogin = false;
 
@@ -50,6 +52,7 @@ class _CommentListTileState extends State<CommentListTile> {
   void initState() {
     super.initState();
     isLiked = widget.isLiked!;
+    likeCount = widget.likeCount!;
     _checkAccessToken();
   }
 
@@ -73,7 +76,11 @@ class _CommentListTileState extends State<CommentListTile> {
       ),
       onPressed: widget.onPressed ?? _defaultOnPressed,
       onLongPress: () {
-        showCommentDialog(context, widget.commentId, widget.contents!, widget.isMyPost!, widget.isMyComment!);
+        print('commentId: ${widget.commentId}');
+        print('contents: ${widget.contents}');
+        print('isMyPost: ${widget.isMyPost}');
+        print('isMyComment: ${widget.isMyComment}');
+        showCommentDialog(context, widget.commentId!, widget.contents!, widget.isMyPost ?? false, widget.isMyComment!);
       },
       elevation: 0,
       padding: EdgeInsets.zero,
@@ -92,17 +99,21 @@ class _CommentListTileState extends State<CommentListTile> {
                       child: Icon(Icons.edit, size: 12, color: Color(0xFF5589D3),),
                     ),
                   ),
-                  Text(widget.name!, style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
+                  Text(widget.author!, style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
                   Text(' ৹ ', style: TextStyle(fontSize: 12, color: Color(0xFF141218).withOpacity(0.7)),),
                   Text(formatDate(widget.createAt), style: TextStyle(fontSize: 10, color: Color(0xFF141218).withOpacity(0.7)),),
                   Spacer(),
                   InkWell(
                     onTap: () {
                       if (isLogin){
-                        setState(() {
-                          isLiked = !isLiked;
-                          // TODO: 동작 추가 필요
-                        });
+                        if (isLiked) {
+                          deleteLikeComment(context, commentId: widget.commentId!);
+                          setState(() {isLiked = false; likeCount--;});
+                        }
+                        else {
+                          likeComment(context, commentId: widget.commentId!);
+                          setState(() {isLiked = true; likeCount++;});
+                        }
                       }
                       else {
                         showLoginDialog(context);
@@ -123,7 +134,7 @@ class _CommentListTileState extends State<CommentListTile> {
                           SizedBox(width: 2,),
                           SizedBox(
                               width: 23,
-                              child: Text(formatNum(widget.likeCount), style: TextStyle(fontSize: 10))
+                              child: Text(formatNum(likeCount), style: TextStyle(fontSize: 10))
                           ),
                         ],
                       ),
@@ -135,10 +146,11 @@ class _CommentListTileState extends State<CommentListTile> {
                 child: Text(
                   widget.contents!,
                   style: TextStyle(fontSize: 14, height: 1.1),
-                  maxLines: isExpanded? null: 3,
-                  overflow: isExpanded? null: TextOverflow.ellipsis,
+                  maxLines: isExpanded || widget.onPressed != null ? null: 3,
+                  overflow: isExpanded || widget.onPressed != null ? null: TextOverflow.ellipsis,
                 ),
               ),
+              SizedBox(height: 3,)
             ],
           ),
         ),

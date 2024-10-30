@@ -122,7 +122,7 @@ class _TempPostDetailScreenState extends State<TempPostDetailScreen> {
         comment.add(
           CommentListTile(
             commentId: postDetailData.comments[i].commentId,
-            name: postDetailData.comments[i].author,
+            author: postDetailData.comments[i].author,
             contents: postDetailData.comments[i].contents,
             likeCount: postDetailData.comments[i].likeCount,
             isLiked: postDetailData.comments[i].isLiked,

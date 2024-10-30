@@ -21,23 +21,11 @@ class MyPageScreen extends StatefulWidget {
 }
 
 class _MyPageScreenState extends State<MyPageScreen> {
-  late User me;
+  User? me;
 
   @override
   void initState() {
     super.initState();
-    String jsonString = '''
-    {
-      "user_id": 67638,
-      "nickname": "팀LAXY",
-      "comments": 6600,
-      "posts": 7797,
-      "email": "laxy@gmail.com",
-      "updatedAt": "1990-12-12T03:12:00.000Z"
-    }
-    ''';
-    // JSON 문자열을 RankData 객체로 파싱
-    // me = User.fromJson(jsonDecode(jsonString));
     _checkAccessToken();
   }
 
@@ -56,11 +44,13 @@ class _MyPageScreenState extends State<MyPageScreen> {
     else {
       print("닉네임, 이메일 불러오기 실패");
     }
-    // print(isLogin);
   }
 
   @override
   Widget build(BuildContext context) {
+    if(me == null) {
+      return Center(child: CircularProgressIndicator()); // 데이터 로드 중 로딩 인디케이터 표시
+    }
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -90,7 +80,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            me.nickname!,
+                            me!.nickname!,
                             style: TextStyle(
                               fontSize: 25,
                               color: Color(0xFFFFFFFF),
@@ -98,7 +88,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                             ),
                           ),
                           Text(
-                            me.email!,
+                            me!.email!,
                             style: TextStyle(
                               fontSize: 15,
                               color: Color(0xFFFFFFFF),
@@ -154,8 +144,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
                         TextListTile(
                           onPressed: () {
                             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(MyAccountScreen(
-                              email: me.email!,
-                              nickname: me.nickname!,
+                              email: me!.email!,
+                              nickname: me!.nickname!,
                             ));
                             Navigator.push(context, pageRouteWithAnimation.fadeTransition());
                           },

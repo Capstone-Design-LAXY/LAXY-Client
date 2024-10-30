@@ -422,8 +422,7 @@ void showDeleteCommentDialog(
               foregroundColor: Color(0xFF5589D3),
             ),
             onPressed: () {
-              // TODO: 연결 필요
-              print('------댓글 삭제 ${commentId}-------');
+              deleteComment(context, commentId: commentId);
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },

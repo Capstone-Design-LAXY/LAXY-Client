@@ -4,19 +4,19 @@ import 'package:laxy/common/component/list/list_info.dart';
 import 'package:laxy/common/component/orbit_star.dart';
 
 class TagListTile extends StatelessWidget {
-  final int tagId;
-  final String name;
-  final int bookmarked;
-  final int posts;
-  final int grade;
+  final int? tagId;
+  final String? name;
+  final int? bookmarkCount;
+  final int? postCount;
+  final int? grade;
   final Function() onPressed;
 
   const TagListTile({
-    required this.tagId,
+    this.tagId = 0,
     this.name = 'name',
-    this.bookmarked = 110,
-    this.posts = 100,
-    this.grade = 5,
+    this.bookmarkCount = 110,
+    this.postCount = 100,
+    this.grade = 1,
     required this.onPressed,
     Key? key,
   }) : super(key: key);
@@ -54,18 +54,18 @@ class TagListTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HorizontalExpanded(child: Text(name, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
+                  HorizontalExpanded(child: Text(name!, style: TextStyle(fontSize: 16), overflow: TextOverflow.ellipsis,)),
                   SizedBox(height: 2,),
                   Row(
                     children: [
                       Spacer(),
                       ListInfo(
                         icon: Icons.bookmark,
-                        num: bookmarked,
+                        num: bookmarkCount,
                       ),
                       ListInfo(
                         icon: Icons.description_outlined,
-                        num: posts,
+                        num: postCount,
                       ),
                     ],
                   )
