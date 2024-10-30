@@ -58,6 +58,7 @@ class _CustomPopupMenuButtonState extends State<CustomPopupMenuButton> {
             }
             break;
           case Menu.modify:
+            Navigator.pop(context);
             PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostEditScreen(
               postId: widget.postId!,
               contents: widget.content!,

@@ -46,7 +46,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   void initState() {
     super.initState();
     _loadPost();
-    _loadComment('최신순');
+    _loadComment('인기순');
   }
 
   Future<void> _loadPost() async{
@@ -72,17 +72,17 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         sortCriteria = 'popular';
         break;
       case 'MY':
-        sortCriteria = 'my';
+        sortCriteria = 'recent';
         break;
       default:
         sortCriteria = 'recent'; // 기본값
     }
     comments = await postDetailComment(context, postId: widget.postId, sortBy: sortCriteria);
+    // 'MY'일 경우 필터링
+    if (sortBy == 'MY' && comments != null) {
+      comments = comments!.where((comment) => comment.isMyComment!).toList();
+    }
     setState(() {});
-  }
-
-  void _saveComment(String comment) {
-    
   }
 
   @override
@@ -188,16 +188,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
-                    return CustomModalBottomSheetBuilder(controller: _commentController,);
+                    return CustomModalBottomSheetBuilder(controller: _commentController, postId: widget.postId,);
                   },
                   isScrollControlled: true,  // 스크롤이 가능하도록 설정
                 ).then((_) {
                   // BottomSheet가 닫힌 후 실행되는 코드
-                  String commentText = _commentController.text;
-                  writeComment(context, postId: widget.postId, contents: commentText);
                   // TextEditingController 비우기
                   _commentController.clear();
-                  _loadComment('최신순');
+                  _loadComment('인기순');
                 });
               }
               else {
@@ -314,10 +312,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               CustomDropdownButton(
                 items: criteriaList,
                 onChanged: (String? criteriaValue) {
-                  setState(() {
+                  if (criteriaValue == 'MY'&& !isLogin){
+                    showLoginDialog(context);
+                  }
+                  else {
                     dropdownValueCriteria = criteriaValue!;
-                    _loadComment(dropdownValueCriteria); // 정렬 기준 변경 시 데이터 로드
-                  });
+                    _loadComment(dropdownValueCriteria);
+                    setState(() {});
+                  }
                 },
                 valueGender: dropdownValueCriteria
               ),

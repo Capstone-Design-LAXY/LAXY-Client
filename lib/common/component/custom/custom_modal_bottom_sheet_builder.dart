@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:laxy/common/component/show_dialog.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 class CustomModalBottomSheetBuilder extends StatefulWidget {
+  final int? postId;
+  final int? commentId;
   final TextEditingController controller;
 
   const CustomModalBottomSheetBuilder({
+    this.postId,
+    this.commentId,
     required this.controller,
     super.key
   });
@@ -17,8 +22,13 @@ class _CustomModalBottomSheetBuilderState extends State<CustomModalBottomSheetBu
 
   // 공통 작업을 위한 함수
   Future<void> _submitText() async {
-    if(!widget.controller.text.trim().isEmpty && widget.controller.text.length <= 500){
-      await Future.delayed(Duration(seconds: 1)); // 비동기 작업
+    if(!widget.controller.text.trim().isEmpty && widget.controller.text.length <= 200){
+      if (widget.postId != null){
+        await writeComment(context, postId: widget.postId!, contents: widget.controller.text);
+      }
+      if (widget.commentId != null){
+        await editComment(context, commentId: widget.commentId!, contents: widget.controller.text);
+      }
       Navigator.pop(context);
     }
     else if(widget.controller.text.trim().isEmpty){

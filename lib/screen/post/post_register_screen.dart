@@ -11,9 +11,7 @@ import 'package:laxy/common/component/quill/custom_quill_writer.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/layout/post_layout.dart';
 import 'package:laxy/screen/post/post_detail_screen.dart';
-import 'package:laxy/screen/post/temp_post_detail_screen.dart';
 import 'package:laxy/utils/http_utils.dart';
-import 'package:laxy/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
 class PostRegisterScreen extends StatefulWidget {

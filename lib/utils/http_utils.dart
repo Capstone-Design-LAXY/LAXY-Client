@@ -1555,7 +1555,7 @@ Future<List<Comment>> postDetailComment(BuildContext context, {
   required int postId,
   required String sortBy
 }) async {
-  final String url = '$baseUrl/comment/$postId?srotBy=$sortBy'; // 기본 URL에 로그인 엔드포인트 추가
+  final String url = '$baseUrl/comment/$postId?sortBy=$sortBy'; // 기본 URL에 로그인 엔드포인트 추가
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
   // 요청 헤더 설정
   Map<String, String> headers = {
@@ -1740,6 +1740,168 @@ Future<void> writeComment(BuildContext context, {
         if (newAccessToken != null) {
           // 새로운 accessToken으로 다시 요청
           await writeComment(context, postId: postId, contents: contents); // 재호출
+          return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 게시글 삭제 요청
+Future<void> deletePost(BuildContext context, {
+  required int postId
+}) async {
+  final String url = '$baseUrl/post/$postId'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  // 요청 헤더 설정
+  if (accessToken == null) return;
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+    "Authorization": "Bearer $accessToken"
+  };
+  try {
+    // 요청 보내는 부분
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: headers,
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('게시글 삭제 요청 성공: ${response.body}');
+      // 성공 시 동작
+      return;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('게시글 삭제 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          await deletePost(context, postId: postId); // 재호출
+          return;
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 게시글 수정 요청
+Future<void> editPost(BuildContext context,{
+  required int postId,
+  required String title,
+  required String content,
+  required List<String> tags
+}) async {
+  final String url = '$baseUrl/post/$postId'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if(accessToken == null) return;
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+    "Authorization": "Bearer $accessToken",
+  };
+  // Request body에 담을 data
+  final Map<String, dynamic> data = {
+    "title": title,
+    "contents": content,
+    "tags": tags,
+  };
+  try {
+    // 요청 보내는 부분
+    final response = await http.put(
+      Uri.parse(url),
+      headers: headers,
+      body: jsonEncode(data),
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('게시글 수정 요청 성공: ${response.body}');
+      // 성공 시 동작
+      return;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('게시글 수정 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await editPost(context, postId: postId, title: title, content: content, tags: tags); // 재호출
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
+// 댓글 수정 요청
+Future<void> editComment(BuildContext context, {
+  required int commentId,
+  required String contents
+}) async {
+  final String url = '$baseUrl/comment/$commentId'; // 기본 URL에 로그인 엔드포인트 추가
+  String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
+  if(accessToken == null) return;
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+    "Authorization": "Bearer $accessToken"
+  };
+  // Request body에 담을 data  ( 'email', 'password' 자리가 변수 )
+  final Map<String, dynamic> data = {
+    "contents": contents,
+  };
+  try {
+    // 요청 보내는 부분
+    final response = await http.put(
+      Uri.parse(url),
+      headers: headers,
+      body: jsonEncode(data),
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('댓글 수정 성공: ${response.body}');
+      // 성공 시 동작
+      return;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('댓글 수정 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken();
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          await editComment(context, commentId: commentId, contents: contents); // 재호출
           return;
         } else {
           showErrorDialog(context, '토큰 갱신에 실패했습니다.');

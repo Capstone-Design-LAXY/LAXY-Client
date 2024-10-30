@@ -172,7 +172,7 @@ void showFullCommentDialog(
       return AlertDialog(
         backgroundColor: Color(0xFFFFFFFF),
         title: Text('댓글 용량 초과'),
-        content: Text('댓글을 500자 이내로 작성해주세요\n 현재 입력된 내용: ${contentLength}자'),
+        content: Text('댓글을 200자 이내로 작성해주세요\n 현재 입력된 내용: ${contentLength}자'),
         actions: <Widget>[
           ElevatedButton(
             style: TextButton.styleFrom(
@@ -193,6 +193,7 @@ void showFullCommentDialog(
 void showCommentDialog(
     BuildContext context,
     int commentId,
+    int postId,
     String content,
     bool isMyPost,
     bool isMyComment,
@@ -230,19 +231,20 @@ void showCommentDialog(
                   showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
-                      return CustomModalBottomSheetBuilder(controller: _commentController,);
+                      return CustomModalBottomSheetBuilder(controller: _commentController, commentId: commentId,);
                     },
                     isScrollControlled: true,  // 스크롤이 가능하도록 설정
                   ).then((_) {
                     // BottomSheet가 닫힌 후 실행되는 코드
-                    String commentText = _commentController.text;
+                    // String commentText = _commentController.text;
                     // 저장할 로직 추가 (예: 서버로 전송, 로컬 저장 등)
-                    print('수정된 댓글: ${commentText}');
+                    // print('수정된 댓글: ${commentText}');
                     // TextEditingController 비우기
                     _commentController.dispose();
+                    Navigator.pop(context);
                   });
                   // 수정하기 동작
-                  print('---------수정 접수 commentId: ${commentId}-----------');
+                  // print('---------수정 접수 commentId: ${commentId}-----------');
                 },
                 leading: const Icon(Icons.edit_note),
                 title: const Text('수정하기'),
@@ -255,7 +257,7 @@ void showCommentDialog(
                   showDeleteCommentDialog(context, commentId);
                   // Navigator.pop(context); // 다이얼로그 닫기
                   // 삭제하기 동작
-                  print('---------삭제 접수 commentId: ${commentId}-----------');
+                  // print('---------삭제 접수 commentId: ${commentId}-----------');
                 },
                 leading: const Icon(Icons.delete_outline),
                 title: const Text('삭제하기'),
@@ -381,8 +383,7 @@ void showDeletePostDialog(
               foregroundColor: Color(0xFF5589D3),
             ),
             onPressed: () {
-              // TODO: 연결 필요
-              print('------게시글 삭제 ${postId}-------');
+              deletePost(context, postId: postId);
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },

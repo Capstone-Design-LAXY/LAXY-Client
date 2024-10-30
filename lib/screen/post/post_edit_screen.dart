@@ -1,13 +1,18 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/custom/custom_chip_tags.dart';
 import 'package:laxy/common/component/list/list_header.dart';
+import 'package:laxy/common/component/page_route_with_animation.dart';
 import 'package:laxy/common/component/quill/custom_quill_writer.dart';
 import 'package:laxy/common/component/show_dialog.dart';
 import 'package:laxy/common/layout/post_layout.dart';
+import 'package:http/http.dart' as http;
+import 'package:laxy/screen/post/post_detail_screen.dart';
+import 'package:laxy/utils/http_utils.dart';
 
 class PostEditScreen extends StatefulWidget {
   final int postId;
@@ -30,6 +35,8 @@ class PostEditScreen extends StatefulWidget {
 class _PostEditScreenState extends State<PostEditScreen> {
   TextEditingController _titleController = TextEditingController();
   late quill.QuillController _controller;
+  String? _uploadedFileUrl; // 업로드된 파일 URL을 저장할 변수
+  List<String> tagList = [];
 
   @override
   void initState() {
@@ -51,8 +58,69 @@ class _PostEditScreenState extends State<PostEditScreen> {
     super.dispose();
   }
 
-  // 태그 리스트
-  List<String> tagList = [];
+  String _getContentType(String path) {
+    final extension = path.split('.').last.toLowerCase();
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'bmp':
+        return 'image/bmp';
+      default:
+        return 'application/octet-stream'; // 기본값
+    }
+  }
+
+  Future<void> _uploadImage(String localPath) async {
+    final contentType = _getContentType(localPath);
+    final bytes = await File(localPath).readAsBytes();
+
+    final response = await http.post(
+      Uri.parse('https://api.bytescale.com/v2/accounts/kW15cGZ/uploads/binary'),
+      headers: {
+        'Authorization': 'Bearer public_kW15cGZ3pbvhDgeuAVKuifkQ2PFB',
+        'Content-Type': contentType,
+      },
+      body: bytes,
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = jsonDecode(response.body);
+      setState(() {
+        _uploadedFileUrl = jsonResponse['fileUrl']; // 파일 URL 저장
+      });
+    } else {
+      setState(() {
+        _uploadedFileUrl = null; // 실패 시 URL 초기화
+      });
+    }
+  }
+
+  Future<String> _processContent() async {
+    final contents = jsonEncode(_controller.document.toDelta().toJson());
+    final List<dynamic> delta = jsonDecode(contents);
+
+    for (var item in delta) {
+      if (item['insert'] is Map && item['insert'].containsKey('image')) {
+        String imagePath = item['insert']['image'];
+
+        // 이미지 경로가 로컬 경로인지 확인
+        if (imagePath.startsWith('/data/user/') || imagePath.startsWith('file://')) {
+          await _uploadImage(imagePath); // 이미지 업로드
+          // 로컬 이미지 경로를 서버 URL로 교체
+          item['insert']['image'] = _uploadedFileUrl ?? imagePath; // 업로드 실패 시 원본 경로 유지
+        }
+        // URL인 경우에는 아무 것도 하지 않음
+      }
+    }
+    // 최종 게시글 내용 확인
+    print('최종 게시글 내용: ${jsonEncode(delta)}');
+    return jsonEncode(delta);
+  }
 
   // TODO: 이미지 업로드 기능 추가 필요
   @override
@@ -63,7 +131,7 @@ class _PostEditScreenState extends State<PostEditScreen> {
         children: [
           IconButton(
             icon: Icon(Icons.check),
-            onPressed: () {
+            onPressed: () async{
               String? contents = jsonEncode(_controller.document.toDelta().toJson());
               bool contentsEmpty = contents == "\[\{\"insert\"\:\"\\n\"\}\]";
               if (contentsEmpty || tagList.isEmpty || _titleController.text.isEmpty) {
@@ -73,13 +141,27 @@ class _PostEditScreenState extends State<PostEditScreen> {
                 showFullDialog(context, contents.length);
               }
               else {
-                Navigator.pop(context);
-                // print('작성 종료');
-                // print(tagList);
-                // print('제목: ${_titleController.text}');
-                // print(jsonEncode(_controller.document.toDelta().toJson()));
-                // print('작성 글자 수: ${jsonEncode(_controller.document.toDelta().toJson()).length}');
+                // 로딩 인디케이터 표시
+                showDialog(
+                  context: context,
+                  barrierDismissible: false, // 배경 클릭으로 닫히지 않도록 설정
+                  builder: (context) {
+                    return Center(child: CircularProgressIndicator()); // 로딩 인디케이터
+                  },
+                );
 
+                try {
+                  // 내용 처리
+                  String content = await _processContent();
+                  await editPost(context, postId: widget.postId, title: _titleController.text, content: content, tags: tagList);
+                  Navigator.pop(context); // 로딩 인디케이터 닫기
+                  Navigator.pop(context); // 게시글 작성 창 닽기
+                  PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(PostDetailScreen(postId: widget.postId,));
+                  Navigator.push(context, pageRouteWithAnimation.slideRightToLeft());
+                } catch (e) {
+                  Navigator.pop(context); // 오류 발생 시 로딩 인디케이터 닫기
+                  showErrorDialog(context, '게시글 등록에 실패했습니다.'); // 오류 메시지 표시
+                }
               }
             }
           ),
