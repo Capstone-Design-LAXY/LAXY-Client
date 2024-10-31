@@ -19,7 +19,7 @@ class _App extends StatefulWidget {
 }
 
 class _AppState extends State<_App> {
-  bool isLogin = false;
+  bool? isLogin;
 
   @override
   void initState() {
@@ -37,6 +37,9 @@ class _AppState extends State<_App> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    if (isLogin == null) {
+      return Center(child: CircularProgressIndicator()); // 데이터 로드 중 로딩 인디케이터 표시
+    }
     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarDividerColor: Colors.black));
     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarColor: Colors.black));
@@ -52,7 +55,7 @@ class _AppState extends State<_App> {
         // const Locale('en', 'US'), // 영어
         const Locale('ko', 'KR'), // 한국어
       ],
-      home: isLogin? MindmapScreen() : TrendsScreen(),
+      home: isLogin! ? MindmapScreen() : TrendsScreen(),
     );
   }
 }

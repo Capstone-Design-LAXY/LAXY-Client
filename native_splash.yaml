@@ -1,0 +1,7 @@
+flutter_native_splash:
+    android: true
+    ios: false
+    web: false
+
+    background_image: "assets/sky.png"
+    image: "assets/LAXY_highqual_logo.png"
