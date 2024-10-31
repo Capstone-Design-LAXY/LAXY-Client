@@ -191,16 +191,12 @@ void showFullCommentDialog(
 }
 
 void showCommentDialog(
-    BuildContext context,
-    int commentId,
-    int postId,
-    String content,
-    bool isMyPost,
-    bool isMyComment,
-    ) {
-  TextEditingController _commentController = TextEditingController();
-  _commentController.text = content;
-
+    BuildContext context, {
+      required int commentId,
+      required String content,
+      required bool isMyPost, // 삭제
+      required bool isMyComment, // 삭제, 수정
+}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -210,12 +206,12 @@ void showCommentDialog(
         content: Column(
           mainAxisSize: MainAxisSize.min, // 내용물에 맞춰 크기 조정
           children: [
+            // 신고하기 버튼
             Visibility(
               visible: !isMyComment,
               child: ListTile(
                 onTap: () {
                   showReportCommentDialog(context, commentId);
-                  // Navigator.pop(context); // 다이얼로그 닫기
                   // 신고하기 동작
                   print('---------신고 접수 commentId: ${commentId}-----------');
                 },
@@ -223,6 +219,7 @@ void showCommentDialog(
                 title: const Text('신고하기'),
               ),
             ),
+            // 수정하기 버튼
             Visibility(
               visible: isMyComment,
               child: ListTile(
@@ -231,25 +228,18 @@ void showCommentDialog(
                   showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
-                      return CustomModalBottomSheetBuilder(controller: _commentController, commentId: commentId,);
+                      return CustomModalBottomSheetBuilder(content: content, commentId: commentId,);
                     },
                     isScrollControlled: true,  // 스크롤이 가능하도록 설정
                   ).then((_) {
-                    // BottomSheet가 닫힌 후 실행되는 코드
-                    // String commentText = _commentController.text;
-                    // 저장할 로직 추가 (예: 서버로 전송, 로컬 저장 등)
-                    // print('수정된 댓글: ${commentText}');
-                    // TextEditingController 비우기
-                    _commentController.dispose();
                     Navigator.pop(context);
                   });
-                  // 수정하기 동작
-                  // print('---------수정 접수 commentId: ${commentId}-----------');
                 },
                 leading: const Icon(Icons.edit_note),
                 title: const Text('수정하기'),
               ),
             ),
+            // 삭제하기 버튼
             Visibility(
               visible: isMyPost || isMyComment,
               child: ListTile(

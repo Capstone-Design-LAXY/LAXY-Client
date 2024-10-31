@@ -34,7 +34,6 @@ const List<String> criteriaList = <String>['인기순', '최신순', 'MY'];
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
   String dropdownValueCriteria = criteriaList.first;
-  TextEditingController _commentController = TextEditingController();
   bool isLogin = false;
   bool isLiked = false;
   late int likeCount;
@@ -71,23 +70,17 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         sortCriteria = 'popular';
         break;
       case 'MY':
-        sortCriteria = 'recent';
+        sortCriteria = 'my';
         break;
       default:
-        sortCriteria = 'recent'; // 기본값
+        sortCriteria = 'popular'; // 기본값
     }
     comments = await postDetailComment(context, postId: widget.postId, sortBy: sortCriteria);
-    // 'MY'일 경우 필터링
-    if (sortBy == 'MY' && comments != null) {
-      comments = comments!.where((comment) => comment.isMyComment!).toList();
-    }
     setState(() {});
   }
 
   @override
   void dispose() {
-    // print('Submitted Text: ${_commentController.text}');
-    _commentController.dispose();
     super.dispose();
   }
 
@@ -187,13 +180,10 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
-                    return CustomModalBottomSheetBuilder(controller: _commentController, postId: widget.postId,);
+                    return CustomModalBottomSheetBuilder(postId: widget.postId,);
                   },
                   isScrollControlled: true,  // 스크롤이 가능하도록 설정
                 ).then((_) {
-                  // BottomSheet가 닫힌 후 실행되는 코드
-                  // TextEditingController 비우기
-                  _commentController.clear();
                   _loadComment('인기순');
                 });
               }

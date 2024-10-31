@@ -5,12 +5,12 @@ import 'package:laxy/utils/http_utils.dart';
 class CustomModalBottomSheetBuilder extends StatefulWidget {
   final int? postId;
   final int? commentId;
-  final TextEditingController controller;
+  final String? content;
 
   const CustomModalBottomSheetBuilder({
     this.postId,
     this.commentId,
-    required this.controller,
+    this.content,
     super.key
   });
 
@@ -19,23 +19,39 @@ class CustomModalBottomSheetBuilder extends StatefulWidget {
 }
 
 class _CustomModalBottomSheetBuilderState extends State<CustomModalBottomSheetBuilder> {
+  TextEditingController _commentController = TextEditingController();
+
+  @override
+  void initState() {
+    if (widget.content != null) {
+      _commentController.text = widget.content!;
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _commentController.dispose();
+    super.dispose();
+  }
 
   // 공통 작업을 위한 함수
   Future<void> _submitText() async {
-    if(!widget.controller.text.trim().isEmpty && widget.controller.text.length <= 200){
+    if(_commentController.text.trim().isNotEmpty && _commentController.text.length <= 200){
       if (widget.postId != null){
-        await writeComment(context, postId: widget.postId!, contents: widget.controller.text);
+        await writeComment(context, postId: widget.postId!, contents: _commentController.text);
       }
       if (widget.commentId != null){
-        await editComment(context, commentId: widget.commentId!, contents: widget.controller.text);
+        await editComment(context, commentId: widget.commentId!, contents: _commentController.text);
       }
+      _commentController.clear();
       Navigator.pop(context);
     }
-    else if(widget.controller.text.trim().isEmpty){
+    else if(_commentController.text.trim().isEmpty){
       showEmptyCommentDialog(context);
     }
     else {
-      showFullCommentDialog(context, widget.controller.text.length);
+      showFullCommentDialog(context, _commentController.text.length);
     }
   }
 
@@ -65,7 +81,7 @@ class _CustomModalBottomSheetBuilderState extends State<CustomModalBottomSheetBu
                   borderSide: BorderSide(color: Color(0xFF5589D3),), // 포커스가 있을 때 밑줄 색상
                 ),
               ),
-              controller: widget.controller,
+              controller: _commentController,
             ),
             Row(
               children: [
@@ -76,8 +92,8 @@ class _CustomModalBottomSheetBuilderState extends State<CustomModalBottomSheetBu
                   ),
                   child: Text('취소'),
                   onPressed: () {
-                    widget.controller.clear();  // TextField 내용 비우기
-                    Navigator.pop(context);     // 모달 닫기
+                    _commentController.clear();  // TextField 내용 비우기
+                    Navigator.pop(context);
                   },
                 ),
                 SizedBox(width: 4,),

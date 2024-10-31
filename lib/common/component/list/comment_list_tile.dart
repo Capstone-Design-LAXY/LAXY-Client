@@ -6,7 +6,6 @@ import 'package:laxy/utils/utils.dart';
 
 class CommentListTile extends StatefulWidget {
   final int? commentId;
-  final int? postId;
   final String? author;
   final DateTime? createAt;
   final int? likeCount;
@@ -19,7 +18,6 @@ class CommentListTile extends StatefulWidget {
 
   const CommentListTile({
     this.commentId = 0,
-    this.postId = 0,
     this.author = 'author',
     this.contents = 'contents',
     this.likeCount = 100,
@@ -77,7 +75,12 @@ class _CommentListTileState extends State<CommentListTile> {
       ),
       onPressed: widget.onPressed ?? _defaultOnPressed,
       onLongPress: () {
-        showCommentDialog(context, widget.commentId!, widget.postId!, widget.contents!, widget.isMyPost ?? false, widget.isMyComment!);
+        showCommentDialog(context,
+            commentId: widget.commentId!,
+            content: widget.contents!,
+            isMyPost: widget.isMyPost!, // 삭제
+            isMyComment: widget.isMyComment!, // 삭제, 수정
+        );
       },
       elevation: 0,
       padding: EdgeInsets.zero,
