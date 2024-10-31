@@ -31,10 +31,59 @@ class _CustomSegmentButtonState extends State<CustomSegmentButton> {
 
   @override
   Widget build(BuildContext context) {
+    bool showSelectedIcon = MediaQuery.of(context).size.width > 380 ? true : false;
+
+    List<ButtonSegment<Main>> mindmapButtonSegment() {
+
+      if (MediaQuery.of(context).size.width > 380) {
+        setState(() {
+          showSelectedIcon = true;
+        });
+        if (mainView == Main.mindMap) {
+          return [
+            ButtonSegment<Main>(
+              value: Main.mindMap,
+              label: Text('마인드맵'),
+            ),
+            ButtonSegment<Main>(
+                value: Main.trends,
+                label: const Text('트랜드')
+            ),
+          ];
+        } else {
+          return [
+            ButtonSegment<Main>(
+              value: Main.mindMap,
+              label: SizedBox(width: 74, child: Text('마인드맵', textAlign: TextAlign.center)),
+            ),
+            ButtonSegment<Main>(
+              value: Main.trends,
+              label: const Text('트랜드')
+            ),
+          ];
+        }
+      }
+      else{
+        setState(() {
+          showSelectedIcon = false;
+        });
+        return [
+          ButtonSegment<Main>(
+              value: Main.mindMap,
+              icon: Icon(Icons.bubble_chart_outlined)
+          ),
+          ButtonSegment<Main>(
+              value: Main.trends,
+              icon: Icon(Icons.trending_up)
+          ),
+        ];
+      }
+    }
+
     return Hero(
       tag: 'CustomSegmentButton',
       child: SegmentedButton<Main>(
-        // showSelectedIcon: false,
+        showSelectedIcon: showSelectedIcon,
         selectedIcon: mainView == Main.mindMap? Icon(Icons.bubble_chart_outlined) : Icon(Icons.trending_up),
         style: SegmentedButton.styleFrom(
           // TODO: 테마 지정 필요
@@ -45,17 +94,7 @@ class _CustomSegmentButtonState extends State<CustomSegmentButton> {
           visualDensity: VisualDensity(vertical: -1.5,),
           textStyle: TextStyle(fontSize: 12),
         ),
-        segments: <ButtonSegment<Main>>[
-          ButtonSegment<Main>(
-            value: Main.mindMap,
-            // 사이즈 맞추려고 노력했음
-            label: mainView == Main.mindMap? Text('마인드맵') : SizedBox(width: 74, child: Text('마인드맵', textAlign: TextAlign.center,)),
-          ),
-          ButtonSegment<Main>(
-            value: Main.trends,
-            label: const Text('트랜드'),
-          ),
-        ],
+        segments: mindmapButtonSegment(),
         selected: <Main>{mainView},
         onSelectionChanged: (Set<Main> newSelection) {
           setState(() {
