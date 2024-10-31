@@ -88,7 +88,8 @@ class PostListTile extends StatelessWidget {
               color: Color(0xFFD4E3FF),
               child: Image(
                 image: NetworkImage('$imageUrl'),
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
               ),
             ),
         ],
