@@ -6,6 +6,7 @@ import 'package:laxy/common/component/background.dart';
 import 'package:laxy/common/component/custom/custom_app_bar.dart';
 import 'package:laxy/common/component/list/text_list_tile.dart';
 import 'package:laxy/common/component/page_route_with_animation.dart';
+import 'package:laxy/screen/my/app_information.dart';
 import 'package:laxy/screen/my/bookmarked_screen.dart';
 import 'package:laxy/screen/my/liked_screen.dart';
 import 'package:laxy/screen/my/my_account_screen.dart';
@@ -150,6 +151,14 @@ class _MyPageScreenState extends State<MyPageScreen> {
                             Navigator.push(context, pageRouteWithAnimation.fadeTransition());
                           },
                           title: '회원정보 수정',
+                        ),
+                        SizedBox(height: 15),
+                        TextListTile(
+                          onPressed: () {
+                            PageRouteWithAnimation pageRouteWithAnimation = PageRouteWithAnimation(OssLicensesPage());
+                            Navigator.push(context, pageRouteWithAnimation.fadeTransition());
+                          },
+                          title: '앱 정보',
                         ),
                       ],
                     ),
