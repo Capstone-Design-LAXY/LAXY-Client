@@ -2044,6 +2044,50 @@ Future<void> relateTag(BuildContext context, {
     throw Exception('서버와의 연결에 실패했습니다.');
   }
 }
+// 시간 요청
+Future<DateTime> checkTime(BuildContext context) async {
+  final String url = '$baseUrl/time'; // 기본 URL에 로그인 엔드포인트 추가
+  // 요청 헤더 설정
+  Map<String, String> headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+  };
+  try {
+    // 요청 보내는 부분
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+    // 서버 응답 판별부
+    if (response.statusCode == 200) {
+      print('시간 요청 성공: ${utf8.decode(response.bodyBytes)}');
+      // 성공 시 동작
+      DateTime result = DateTime.parse(utf8.decode(response.bodyBytes));
+      return result;
+    } else {
+      // 에러 코드 출력
+      final errorResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      print('시간 요청 실패: ${errorResponse['message']}');
+      // accessToken 만료 시 처리
+      if (errorResponse['code'] == "E103") {
+        // 새로운 accessToken 발급
+        String? newAccessToken = await refreshAccessToken(context);
+        if (newAccessToken != null) {
+          // 새로운 accessToken으로 다시 요청
+          return await checkTime(context);
+        } else {
+          showErrorDialog(context, '토큰 갱신에 실패했습니다.');
+        }
+      } else {
+        // 토큰 이외의 오류
+        showErrorDialog(context, errorResponse['message']);
+      }
+      throw Exception(errorResponse['message']);
+    }
+  } catch (e) {
+    print('예외 발생: $e');
+    throw Exception('서버와의 연결에 실패했습니다.');
+  }
+}
 /// 요청 함수 기본 틀
 Future<void> actionObject(BuildContext context) async {
   final String url = '$baseUrl/user'; // 기본 URL에 로그인 엔드포인트 추가

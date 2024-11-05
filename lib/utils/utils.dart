@@ -4,6 +4,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:laxy/utils/http_utils.dart';
+
+// 서버시간과 기기시간의 차이
+Duration timeDifference = Duration.zero;
+
+// 서버시간과 기기의 시간의 차이를 구해줌
+void adjustTime(BuildContext context) async{
+  DateTime serverTime = await checkTime(context);
+  DateTime localTime = DateTime.now();
+
+  timeDifference = localTime.difference(serverTime);
+
+  print('서버시간: ${serverTime.toString()}');
+  print('로컬시간: ${localTime.toString()}');
+  print('시간차이: ${timeDifference.toString()}');
+}
+// 서버시간을 기기시간에 맞게 조정해줌
+DateTime getAdjustTime(DateTime serverTime) {
+  return serverTime.add(timeDifference);
+}
 
 Future<bool> isAccessToken() async{
   String? accessToken = await FlutterSecureStorage().read(key: "accessToken");
@@ -43,8 +63,10 @@ String formatDate(DateTime? dateTime) {
   // null 처리
   if (dateTime == null) return '';
 
+  // 서버에서 사용하는 시간과 기기의 시간의 차를 더해줌 (서버시간 -> 기기에 맞는시간)
+  final DateTime data = getAdjustTime(dateTime);
   final DateTime now = DateTime.now();
-  final Duration difference = now.difference(dateTime);
+  final Duration difference = now.difference(data);
 
   // 방금 전
   if (difference.inSeconds < 60) {
@@ -55,16 +77,16 @@ String formatDate(DateTime? dateTime) {
     return '${difference.inMinutes}분 전';
   }
   // 날짜가 같은 경우
-  else if (now.year == dateTime.year && now.month == dateTime.month && now.day == dateTime.day) {
-    return DateFormat('HH:mm').format(dateTime);
+  else if (now.year == data.year && now.month == data.month && now.day == data.day) {
+    return DateFormat('HH:mm').format(data);
   }
   // 같은 년도에 날짜가 다른 경우
-  else if (now.year == dateTime.year) {
-    return DateFormat('MM-dd HH:mm').format(dateTime);
+  else if (now.year == data.year) {
+    return DateFormat('MM-dd HH:mm').format(data);
   }
   // 다른 년도
   else {
-    return DateFormat('yy-MM-dd').format(dateTime);
+    return DateFormat('yy-MM-dd').format(data);
   }
 }
 

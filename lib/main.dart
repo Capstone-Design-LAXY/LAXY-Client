@@ -29,6 +29,7 @@ class _AppState extends State<_App> {
 
   void _checkAccessToken() async{
     bool loginStatus = await isAccessToken();
+    adjustTime(context);
     setState(() {
       isLogin = loginStatus;
     });
