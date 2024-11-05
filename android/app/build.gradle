@@ -30,7 +30,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.capstone.laxy"
+    namespace = "com.example.laxy"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
