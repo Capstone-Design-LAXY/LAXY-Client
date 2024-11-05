@@ -163,7 +163,7 @@ class _TrendsMainTabView extends State<TrendsMainTabView>
         Column(
           children: _buildWeekly(),
         ),
-        if(daily!.isEmpty) Center(child: Text('주간 인기 게시글 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
+        if(weekly!.isEmpty) Center(child: Text('주간 인기 게시글 없음', style: TextStyle(fontSize: 16, color: Colors.grey),),),
       ],
     );
   }
