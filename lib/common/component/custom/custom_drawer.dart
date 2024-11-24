@@ -36,7 +36,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     super.initState();
     _loadData();
   }
-
+ 
   Future<void> _loadData() async{
     isLogin = await isAccessToken();
     if (isLogin){
