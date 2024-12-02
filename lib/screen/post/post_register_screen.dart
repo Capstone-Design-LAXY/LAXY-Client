@@ -37,44 +37,41 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
   // 태그 리스트
   List<String> tagList = [];
 
-  String _getContentType(String path) {
-    final extension = path.split('.').last.toLowerCase();
-    switch (extension) {
-      case 'jpg':
-      case 'jpeg':
-        return 'image/jpeg';
-      case 'png':
-        return 'image/png';
-      case 'gif':
-        return 'image/gif';
-      case 'bmp':
-        return 'image/bmp';
-      default:
-        return 'application/octet-stream'; // 기본값
-    }
-  }
-
   Future<void> _uploadImage(String localPath) async {
-    final contentType = _getContentType(localPath);
-    final bytes = await File(localPath).readAsBytes();
+    print("업로드 시작: $localPath");
+    final image = await File(localPath);
 
-    final response = await http.post(
-      Uri.parse('https://api.bytescale.com/v2/accounts/kW15cGZ/uploads/binary'),
-      headers: {
-        'Authorization': 'Bearer public_kW15cGZ3pbvhDgeuAVKuifkQ2PFB',
-        'Content-Type': contentType,
-      },
-      body: bytes,
-    );
+    print("파일 읽기 완료: ${image.path}");
 
-    if (response.statusCode == 200) {
-      final jsonResponse = jsonDecode(response.body);
+    var request = http.MultipartRequest('POST', Uri.parse('http://52.78.164.15:8001/api/image'));
+    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+    print("MultipartRequest에 파일 추가 완료");
+
+    // 요청의 헤더 및 파일 내용 출력
+    print("요청 URL: ${request.url}");
+    print("요청 메서드: ${request.method}");
+    print("헤더: ${request.headers}");
+    print("파일: ${request.files}");
+
+    try {
+      final response = await request.send();
+      print("서버에 요청 전송 완료. 응답 상태 코드: ${response.statusCode}");
+
+      if (response.statusCode == 200) {
+        final responseString = await response.stream.bytesToString();
+        setState(() {
+          _uploadedFileUrl = responseString; // 파일 URL 저장
+        });
+      } else {
+        print("업로드 실패, 응답 상태 코드: ${response.statusCode}");
+        setState(() {
+          _uploadedFileUrl = 'https://laxy-bucket.s3.ap-northeast-2.amazonaws.com/%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%97%85%EB%A1%9C%EB%93%9C%EC%8B%A4%ED%8C%A8.png'; // 실패 시 URL 초기화
+        });
+      }
+    } catch (e) {
+      print("업로드 중 오류 발생: $e");
       setState(() {
-        _uploadedFileUrl = jsonResponse['fileUrl']; // 파일 URL 저장
-      });
-    } else {
-      setState(() {
-        _uploadedFileUrl = null; // 실패 시 URL 초기화
+        _uploadedFileUrl = 'https://laxy-bucket.s3.ap-northeast-2.amazonaws.com/%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%97%85%EB%A1%9C%EB%93%9C%EC%8B%A4%ED%8C%A8.png'; // 오류 발생 시 URL 초기화
       });
     }
   }
@@ -97,7 +94,7 @@ class _PostRegisterScreenState extends State<PostRegisterScreen> {
       }
     }
     // 최종 게시글 내용 확인
-    // print('최종 게시글 내용: ${jsonEncode(delta)}');
+    print('최종 게시글 내용: ${jsonEncode(delta)}');
     return jsonEncode(delta);
   }
 

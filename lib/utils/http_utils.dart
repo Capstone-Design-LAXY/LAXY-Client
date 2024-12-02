@@ -9,7 +9,7 @@ import 'package:laxy/screen/user/login_screen.dart';
 import 'package:laxy/utils/utils.dart';
 
 // API URL을 하나의 변수로 저장
-const String baseUrl = 'http://43.202.77.176:8001/api';
+const String baseUrl = 'http://52.78.164.15:8001/api';
 final storage = FlutterSecureStorage(); // FlutterSecureStorage 인스턴스 생성
 
 // 회원가입 요청을 처리하는 함수
